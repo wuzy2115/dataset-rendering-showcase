@@ -237,6 +237,10 @@
     <div class="stat-value">5</div>
     <div class="stat-label">URDF Models</div>
   </div>
+  <div class="stat">
+    <div class="stat-value">39+</div>
+    <div class="stat-label">Total Investigated</div>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -410,7 +414,190 @@
       </tr>
     </thead>
     <tbody>
-      <!-- BridgeData -->
+      <!-- ═══ RoboCOIN datasets ═══ -->
+      <tr>
+        <td><strong>RoboCOIN Split Aloha</strong></td>
+        <td>Agilex Cobot (bimanual, 6+6 DOF)</td>
+        <td>499</td>
+        <td><span class="status-dot dot-green"></span>3 cams (head, L/R wrist)</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera intrinsics/extrinsics</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint angles, gripper openness</li>
+            <li>EE poses (sim frame)</li>
+            <li>Action sequences</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RoboCOIN RMC-AIDA-L</strong></td>
+        <td>RealMan RMC-AIDAL (bimanual, 7+7 DOF)</td>
+        <td>356</td>
+        <td><span class="status-dot dot-yellow"></span>Partial (142 of 356 left wrist only)</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera calibration</li>
+            <li>Right wrist videos missing</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>7-DOF joint angles + velocities</li>
+            <li>Gripper state, EE pose</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RoboCOIN AIRBOT MMK2</strong></td>
+        <td>AiBot MMK2 (bimanual, 6+6 arms, 12+12 dex hands)</td>
+        <td>49</td>
+        <td><span class="status-dot dot-green"></span>3 cams (head, L/R wrist)</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera calibration</li>
+            <li>Hand joint units unclear (labeled rad but ~0-96)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>36-DOF state (6 arm + 12 hand per side)</li>
+            <li>EE sim pose, gripper activity/mode</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RoboCOIN Cobot Magic</strong></td>
+        <td>Agilex Cobot Decoupled Magic (bimanual, 6+6 DOF)</td>
+        <td>1,170</td>
+        <td><span class="status-dot dot-red"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Videos not downloaded</li>
+            <li>No camera calibration</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>26-DOF state, EE sim pose</li>
+            <li>61 tasks, 2620 scene descriptions</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RoboCOIN R1 Lite</strong></td>
+        <td>Galaxea R1 Lite (bimanual, 7+7 DOF)</td>
+        <td>101</td>
+        <td><span class="status-dot dot-green"></span>4 cams 1280x720@30fps AV1</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera calibration</li>
+            <li>EE orientation format unclear</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>16-DOF state (7 arm + 1 gripper per side)</li>
+            <li>EE poses, gripper scale [0,1]</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RoboCOIN LeJu Robot</strong></td>
+        <td>LeJu Humanoid (40 DOF: 7 arm + 6 hand + 6 leg per side + 2 head)</td>
+        <td>444</td>
+        <td><span class="status-dot dot-red"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Videos not downloaded</li>
+            <li>No camera calibration</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>118-DOF state (joints, velocities, efforts)</li>
+            <li>EE pose, IMU, 54-D actions</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- ═══ Standalone datasets ═══ -->
+      <tr>
+        <td><strong>ActionNet</strong></td>
+        <td>Fourier T1 (humanoid, bimanual dex hands, 32 DOF)</td>
+        <td>30,121</td>
+        <td><span class="status-dot dot-green"></span>1 cam + depth (MP4 + MKV FFV1)</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera intrinsics/extrinsics</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint states, hand joint angles</li>
+            <li>EE poses (6D), force/torque</li>
+            <li>HDF5 + MP4 format</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Humanoid Everyday</strong></td>
+        <td>Unitree G1 &amp; H1 (humanoid with dex hands)</td>
+        <td>82</td>
+        <td><span class="status-dot dot-green"></span>1 RGB + depth + LiDAR 640x480</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera extrinsics</li>
+            <li>Intrinsics in README only (RealSense D435)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Arm/leg/hand joint angles, IMU</li>
+            <li>World-frame EE poses, gripper states</li>
+            <li>Odometry, depth, LiDAR PCD</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>FMB (Original)</strong></td>
+        <td>Franka Panda</td>
+        <td>~8,600</td>
+        <td><span class="status-dot dot-green"></span>4 cams (2 side, 2 wrist) 256x256</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera-to-robot extrinsics</li>
+            <li>Calibration files = stereo rectification only</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint angles/velocities, TCP pose + force/torque</li>
+            <li>Jacobian, gripper binary</li>
+            <li>Primitive task labels, depth</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Galaxea R1 Lite (RLDS)</strong></td>
+        <td>Galaxea R1 Lite (dual-arm mobile)</td>
+        <td>1,784</td>
+        <td><span class="status-dot dot-green"></span>3 RGB 224x224 + 3 depth</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera intrinsics/extrinsics</li>
+            <li>No FPS in metadata</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint positions/velocities, gripper state</li>
+            <li>Language instruction (trilingual)</li>
+          </ul>
+        </td>
+      </tr>
       <tr>
         <td><strong>BridgeData V2</strong></td>
         <td>WidowX</td>
@@ -418,8 +605,7 @@
         <td><span class="status-dot dot-green"></span>256x256 JPEG</td>
         <td>
           <ul class="missing-list">
-            <li>No camera intrinsics</li>
-            <li>No camera extrinsics</li>
+            <li>No camera intrinsics/extrinsics</li>
             <li>WidowX URDF not in registry</li>
             <li>No joint angles (only EE state)</li>
           </ul>
@@ -427,13 +613,11 @@
         <td>
           <ul class="missing-list present-list">
             <li>TCP state [x,y,z,qx,qy,qz,qw]</li>
-            <li>7D actions (delta pose + gripper)</li>
-            <li>Language annotations</li>
+            <li>7D actions, language annotations</li>
             <li>3 cameras (256x256)</li>
           </ul>
         </td>
       </tr>
-      <!-- RoboNet -->
       <tr>
         <td><strong>RoboNet</strong></td>
         <td>Sawyer, WidowX, KUKA, Franka, Baxter, Fetch, Google R3</td>
@@ -441,22 +625,18 @@
         <td><span class="status-dot dot-green"></span>MP4 in HDF5</td>
         <td>
           <ul class="missing-list">
-            <li>No camera intrinsics</li>
-            <li>No camera extrinsics</li>
+            <li>No camera intrinsics/extrinsics</li>
             <li>No language annotations</li>
-            <li>Sawyer/WidowX/Baxter/Fetch URDFs not in registry</li>
+            <li>Most URDFs not in registry</li>
           </ul>
         </td>
         <td>
           <ul class="missing-list present-list">
-            <li>EE state [x,y,z,theta,gripper]</li>
-            <li>Joint angles (some embodiments)</li>
+            <li>EE state, joint angles (some)</li>
             <li>Multi-camera (up to 5)</li>
-            <li>KUKA + Franka URDFs available</li>
           </ul>
         </td>
       </tr>
-      <!-- RoboTurk -->
       <tr>
         <td><strong>RoboTurk</strong></td>
         <td>Sawyer</td>
@@ -465,10 +645,8 @@
         <td>
           <ul class="missing-list">
             <li>Video files not in sample</li>
-            <li>No camera intrinsics</li>
-            <li>No camera extrinsics</li>
+            <li>No camera calibration</li>
             <li>Proprioception all zeros</li>
-            <li>Sawyer URDF not in registry</li>
           </ul>
         </td>
         <td>
@@ -478,7 +656,6 @@
           </ul>
         </td>
       </tr>
-      <!-- RoboMIND -->
       <tr>
         <td><strong>RoboMIND</strong></td>
         <td>Multiple (raw data 24T)</td>
@@ -493,6 +670,456 @@
         <td>
           <ul class="missing-list present-list">
             <li>Raw data available on Turbo (wzn path)</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- ═══ Newly discovered datasets (2026-03-23) ═══ -->
+      <tr>
+        <td><strong>ALOHA</strong></td>
+        <td>2x ViperX 300 (bimanual, 6+6 DOF)</td>
+        <td>~50 demos/task</td>
+        <td><span class="status-dot dot-green"></span>3 cams (top + 2 wrist)</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera intrinsics/extrinsics</li>
+            <li>ViperX URDF not in registry</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint positions (14 DOF)</li>
+            <li>HDF5 / LeRobot format</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Mobile ALOHA</strong></td>
+        <td>2x ViperX 300 + AgileX Tracer mobile base</td>
+        <td>~50 demos/task, ~47GB</td>
+        <td><span class="status-dot dot-green"></span>3 cams (high + 2 wrist)</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera intrinsics/extrinsics</li>
+            <li>ViperX URDF not in registry</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint positions, base velocity</li>
+            <li>HDF5 / LeRobot format</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>AIST Bimanual</strong></td>
+        <td>ALOHA system (2x ViperX 300, bimanual)</td>
+        <td>10,000+ eps, 100+ tasks</td>
+        <td><span class="status-dot dot-yellow"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet downloaded</li>
+            <li>Likely no camera calibration</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Multi-view RGB, joint positions/velocities</li>
+            <li>Text descriptions</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RealSource</strong></td>
+        <td>RealMan dual-arm (7+7 DOF) + exoskeleton teleop</td>
+        <td>11,428 eps, 14M frames, 35 tasks</td>
+        <td><span class="status-dot dot-yellow"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet downloaded</li>
+            <li>RealMan URDF not in registry</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>RGB 720x1280@30fps</li>
+            <li>Joint angles/velocities, 6-axis F/T</li>
+            <li>EE pose, MCAP/HDF5/LeRobot</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>UMI</strong></td>
+        <td>Hardware-agnostic (Franka, UR5, etc.)</td>
+        <td>Community-sourced</td>
+        <td><span class="status-dot dot-green"></span>GoPro fisheye RGB</td>
+        <td>
+          <ul class="missing-list">
+            <li>Fisheye camera (distortion)</li>
+            <li>No standard calibration format</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>IMU, gripper width, 6D pose</li>
+            <li>Zarr format</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Dobb-E (HoNY)</strong></td>
+        <td>Hello Robot Stretch (deployment); iPhone on reacher-grabber (collection)</td>
+        <td>5,620 demos, 22 homes</td>
+        <td><span class="status-dot dot-yellow"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet downloaded</li>
+            <li>Stretch URDF not in registry</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>RGB + depth (iPhone LiDAR) @30fps</li>
+            <li>Gripper angle, 6D pose trajectories</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>ARMBench</strong></td>
+        <td>Amazon warehouse robots (Sparrow, Vulcan Stow)</td>
+        <td>235K+ activities, 190K+ objects</td>
+        <td><span class="status-dot dot-yellow"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet downloaded</li>
+            <li>Industrial robots, URDFs unknown</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>RGB, depth, force feedback</li>
+            <li>450K+ labels, tabular metadata</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RoboSet (Standalone)</strong></td>
+        <td>Franka Panda</td>
+        <td>7,500 trajs, 38 tasks</td>
+        <td><span class="status-dot dot-yellow"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet downloaded</li>
+            <li>Likely no camera calibration</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>RGB (4 views), proprioception</li>
+            <li>HDF5 format, 12 skills</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RT-1</strong></td>
+        <td>Google EDR (7-DOF + gripper + mobile base)</td>
+        <td>130K+ eps, 700+ tasks</td>
+        <td><span class="status-dot dot-yellow"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet downloaded</li>
+            <li>Google EDR URDF not available</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>RGB (head camera), proprioception</li>
+            <li>Language instructions</li>
+            <li>RLDS / TFDS format</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>BC-Z</strong></td>
+        <td>Google 7-DOF arm + 2-finger gripper</td>
+        <td>25,877 eps, 100 tasks</td>
+        <td><span class="status-dot dot-yellow"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet downloaded</li>
+            <li>Google robot URDF not available</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>RGB (single camera), proprioception</li>
+            <li>Language descriptions, human video conditioning</li>
+            <li>RLDS / TFDS format</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>DexH2R</strong></td>
+        <td>UR10e + ShadowHand (24-DOF dexterous)</td>
+        <td>4,282 trials, 456K frames</td>
+        <td><span class="status-dot dot-yellow"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet downloaded</li>
+            <li>ShadowHand URDF not in registry</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Multi-view RGB (18 views) + depth (6 views)</li>
+            <li>Hand joint states, 79K grasp poses</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>DexCanvas</strong></td>
+        <td>Human hand (MANO model, dexterous)</td>
+        <td>7,000 hours, 30M+ frames</td>
+        <td><span class="status-dot dot-yellow"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet downloaded (~1TB+)</li>
+            <li>Human hand data, no robot URDF</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Multi-view RGB-D, MANO hand params</li>
+            <li>Contact points, 21 manipulation types</li>
+            <li>Lance columnar format</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>DexCap</strong></td>
+        <td>Human hand mocap &rarr; robot dexterous hand</td>
+        <td>~90 min, 34 eps</td>
+        <td><span class="status-dot dot-yellow"></span>Not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet downloaded</li>
+            <li>Mocap data, no standard robot URDF</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Hand mocap, point clouds</li>
+            <li>HDF5 + ZIP format</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- ═══ OXE / TFDS sub-datasets ═══ -->
+      <tr>
+        <td><strong>OXE: ManiSkill</strong> <span class="badge badge-green" style="font-size:0.65rem">Has Calibration</span></td>
+        <td>Franka Panda</td>
+        <td>235 (sample)</td>
+        <td><span class="status-dot dot-green"></span>2 cams + depth 256x256</td>
+        <td>
+          <ul class="missing-list">
+            <li>TFDS format (converted from sim)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint positions [7], TCP pose [7]</li>
+            <li>Camera intrinsics (3x3) + extrinsics (4x4)</li>
+            <li>Language instruction + embedding</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: IO-AI Tech</strong> <span class="badge badge-green" style="font-size:0.65rem">Has Calibration</span></td>
+        <td>Human/EEF-controlled</td>
+        <td>3,847</td>
+        <td><span class="status-dot dot-green"></span>5 cams 360x640 + depth</td>
+        <td>
+          <ul class="missing-list">
+            <li>Unknown robot hardware</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>State [8] (xyz+quat+gripper)</li>
+            <li>Camera intrinsics (3x3) + extrinsics (4x4)</li>
+            <li>Language instruction</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: Stanford RoboCook</strong></td>
+        <td>Franka Panda</td>
+        <td>2,460</td>
+        <td><span class="status-dot dot-green"></span>4 RGB + 4 depth 256x256</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera intrinsics (has extrinsics only)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>EEF state [7] (xyz+euler+gripper)</li>
+            <li>Camera extrinsics [4x4] per episode</li>
+            <li>9 dough manipulation tasks</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: RoboSet</strong></td>
+        <td>Franka Panda</td>
+        <td>18,250</td>
+        <td><span class="status-dot dot-green"></span>4 cams 240x424 @5Hz</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera calibration</li>
+            <li>No direct EEF pose</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint positions/velocities [8]</li>
+            <li>Action [8] (joint deltas + gripper)</li>
+            <li>Language instruction</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: TACO Play</strong></td>
+        <td>Franka Panda</td>
+        <td>3,242</td>
+        <td><span class="status-dot dot-green"></span>2 cams (200x150 + 84x84) @15Hz</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera calibration</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>TCP xyz+euler [6] + 7 joint angles + gripper</li>
+            <li>Language instruction + embedding</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: FMB</strong></td>
+        <td>Franka Panda</td>
+        <td>8,611</td>
+        <td><span class="status-dot dot-green"></span>4 cams + depth 256x256</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera calibration (lost in TFDS conversion)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint pos/vel, EE pose [7], force/torque</li>
+            <li>Language instruction + embedding</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: iamlab CMU</strong></td>
+        <td>Franka Panda</td>
+        <td>90</td>
+        <td><span class="status-dot dot-green"></span>2 cams (640x360 + 320x240)</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera calibration</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>EEF pose actions [8], joint positions [7]</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: Conq Hose Manipulation</strong></td>
+        <td>Boston Dynamics Spot</td>
+        <td>139</td>
+        <td><span class="status-dot dot-green"></span>3 cams (2 fisheye + 1 hand)</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera calibration</li>
+            <li>Spot URDF not in registry</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>State [66] (joint pos/vel, EE, feet)</li>
+            <li>Language instruction + embedding [512]</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: Plex RoboSuite</strong></td>
+        <td>Franka Panda + others</td>
+        <td>25 (sample)</td>
+        <td><span class="status-dot dot-green"></span>Multiple cameras</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera calibration</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint space control</li>
+            <li>Language instruction</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: SPOC</strong></td>
+        <td>Hello Stretch (simulated)</td>
+        <td>233,151</td>
+        <td><span class="status-dot dot-green"></span>2 cams 224x384</td>
+        <td>
+          <ul class="missing-list">
+            <li>Simulated (AI2-THOR/ProcTHOR)</li>
+            <li>No real-world data</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>9-DOF actions (base+arm+gripper)</li>
+            <li>Language, room/object locations</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: RoboVQA</strong></td>
+        <td>Google Robot</td>
+        <td>3,335,297</td>
+        <td><span class="status-dot dot-green"></span>1 RGB + depth</td>
+        <td>
+          <ul class="missing-list">
+            <li>VQA dataset only &mdash; no proprioception, no actions</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Image sequences with QA pairs</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OXE: UTokyo PR2 (2 datasets)</strong></td>
+        <td>PR2</td>
+        <td>256</td>
+        <td><span class="status-dot dot-green"></span>1 cam 128x128 @10Hz</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera calibration</li>
+            <li>PR2 URDF not in registry</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>EEF xyz + euler + gripper</li>
+            <li>Language instruction</li>
           </ul>
         </td>
       </tr>
