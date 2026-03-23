@@ -1,0 +1,26 @@
+{
+  "episode_id": "RAD+62828209+2023-08-31-13h-55m-38s",
+  "task_id": "",
+  "action_idx": 0,
+  "start_ds": 0,
+  "end_ds": 215,
+  "skill": "",
+  "action_text": "Move object into or out of container (ex: drawer, clothes hamper, plate, trashcan, washer)",
+  "task_name": "",
+  "init_scene_text": "",
+  "primary_rgb_view": "ext1_left",
+  "gripper_view_paths": {
+    "ext1_left": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/droid_processed/actions/gripper_scenario/RAD+62828209+2023-08-31-13h-55m-38s__ext1_left.mp4",
+    "ext1_right": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/droid_processed/actions/gripper_scenario/RAD+62828209+2023-08-31-13h-55m-38s__ext1_right.mp4",
+    "ext2_left": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/droid_processed/actions/gripper_scenario/RAD+62828209+2023-08-31-13h-55m-38s__ext2_left.mp4",
+    "ext2_right": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/droid_processed/actions/gripper_scenario/RAD+62828209+2023-08-31-13h-55m-38s__ext2_right.mp4"
+  },
+  "skeleton_view_paths": {
+    "ext1_left": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/droid_processed/actions/skeleton_scenario/RAD+62828209+2023-08-31-13h-55m-38s__ext1_left.mp4",
+    "ext1_right": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/droid_processed/actions/skeleton_scenario/RAD+62828209+2023-08-31-13h-55m-38s__ext1_right.mp4",
+    "ext2_left": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/droid_processed/actions/skeleton_scenario/RAD+62828209+2023-08-31-13h-55m-38s__ext2_left.mp4",
+    "ext2_right": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/droid_processed/actions/skeleton_scenario/RAD+62828209+2023-08-31-13h-55m-38s__ext2_right.mp4"
+  },
+  "num_frames_rendered": 215,
+  "fov_valid": true
+}

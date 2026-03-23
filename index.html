@@ -414,6 +414,50 @@
       </tr>
     </thead>
     <tbody>
+      <!-- ═══ RealSource ═══ -->
+      <tr>
+        <td><strong>RealSource</strong> <span class="badge badge-green" style="font-size:0.65rem">Full Calibration</span></td>
+        <td>RealMan RS-02 dual-arm (7+7 DOF)</td>
+        <td>11,428+</td>
+        <td><span class="status-dot dot-green"></span>3 cams 1280x720 @30fps H.264</td>
+        <td>
+          <ul class="missing-list">
+            <li>RealMan URDF not in common registry (bundled in dataset)</li>
+            <li>HF repo gated (used ungated mirror)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Camera intrinsics (3x3) + extrinsics (hand-eye) + distortion</li>
+            <li>Joint angles/velocities, 6-axis force/torque</li>
+            <li>EE pose [x,y,z,qw,qx,qy,qz], gripper openness</li>
+            <li>Sub-task step annotations, quality assessments</li>
+            <li>URDF included, gripper overlay rendered</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- ═══ RoboMIND 2.0 ═══ -->
+      <tr>
+        <td><strong>RoboMIND 2.0</strong></td>
+        <td>AgileX (bimanual), Franka Panda, UR, Tien Kung GELLO</td>
+        <td>1,111 (example, 310K+ full)</td>
+        <td><span class="status-dot dot-green"></span>1-3 cams 640x480 JPEG-in-HDF5</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera extrinsics (has intrinsics only)</li>
+            <li>AgileX/Tien Kung URDFs not in registry</li>
+            <li>FPS not stored in HDF5</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Camera intrinsics (3x3 per camera)</li>
+            <li>Joint positions, EE pose [6/7D]</li>
+            <li>Language + DistilBERT embeddings</li>
+            <li>Tactile data (12K eps), sim subset (20K)</li>
+          </ul>
+        </td>
+      </tr>
       <!-- ═══ RoboCOIN datasets ═══ -->
       <tr>
         <td><strong>RoboCOIN Split Aloha</strong></td>
