@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dataset Rendering Showcase</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e4e6ef;
+    --muted: #8b8fa3;
+    --accent: #6366f1;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --orange: #f97316;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent), #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .stat { text-align: center; }
+  .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Section */
+  .section {
+    margin-bottom: 3rem;
+  }
+  .section-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+  .badge-yellow { background: rgba(234,179,8,0.15); color: var(--yellow); }
+  .badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
+
+  /* Video grid */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1rem;
+  }
+  .video-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .video-card:hover { border-color: var(--accent); }
+  .video-card video {
+    width: 100%;
+    display: block;
+    background: #000;
+  }
+  .video-meta {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .video-meta .scene-name {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  /* Config info bar */
+  .config-info {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(99,102,241,0.08);
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+  .config-info dt { color: var(--muted); font-size: 0.7rem; text-transform: uppercase; }
+  .config-info dd { color: var(--text); font-weight: 500; }
+
+  /* Other datasets table */
+  .datasets-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  .datasets-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: var(--card);
+    border-bottom: 2px solid var(--border);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+  }
+  .datasets-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    vertical-align: top;
+  }
+  .datasets-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .status-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+  .dot-green { background: var(--green); }
+  .dot-yellow { background: var(--yellow); }
+  .dot-red { background: var(--red); }
+
+  .missing-list {
+    list-style: none;
+    padding: 0;
+    font-size: 0.8rem;
+  }
+  .missing-list li {
+    padding: 2px 0;
+  }
+  .missing-list li::before {
+    content: "\2716 ";
+    color: var(--red);
+    font-size: 0.7rem;
+  }
+  .present-list li::before {
+    content: "\2714 ";
+    color: var(--green);
+  }
+
+  /* Sample images */
+  .sample-img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+  }
+  .sample-row {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+  }
+  .sample-row img {
+    height: 160px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  /* Collapsible */
+  details {
+    margin-top: 0.5rem;
+  }
+  details summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.85rem;
+    user-select: none;
+  }
+  details[open] summary { margin-bottom: 0.5rem; }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Robot Dataset Rendering Showcase</h1>
+<p class="subtitle">Skeleton + gripper overlay rendering results across all processed datasets. Generated 2026-03-23.</p>
+
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-value">6</div>
+    <div class="stat-label">Robot Models</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">7</div>
+    <div class="stat-label">Renderable Configs</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">4</div>
+    <div class="stat-label">Source Datasets</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">35</div>
+    <div class="stat-label">Showcase Videos</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">5</div>
+    <div class="stat-label">URDF Models</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 1: Renderable datasets with videos            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <h2 class="section-title">
+    Renderable Datasets
+    <span class="badge badge-green">Full Pipeline</span>
+  </h2>
+
+  <!-- RH20T cfg3 - UR5 -->
+  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">RH20T &mdash; UR5 (cfg3)</h3>
+  <div class="config-info">
+    <dl><dt>Dataset</dt><dd>RH20T</dd></dl>
+    <dl><dt>Robot</dt><dd>UR5</dd></dl>
+    <dl><dt>DOF</dt><dd>6</dd></dl>
+    <dl><dt>Gripper</dt><dd>Parallel-jaw</dd></dl>
+    <dl><dt>Skeleton</dt><dd>Yes (FK from joint angles)</dd></dl>
+    <dl><dt>Calibration</dt><dd>Intrinsics + Extrinsics</dd></dl>
+    <dl><dt>Total Episodes</dt><dd>800</dd></dl>
+  </div>
+  <div class="video-grid" id="grid-rh20t-cfg3">
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg3/rh20t_cfg3_00.mp4"></video><div class="video-meta"><span class="scene-name">task_0077 scene_0010</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg3/rh20t_cfg3_01.mp4"></video><div class="video-meta"><span class="scene-name">task_0029 scene_0005</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg3/rh20t_cfg3_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0057 scene_0010</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg3/rh20t_cfg3_03.mp4"></video><div class="video-meta"><span class="scene-name">task_0044 scene_0007</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg3/rh20t_cfg3_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0066 scene_0005</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+  </div>
+
+  <!-- RH20T cfg5 - Franka -->
+  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">RH20T &mdash; Franka Panda (cfg5)</h3>
+  <div class="config-info">
+    <dl><dt>Dataset</dt><dd>RH20T</dd></dl>
+    <dl><dt>Robot</dt><dd>Franka Panda</dd></dl>
+    <dl><dt>DOF</dt><dd>7</dd></dl>
+    <dl><dt>Gripper</dt><dd>Parallel-jaw</dd></dl>
+    <dl><dt>Skeleton</dt><dd>Yes (FK from joint angles)</dd></dl>
+    <dl><dt>Calibration</dt><dd>Intrinsics + Extrinsics</dd></dl>
+    <dl><dt>Total Episodes</dt><dd>1,324</dd></dl>
+  </div>
+  <div class="video-grid" id="grid-rh20t-cfg5">
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg5/rh20t_cfg5_00.mp4"></video><div class="video-meta"><span class="scene-name">task_0018 scene_0002</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg5/rh20t_cfg5_01.mp4"></video><div class="video-meta"><span class="scene-name">task_0058 scene_0004</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg5/rh20t_cfg5_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0002 scene_0007</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg5/rh20t_cfg5_03.mp4"></video><div class="video-meta"><span class="scene-name">task_0056 scene_0010</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg5/rh20t_cfg5_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0051 scene_0007</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+  </div>
+
+  <!-- RH20T cfg7 - KUKA -->
+  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">RH20T &mdash; KUKA iiwa (cfg7)</h3>
+  <div class="config-info">
+    <dl><dt>Dataset</dt><dd>RH20T</dd></dl>
+    <dl><dt>Robot</dt><dd>KUKA iiwa</dd></dl>
+    <dl><dt>DOF</dt><dd>7</dd></dl>
+    <dl><dt>Gripper</dt><dd>Parallel-jaw</dd></dl>
+    <dl><dt>Skeleton</dt><dd>Yes (FK from joint angles)</dd></dl>
+    <dl><dt>Calibration</dt><dd>Intrinsics + Extrinsics</dd></dl>
+    <dl><dt>Total Episodes</dt><dd>917</dd></dl>
+  </div>
+  <div class="video-grid" id="grid-rh20t-cfg7">
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg7/rh20t_cfg7_00.mp4"></video><div class="video-meta"><span class="scene-name">task_0002 scene_0009</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg7/rh20t_cfg7_01.mp4"></video><div class="video-meta"><span class="scene-name">task_0049 scene_0002</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg7/rh20t_cfg7_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0226 scene_0002</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg7/rh20t_cfg7_03.mp4"></video><div class="video-meta"><span class="scene-name">task_0051 scene_0009</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg7/rh20t_cfg7_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0064 scene_0008</span> &middot; 100 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+  </div>
+
+  <!-- RH20T cfg1 - Flexiv (gripper only) -->
+  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">RH20T &mdash; Flexiv Rizon (cfg1) <span class="badge badge-yellow">Gripper Only</span></h3>
+  <div class="config-info">
+    <dl><dt>Dataset</dt><dd>RH20T</dd></dl>
+    <dl><dt>Robot</dt><dd>Flexiv Rizon</dd></dl>
+    <dl><dt>DOF</dt><dd>7</dd></dl>
+    <dl><dt>Gripper</dt><dd>Parallel-jaw</dd></dl>
+    <dl><dt>Skeleton</dt><dd>No (cfg1 lacks joint.npy)</dd></dl>
+    <dl><dt>Calibration</dt><dd>Intrinsics + Extrinsics</dd></dl>
+    <dl><dt>Total Episodes</dt><dd>8,734</dd></dl>
+  </div>
+  <div class="video-grid" id="grid-rh20t-cfg1">
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg1/rh20t_cfg1_00.mp4"></video><div class="video-meta"><span class="scene-name">task_0044 scene_0002</span> &middot; 100 frames &middot; 640x360 &middot; gripper only</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg1/rh20t_cfg1_01.mp4"></video><div class="video-meta"><span class="scene-name">task_0014 scene_0005</span> &middot; 100 frames &middot; 640x360 &middot; gripper only</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg1/rh20t_cfg1_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0212 scene_0008</span> &middot; 100 frames &middot; 640x360 &middot; gripper only</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg1/rh20t_cfg1_03.mp4"></video><div class="video-meta"><span class="scene-name">task_0122 scene_0008</span> &middot; 100 frames &middot; 640x360 &middot; gripper only</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/rh20t_cfg1/rh20t_cfg1_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0212 scene_0007</span> &middot; 100 frames &middot; 640x360 &middot; gripper only</div></div>
+  </div>
+
+  <!-- InternData-A1 Franka -->
+  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">InternData-A1 &mdash; Franka Panda (Simulation)</h3>
+  <div class="config-info">
+    <dl><dt>Dataset</dt><dd>InternData-A1</dd></dl>
+    <dl><dt>Robot</dt><dd>Franka Panda</dd></dl>
+    <dl><dt>DOF</dt><dd>7</dd></dl>
+    <dl><dt>Gripper</dt><dd>Parallel-jaw</dd></dl>
+    <dl><dt>Skeleton</dt><dd>Yes (FK from joint angles)</dd></dl>
+    <dl><dt>Calibration</dt><dd>Per-frame intrinsics + extrinsics</dd></dl>
+    <dl><dt>Total Episodes</dt><dd>578 (close_the_laptop)</dd></dl>
+    <dl><dt>Environment</dt><dd>Simulation (IsaacGym)</dd></dl>
+  </div>
+  <div class="video-grid" id="grid-interndata">
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/interndata_franka/interndata_franka_00.mp4"></video><div class="video-meta"><span class="scene-name">Episode 0 &mdash; close_the_laptop</span> &middot; 153 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/interndata_franka/interndata_franka_01.mp4"></video><div class="video-meta"><span class="scene-name">Episode 1 &mdash; close_the_laptop</span> &middot; 177 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/interndata_franka/interndata_franka_02.mp4"></video><div class="video-meta"><span class="scene-name">Episode 2 &mdash; close_the_laptop</span> &middot; 207 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/interndata_franka/interndata_franka_03.mp4"></video><div class="video-meta"><span class="scene-name">Episode 3 &mdash; close_the_laptop</span> &middot; 210 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/interndata_franka/interndata_franka_04.mp4"></video><div class="video-meta"><span class="scene-name">Episode 4 &mdash; close_the_laptop</span> &middot; 213 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+  </div>
+
+  <!-- DROID - Franka Panda -->
+  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">DROID &mdash; Franka Panda</h3>
+  <div class="config-info">
+    <dl><dt>Dataset</dt><dd>DROID</dd></dl>
+    <dl><dt>Robot</dt><dd>Franka Panda</dd></dl>
+    <dl><dt>DOF</dt><dd>7</dd></dl>
+    <dl><dt>Gripper</dt><dd>Parallel-jaw</dd></dl>
+    <dl><dt>Skeleton</dt><dd>Yes (FK from joint angles)</dd></dl>
+    <dl><dt>Calibration</dt><dd>Extrinsics from H5; intrinsics estimated</dd></dl>
+    <dl><dt>Total Episodes</dt><dd>~76k raw / 47k processed</dd></dl>
+  </div>
+  <div class="video-grid" id="grid-droid">
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/droid_franka/droid_franka_00.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab &mdash; Episode 0</span> &middot; 150 frames &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/droid_franka/droid_franka_01.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab &mdash; Episode 1</span> &middot; 150 frames &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/droid_franka/droid_franka_02.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab &mdash; Episode 2</span> &middot; 150 frames &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/droid_franka/droid_franka_03.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab &mdash; Episode 3</span> &middot; 150 frames &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/droid_franka/droid_franka_04.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab &mdash; Episode 4</span> &middot; 150 frames &middot; skeleton+gripper</div></div>
+  </div>
+
+  <!-- AGIBot - Unitree G1 -->
+  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">AGIBot Beta &mdash; Unitree G1 (Dual-Arm)</h3>
+  <div class="config-info">
+    <dl><dt>Dataset</dt><dd>AGIBot Beta</dd></dl>
+    <dl><dt>Robot</dt><dd>Unitree G1 (dual-arm)</dd></dl>
+    <dl><dt>DOF</dt><dd>14 (2&times;7)</dd></dl>
+    <dl><dt>Gripper</dt><dd>Dexhand / parallel-jaw</dd></dl>
+    <dl><dt>Skeleton</dt><dd>Yes (pre-rendered gripper_scenario)</dd></dl>
+    <dl><dt>Calibration</dt><dd>Per-frame intrinsics + extrinsics</dd></dl>
+    <dl><dt>Total Episodes</dt><dd>77,431 (gripper_scenario rendered)</dd></dl>
+  </div>
+  <div class="video-grid" id="grid-agibot">
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/agibot_g1/agibot_g1_00.mp4"></video><div class="video-meta"><span class="scene-name">AGIBot G1 &mdash; Sample 0</span> &middot; gripper scenario overlay</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/agibot_g1/agibot_g1_01.mp4"></video><div class="video-meta"><span class="scene-name">AGIBot G1 &mdash; Sample 1</span> &middot; gripper scenario overlay</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/agibot_g1/agibot_g1_02.mp4"></video><div class="video-meta"><span class="scene-name">AGIBot G1 &mdash; Sample 2</span> &middot; gripper scenario overlay</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/agibot_g1/agibot_g1_03.mp4"></video><div class="video-meta"><span class="scene-name">AGIBot G1 &mdash; Sample 3</span> &middot; gripper scenario overlay</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/agibot_g1/agibot_g1_04.mp4"></video><div class="video-meta"><span class="scene-name">AGIBot G1 &mdash; Sample 4</span> &middot; gripper scenario overlay</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 2: Other investigated datasets                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <h2 class="section-title">
+    Other Investigated Datasets
+    <span class="badge badge-yellow">Partial / Not Renderable</span>
+  </h2>
+  <p style="color: var(--muted); margin-bottom: 1rem; font-size: 0.9rem;">
+    These datasets have been investigated but cannot produce full skeleton+gripper overlay due to missing calibration, URDF, or joint data.
+  </p>
+
+  <table class="datasets-table">
+    <thead>
+      <tr>
+        <th>Dataset</th>
+        <th>Robot(s)</th>
+        <th>Episodes</th>
+        <th>Has Video</th>
+        <th>Missing for Rendering</th>
+        <th>Available Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- BridgeData -->
+      <tr>
+        <td><strong>BridgeData V2</strong></td>
+        <td>WidowX</td>
+        <td>~60k (1024 shards)</td>
+        <td><span class="status-dot dot-green"></span>256x256 JPEG</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera intrinsics</li>
+            <li>No camera extrinsics</li>
+            <li>WidowX URDF not in registry</li>
+            <li>No joint angles (only EE state)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>TCP state [x,y,z,qx,qy,qz,qw]</li>
+            <li>7D actions (delta pose + gripper)</li>
+            <li>Language annotations</li>
+            <li>3 cameras (256x256)</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- RoboNet -->
+      <tr>
+        <td><strong>RoboNet</strong></td>
+        <td>Sawyer, WidowX, KUKA, Franka, Baxter, Fetch, Google R3</td>
+        <td>700 (sample, 9 embodiments)</td>
+        <td><span class="status-dot dot-green"></span>MP4 in HDF5</td>
+        <td>
+          <ul class="missing-list">
+            <li>No camera intrinsics</li>
+            <li>No camera extrinsics</li>
+            <li>No language annotations</li>
+            <li>Sawyer/WidowX/Baxter/Fetch URDFs not in registry</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>EE state [x,y,z,theta,gripper]</li>
+            <li>Joint angles (some embodiments)</li>
+            <li>Multi-camera (up to 5)</li>
+            <li>KUKA + Franka URDFs available</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- RoboTurk -->
+      <tr>
+        <td><strong>RoboTurk</strong></td>
+        <td>Sawyer</td>
+        <td>1,995</td>
+        <td><span class="status-dot dot-yellow"></span>Referenced but not downloaded</td>
+        <td>
+          <ul class="missing-list">
+            <li>Video files not in sample</li>
+            <li>No camera intrinsics</li>
+            <li>No camera extrinsics</li>
+            <li>Proprioception all zeros</li>
+            <li>Sawyer URDF not in registry</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>7D actions (delta + gripper)</li>
+            <li>Language (3 tasks)</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- RoboMIND -->
+      <tr>
+        <td><strong>RoboMIND</strong></td>
+        <td>Multiple (raw data 24T)</td>
+        <td>Unknown (large)</td>
+        <td><span class="status-dot dot-yellow"></span>Not investigated</td>
+        <td>
+          <ul class="missing-list">
+            <li>Not yet investigated</li>
+            <li>24T raw data on Turbo</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Raw data available on Turbo (wzn path)</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 3: URDF Registry                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <h2 class="section-title">URDF Registry</h2>
+  <p style="color: var(--muted); margin-bottom: 1rem; font-size: 0.9rem;">
+    Robots with URDF models registered in <code>dataset/common/urdfs/registry.json</code>, enabling skeleton rendering via FK.
+  </p>
+  <table class="datasets-table">
+    <thead>
+      <tr>
+        <th>Robot</th>
+        <th>Aliases</th>
+        <th>DOF</th>
+        <th>Gripper</th>
+        <th>End Link</th>
+        <th>Used In</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Franka Panda</strong></td>
+        <td>franka, panda, franka_emika_panda</td>
+        <td>7</td>
+        <td>Parallel-jaw</td>
+        <td>panda_hand</td>
+        <td>RH20T cfg5, InternData, DROID, RoboNet</td>
+      </tr>
+      <tr>
+        <td><strong>UR5</strong></td>
+        <td>ur5e, universal_robots_ur5</td>
+        <td>6</td>
+        <td>None (configurable)</td>
+        <td>ee_link</td>
+        <td>RH20T cfg3</td>
+      </tr>
+      <tr>
+        <td><strong>KUKA iiwa</strong></td>
+        <td>kuka, iiwa, lbr_iiwa, iiwa14</td>
+        <td>7</td>
+        <td>None (configurable)</td>
+        <td>lbr_iiwa_link_7</td>
+        <td>RH20T cfg7, RoboNet</td>
+      </tr>
+      <tr>
+        <td><strong>Flexiv Rizon</strong></td>
+        <td>flexiv, rizon, rizon4</td>
+        <td>7</td>
+        <td>None (configurable)</td>
+        <td>flange</td>
+        <td>RH20T cfg1/cfg2</td>
+      </tr>
+      <tr>
+        <td><strong>Unitree G1</strong></td>
+        <td>g1, unitree_g1, agibot_g1</td>
+        <td>14 (2x7)</td>
+        <td>Dual gripper / dexhand</td>
+        <td>left_arm + right_arm</td>
+        <td>AGIBot Beta</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 4: Rendering pipeline overview                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="section">
+  <h2 class="section-title">Rendering Pipeline</h2>
+  <div style="background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; font-size: 0.9rem;">
+    <p style="margin-bottom: 1rem;">All rendering uses <code>dataset/common/render_utils.py</code> with the following pipeline:</p>
+    <ol style="padding-left: 1.5rem; color: var(--muted);">
+      <li style="margin-bottom: 0.5rem;"><strong style="color: var(--text)">Data Adaptation</strong> &mdash; Convert dataset-specific formats (quaternion convention, extrinsic direction) to standardized inputs</li>
+      <li style="margin-bottom: 0.5rem;"><strong style="color: var(--text)">URDF Resolution</strong> &mdash; Look up robot model in <code>registry.json</code>, get URDF path + kinematic chain spec</li>
+      <li style="margin-bottom: 0.5rem;"><strong style="color: var(--text)">Skeleton Rendering</strong> &mdash; <code>render_skeleton_frame()</code>: FK through URDF chain using joint angles, project to image via camera calibration</li>
+      <li style="margin-bottom: 0.5rem;"><strong style="color: var(--text)">Gripper Rendering</strong> &mdash; <code>render_gripper_frame()</code>: Draw coordinate axes + gripper fingers at FK end-link pose (not raw TCP, to avoid gap with skeleton)</li>
+      <li style="margin-bottom: 0.5rem;"><strong style="color: var(--text)">Video Encoding</strong> &mdash; PyAV with H.264, not cv2.VideoWriter (which fails silently in many environments)</li>
+    </ol>
+    <p style="margin-top: 1rem; padding: 0.75rem; background: rgba(234,179,8,0.1); border-radius: 6px; font-size: 0.85rem;">
+      <strong>Key requirement for rendering:</strong> Camera intrinsics + extrinsics (for 3D&rarr;2D projection), joint angles (for skeleton FK), and URDF in registry. Missing any of these degrades to gripper-only or top-down trajectory plot.
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  WorldSim Dataset Rendering Showcase &mdash; Auto-generated by <code>scripts/render_showcase.py</code>
+</div>
+
+</div>
+</body>
+</html>
