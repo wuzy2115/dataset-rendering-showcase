@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UR5 Calibration Analysis — Dataset Rendering Showcase</title>
+<style>
+  body { background: #1a1a2e; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 960px; margin: 0 auto; padding: 2rem 1rem; line-height: 1.6; }
+  a { color: #64b5f6; }
+  h1 { color: #fff; border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
+  h2 { color: #90caf9; margin-top: 2rem; }
+  h3 { color: #b0bec5; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { border: 1px solid #444; padding: 0.5rem 0.8rem; text-align: left; }
+  th { background: #2a2a4a; color: #90caf9; }
+  tr:nth-child(even) { background: #1e1e3a; }
+  code { background: #2a2a4a; padding: 0.2rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
+  pre { background: #2a2a4a; padding: 1rem; border-radius: 6px; overflow-x: auto; font-family: monospace; font-size: 0.88em; line-height: 1.5; }
+  .back-link { margin-bottom: 1.5rem; }
+  .warning { background: #332b00; border-left: 3px solid #ffc107; padding: 0.8rem 1rem; margin: 1rem 0; color: #ffe082; }
+  .success { background: #1b3a1b; border-left: 3px solid #4caf50; padding: 0.8rem 1rem; margin: 1rem 0; color: #a5d6a7; }
+  .info { background: #1a2a3a; border-left: 3px solid #64b5f6; padding: 0.8rem 1rem; margin: 1rem 0; color: #b3d9f7; }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+  .video-card { background: #2a2a4a; border-radius: 8px; overflow: hidden; }
+  .video-card video { width: 100%; display: block; }
+  .video-card .label { padding: 0.5rem 0.6rem; font-size: 0.8rem; color: #aaa; }
+  .video-card .label strong { color: #e0e0e0; display: block; margin-bottom: 0.2rem; }
+  .video-card .label .badge { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.75rem; margin-top: 0.2rem; }
+  .badge-bad { background: #5c1a1a; color: #ef9a9a; }
+  .badge-good { background: #1b3a1b; color: #a5d6a7; }
+  .badge-nosk { background: #333; color: #bbb; }
+  .good { border: 2px solid #4caf50; }
+  .bad { border: 2px solid #f44336; }
+  .nosk { border: 2px solid #666; }
+  .matrix { font-family: monospace; font-size: 0.85em; }
+  .meta { color: #888; font-size: 0.85rem; margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+
+<div class="back-link">
+  <a href="../index.html">← Back to Dataset Rendering Showcase</a>
+</div>
+
+<h1>UR5 Calibration Analysis</h1>
+<p class="meta">Dataset: RH20T cfg3 (UR5 + Robotiq 2F-85) &nbsp;|&nbsp; Date: 2026-03-25</p>
+
+<div class="warning">
+  <strong>Known Issues:</strong> Skeleton alignment varies by camera due to per-camera extrinsic calibration quality. Gripper orientation differs from actual due to UR5 URDF <code>ee_link</code> frame convention mismatch.
+</div>
+
+<!-- ============================================================ -->
+<h2>1. Summary</h2>
+
+<p>RH20T UR5 (cfg3) episodes exhibit inconsistent skeleton-to-image alignment when rendered using base-frame Forward Kinematics (FK). Some episodes show correctly aligned skeletons; others show a clear offset. Through systematic investigation, we determined this is caused by <strong>per-camera extrinsic calibration quality variation</strong>, not by code bugs or joint angle errors.</p>
+
+<p>Additionally, the <strong>gripper orientation</strong> rendered from FK <code>ee_link</code> does not match the actual gripper direction, because the UR5 URDF <code>ee_link</code> coordinate frame has a different orientation than the dataset's TCP coordinate frame.</p>
+
+<!-- ============================================================ -->
+<h2>2. Rendering Pipeline</h2>
+
+<p>The current rendering pipeline for RH20T (and all fixed-base robots) uses <strong>base-frame FK</strong>:</p>
+
+<pre>
+Joint Angles (from dataset)
+    │
+    │  Forward Kinematics (URDF)
+    ▼
+3D positions of each link in URDF base frame
+    │
+    │  Camera Extrinsic (world-to-camera, from RH20T calibration)
+    │  Camera Intrinsic
+    ▼
+2D pixel coordinates on image
+</pre>
+
+<p>This pipeline has two key assumptions:</p>
+<ol>
+  <li>The URDF <code>base_link</code> frame = the "world/base" frame that the extrinsic maps from</li>
+  <li>The extrinsic calibration accurately represents this mapping</li>
+</ol>
+
+<div class="info">
+  If either assumption fails, the projected skeleton will appear offset from the actual robot in the image.
+</div>
+
+<!-- ============================================================ -->
+<h2>3. Evidence: Joint Angles and FK Are Correct</h2>
+
+<h3>3.1 Joint Name and Ordering Match</h3>
+
+<pre>
+[0] shoulder_pan_joint  = shoulder_pan_joint   OK
+[1] shoulder_lift_joint = shoulder_lift_joint  OK
+[2] elbow_joint         = elbow_joint          OK
+[3] wrist_1_joint       = wrist_1_joint        OK
+[4] wrist_2_joint       = wrist_2_joint        OK
+[5] wrist_3_joint       = wrist_3_joint        OK
+</pre>
+
+<h3>3.2 Joint Angles Are Nearly Identical Between GOOD and BAD Episodes</h3>
+
+<table>
+  <thead>
+    <tr><th>Episode</th><th>Joint Angles (rad)</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>task_0070 scene_0007 (GOOD)</td>
+      <td><code>[-0.2059, -1.4618, 1.4053, -1.5122, -1.5499, -0.2115]</code></td>
+      <td>Skeleton aligned</td>
+    </tr>
+    <tr>
+      <td>task_0009 scene_0005 (BAD)</td>
+      <td><code>[-0.2059, -1.4616, 1.4053, -1.5122, -1.5498, -0.2114]</code></td>
+      <td>Skeleton offset</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The joint angles differ by &lt; 0.0003 rad in every joint. The robot is in essentially the same pose.</p>
+
+<h3>3.3 FK Results Are Consistent</h3>
+
+<table>
+  <thead>
+    <tr><th>Episode</th><th>FK ee_link position (m)</th><th>TCP position (m)</th><th>FK-to-TCP distance</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GOOD</td>
+      <td><code>[0.5438, -0.0003, 0.4513]</code></td>
+      <td><code>[0.5437, 0.0024, 0.2000]</code></td>
+      <td>0.2513 m</td>
+    </tr>
+    <tr>
+      <td>BAD</td>
+      <td><code>[0.5438, -0.0003, 0.4512]</code></td>
+      <td><code>[0.5437, 0.0024, 0.2000]</code></td>
+      <td>0.2512 m</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>FK produces the same result (within 0.1mm). TCP pose is identical. The ~25cm FK-to-TCP offset is the Robotiq gripper tool offset, which is consistent.</p>
+
+<div class="success">
+  Conclusion: The FK computation is correct and consistent. The skeleton offset is NOT caused by joint angle errors or FK bugs.
+</div>
+
+<!-- ============================================================ -->
+<h2>4. Root Cause: Different Cameras with Different Extrinsic Calibration</h2>
+
+<h3>4.1 Camera Selection Differs Between Episodes</h3>
+
+<table>
+  <thead>
+    <tr><th>Episode</th><th>Status</th><th>Selected Camera</th><th>Calibration ID</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>task_0070 scene_0007</td>
+      <td>GOOD</td>
+      <td>038522062288</td>
+      <td>1630985293588</td>
+    </tr>
+    <tr>
+      <td>task_0009 scene_0005</td>
+      <td>BAD</td>
+      <td>104122063550</td>
+      <td>1630565226882</td>
+    </tr>
+    <tr>
+      <td>task_0009 scene_0009</td>
+      <td>BAD</td>
+      <td>104122063550</td>
+      <td>1630565226882</td>
+    </tr>
+    <tr>
+      <td>task_0009 scene_0003</td>
+      <td>BAD</td>
+      <td>104122063550</td>
+      <td>1630565226882</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All BAD episodes use the <strong>same camera</strong> (104122063550) with the <strong>same calibration</strong> (1630565226882). The GOOD episode uses a different camera with a different calibration.</p>
+
+<h3>4.2 Extrinsic Translation Comparison</h3>
+
+<table>
+  <thead>
+    <tr><th>Camera</th><th>Extrinsic Translation (m)</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>038522062288 (GOOD)</td>
+      <td><code>[0.196, -0.218, 1.270]</code></td>
+    </tr>
+    <tr>
+      <td>104122063550 (BAD)</td>
+      <td><code>[-0.623, 0.316, 0.971]</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These are completely different cameras at different physical positions. Their extrinsic quality depends on their individual calibration sessions.</p>
+
+<h3>4.3 Per-Camera FK Projection Test (BAD Episode)</h3>
+
+<p>All 8 cameras in the BAD episode project the FK <code>ee_link</code> to in-frame positions:</p>
+
+<table>
+  <thead>
+    <tr><th>Camera</th><th>External Camera?</th><th>FK ee_link Pixel</th><th>In Frame?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>038522062288</td><td>Yes</td><td>(471, 260)</td><td>Yes</td></tr>
+    <tr><td>104122063550</td><td>Yes</td><td>(555, 383)</td><td>Yes</td></tr>
+    <tr><td>104422070011</td><td>Yes</td><td>(659, 222)</td><td>Yes</td></tr>
+    <tr><td>f0172289</td><td>Yes</td><td>(601, 338)</td><td>Yes</td></tr>
+    <tr><td>036422060909</td><td>Yes</td><td>(678, 175)</td><td>Yes</td></tr>
+    <tr><td>104122062295</td><td>Yes</td><td>(558, 30)</td><td>Yes</td></tr>
+    <tr><td>104122062823</td><td>Yes</td><td>(396, 82)</td><td>Yes</td></tr>
+    <tr><td>045322071843</td><td>No (hand camera)</td><td>(838, 663)</td><td>Yes</td></tr>
+  </tbody>
+</table>
+
+<p>The FK projects to different pixel locations depending on the camera's extrinsic. Whether the projection aligns with the actual robot depends on the extrinsic calibration accuracy for that specific camera.</p>
+
+<!-- ============================================================ -->
+<h2>5. Gripper Orientation Issue</h2>
+
+<h3>5.1 UR5 URDF ee_link vs TCP Orientation Mismatch</h3>
+
+<p>The gripper rendering uses FK <code>ee_link</code>'s rotation to determine the gripper finger direction. However, the UR5 URDF's <code>ee_link</code> coordinate frame has a significantly different orientation than the dataset's TCP frame:</p>
+
+<p><strong>Dataset TCP rotation matrix:</strong></p>
+<pre class="matrix">
+[[-1.000, -0.008, -0.000],
+ [-0.008,  1.000,  0.009],
+ [ 0.000,  0.009, -1.000]]
+</pre>
+
+<p><strong>FK ee_link rotation matrix:</strong></p>
+<pre class="matrix">
+[[ 0.002, -0.005,  1.000],
+ [ 0.021,  1.000,  0.005],
+ [-1.000,  0.021,  0.002]]
+</pre>
+
+<p>These are clearly different coordinate frame conventions. The gripper rendering assumes fingers open in the X-Z plane with Z as the forward direction, which matches the TCP frame but not the FK <code>ee_link</code> frame.</p>
+
+<h3>5.2 Validation: Episode Without Skeleton</h3>
+
+<p>Episode 08 (<code>task_0005_user_0016_scene_0009_cfg_0003</code>) had no joint angles available, so the gripper was rendered using the raw TCP pose (fallback). The gripper orientation was <strong>correct</strong> in this case, confirming that the TCP frame convention matches the gripper rendering assumptions, while the FK <code>ee_link</code> frame does not.</p>
+
+<div class="success">
+  Episode 08 (TCP fallback, no skeleton) shows correct gripper orientation — visible in the reference videos below.
+</div>
+
+<!-- ============================================================ -->
+<h2>6. Reference Videos</h2>
+
+<p>12 debug videos showing the range of behaviors across cfg3 episodes:</p>
+
+<div class="video-grid">
+
+  <div class="video-card bad">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_00.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_00.mp4</strong>
+      task_0009 scene_0005<br>
+      Camera: 104122063550<br>
+      <span class="badge badge-bad">Skeleton Offset</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card bad">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_01.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_01.mp4</strong>
+      task_0009 scene_0009<br>
+      Camera: 104122063550<br>
+      <span class="badge badge-bad">Skeleton Offset</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card nosk">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_02.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_02.mp4</strong>
+      task_0015 scene_0002<br>
+      <span class="badge badge-nosk">Out of Frame</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card nosk">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_03.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_03.mp4</strong>
+      task_0013 scene_0001<br>
+      <span class="badge badge-nosk">Out of Frame</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card nosk">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_04.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_04.mp4</strong>
+      task_0021 scene_0002<br>
+      <span class="badge badge-nosk">Out of Frame</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card nosk">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_05.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_05.mp4</strong>
+      task_0010 scene_0009<br>
+      <span class="badge badge-nosk">Out of Frame</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card bad">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_06.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_06.mp4</strong>
+      task_0009 scene_0006<br>
+      Camera: 104122063550<br>
+      <span class="badge badge-bad">Skeleton Offset</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card bad">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_07.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_07.mp4</strong>
+      task_0009 scene_0007<br>
+      Camera: 104122063550<br>
+      <span class="badge badge-bad">Skeleton Offset</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card good">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_08.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_08.mp4</strong>
+      task_0005 scene_0009<br>
+      TCP fallback (no joint angles)<br>
+      <span class="badge badge-nosk">No Skeleton</span>
+      <span class="badge badge-good">Correct Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card bad">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_09.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_09.mp4</strong>
+      task_0009 scene_0010<br>
+      Camera: 104122063550<br>
+      <span class="badge badge-bad">Skeleton Offset</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card nosk">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_10.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_10.mp4</strong>
+      task_0014 scene_0004<br>
+      <span class="badge badge-nosk">Out of Frame</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+  <div class="video-card bad">
+    <video controls muted loop preload="metadata" src="videos/rh20t_cfg3_11.mp4"></video>
+    <div class="label">
+      <strong>rh20t_cfg3_11.mp4</strong>
+      task_0009 scene_0003<br>
+      Camera: 104122063550<br>
+      <span class="badge badge-bad">Skeleton Offset</span>
+      <span class="badge badge-bad">Wrong Gripper Orientation</span>
+    </div>
+  </div>
+
+</div>
+
+<p><strong>Key observations:</strong></p>
+<ul>
+  <li>All episodes with skeleton offset use the same camera (104122063550) and calibration (1630565226882)</li>
+  <li>Episode 08 with correct gripper orientation is the one using TCP pose fallback (no FK joint angles available)</li>
+  <li>Green border = something works correctly; red border = known issues present; gray border = skeleton out of frame</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>7. Conclusion &amp; Proposed Solutions</h2>
+
+<table>
+  <thead>
+    <tr><th>Problem</th><th>Root Cause</th><th>Scope</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Skeleton offset (some episodes)</td>
+      <td>Per-camera extrinsic calibration quality varies. Camera 104122063550 has inaccurate base-aligned extrinsics.</td>
+      <td>UR5 cfg3 only (Franka cfg5 and KUKA cfg7 cameras have better calibration)</td>
+    </tr>
+    <tr>
+      <td>Gripper orientation wrong</td>
+      <td>UR5 URDF <code>ee_link</code> coordinate frame orientation differs from dataset TCP frame orientation</td>
+      <td>UR5 cfg3 only</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Proposed Solutions</h3>
+
+<div class="info">
+  <strong>Fix 1 — Skeleton offset:</strong> Use visibility filtering (require &gt;50% of skeleton joints visible in frame) to automatically exclude episodes rendered with poorly-calibrated cameras. Alternatively, use EE-relative FK anchored on the dataset's TCP pose (accepting a ~25cm tool offset).
+</div>
+
+<div class="info">
+  <strong>Fix 2 — Gripper orientation:</strong> Use the TCP pose's rotation (from dataset) for the gripper rendering instead of the FK <code>ee_link</code> rotation. Position the gripper at the FK <code>ee_link</code> location (to connect with skeleton) but apply TCP rotation for the finger direction.
+</div>
+
+<hr style="border-color: #333; margin-top: 3rem;">
+<p style="color: #666; font-size: 0.85rem;">Analysis generated 2026-03-25 &nbsp;|&nbsp; <a href="../index.html">← Back to Showcase</a></p>
+
+</body>
+</html>
