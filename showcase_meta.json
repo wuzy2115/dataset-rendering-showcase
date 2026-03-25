@@ -1,87 +1,11 @@
 {
-  "rh20t_cfg1": [
-    {
-      "scene": "task_0003_user_0005_scene_0005_cfg_0001",
-      "robot": "Flexiv Rizon",
-      "cfg": "cfg1",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg1/rh20t_cfg1_00.mp4"
-    },
-    {
-      "scene": "task_0076_user_0010_scene_0004_cfg_0001",
-      "robot": "Flexiv Rizon",
-      "cfg": "cfg1",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg1/rh20t_cfg1_01.mp4"
-    },
-    {
-      "scene": "task_0055_user_0014_scene_0003_cfg_0001",
-      "robot": "Flexiv Rizon",
-      "cfg": "cfg1",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg1/rh20t_cfg1_02.mp4"
-    },
-    {
-      "scene": "task_0209_user_0014_scene_0002_cfg_0001",
-      "robot": "Flexiv Rizon",
-      "cfg": "cfg1",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg1/rh20t_cfg1_03.mp4"
-    },
-    {
-      "scene": "task_0007_user_0012_scene_0002_cfg_0001",
-      "robot": "Flexiv Rizon",
-      "cfg": "cfg1",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg1/rh20t_cfg1_04.mp4"
-    }
-  ],
-  "rh20t_cfg3": [
-    {
-      "scene": "task_0070_user_0010_scene_0007_cfg_0003",
-      "robot": "UR5",
-      "cfg": "cfg3",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg3/rh20t_cfg3_00.mp4"
-    },
-    {
-      "scene": "task_0009_user_0011_scene_0005_cfg_0003",
-      "robot": "UR5",
-      "cfg": "cfg3",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg3/rh20t_cfg3_01.mp4"
-    },
-    {
-      "scene": "task_0009_user_0011_scene_0009_cfg_0003",
-      "robot": "UR5",
-      "cfg": "cfg3",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg3/rh20t_cfg3_02.mp4"
-    }
-  ],
   "rh20t_cfg5": [
     {
       "scene": "task_0088_user_0007_scene_0007_cfg_0005",
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_7cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_00.mp4"
     },
@@ -90,7 +14,7 @@
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_6cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_01.mp4"
     },
@@ -99,7 +23,7 @@
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_6cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_02.mp4"
     },
@@ -108,7 +32,7 @@
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_7cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_03.mp4"
     },
@@ -117,54 +41,54 @@
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_7cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_04.mp4"
     }
   ],
   "rh20t_cfg7": [
     {
-      "scene": "task_0052_user_0020_scene_0006_cfg_0007",
+      "scene": "task_0037_user_0014_scene_0003_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_8cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_00.mp4"
     },
     {
-      "scene": "task_0062_user_0020_scene_0006_cfg_0007",
+      "scene": "task_0042_user_0020_scene_0006_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_8cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_01.mp4"
     },
     {
-      "scene": "task_0052_user_0020_scene_0008_cfg_0007",
+      "scene": "task_0037_user_0020_scene_0002_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_8cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_02.mp4"
     },
     {
-      "scene": "task_0017_user_0020_scene_0004_cfg_0007",
+      "scene": "task_0005_user_0020_scene_0009_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_8cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_03.mp4"
     },
     {
-      "scene": "task_0045_user_0014_scene_0008_cfg_0007",
+      "scene": "task_0018_user_0014_scene_0010_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_8cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_04.mp4"
     }
@@ -180,31 +104,13 @@
       "video_path": "videos/interndata_franka/interndata_franka_00.mp4"
     },
     {
-      "scene": "basic_tasks/pick_the_object_into_trashcan/ep1214",
-      "robot": "Franka Panda (sim)",
-      "cfg": "",
-      "frames": 450,
-      "resolution": "640x480",
-      "skeleton": true,
-      "video_path": "videos/interndata_franka/interndata_franka_01.mp4"
-    },
-    {
-      "scene": "articulation_tasks/close_the_electriccooker/ep310",
-      "robot": "Franka Panda (sim)",
-      "cfg": "",
-      "frames": 264,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/interndata_franka/interndata_franka_02.mp4"
-    },
-    {
       "scene": "articulation_tasks/close_the_electriccooker/ep834",
       "robot": "Franka Panda (sim)",
       "cfg": "",
       "frames": 210,
       "resolution": "640x360",
       "skeleton": true,
-      "video_path": "videos/interndata_franka/interndata_franka_03.mp4"
+      "video_path": "videos/interndata_franka/interndata_franka_01.mp4"
     },
     {
       "scene": "basic_tasks/pick_the_object_into_trashcan/ep210",
@@ -212,6 +118,24 @@
       "cfg": "",
       "frames": 450,
       "resolution": "640x480",
+      "skeleton": true,
+      "video_path": "videos/interndata_franka/interndata_franka_02.mp4"
+    },
+    {
+      "scene": "articulation_tasks/close_the_electriccooker/ep148",
+      "robot": "Franka Panda (sim)",
+      "cfg": "",
+      "frames": 271,
+      "resolution": "640x360",
+      "skeleton": true,
+      "video_path": "videos/interndata_franka/interndata_franka_03.mp4"
+    },
+    {
+      "scene": "articulation_tasks/close_the_electriccooker/ep976",
+      "robot": "Franka Panda (sim)",
+      "cfg": "",
+      "frames": 265,
+      "resolution": "640x360",
       "skeleton": true,
       "video_path": "videos/interndata_franka/interndata_franka_04.mp4"
     }
@@ -236,7 +160,7 @@
       "video_path": "videos/droid_franka/droid_franka_01.mp4"
     },
     {
-      "scene": "AUTOLab/success/2023-07-07/Fri_Jul__7_18:48:16_2023",
+      "scene": "AUTOLab/success/2023-07-08/Sat_Jul__8_10:16:10_2023",
       "robot": "Franka Panda",
       "cfg": "",
       "frames": 225,
@@ -245,7 +169,7 @@
       "video_path": "videos/droid_franka/droid_franka_02.mp4"
     },
     {
-      "scene": "AUTOLab/success/2023-07-08/Sat_Jul__8_10:37:27_2023",
+      "scene": "AUTOLab/success/2023-07-08/Sat_Jul__8_10:13:30_2023",
       "robot": "Franka Panda",
       "cfg": "",
       "frames": 225,
@@ -254,7 +178,7 @@
       "video_path": "videos/droid_franka/droid_franka_03.mp4"
     },
     {
-      "scene": "AUTOLab/success/2023-07-07/Fri_Jul__7_19:02:10_2023",
+      "scene": "AUTOLab/success/2023-07-08/Sat_Jul__8_09:17:41_2023",
       "robot": "Franka Panda",
       "cfg": "",
       "frames": 225,
