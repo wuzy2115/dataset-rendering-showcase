@@ -48,7 +48,7 @@
   ],
   "rh20t_cfg3": [
     {
-      "scene": "task_0024_user_0010_scene_0001_cfg_0003",
+      "scene": "task_0070_user_0010_scene_0007_cfg_0003",
       "robot": "UR5",
       "cfg": "cfg3",
       "frames": 150,
@@ -57,40 +57,13 @@
       "video_path": "videos/rh20t_cfg3/rh20t_cfg3_00.mp4"
     },
     {
-      "scene": "task_0046_user_0010_scene_0006_cfg_0003",
+      "scene": "task_0009_user_0011_scene_0005_cfg_0003",
       "robot": "UR5",
       "cfg": "cfg3",
       "frames": 150,
       "resolution": "640x360",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg3/rh20t_cfg3_01.mp4"
-    },
-    {
-      "scene": "task_0020_user_0010_scene_0008_cfg_0003",
-      "robot": "UR5",
-      "cfg": "cfg3",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg3/rh20t_cfg3_02.mp4"
-    },
-    {
-      "scene": "task_0014_user_0011_scene_0001_cfg_0003",
-      "robot": "UR5",
-      "cfg": "cfg3",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg3/rh20t_cfg3_03.mp4"
-    },
-    {
-      "scene": "task_0010_user_0011_scene_0003_cfg_0003",
-      "robot": "UR5",
-      "cfg": "cfg3",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg3/rh20t_cfg3_04.mp4"
     }
   ],
   "rh20t_cfg5": [
@@ -142,7 +115,7 @@
   ],
   "rh20t_cfg7": [
     {
-      "scene": "task_0002_user_0014_scene_0009_cfg_0007",
+      "scene": "task_0052_user_0020_scene_0006_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
@@ -151,7 +124,7 @@
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_00.mp4"
     },
     {
-      "scene": "task_0049_user_0020_scene_0002_cfg_0007",
+      "scene": "task_0062_user_0020_scene_0006_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
@@ -160,7 +133,7 @@
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_01.mp4"
     },
     {
-      "scene": "task_0226_user_0066_scene_0002_cfg_0007",
+      "scene": "task_0052_user_0020_scene_0008_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
@@ -169,22 +142,13 @@
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_02.mp4"
     },
     {
-      "scene": "task_0051_user_0014_scene_0009_cfg_0007",
+      "scene": "task_0017_user_0020_scene_0004_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
       "resolution": "640x360",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_03.mp4"
-    },
-    {
-      "scene": "task_0064_user_0014_scene_0008_cfg_0007",
-      "robot": "KUKA iiwa",
-      "cfg": "cfg7",
-      "frames": 150,
-      "resolution": "640x360",
-      "skeleton": true,
-      "video_path": "videos/rh20t_cfg7/rh20t_cfg7_04.mp4"
     }
   ],
   "interndata_franka": [
@@ -301,7 +265,7 @@
       "video_path": "videos/agibot_g1/agibot_g1_01.mp4"
     },
     {
-      "scene": "711/900519",
+      "scene": "711/906821",
       "robot": "Unitree G1",
       "cfg": "",
       "frames": 225,
@@ -310,7 +274,7 @@
       "video_path": "videos/agibot_g1/agibot_g1_02.mp4"
     },
     {
-      "scene": "711/906821",
+      "scene": "711/891869",
       "robot": "Unitree G1",
       "cfg": "",
       "frames": 225,
@@ -319,7 +283,7 @@
       "video_path": "videos/agibot_g1/agibot_g1_03.mp4"
     },
     {
-      "scene": "711/891869",
+      "scene": "711/894099",
       "robot": "Unitree G1",
       "cfg": "",
       "frames": 225,
