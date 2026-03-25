@@ -434,8 +434,96 @@ Joint Angles (from dataset)
   <strong>Fix 2 — Gripper orientation:</strong> Use the TCP pose's rotation (from dataset) for the gripper rendering instead of the FK <code>ee_link</code> rotation. Position the gripper at the FK <code>ee_link</code> location (to connect with skeleton) but apply TCP rotation for the finger direction.
 </div>
 
+<!-- ============================================================ -->
+<h2>8. Multi-Camera Experiment (Updated)</h2>
+
+<div class="warning">
+  <strong>Key Update:</strong> The initial hypothesis was that offset is a per-camera issue (some cameras calibrated well, others not). Multi-camera rendering disproved this — the offset is a <strong>per-calibration-session</strong> issue.
+</div>
+
+<h3>8.1 What is a Calibration Session?</h3>
+
+<p>RH20T uses multiple cameras around the robot. Before data collection, all cameras are calibrated together in one session. The process:</p>
+
+<pre>
+Raw calibration: each camera → calibration target (marker/checkerboard)
+                                    │
+                     Base Alignment (align to robot base frame)
+                                    │
+                                    ▼
+                  each camera → robot base transform
+                  (this is extrinsics_base_aligned)
+</pre>
+
+<p>The <strong>base alignment</strong> step converts raw camera calibration into robot-base-aligned extrinsics. It requires knowing the relationship between the calibration target and the robot base. If this step has errors, <strong>ALL cameras</strong> in that session share the same systematic offset — because they all use the same "marker → robot base" transform.</p>
+
+<p>Different recording sessions may use different calibrations (identified by calibration ID — a timestamp). The two episodes we compared:</p>
+
+<table>
+<tr><th>Episode</th><th>Calibration ID</th><th>Result</th></tr>
+<tr><td>task_0070 scene_0007 (GOOD)</td><td><code>1630985293588</code></td><td>All 6 cameras aligned</td></tr>
+<tr><td>task_0009 scene_0005 (BAD)</td><td><code>1630565226882</code></td><td>All 7 cameras offset</td></tr>
+</table>
+
+<h3>8.2 Experiment: Render ALL Cameras per Episode</h3>
+
+<p>For each episode, we rendered the skeleton overlay from <strong>every</strong> external camera (not just the auto-selected one). If the offset were a per-camera issue, some cameras would align and others wouldn't. If it's a per-calibration-session issue, ALL cameras would show the same offset.</p>
+
+<h3>8.3 UR5 GOOD Episode — All 6 Cameras</h3>
+<p><code>task_0070_user_0010_scene_0007_cfg_0003</code> · Calibration <code>1630985293588</code></p>
+<div class="success">All 6 cameras show correctly aligned skeleton. Gripper orientation is wrong (URDF ee_link frame issue — separate from calibration).</div>
+
+<div class="video-grid">
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/038522062288_ur5good.mp4"></video><div class="label"><strong>038522062288</strong><span class="badge badge-good">Skeleton Aligned</span></div></div>
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/104122063550_ur5good.mp4"></video><div class="label"><strong>104122063550</strong><span class="badge badge-good">Skeleton Aligned</span></div></div>
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/104422070011_ur5good.mp4"></video><div class="label"><strong>104422070011</strong><span class="badge badge-good">Skeleton Aligned</span></div></div>
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/036422060909_ur5good.mp4"></video><div class="label"><strong>036422060909</strong><span class="badge badge-good">Skeleton Aligned</span></div></div>
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/104122062295_ur5good.mp4"></video><div class="label"><strong>104122062295</strong><span class="badge badge-good">Skeleton Aligned</span></div></div>
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/f0172289_ur5good.mp4"></video><div class="label"><strong>f0172289</strong><span class="badge badge-good">Skeleton Aligned</span></div></div>
+</div>
+
+<h3>8.4 UR5 BAD Episode — All 7 Cameras</h3>
+<p><code>task_0009_user_0011_scene_0005_cfg_0003</code> · Calibration <code>1630565226882</code></p>
+<div class="warning">All 7 cameras show skeleton offset. This proves the issue is NOT per-camera but per-calibration-session.</div>
+
+<div class="video-grid">
+  <div class="video-card bad"><video controls muted loop preload="metadata" src="videos/multicam/104122063550_ur5bad.mp4"></video><div class="label"><strong>104122063550</strong><span class="badge badge-bad">Skeleton Offset</span></div></div>
+  <div class="video-card bad"><video controls muted loop preload="metadata" src="videos/multicam/038522062288_ur5bad.mp4"></video><div class="label"><strong>038522062288</strong><span class="badge badge-bad">Skeleton Offset</span></div></div>
+  <div class="video-card bad"><video controls muted loop preload="metadata" src="videos/multicam/104422070011_ur5bad.mp4"></video><div class="label"><strong>104422070011</strong><span class="badge badge-bad">Skeleton Offset</span></div></div>
+  <div class="video-card bad"><video controls muted loop preload="metadata" src="videos/multicam/104122062295_ur5bad.mp4"></video><div class="label"><strong>104122062295</strong><span class="badge badge-bad">Skeleton Offset</span></div></div>
+  <div class="video-card bad"><video controls muted loop preload="metadata" src="videos/multicam/036422060909_ur5bad.mp4"></video><div class="label"><strong>036422060909</strong><span class="badge badge-bad">Skeleton Offset</span></div></div>
+  <div class="video-card bad"><video controls muted loop preload="metadata" src="videos/multicam/104122062823_ur5bad.mp4"></video><div class="label"><strong>104122062823</strong><span class="badge badge-bad">Skeleton Offset</span></div></div>
+  <div class="video-card bad"><video controls muted loop preload="metadata" src="videos/multicam/f0172289_ur5bad.mp4"></video><div class="label"><strong>f0172289</strong><span class="badge badge-bad">Skeleton Offset</span></div></div>
+</div>
+
+<h3>8.5 Franka Panda (cfg5) Control Group — All 6 Cameras</h3>
+<p><code>task_0001_user_0007_scene_0002_cfg_0005</code></p>
+<div class="success">All 6 cameras show correctly aligned skeleton AND correct gripper orientation. Franka's URDF ee_link frame matches the dataset convention.</div>
+
+<div class="video-grid">
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/104122063678_franka.mp4"></video><div class="label"><strong>104122063678</strong><span class="badge badge-good">Aligned</span></div></div>
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/105422061350_franka.mp4"></video><div class="label"><strong>105422061350</strong><span class="badge badge-good">Aligned</span></div></div>
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/036422060215_franka.mp4"></video><div class="label"><strong>036422060215</strong><span class="badge badge-good">Aligned</span></div></div>
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/104122061850_franka.mp4"></video><div class="label"><strong>104122061850</strong><span class="badge badge-good">Aligned</span></div></div>
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/037522062165_franka.mp4"></video><div class="label"><strong>037522062165</strong><span class="badge badge-good">Aligned</span></div></div>
+  <div class="video-card good"><video controls muted loop preload="metadata" src="videos/multicam/104422070044_franka.mp4"></video><div class="label"><strong>104422070044</strong><span class="badge badge-good">Aligned</span></div></div>
+</div>
+
+<h3>8.6 Updated Conclusion</h3>
+
+<table>
+<tr><th>Finding</th><th>Evidence</th></tr>
+<tr><td>Offset is per-calibration-session, not per-camera</td><td>BAD episode: all 7 cameras offset. GOOD episode: all 6 cameras aligned.</td></tr>
+<tr><td>Joint angles and FK are correct</td><td>GOOD and BAD episodes have nearly identical joint angles (diff &lt; 0.0003 rad) and FK results</td></tr>
+<tr><td>Base alignment quality varies by calibration session</td><td>Two different calibration IDs produce different alignment quality</td></tr>
+<tr><td>UR5 gripper orientation is a separate URDF issue</td><td>Even GOOD episode (all cameras aligned) shows wrong gripper direction. Franka does not have this issue.</td></tr>
+<tr><td>Franka (cfg5) calibration is consistently good</td><td>All 6 cameras aligned in the tested episode</td></tr>
+</table>
+
+<!-- ============================================================ -->
+
 <hr style="border-color: #333; margin-top: 3rem;">
-<p style="color: #666; font-size: 0.85rem;">Analysis generated 2026-03-25 &nbsp;|&nbsp; <a href="../index.html">← Back to Showcase</a></p>
+<p style="color: #666; font-size: 0.85rem;">Analysis generated 2026-03-25, updated with multi-camera experiment &nbsp;|&nbsp; <a href="../index.html">&larr; Back to Showcase</a></p>
 
 </body>
 </html>
