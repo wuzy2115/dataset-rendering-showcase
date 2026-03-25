@@ -64,6 +64,15 @@
       "resolution": "640x360",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg3/rh20t_cfg3_01.mp4"
+    },
+    {
+      "scene": "task_0009_user_0011_scene_0009_cfg_0003",
+      "robot": "UR5",
+      "cfg": "cfg3",
+      "frames": 150,
+      "resolution": "640x360",
+      "skeleton": true,
+      "video_path": "videos/rh20t_cfg3/rh20t_cfg3_02.mp4"
     }
   ],
   "rh20t_cfg5": [
@@ -149,6 +158,15 @@
       "resolution": "640x360",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_03.mp4"
+    },
+    {
+      "scene": "task_0045_user_0014_scene_0008_cfg_0007",
+      "robot": "KUKA iiwa",
+      "cfg": "cfg7",
+      "frames": 150,
+      "resolution": "640x360",
+      "skeleton": true,
+      "video_path": "videos/rh20t_cfg7/rh20t_cfg7_04.mp4"
     }
   ],
   "interndata_franka": [
