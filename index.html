@@ -1334,22 +1334,27 @@
         <td><ul class="missing-list"><li>Not a robot arm dataset</li></ul></td>
         <td><ul class="missing-list present-list"><li>Hand-object 3D meshes, multi-view calibration</li></ul></td>
       </tr>
-      <!-- ═══ Simulation Datasets ═══ -->
+      <!-- ═══ ManiSkill 2/3 ═══ -->
       <tr>
-        <td><strong>ManiSkill 2/3</strong> <span class="badge badge-green" style="font-size:0.65rem">Full Calibration</span></td>
-        <td>Franka / xArm</td>
-        <td>4M+ frames</td>
-        <td><span class="status-dot dot-green"></span>Multi-cam RGB-D (sim)</td>
+        <td><strong>ManiSkill 2/3</strong> <span class="badge badge-yellow" style="font-size:0.65rem">Partial Calibration</span></td>
+        <td>Franka Panda (7 DOF)</td>
+        <td>4,020 (in sample: PickCube-v1)</td>
+        <td><span class="status-dot dot-red"></span>No RGB in demos (sim replay required, 512&times;512@30fps)</td>
         <td>
           <ul class="missing-list">
-            <li>Sim-only (no real-world data)</li>
+            <li>Sim-only: obs_mode="none" &mdash; no RGB/depth stored in demo files</li>
+            <li>Camera intrinsics + extrinsics not in demos (defined in simulator code)</li>
+            <li>Requires ManiSkill replay_trajectory to extract visual observations</li>
+            <li>No language annotations</li>
           </ul>
         </td>
         <td>
           <ul class="missing-list present-list">
-            <li>Camera intrinsics + extrinsics</li>
-            <li>Joint angles, URDF included</li>
-            <li>Full environment state, reward</li>
+            <li>Joint positions (7 arm + 2 gripper), velocities, actions</li>
+            <li>Full environment state (articulation + actor poses)</li>
+            <li>URDF available (builtin registry: franka_panda)</li>
+            <li>Multiple control modes (joint pos, EE delta pose/pos)</li>
+            <li>Per-step rewards, success flags</li>
           </ul>
         </td>
       </tr>
