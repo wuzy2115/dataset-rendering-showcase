@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUKA f-Camera Analysis — Dataset Rendering Showcase</title>
+<style>
+  body { background: #1a1a2e; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 960px; margin: 0 auto; padding: 2rem 1rem; line-height: 1.6; }
+  a { color: #64b5f6; }
+  h1 { color: #fff; border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
+  h2 { color: #90caf9; margin-top: 2rem; }
+  h3 { color: #b0bec5; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { border: 1px solid #444; padding: 0.5rem 0.8rem; text-align: left; }
+  th { background: #2a2a4a; color: #90caf9; }
+  tr:nth-child(even) { background: #1e1e3a; }
+  code { background: #2a2a4a; padding: 0.2rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
+  pre { background: #2a2a4a; padding: 1rem; border-radius: 6px; overflow-x: auto; font-family: monospace; font-size: 0.88em; line-height: 1.5; }
+  .back-link { margin-bottom: 1.5rem; }
+  .warning { background: #332b00; border-left: 3px solid #ffc107; padding: 0.8rem 1rem; margin: 1rem 0; color: #ffe082; }
+  .success { background: #1b3a1b; border-left: 3px solid #4caf50; padding: 0.8rem 1rem; margin: 1rem 0; color: #a5d6a7; }
+  .info { background: #1a2a3a; border-left: 3px solid #64b5f6; padding: 0.8rem 1rem; margin: 1rem 0; color: #b3d9f7; }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 1rem; margin: 1rem 0; }
+  .video-card { background: #2a2a4a; border-radius: 8px; overflow: hidden; }
+  .video-card video { width: 100%; display: block; }
+  .video-card .label { padding: 0.5rem 0.6rem; font-size: 0.8rem; color: #aaa; }
+  .video-card .label strong { color: #e0e0e0; display: block; margin-bottom: 0.2rem; }
+  .video-card .label .badge { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.75rem; margin-top: 0.2rem; }
+  .badge-bad { background: #5c1a1a; color: #ef9a9a; }
+  .badge-good { background: #1b3a1b; color: #a5d6a7; }
+  .good { border: 2px solid #4caf50; }
+  .bad { border: 2px solid #f44336; }
+  .meta { color: #888; font-size: 0.85rem; margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+
+<div class="back-link">
+  <a href="../index.html">&larr; Back to Dataset Rendering Showcase</a>
+</div>
+
+<h1>KUKA iiwa f-Camera Calibration Analysis</h1>
+<p class="meta">Dataset: RH20T cfg7 (KUKA iiwa) &nbsp;|&nbsp; Date: 2026-03-25</p>
+
+<div class="warning">
+  <strong>Known Issue:</strong> Cameras with serial numbers starting with "f" (e.g. <code>f0271510</code>) show a systematic skeleton offset from the actual robot. This is caused by poor base alignment calibration for these cameras. All f-prefix cameras are excluded from the rendering pipeline.
+</div>
+
+<!-- ============================================================ -->
+<h2>1. Summary</h2>
+
+<p>RH20T KUKA cfg7 has 8+ external cameras per scene. Of these, cameras with serial numbers starting with "f" (different camera model) consistently show a <strong>skeleton-to-image misalignment</strong> when rendered using base-frame FK. Digit-serial cameras (e.g. <code>104122060811</code>) render correctly.</p>
+
+<p>The root cause is the same as the <a href="ur5-calibration.html">UR5 calibration issue</a>: the <code>extrinsics_base_aligned</code> transformation for f-cameras does not accurately map URDF base-frame positions to camera coordinates.</p>
+
+<!-- ============================================================ -->
+<h2>2. Camera Filtering Results</h2>
+
+<p>Across 6 test episodes, only 2 of 8 cameras consistently pass the 50% visibility threshold:</p>
+
+<table>
+  <tr><th>Camera Serial</th><th>Type</th><th>Avg Visibility</th><th>Status</th></tr>
+  <tr><td><code>104122060811</code></td><td>Digit-serial</td><td>100%</td><td style="color:#a5d6a7;">Kept</td></tr>
+  <tr><td><code>f0271510</code></td><td>f-prefix</td><td>100%</td><td style="color:#ef9a9a;">Dropped (offset)</td></tr>
+  <tr><td><code>104122064161</code></td><td>Digit-serial</td><td>11-31%</td><td style="color:#ef9a9a;">Filtered (low visibility)</td></tr>
+  <tr><td><code>104122061602</code></td><td>Digit-serial</td><td>0-18%</td><td style="color:#ef9a9a;">Filtered (low visibility)</td></tr>
+  <tr><td><code>104122061330</code></td><td>Digit-serial</td><td>5-34%</td><td style="color:#ef9a9a;">Filtered (low visibility)</td></tr>
+  <tr><td><code>104122063633</code></td><td>Digit-serial</td><td>0-35%</td><td style="color:#ef9a9a;">Filtered (low visibility)</td></tr>
+  <tr><td><code>037522061512</code></td><td>Digit-serial</td><td>0-12%</td><td style="color:#ef9a9a;">Filtered (low visibility)</td></tr>
+  <tr><td><code>104122061018</code></td><td>Digit-serial</td><td>0%</td><td style="color:#ef9a9a;">Filtered (low visibility)</td></tr>
+</table>
+
+<div class="info">
+  <strong>Note:</strong> Camera <code>f0271510</code> has 100% visibility (skeleton projects within frame) but shows a clear offset. The visibility filter alone cannot catch this — the f-prefix filter is needed as an additional safeguard.
+</div>
+
+<!-- ============================================================ -->
+<h2>3. Visual Evidence: Good Camera vs f-Camera</h2>
+
+<h3>3.1 Scene 1 — Side by Side</h3>
+
+<div class="video-grid">
+  <div class="video-card good">
+    <video controls muted loop><source src="videos/kuka/scene1_good_cam.mp4" type="video/mp4"></video>
+    <div class="label">
+      <strong>Camera 104122060811</strong>
+      Skeleton aligns with actual robot
+      <span class="badge badge-good">CORRECT</span>
+    </div>
+  </div>
+  <div class="video-card bad">
+    <video controls muted loop><source src="videos/kuka/scene1_f_cam_offset.mp4" type="video/mp4"></video>
+    <div class="label">
+      <strong>Camera f0271510</strong>
+      Skeleton offset from actual robot
+      <span class="badge badge-bad">OFFSET</span>
+    </div>
+  </div>
+</div>
+
+<h3>3.2 Scene 3 — Side by Side</h3>
+
+<div class="video-grid">
+  <div class="video-card good">
+    <video controls muted loop><source src="videos/kuka/scene3_good_cam.mp4" type="video/mp4"></video>
+    <div class="label">
+      <strong>Camera 104122060811</strong>
+      Skeleton aligns with actual robot
+      <span class="badge badge-good">CORRECT</span>
+    </div>
+  </div>
+  <div class="video-card bad">
+    <video controls muted loop><source src="videos/kuka/scene3_f_cam_offset.mp4" type="video/mp4"></video>
+    <div class="label">
+      <strong>Camera f0271510</strong>
+      Skeleton offset from actual robot
+      <span class="badge badge-bad">OFFSET</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>4. Base-FK vs EE-Relative-FK Comparison</h2>
+
+<p>We tested EE-relative FK (anchoring skeleton to the dataset's TCP pose) as a potential fix. Side-by-side comparison for both cameras:</p>
+
+<h3>4.1 f0271510 (offset camera) — Base-FK (left) vs EE-Relative-FK (right)</h3>
+
+<div class="video-grid">
+  <div class="video-card">
+    <video controls muted loop><source src="videos/kuka/kuka_f0271510_sidebyside.mp4" type="video/mp4"></video>
+    <div class="label">
+      <strong>f0271510: Base-FK vs EE-Rel-FK</strong>
+      EE-Rel-FK anchors the end-effector to the TCP pose, avoiding base alignment errors.
+    </div>
+  </div>
+</div>
+
+<h3>4.2 104122060811 (good camera) — Base-FK (left) vs EE-Relative-FK (right)</h3>
+
+<div class="video-grid">
+  <div class="video-card">
+    <video controls muted loop><source src="videos/kuka/kuka_104122060811_sidebyside.mp4" type="video/mp4"></video>
+    <div class="label">
+      <strong>104122060811: Base-FK vs EE-Rel-FK</strong>
+      Both methods look similar on well-calibrated cameras. EE-Rel-FK has slight position shift due to TCP-to-flange tool offset.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>5. Root Cause</h2>
+
+<p>Same mechanism as the <a href="ur5-calibration.html">UR5 calibration issue</a>:</p>
+
+<pre>
+RH20T extrinsics_base_aligned pipeline:
+  1. Calibrate camera extrinsics relative to a charuco board
+  2. Measure charuco board position relative to robot base
+  3. Compose: camera_to_world = camera_to_charuco @ charuco_to_base
+</pre>
+
+<p>The f-prefix cameras are a different camera model. Their <code>charuco_to_base</code> measurement appears to have a systematic error, causing all f-cameras in a given calibration session to share the same offset.</p>
+
+<table>
+  <tr><th>Problem</th><th>Root Cause</th><th>Scope</th></tr>
+  <tr>
+    <td>Skeleton offset on f-cameras</td>
+    <td>Poor base alignment calibration for f-prefix camera model</td>
+    <td>KUKA cfg7: all cameras with serial starting with "f"</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>6. Resolution</h2>
+
+<div class="success">
+  <strong>Decision:</strong> All f-prefix cameras are excluded from the KUKA cfg7 rendering pipeline. This is implemented as a filter in <code>dataset/RH20T/adapter.py</code>. Combined with the visibility threshold filter (&gt;50%), this leaves camera <code>104122060811</code> as the primary rendering camera for KUKA cfg7.
+</div>
+
+<p>EE-relative FK was evaluated as an alternative but not adopted because:</p>
+<ul>
+  <li>It introduces a ~25cm tool offset (TCP ≠ URDF flange)</li>
+  <li>The skeleton shape is correct but anchored at the wrong position</li>
+  <li>Filtering the bad cameras is simpler and gives better results on good cameras</li>
+</ul>
+
+</body>
+</html>

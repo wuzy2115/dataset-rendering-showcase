@@ -295,6 +295,10 @@
 
   <!-- RH20T cfg7 - KUKA -->
   <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">RH20T &mdash; KUKA iiwa (cfg7)</h3>
+  <p style="background: #332b00; border-left: 3px solid #ffc107; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #ffe082; font-size: 0.9rem;">
+    &#9888; Known issue: Cameras with f-prefix serials (e.g. <code>f0271510</code>) show skeleton offset due to poor base alignment calibration. These cameras are excluded from the pipeline. Only digit-serial cameras are used for rendering.
+    <a href="analysis/kuka-f-camera.html" style="color: #64b5f6;">View detailed analysis &rarr;</a>
+  </p>
   <div class="config-info">
     <dl><dt>Dataset</dt><dd>RH20T</dd></dl>
     <dl><dt>Robot</dt><dd>KUKA iiwa</dd></dl>
