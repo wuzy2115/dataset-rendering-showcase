@@ -5,7 +5,7 @@
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "tiled_7cam",
+      "resolution": "tiled_6cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_00.mp4"
     },
@@ -14,7 +14,7 @@
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "tiled_6cam",
+      "resolution": "tiled_5cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_01.mp4"
     },
@@ -32,7 +32,7 @@
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "tiled_7cam",
+      "resolution": "tiled_5cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_03.mp4"
     },
@@ -41,54 +41,54 @@
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "tiled_7cam",
+      "resolution": "tiled_6cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_04.mp4"
     }
   ],
   "rh20t_cfg7": [
     {
-      "scene": "task_0037_user_0014_scene_0003_cfg_0007",
+      "scene": "task_0002_user_0014_scene_0009_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "tiled_8cam",
+      "resolution": "640x360",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_00.mp4"
     },
     {
-      "scene": "task_0042_user_0020_scene_0006_cfg_0007",
+      "scene": "task_0049_user_0020_scene_0002_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "tiled_8cam",
+      "resolution": "640x360",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_01.mp4"
     },
     {
-      "scene": "task_0037_user_0020_scene_0002_cfg_0007",
+      "scene": "task_0226_user_0066_scene_0002_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "tiled_8cam",
+      "resolution": "640x360",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_02.mp4"
     },
     {
-      "scene": "task_0005_user_0020_scene_0009_cfg_0007",
+      "scene": "task_0051_user_0014_scene_0009_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "tiled_8cam",
+      "resolution": "640x360",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_03.mp4"
     },
     {
-      "scene": "task_0018_user_0014_scene_0010_cfg_0007",
+      "scene": "task_0064_user_0014_scene_0008_cfg_0007",
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "tiled_8cam",
+      "resolution": "640x360",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_04.mp4"
     }
@@ -178,60 +178,13 @@
       "video_path": "videos/droid_franka/droid_franka_03.mp4"
     },
     {
-      "scene": "AUTOLab/success/2023-07-08/Sat_Jul__8_09:17:41_2023",
+      "scene": "AUTOLab/success/2023-07-08/Sat_Jul__8_09:57:29_2023",
       "robot": "Franka Panda",
       "cfg": "",
       "frames": 225,
       "resolution": "tiled_2cam",
       "skeleton": true,
       "video_path": "videos/droid_franka/droid_franka_04.mp4"
-    }
-  ],
-  "agibot_g1": [
-    {
-      "scene": "711/868498",
-      "robot": "Unitree G1",
-      "cfg": "",
-      "frames": 225,
-      "resolution": "640x480",
-      "skeleton": true,
-      "video_path": "videos/agibot_g1/agibot_g1_00.mp4"
-    },
-    {
-      "scene": "475/700072",
-      "robot": "Unitree G1",
-      "cfg": "",
-      "frames": 225,
-      "resolution": "640x480",
-      "skeleton": true,
-      "video_path": "videos/agibot_g1/agibot_g1_01.mp4"
-    },
-    {
-      "scene": "711/906821",
-      "robot": "Unitree G1",
-      "cfg": "",
-      "frames": 225,
-      "resolution": "640x480",
-      "skeleton": true,
-      "video_path": "videos/agibot_g1/agibot_g1_02.mp4"
-    },
-    {
-      "scene": "711/891869",
-      "robot": "Unitree G1",
-      "cfg": "",
-      "frames": 225,
-      "resolution": "640x480",
-      "skeleton": true,
-      "video_path": "videos/agibot_g1/agibot_g1_03.mp4"
-    },
-    {
-      "scene": "711/894099",
-      "robot": "Unitree G1",
-      "cfg": "",
-      "frames": 225,
-      "resolution": "640x480",
-      "skeleton": true,
-      "video_path": "videos/agibot_g1/agibot_g1_04.mp4"
     }
   ]
 }
