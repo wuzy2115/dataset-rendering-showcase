@@ -1289,6 +1289,51 @@
         <td><ul class="missing-list"><li>No joint angles (EE pose only)</li><li>No camera calibration</li><li>No URDF (proprietary)</li></ul></td>
         <td><ul class="missing-list present-list"><li>EE pose (xyz + axis-angle)</li><li>Language instructions</li></ul></td>
       </tr>
+      <!-- ═══ ALOHA ═══ -->
+      <tr>
+        <td><strong>ALOHA</strong></td>
+        <td>2&times; ViperX 300 (6+6 DOF)</td>
+        <td>~50/task</td>
+        <td><span class="status-dot dot-green"></span>3 cameras 480&times;640</td>
+        <td><ul class="missing-list"><li>Camera intrinsics + extrinsics</li></ul></td>
+        <td><ul class="missing-list present-list"><li>14-dim joint angles</li><li>ViperX 300 URDF (public)</li></ul></td>
+      </tr>
+      <!-- ═══ ShareRobot ═══ -->
+      <tr>
+        <td><strong>ShareRobot</strong></td>
+        <td>12 embodiments (OXE re-annotated)</td>
+        <td>51.4K</td>
+        <td><span class="status-dot dot-yellow"></span>Varies</td>
+        <td><ul class="missing-list"><li>VLM annotation layer only, no raw sensor data</li></ul></td>
+        <td><ul class="missing-list present-list"><li>Task planning text, 2D EE trajectories</li></ul></td>
+      </tr>
+      <!-- ═══ DexCap ═══ -->
+      <tr>
+        <td><strong>DexCap</strong></td>
+        <td>Human hand (mocap)</td>
+        <td>34</td>
+        <td><span class="status-dot dot-green"></span>Stereo (T265)</td>
+        <td><ul class="missing-list"><li>Not a robot arm dataset</li></ul></td>
+        <td><ul class="missing-list present-list"><li>Human hand poses, camera calibration</li></ul></td>
+      </tr>
+      <!-- ═══ BRMData ═══ -->
+      <tr>
+        <td><strong>BRMData</strong></td>
+        <td>4&times; ARX-5 (7 DOF each)</td>
+        <td>500</td>
+        <td><span class="status-dot dot-green"></span>3 RGBD cameras</td>
+        <td><ul class="missing-list"><li>No public URDF (ARX-5)</li><li>Camera calibration unconfirmed</li></ul></td>
+        <td><ul class="missing-list present-list"><li>14-dim joint positions</li><li>RGBD + depth</li></ul></td>
+      </tr>
+      <!-- ═══ TACO ═══ -->
+      <tr>
+        <td><strong>TACO</strong></td>
+        <td>Human hands (bimanual)</td>
+        <td>2.5K</td>
+        <td><span class="status-dot dot-green"></span>12 cameras + egocentric</td>
+        <td><ul class="missing-list"><li>Not a robot arm dataset</li></ul></td>
+        <td><ul class="missing-list present-list"><li>Hand-object 3D meshes, multi-view calibration</li></ul></td>
+      </tr>
     </tbody>
   </table>
 </div>
