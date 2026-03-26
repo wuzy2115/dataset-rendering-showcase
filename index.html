@@ -1181,6 +1181,48 @@
           </ul>
         </td>
       </tr>
+      <!-- ═══ UMI ═══ -->
+      <tr>
+        <td><strong>UMI</strong></td>
+        <td>Hardware-agnostic (UR5/Franka deploy)</td>
+        <td>2,543</td>
+        <td><span class="status-dot dot-green"></span>GoPro fisheye, 60fps</td>
+        <td>
+          <ul class="missing-list">
+            <li>Joint angles (task-space only)</li>
+            <li>Camera extrinsics</li>
+            <li>URDF (hardware-agnostic)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>6-DoF EE pose, gripper width</li>
+            <li>Camera intrinsics (GoPro)</li>
+            <li>IMU data</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- ═══ RT-1 ═══ -->
+      <tr>
+        <td><strong>RT-1</strong></td>
+        <td>Google EDR (7 DOF + gripper)</td>
+        <td>87,212</td>
+        <td><span class="status-dot dot-green"></span>256&times;320, head camera</td>
+        <td>
+          <ul class="missing-list">
+            <li>Joint angles</li>
+            <li>Camera intrinsics + extrinsics</li>
+            <li>URDF (proprietary robot)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>7-dim EE pose (pos+quat)</li>
+            <li>Language instructions + embeddings</li>
+            <li>Gripper state, reward signal</li>
+          </ul>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
