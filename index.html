@@ -1334,6 +1334,206 @@
         <td><ul class="missing-list"><li>Not a robot arm dataset</li></ul></td>
         <td><ul class="missing-list present-list"><li>Hand-object 3D meshes, multi-view calibration</li></ul></td>
       </tr>
+      <!-- ═══ Simulation Datasets ═══ -->
+      <tr>
+        <td><strong>ManiSkill 2/3</strong> <span class="badge badge-green" style="font-size:0.65rem">Full Calibration</span></td>
+        <td>Franka / xArm</td>
+        <td>4M+ frames</td>
+        <td><span class="status-dot dot-green"></span>Multi-cam RGB-D (sim)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Sim-only (no real-world data)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Camera intrinsics + extrinsics</li>
+            <li>Joint angles, URDF included</li>
+            <li>Full environment state, reward</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RLBench</strong> <span class="badge badge-green" style="font-size:0.65rem">Full Calibration</span></td>
+        <td>Franka Panda</td>
+        <td>100 tasks</td>
+        <td><span class="status-dot dot-green"></span>Multi-cam RGB-D (CoppeliaSim)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Sim-only (CoppeliaSim/PyRep)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Camera calibration + joint angles</li>
+            <li>Franka URDF available</li>
+            <li>Keyframe-based demos, language descriptions</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Colosseum</strong> <span class="badge badge-green" style="font-size:0.65rem">Full Calibration</span></td>
+        <td>Franka Panda</td>
+        <td>20 tasks</td>
+        <td><span class="status-dot dot-green"></span>Multi-cam RGB-D (RLBench format)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Sim-only (RLBench-based benchmark)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>RLBench format &mdash; full camera calib + joints + URDF</li>
+            <li>14 perturbation axes for generalization testing</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RoboCasa</strong> <span class="badge badge-yellow" style="font-size:0.65rem">Partial</span></td>
+        <td>Multiple robots</td>
+        <td>~100K demos</td>
+        <td><span class="status-dot dot-green"></span>Multi-cam RGB (MuJoCo)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Camera calibration recoverable from MJCF (not exported directly)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint angles, EE pose</li>
+            <li>MJCF models (camera params extractable)</li>
+            <li>100+ kitchen tasks, language annotations</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>MimicGen</strong> <span class="badge badge-yellow" style="font-size:0.65rem">Partial</span></td>
+        <td>Multiple</td>
+        <td>50K+ demos</td>
+        <td><span class="status-dot dot-green"></span>Multi-cam RGB (MuJoCo)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Camera calibration recoverable from MJCF (not exported directly)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint angles, EE pose</li>
+            <li>MJCF models (camera params extractable)</li>
+            <li>Automated demo generation from human demos</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>DexMimicGen</strong> <span class="badge badge-yellow" style="font-size:0.65rem">Partial</span></td>
+        <td>Dual-arm + dexterous hands</td>
+        <td>21K demos</td>
+        <td><span class="status-dot dot-green"></span>Multi-cam RGB (MuJoCo)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Camera calibration recoverable from MJCF (not exported directly)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint angles, EE pose</li>
+            <li>MJCF models (camera params extractable)</li>
+            <li>Bimanual + dexterous manipulation tasks</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>LIBERO</strong> <span class="badge badge-yellow" style="font-size:0.65rem">Partial</span></td>
+        <td>Franka</td>
+        <td>6.5K demos</td>
+        <td><span class="status-dot dot-green"></span>Multi-cam RGB (MuJoCo)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Camera calibration recoverable from MJCF (not exported directly)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint angles, EE pose</li>
+            <li>MJCF models (camera params extractable)</li>
+            <li>130 task suites (spatial, object, goal, long-horizon)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RoboTwin 2.0</strong></td>
+        <td>5 dual-arm robots</td>
+        <td>100K+ trajectories</td>
+        <td><span class="status-dot dot-green"></span>Multi-cam RGB (sim)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Calibration status needs verification</li>
+            <li>Sim-only (SAPIEN-based)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint angles, dual-arm coordination</li>
+            <li>Expert + LLM-generated trajectories</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>CALVIN</strong></td>
+        <td>Franka</td>
+        <td>24 hrs</td>
+        <td><span class="status-dot dot-green"></span>Static + gripper cam (sim)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Calibration in config files only (not per-episode)</li>
+            <li>Sim-only (PyBullet)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint angles, EE pose, gripper</li>
+            <li>Language-conditioned long-horizon tasks</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>RoboVerse</strong></td>
+        <td>Multiple</td>
+        <td>50M+ transitions</td>
+        <td><span class="status-dot dot-green"></span>Multi-cam RGB (sim)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Generation framework &mdash; calibration depends on config</li>
+            <li>Sim-only (Isaac Gym / SAPIEN / MuJoCo)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>Joint angles, full state</li>
+            <li>Unified format across simulators</li>
+            <li>Multi-task, multi-embodiment</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>DexArt</strong></td>
+        <td>Allegro 16-DOF</td>
+        <td>4 tasks</td>
+        <td><span class="status-dot dot-yellow"></span>Point cloud only (no RGB)</td>
+        <td>
+          <ul class="missing-list">
+            <li>Point cloud only &mdash; no camera images</li>
+            <li>Sim-only (SAPIEN)</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="missing-list present-list">
+            <li>16-DOF joint angles (Allegro hand)</li>
+            <li>Articulated object manipulation</li>
+            <li>Point cloud observations</li>
+          </ul>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
