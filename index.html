@@ -1244,6 +1244,51 @@
           </ul>
         </td>
       </tr>
+      <!-- ═══ DexCanvas ═══ -->
+      <tr>
+        <td><strong>DexCanvas</strong></td>
+        <td>Human hand (MANO model)</td>
+        <td>7K hrs</td>
+        <td><span class="status-dot dot-green"></span>Multi-view RGB-D</td>
+        <td><ul class="missing-list"><li>Not a robot arm dataset (human hand only)</li></ul></td>
+        <td><ul class="missing-list present-list"><li>MANO params, object poses, contact</li><li>Skipped: no robot manipulation</li></ul></td>
+      </tr>
+      <!-- ═══ Dobb-E ═══ -->
+      <tr>
+        <td><strong>Dobb-E</strong></td>
+        <td>Hello Stretch (deploy only)</td>
+        <td>5.6K</td>
+        <td><span class="status-dot dot-green"></span>iPhone RGB+depth</td>
+        <td><ul class="missing-list"><li>No joint angles (iPhone on stick)</li><li>No camera calibration</li></ul></td>
+        <td><ul class="missing-list present-list"><li>6D gripper pose from iPhone</li><li>Skipped: human demo, not robot data</li></ul></td>
+      </tr>
+      <!-- ═══ Mobile ALOHA ═══ -->
+      <tr>
+        <td><strong>Mobile ALOHA</strong> <span class="badge badge-yellow" style="font-size:0.65rem">Partial</span></td>
+        <td>2&times; ViperX 300 (6+6 DOF)</td>
+        <td>~800</td>
+        <td><span class="status-dot dot-green"></span>3 cameras (head + 2 wrist)</td>
+        <td><ul class="missing-list"><li>Camera intrinsics + extrinsics</li></ul></td>
+        <td><ul class="missing-list present-list"><li>14-dim joint angles (both arms)</li><li>ViperX 300 URDF (public)</li><li>HDF5 format</li></ul></td>
+      </tr>
+      <!-- ═══ ARMBench ═══ -->
+      <tr>
+        <td><strong>ARMBench</strong></td>
+        <td>Amazon Sparrow/Vulcan (proprietary)</td>
+        <td>235K+</td>
+        <td><span class="status-dot dot-green"></span>Images + videos</td>
+        <td><ul class="missing-list"><li>No joint angles (perception benchmark)</li><li>No URDF (proprietary)</li></ul></td>
+        <td><ul class="missing-list present-list"><li>Object recognition annotations</li><li>Skipped: perception benchmark only</li></ul></td>
+      </tr>
+      <!-- ═══ BC-Z ═══ -->
+      <tr>
+        <td><strong>BC-Z</strong></td>
+        <td>Google 7-DOF (proprietary)</td>
+        <td>25.8K</td>
+        <td><span class="status-dot dot-green"></span>RGB (downsampled)</td>
+        <td><ul class="missing-list"><li>No joint angles (EE pose only)</li><li>No camera calibration</li><li>No URDF (proprietary)</li></ul></td>
+        <td><ul class="missing-list present-list"><li>EE pose (xyz + axis-angle)</li><li>Language instructions</li></ul></td>
+      </tr>
     </tbody>
   </table>
 </div>
