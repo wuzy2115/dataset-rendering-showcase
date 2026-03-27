@@ -1360,6 +1360,24 @@
         <td><ul class="missing-list"><li>Not a robot arm dataset</li></ul></td>
         <td><ul class="missing-list present-list"><li>Hand-object 3D meshes, multi-view calibration</li></ul></td>
       </tr>
+      <!-- ═══ REASSEMBLE ═══ -->
+      <tr>
+        <td><strong>REASSEMBLE</strong> <span class="badge badge-yellow" style="font-size:0.65rem">Partial</span></td>
+        <td>Franka FR3 (7 DOF)</td>
+        <td>4,551</td>
+        <td><span class="status-dot dot-green"></span>3 cameras 640&times;480</td>
+        <td><ul class="missing-list"><li>Camera intrinsics not in dataset</li><li>FR3 URDF needed (not Panda)</li><li>OptiTrack-to-base transform needed</li></ul></td>
+        <td><ul class="missing-list present-list"><li>7-DOF joints @ 971Hz</li><li>OptiTrack camera extrinsics</li><li>Force/torque, event camera</li></ul></td>
+      </tr>
+      <!-- ═══ EgoDex ═══ -->
+      <tr>
+        <td><strong>EgoDex</strong> <span class="badge badge-green" style="font-size:0.65rem">Full Calibration</span></td>
+        <td>Human hands (Apple Vision Pro)</td>
+        <td>829 hrs</td>
+        <td><span class="status-dot dot-green"></span>1920&times;1080@30fps egocentric</td>
+        <td><ul class="missing-list"><li>Not a robot arm dataset (human hands)</li></ul></td>
+        <td><ul class="missing-list present-list"><li>25 joints/hand SE(3) poses</li><li>Full calibration (K + per-frame extrinsic)</li><li>Language descriptions, 194 tasks</li></ul></td>
+      </tr>
       <!-- ═══ ManiSkill 2/3 ═══ -->
       <tr>
         <td><strong>ManiSkill 2/3</strong> <span class="badge badge-yellow" style="font-size:0.65rem">Partial Calibration</span></td>
