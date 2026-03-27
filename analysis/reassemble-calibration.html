@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REASSEMBLE Calibration Analysis — Dataset Rendering Showcase</title>
+<style>
+  body { background: #1a1a2e; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 960px; margin: 0 auto; padding: 2rem 1rem; line-height: 1.6; }
+  a { color: #64b5f6; }
+  h1 { color: #fff; border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
+  h2 { color: #90caf9; margin-top: 2rem; }
+  h3 { color: #b0bec5; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { border: 1px solid #444; padding: 0.5rem 0.8rem; text-align: left; }
+  th { background: #2a2a4a; color: #90caf9; }
+  tr:nth-child(even) { background: #1e1e3a; }
+  code { background: #2a2a4a; padding: 0.2rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
+  pre { background: #2a2a4a; padding: 1rem; border-radius: 6px; overflow-x: auto; font-family: monospace; font-size: 0.88em; line-height: 1.5; }
+  .back-link { margin-bottom: 1.5rem; }
+  .warning { background: #332b00; border-left: 3px solid #ffc107; padding: 0.8rem 1rem; margin: 1rem 0; color: #ffe082; }
+  .info { background: #1a2a3a; border-left: 3px solid #64b5f6; padding: 0.8rem 1rem; margin: 1rem 0; color: #b3d9f7; }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 1rem; margin: 1rem 0; }
+  .video-card { background: #2a2a4a; border-radius: 8px; overflow: hidden; }
+  .video-card video { width: 100%; display: block; }
+  .video-card .label { padding: 0.5rem 0.6rem; font-size: 0.8rem; color: #aaa; }
+  .video-card .label strong { color: #e0e0e0; display: block; margin-bottom: 0.2rem; }
+  .badge-bad { background: #5c1a1a; color: #ef9a9a; }
+  .badge-good { background: #1b3a1b; color: #a5d6a7; }
+  .bad { border: 2px solid #f44336; }
+  .good { border: 2px solid #4caf50; }
+  .meta { color: #888; font-size: 0.85rem; margin-bottom: 0.5rem; }
+  img { max-width: 100%; border-radius: 6px; }
+</style>
+</head>
+<body>
+
+<div class="back-link">
+  <a href="../index.html">&larr; Back to Dataset Rendering Showcase</a>
+</div>
+
+<h1>REASSEMBLE Calibration Analysis</h1>
+<p class="meta">Dataset: REASSEMBLE (RSS 2025, Franka FR3) &nbsp;|&nbsp; Date: 2026-03-27</p>
+
+<div class="warning">
+  <strong>Missing Parameters:</strong> Camera intrinsics not provided. Robot base position in OptiTrack frame unknown (NIST calibration board offset from robot base not documented). These prevent accurate skeleton-to-image projection.
+</div>
+
+<!-- ============================================================ -->
+<h2>1. Dataset Overview</h2>
+
+<table>
+  <tr><th>Property</th><th>Value</th></tr>
+  <tr><td>Robot</td><td>Franka FR3 (7-DOF) with parallel-jaw gripper</td></tr>
+  <tr><td>Episodes</td><td>4,551 demonstrations (contact-rich assembly/disassembly)</td></tr>
+  <tr><td>Cameras</td><td>2&times; HAMA C-600 Pro (external, 640&times;480@30Hz) + 1&times; Intel RealSense D435i (wrist, 640&times;480@28Hz)</td></tr>
+  <tr><td>Joint angles</td><td>7-DOF @ 971Hz + 2-finger gripper</td></tr>
+  <tr><td>Additional</td><td>Force/torque (2 sensors), event camera (DAVIS346), audio</td></tr>
+  <tr><td>Format</td><td>HDF5 with embedded MP4 video blobs</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>2. What's Available</h2>
+
+<table>
+  <tr><th>Data</th><th>Status</th><th>Details</th></tr>
+  <tr><td>Joint angles</td><td style="color:#a5d6a7;">&#10004; Available</td><td><code>robot_state/joint_positions</code> (N, 7) @ 971Hz</td></tr>
+  <tr><td>Gripper</td><td style="color:#a5d6a7;">&#10004; Available</td><td><code>robot_state/gripper_positions</code> (N, 2), range 0.003&ndash;0.04m</td></tr>
+  <tr><td>TCP pose</td><td style="color:#a5d6a7;">&#10004; Available</td><td><code>robot_state/pose</code> [x,y,z,qw,qx,qy,qz] (scalar-first)</td></tr>
+  <tr><td>URDF</td><td style="color:#a5d6a7;">&#10004; Available</td><td>Franka FR3 from <code>frankaemika/franka_description</code> (xacro &rarr; URDF)</td></tr>
+  <tr><td>Camera extrinsics</td><td style="color:#ffe082;">&#9888; Partial</td><td>OptiTrack poses per session (9 files for 01-09, none for 01-10 episodes)</td></tr>
+  <tr><td>Camera intrinsics</td><td style="color:#ef9a9a;">&#10008; Missing</td><td>Not in dataset. D435i defaults usable; HAMA C-600 unknown</td></tr>
+  <tr><td>Robot base position</td><td style="color:#ef9a9a;">&#10008; Missing</td><td>NIST_Board1 position available but offset from actual robot base unknown</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>3. Rendering Attempts</h2>
+
+<h3>3.1 Without NIST Correction (OptiTrack origin = robot base assumption)</h3>
+
+<div class="video-grid">
+  <div class="video-card bad">
+    <video controls muted loop><source src="videos/reassemble/hama1_panda_overlay.mp4" type="video/mp4"></video>
+    <div class="label">
+      <strong>Panda URDF, no NIST correction</strong>
+      Base and end-effector roughly aligned, but middle segments (link3&rarr;link5) deviate from actual robot.
+      <span class="badge-bad" style="display:inline-block;padding:0.1rem 0.4rem;border-radius:3px;font-size:0.75rem;">MISALIGNED</span>
+    </div>
+  </div>
+</div>
+
+<h3>3.2 With FR3 URDF (correct robot model)</h3>
+
+<div class="info">
+  FR3 and Panda have identical DH parameters (link lengths match to 0mm at zero config). The FR3 URDF was generated from xacro by mocking <code>ament_index_python</code>.
+</div>
+
+<div class="video-grid">
+  <div class="video-card bad">
+    <video controls muted loop><source src="videos/reassemble/hama1_fr3_overlay.mp4" type="video/mp4"></video>
+    <div class="label">
+      <strong>FR3 URDF, no NIST correction</strong>
+      Same result as Panda &mdash; confirms the issue is NOT the URDF model.
+      <span class="badge-bad" style="display:inline-block;padding:0.1rem 0.4rem;border-radius:3px;font-size:0.75rem;">MISALIGNED</span>
+    </div>
+  </div>
+</div>
+
+<h3>3.3 With NIST Board Correction (OptiTrack &rarr; robot base transform)</h3>
+
+<div class="video-grid">
+  <div class="video-card">
+    <video controls muted loop><source src="videos/reassemble/hama1_nist_corrected.mp4" type="video/mp4"></video>
+    <div class="label">
+      <strong>FR3 URDF + NIST correction</strong>
+      Skeleton shape is correct &mdash; all segments match the actual robot pose. However, the entire skeleton has a uniform translation offset because the NIST board position &ne; robot base position.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>4. Root Cause Analysis</h2>
+
+<h3>4.1 FK Verification</h3>
+<p>FK-computed TCP vs dataset TCP shows a <strong>constant 71mm offset</strong> (tool length) across all frames &mdash; confirming joint angles and URDF kinematics are correct:</p>
+
+<pre>
+t=0.0: FK_tcp=[+0.628,-0.114,+0.303] DS_tcp=[+0.631,-0.115,+0.232] diff=71mm
+t=0.1: FK_tcp=[+0.515,-0.013,+0.171] DS_tcp=[+0.519,-0.013,+0.101] diff=71mm
+t=0.5: FK_tcp=[+0.705,+0.010,+0.123] DS_tcp=[+0.718,+0.006,+0.054] diff=71mm
+t=0.9: FK_tcp=[+0.542,-0.133,+0.211] DS_tcp=[+0.541,-0.132,+0.140] diff=71mm
+</pre>
+
+<h3>4.2 Camera Extrinsic Chain</h3>
+<pre>
+OptiTrack measures:
+  - Camera position + quaternion in OptiTrack world frame
+  - NIST_Board1 position + quaternion (≈ robot base area)
+
+Current pipeline:
+  T_base_in_optitrack = T_nist_board    (assumption)
+  T_cam_in_base = inv(T_base) @ T_cam
+  extrinsic = inv(T_cam_in_base)
+
+Problem:
+  NIST_Board1 position [0.379, 0.201, 0.006] is NOT exactly the robot base.
+  The board is placed on the table near the robot but offset by an unknown amount.
+</pre>
+
+<h3>4.3 Missing Parameters</h3>
+
+<table>
+  <tr><th>Parameter</th><th>Impact</th><th>Resolution</th></tr>
+  <tr>
+    <td>Camera intrinsics</td>
+    <td>Affects projection scale and center point</td>
+    <td>D435i: use factory defaults (fx=615). HAMA C-600: needs calibration or estimation.</td>
+  </tr>
+  <tr>
+    <td>NIST &rarr; Robot base offset</td>
+    <td>Causes uniform translation of entire skeleton</td>
+    <td>Not documented. Could be solved by manual pixel annotation + PnP, or by contacting dataset authors.</td>
+  </tr>
+  <tr>
+    <td>Session-specific pose files</td>
+    <td>Episode 2025-01-10 has no matching pose file (only 01-09 sessions available)</td>
+    <td>Full dataset on Google Drive may include all sessions.</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>5. Conclusion</h2>
+
+<div class="warning">
+  <strong>Status: Not fully renderable</strong> due to missing camera intrinsics and unknown robot-base-to-NIST-board offset. The skeleton kinematics (FK) are verified correct. With the correct base position, rendering would work immediately.
+</div>
+
+<p>To make this dataset fully renderable:</p>
+<ol>
+  <li>Obtain camera intrinsics (calibrate HAMA cameras, or request from authors)</li>
+  <li>Determine NIST board &rarr; robot base offset (measure physically, or solve via PnP with manual pixel annotations)</li>
+  <li>Download all session pose files from the full dataset release</li>
+</ol>
+
+</body>
+</html>
