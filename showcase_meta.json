@@ -186,5 +186,46 @@
       "skeleton": true,
       "video_path": "videos/droid_franka/droid_franka_04.mp4"
     }
+  ],
+  "arctic": [
+    {
+      "scene": "s01/box_grab_01",
+      "subject": "s01",
+      "object": "box",
+      "action": "grab",
+      "cameras": "cams 1-4 (third-person, 2×2 tiled)",
+      "frames": 150,
+      "resolution": "tiled_4cam",
+      "skeleton": true,
+      "hand_model": "MANO",
+      "body_model": "SMPL-X + MoSh",
+      "video_path": "videos/arctic/arctic_00.mp4"
+    },
+    {
+      "scene": "s01/box_grab_01",
+      "subject": "s01",
+      "object": "box",
+      "action": "grab",
+      "cameras": "cams 5-8 (third-person, 2×2 tiled)",
+      "frames": 150,
+      "resolution": "tiled_4cam",
+      "skeleton": true,
+      "hand_model": "MANO",
+      "body_model": "SMPL-X + MoSh",
+      "video_path": "videos/arctic/arctic_01.mp4"
+    },
+    {
+      "scene": "s01/box_grab_01",
+      "subject": "s01",
+      "object": "box",
+      "action": "grab",
+      "cameras": "cam 0 (egocentric, head-mounted)",
+      "frames": 150,
+      "resolution": "640x360",
+      "skeleton": true,
+      "hand_model": "MANO",
+      "body_model": "SMPL-X + MoSh",
+      "video_path": "videos/arctic/arctic_02.mp4"
+    }
   ]
 }

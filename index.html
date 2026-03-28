@@ -214,7 +214,7 @@
 <div class="container">
 
 <h1>Robot Dataset Rendering Showcase</h1>
-<p class="subtitle">Skeleton + gripper overlay rendering results across all processed datasets. Generated 2026-03-23.</p>
+<p class="subtitle">Skeleton + gripper overlay rendering results across all processed datasets. Generated 2026-03-28.</p>
 
 <div class="stats-bar">
   <div class="stat">
@@ -226,11 +226,11 @@
     <div class="stat-label">Renderable Configs</div>
   </div>
   <div class="stat">
-    <div class="stat-value">4</div>
+    <div class="stat-value">5</div>
     <div class="stat-label">Source Datasets</div>
   </div>
   <div class="stat">
-    <div class="stat-value">31</div>
+    <div class="stat-value">34</div>
     <div class="stat-label">Showcase Videos</div>
   </div>
   <div class="stat">
@@ -421,6 +421,27 @@
     <div class="video-card"><video controls muted loop preload="metadata" src="videos/airoa_moma/hang_towel.mp4"></video><div class="video-meta"><span class="scene-name">Hang towel</span> &middot; 255 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
     <div class="video-card"><video controls muted loop preload="metadata" src="videos/airoa_moma/stand_slippers.mp4"></video><div class="video-meta"><span class="scene-name">Stand slippers</span> &middot; 360 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
     <div class="video-card"><video controls muted loop preload="metadata" src="videos/airoa_moma/press_button.mp4"></video><div class="video-meta"><span class="scene-name">Press lamp button</span> &middot; 81 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+  </div>
+</div>
+
+<!-- ARCTIC - Human Hand Dataset -->
+<div class="dataset-section" id="arctic">
+  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">ARCTIC &mdash; Bimanual Hand-Object Manipulation <span class="badge badge-green">New</span></h3>
+  <p style="background: #1b3a1b; border-left: 3px solid #4caf50; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #a5d6a7; font-size: 0.9rem;">
+    &#9989; Human hand dataset (CVPR 2023). Hand joints via MANO FK (Arctic Gloves electromagnetic sensors). Arm via SMPL-X + MoSh (optical mocap markers). 9 camera views per sequence (8 third-person + 1 egocentric). 2.1M frames, 10 subjects, 11 objects.
+  </p>
+  <div class="config-info">
+    <dl><dt>Dataset</dt><dd>ARCTIC (CVPR 2023)</dd></dl>
+    <dl><dt>Subject</dt><dd>Human (bimanual)</dd></dl>
+    <dl><dt>Hand Model</dt><dd>MANO (Arctic Gloves sensors)</dd></dl>
+    <dl><dt>Body Model</dt><dd>SMPL-X + MoSh (optical mocap)</dd></dl>
+    <dl><dt>Cameras</dt><dd>8 third-person + 1 egocentric</dd></dl>
+    <dl><dt>Total Frames</dt><dd>~2.1M (10 subjects × 11 objects)</dd></dl>
+  </div>
+  <div class="video-grid" id="grid-arctic">
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/arctic/arctic_00.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cams 1–4 tiled 2×2 &middot; MANO hand + SMPL-X arm skeleton</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/arctic/arctic_01.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cams 5–8 tiled 2×2 &middot; MANO hand + SMPL-X arm skeleton</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/arctic/arctic_02.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cam 0 egocentric &middot; MANO hand + SMPL-X arm skeleton</div></div>
   </div>
 </div>
 
