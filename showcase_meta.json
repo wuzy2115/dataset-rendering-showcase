@@ -227,5 +227,53 @@
       "body_model": "SMPL-X + MoSh",
       "video_path": "videos/arctic/arctic_02.mp4"
     }
+  ],
+  "h2o": [
+    {
+      "scene": "subject1/h1/cam0",
+      "subject": "subject1",
+      "object": "h1 (bowl)",
+      "cameras": "cam0 (third-person)",
+      "frames": 150,
+      "resolution": "640x480",
+      "skeleton": true,
+      "hand_model": "custom_skeleton (21-pt)",
+      "video_path": "videos/h2o/subject1_h1_0_overlay.mp4"
+    },
+    {
+      "scene": "subject1/h1/cam3",
+      "subject": "subject1",
+      "object": "h1 (bowl)",
+      "cameras": "cam3 (third-person)",
+      "frames": 150,
+      "resolution": "640x480",
+      "skeleton": true,
+      "hand_model": "custom_skeleton (21-pt)",
+      "video_path": "videos/h2o/subject1_h1_3_overlay.mp4"
+    },
+    {
+      "scene": "subject1/h2/cam1",
+      "subject": "subject1",
+      "object": "h2 (mug)",
+      "cameras": "cam1 (third-person)",
+      "frames": 150,
+      "resolution": "640x480",
+      "skeleton": true,
+      "hand_model": "custom_skeleton (21-pt)",
+      "video_path": "videos/h2o/subject1_h2_1_overlay.mp4"
+    }
+  ],
+  "hot3d": [
+    {
+      "scene": "P0003_c701bd11",
+      "subject": "P0003",
+      "device": "Project Aria",
+      "cameras": "RGB egocentric (fisheye)",
+      "frames": 30,
+      "resolution": "1408x1408",
+      "skeleton": true,
+      "hand_model": "UmeTrack (21-pt)",
+      "video_path": "videos/hot3d/overlay_skeleton.mp4"
+    }
   ]
 }

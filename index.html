@@ -222,15 +222,19 @@
     <div class="stat-label">Robot Models</div>
   </div>
   <div class="stat">
-    <div class="stat-value">7</div>
+    <div class="stat-value">3</div>
+    <div class="stat-label">Human Datasets</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">9</div>
     <div class="stat-label">Renderable Configs</div>
   </div>
   <div class="stat">
-    <div class="stat-value">5</div>
+    <div class="stat-value">7</div>
     <div class="stat-label">Source Datasets</div>
   </div>
   <div class="stat">
-    <div class="stat-value">34</div>
+    <div class="stat-value">38</div>
     <div class="stat-label">Showcase Videos</div>
   </div>
   <div class="stat">
@@ -442,6 +446,46 @@
     <div class="video-card"><video controls muted loop preload="metadata" src="videos/arctic/arctic_00.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cams 1–4 tiled 2×2 &middot; MANO hand + SMPL-X arm skeleton</div></div>
     <div class="video-card"><video controls muted loop preload="metadata" src="videos/arctic/arctic_01.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cams 5–8 tiled 2×2 &middot; MANO hand + SMPL-X arm skeleton</div></div>
     <div class="video-card"><video controls muted loop preload="metadata" src="videos/arctic/arctic_02.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cam 0 egocentric &middot; MANO hand + SMPL-X arm skeleton</div></div>
+  </div>
+</div>
+
+<!-- H2O - Hand-Hand-Object Dataset -->
+<div class="dataset-section" id="h2o">
+  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">H2O &mdash; Hand-Hand-Object Interaction <span class="badge badge-green">New</span></h3>
+  <p style="background: #1b3a1b; border-left: 3px solid #4caf50; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #a5d6a7; font-size: 0.9rem;">
+    &#9989; Human hand dataset (CVPR 2021). Bimanual hand-object manipulation with 21-point hand keypoints per hand. 4 camera views, 6 subjects, ~4 hours of data. Hand skeleton only (no arm GT).
+  </p>
+  <div class="config-info">
+    <dl><dt>Dataset</dt><dd>H2O (CVPR 2021)</dd></dl>
+    <dl><dt>Subject</dt><dd>Human (bimanual)</dd></dl>
+    <dl><dt>Hand Model</dt><dd>Custom skeleton (21-pt keypoints)</dd></dl>
+    <dl><dt>Body Model</dt><dd>None (hand only)</dd></dl>
+    <dl><dt>Cameras</dt><dd>4 third-person views</dd></dl>
+    <dl><dt>Total Sequences</dt><dd>~4 hours, 6 subjects</dd></dl>
+  </div>
+  <div class="video-grid" id="grid-h2o">
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/h2o/subject1_h1_0_overlay.mp4"></video><div class="video-meta"><span class="scene-name">subject1 / h1 (bowl)</span> &middot; 150 frames &middot; cam0 &middot; hand skeleton overlay</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/h2o/subject1_h1_3_overlay.mp4"></video><div class="video-meta"><span class="scene-name">subject1 / h1 (bowl)</span> &middot; 150 frames &middot; cam3 &middot; hand skeleton overlay</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/h2o/subject1_h2_1_overlay.mp4"></video><div class="video-meta"><span class="scene-name">subject1 / h2 (mug)</span> &middot; 150 frames &middot; cam1 &middot; hand skeleton overlay</div></div>
+  </div>
+</div>
+
+<!-- HOT3D - Egocentric Hand Tracking Dataset -->
+<div class="dataset-section" id="hot3d">
+  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">HOT3D &mdash; Egocentric Hand-Object Tracking <span class="badge badge-green">New</span></h3>
+  <p style="background: #1b3a1b; border-left: 3px solid #4caf50; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #a5d6a7; font-size: 0.9rem;">
+    &#9989; Egocentric hand tracking dataset (CVPR 2025 Highlight). Project Aria &amp; Quest 3 devices with per-frame 6-DoF tracking. UmeTrack hand model with 21 keypoints. FISHEYE624 camera model. Hand skeleton only (no arm GT).
+  </p>
+  <div class="config-info">
+    <dl><dt>Dataset</dt><dd>HOT3D (CVPR 2025)</dd></dl>
+    <dl><dt>Subject</dt><dd>Human (egocentric)</dd></dl>
+    <dl><dt>Hand Model</dt><dd>UmeTrack (21-pt keypoints) + MANO</dd></dl>
+    <dl><dt>Body Model</dt><dd>None (hand + wrist only)</dd></dl>
+    <dl><dt>Devices</dt><dd>Project Aria (fisheye) + Quest 3</dd></dl>
+    <dl><dt>Total Data</dt><dd>833 min, 19 subjects, 33 objects</dd></dl>
+  </div>
+  <div class="video-grid" id="grid-hot3d">
+    <div class="video-card"><video controls muted loop preload="metadata" src="videos/hot3d/overlay_skeleton.mp4"></video><div class="video-meta"><span class="scene-name">P0003_c701bd11</span> &middot; 30 frames &middot; Aria RGB egocentric &middot; UmeTrack hand skeleton</div></div>
   </div>
 </div>
 
