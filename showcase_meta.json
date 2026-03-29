@@ -275,5 +275,51 @@
       "hand_model": "UmeTrack (21-pt)",
       "video_path": "videos/hot3d/overlay_skeleton.mp4"
     }
+  ],
+  "egobody": [
+    {
+      "scene": "recording_20210907_S02_S01_01",
+      "subject": "S02, S01",
+      "device": "HoloLens 2",
+      "cameras": "PV egocentric",
+      "frames": 300,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "body_model": "SMPL-X (arm+hand)",
+      "video_path": "videos/egobody/S02_S01_01.mp4"
+    },
+    {
+      "scene": "recording_20210907_S04_S03_01",
+      "subject": "S04, S03",
+      "device": "HoloLens 2",
+      "cameras": "PV egocentric",
+      "frames": 300,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "body_model": "SMPL-X (arm+hand)",
+      "video_path": "videos/egobody/S04_S03_01.mp4"
+    },
+    {
+      "scene": "recording_20210910_S05_S06_01",
+      "subject": "S05, S06",
+      "device": "HoloLens 2",
+      "cameras": "PV egocentric",
+      "frames": 300,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "body_model": "SMPL-X (arm+hand)",
+      "video_path": "videos/egobody/S05_S06_01.mp4"
+    },
+    {
+      "scene": "recording_20210911_S06_S07_01",
+      "subject": "S06, S07",
+      "device": "HoloLens 2",
+      "cameras": "PV egocentric",
+      "frames": 300,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "body_model": "SMPL-X (arm+hand)",
+      "video_path": "videos/egobody/S06_S07_01.mp4"
+    }
   ]
 }
