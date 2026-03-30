@@ -14,8 +14,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/RAD/success/2023-08-31/Thu_Aug_31_13:55:38_2023/32907025/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/RAD/success/2023-08-31/Thu_Aug_31_13:55:38_2023/32907025/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/droid/RAD_success_2023-08-31_Thu_Aug_31_13:55:38_2023/rgb.mp4",
-            "skeleton": "processed/droid/RAD_success_2023-08-31_Thu_Aug_31_13:55:38_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/RAD_success_2023-08-31_Thu_Aug_31_13:55:38_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/RAD_success_2023-08-31_Thu_Aug_31_13:55:38_2023/skeleton.mp4"
           }
         },
         {
@@ -26,8 +26,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/PennPAL/success/2023-04-27/Thu_Apr_27_22:24:23_2023/23748752/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/PennPAL/success/2023-04-27/Thu_Apr_27_22:24:23_2023/23748752/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/droid/PennPAL_success_2023-04-27_Thu_Apr_27_22:24:23_2023/rgb.mp4",
-            "skeleton": "processed/droid/PennPAL_success_2023-04-27_Thu_Apr_27_22:24:23_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/PennPAL_success_2023-04-27_Thu_Apr_27_22:24:23_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/PennPAL_success_2023-04-27_Thu_Apr_27_22:24:23_2023/skeleton.mp4"
           }
         },
         {
@@ -38,8 +38,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/GuptaLab/success/2023-04-20/Thu_Apr_20_12:41:59_2023/22246076/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/GuptaLab/success/2023-04-20/Thu_Apr_20_12:41:59_2023/22246076/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/droid/GuptaLab_success_2023-04-20_Thu_Apr_20_12:41:59_2023/rgb.mp4",
-            "skeleton": "processed/droid/GuptaLab_success_2023-04-20_Thu_Apr_20_12:41:59_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/GuptaLab_success_2023-04-20_Thu_Apr_20_12:41:59_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/GuptaLab_success_2023-04-20_Thu_Apr_20_12:41:59_2023/skeleton.mp4"
           }
         },
         {
@@ -50,8 +50,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/REAL/success/2023-05-12/Fri_May_12_14:19:52_2023/20540549/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/REAL/success/2023-05-12/Fri_May_12_14:19:52_2023/20540549/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/droid/REAL_success_2023-05-12_Fri_May_12_14:19:52_2023/rgb.mp4",
-            "skeleton": "processed/droid/REAL_success_2023-05-12_Fri_May_12_14:19:52_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/REAL_success_2023-05-12_Fri_May_12_14:19:52_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/REAL_success_2023-05-12_Fri_May_12_14:19:52_2023/skeleton.mp4"
           }
         },
         {
@@ -62,8 +62,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/IRIS/success/2023-04-13/Thu_Apr_13_15:03:37_2023/29838012/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/IRIS/success/2023-04-13/Thu_Apr_13_15:03:37_2023/29838012/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/droid/IRIS_success_2023-04-13_Thu_Apr_13_15:03:37_2023/rgb.mp4",
-            "skeleton": "processed/droid/IRIS_success_2023-04-13_Thu_Apr_13_15:03:37_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/IRIS_success_2023-04-13_Thu_Apr_13_15:03:37_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/IRIS_success_2023-04-13_Thu_Apr_13_15:03:37_2023/skeleton.mp4"
           }
         },
         {
@@ -74,8 +74,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/RAIL/success/2023-04-12/Wed_Apr_12_13:53:51_2023/20521388/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/RAIL/success/2023-04-12/Wed_Apr_12_13:53:51_2023/20521388/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/droid/RAIL_success_2023-04-12_Wed_Apr_12_13:53:51_2023/rgb.mp4",
-            "skeleton": "processed/droid/RAIL_success_2023-04-12_Wed_Apr_12_13:53:51_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/RAIL_success_2023-04-12_Wed_Apr_12_13:53:51_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/RAIL_success_2023-04-12_Wed_Apr_12_13:53:51_2023/skeleton.mp4"
           }
         },
         {
@@ -86,8 +86,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/ILIAD/success/2023-04-19/Wed_Apr_19_16:19:43_2023/23897859/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/ILIAD/success/2023-04-19/Wed_Apr_19_16:19:43_2023/23897859/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/droid/ILIAD_success_2023-04-19_Wed_Apr_19_16:19:43_2023/rgb.mp4",
-            "skeleton": "processed/droid/ILIAD_success_2023-04-19_Wed_Apr_19_16:19:43_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/ILIAD_success_2023-04-19_Wed_Apr_19_16:19:43_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/ILIAD_success_2023-04-19_Wed_Apr_19_16:19:43_2023/skeleton.mp4"
           }
         },
         {
@@ -98,8 +98,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/IPRL/success/2023-02-28/Tue_Feb_28_20:25:47_2023/29838012/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/IPRL/success/2023-02-28/Tue_Feb_28_20:25:47_2023/29838012/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/droid/IPRL_success_2023-02-28_Tue_Feb_28_20:25:47_2023/rgb.mp4",
-            "skeleton": "processed/droid/IPRL_success_2023-02-28_Tue_Feb_28_20:25:47_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/IPRL_success_2023-02-28_Tue_Feb_28_20:25:47_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/IPRL_success_2023-02-28_Tue_Feb_28_20:25:47_2023/skeleton.mp4"
           }
         },
         {
@@ -110,8 +110,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/AUTOLab/success/2023-07-12/Wed_Jul_12_11:14:45_2023/24400334/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/AUTOLab/success/2023-07-12/Wed_Jul_12_11:14:45_2023/24400334/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/droid/AUTOLab_success_2023-07-12_Wed_Jul_12_11:14:45_2023/rgb.mp4",
-            "skeleton": "processed/droid/AUTOLab_success_2023-07-12_Wed_Jul_12_11:14:45_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/AUTOLab_success_2023-07-12_Wed_Jul_12_11:14:45_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/AUTOLab_success_2023-07-12_Wed_Jul_12_11:14:45_2023/skeleton.mp4"
           }
         },
         {
@@ -122,8 +122,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/CLVR/success/2023-05-15/Mon_May_15_00:54:08_2023/20655732/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/droid/CLVR/success/2023-05-15/Mon_May_15_00:54:08_2023/20655732/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/droid/CLVR_success_2023-05-15_Mon_May_15_00:54:08_2023/rgb.mp4",
-            "skeleton": "processed/droid/CLVR_success_2023-05-15_Mon_May_15_00:54:08_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/CLVR_success_2023-05-15_Mon_May_15_00:54:08_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/CLVR_success_2023-05-15_Mon_May_15_00:54:08_2023/skeleton.mp4"
           }
         }
       ]
@@ -140,8 +140,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/104422070044/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/104422070044/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
@@ -152,8 +152,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/104422070044/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/104422070044/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
@@ -164,8 +164,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/104422070044/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/104422070044/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
@@ -176,8 +176,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/104422070044/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/104422070044/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
@@ -188,8 +188,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/104422070044/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/104422070044/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
@@ -200,8 +200,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/104422070044/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/104422070044/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
@@ -212,8 +212,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/104422070044/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/104422070044/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
@@ -224,8 +224,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0022_user_0010_scene_0001_cfg_0005/104422070044/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0022_user_0010_scene_0001_cfg_0005/104422070044/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg5/task_0022_user_0010_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg5/task_0022_user_0010_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0022_user_0010_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0022_user_0010_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
@@ -236,8 +236,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/104422070044/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/104422070044/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
@@ -248,8 +248,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/104422070044/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/104422070044/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/skeleton.mp4"
           }
         }
       ]
@@ -266,8 +266,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/104122060811/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/skeleton.mp4"
           }
         },
         {
@@ -278,8 +278,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/104122060811/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/skeleton.mp4"
           }
         },
         {
@@ -290,8 +290,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/104122061330/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/104122061330/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/skeleton.mp4"
           }
         },
         {
@@ -302,8 +302,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/104122060811/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/skeleton.mp4"
           }
         },
         {
@@ -314,8 +314,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/104122060811/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/skeleton.mp4"
           }
         },
         {
@@ -326,8 +326,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/104122061330/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/104122061330/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/skeleton.mp4"
           }
         },
         {
@@ -338,8 +338,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/104122061330/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/104122061330/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/skeleton.mp4"
           }
         },
         {
@@ -350,8 +350,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0002_user_0014_scene_0001_cfg_0007/104122060811/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0002_user_0014_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg7/task_0002_user_0014_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg7/task_0002_user_0014_scene_0001_cfg_0007/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg7/task_0002_user_0014_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0002_user_0014_scene_0001_cfg_0007/skeleton.mp4"
           }
         },
         {
@@ -362,8 +362,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0003_user_0014_scene_0001_cfg_0007/104122060811/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0003_user_0014_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg7/task_0003_user_0014_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg7/task_0003_user_0014_scene_0001_cfg_0007/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg7/task_0003_user_0014_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0003_user_0014_scene_0001_cfg_0007/skeleton.mp4"
           }
         },
         {
@@ -374,8 +374,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0028_user_0020_scene_0001_cfg_0007/104122061330/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/rh20t_cfg7/task_0028_user_0020_scene_0001_cfg_0007/104122061330/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/rh20t_cfg7/task_0028_user_0020_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "processed/rh20t_cfg7/task_0028_user_0020_scene_0001_cfg_0007/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg7/task_0028_user_0020_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0028_user_0020_scene_0001_cfg_0007/skeleton.mp4"
           }
         }
       ]
@@ -392,8 +392,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/basic_tasks/pick_the_object_into_trashcan/ep0/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/basic_tasks/pick_the_object_into_trashcan/ep0/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep0/rgb.mp4",
-            "skeleton": "processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep0/skeleton.mp4"
+            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep0/rgb.mp4",
+            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep0/skeleton.mp4"
           }
         },
         {
@@ -404,8 +404,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep0/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep0/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep0/rgb.mp4",
-            "skeleton": "processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep0/skeleton.mp4"
+            "rgb": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep0/rgb.mp4",
+            "skeleton": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep0/skeleton.mp4"
           }
         },
         {
@@ -416,8 +416,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/articulation_tasks/close_the_electriccooker/ep0/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/articulation_tasks/close_the_electriccooker/ep0/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/interndata/articulation_tasks_close_the_electriccooker_ep0/rgb.mp4",
-            "skeleton": "processed/interndata/articulation_tasks_close_the_electriccooker_ep0/skeleton.mp4"
+            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep0/rgb.mp4",
+            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep0/skeleton.mp4"
           }
         },
         {
@@ -428,8 +428,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/basic_tasks/pick_the_object_into_trashcan/ep1/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/basic_tasks/pick_the_object_into_trashcan/ep1/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep1/rgb.mp4",
-            "skeleton": "processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep1/skeleton.mp4"
+            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep1/rgb.mp4",
+            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep1/skeleton.mp4"
           }
         },
         {
@@ -440,8 +440,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep1/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep1/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep1/rgb.mp4",
-            "skeleton": "processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep1/skeleton.mp4"
+            "rgb": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep1/rgb.mp4",
+            "skeleton": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep1/skeleton.mp4"
           }
         },
         {
@@ -452,8 +452,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/articulation_tasks/close_the_electriccooker/ep1/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/articulation_tasks/close_the_electriccooker/ep1/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/interndata/articulation_tasks_close_the_electriccooker_ep1/rgb.mp4",
-            "skeleton": "processed/interndata/articulation_tasks_close_the_electriccooker_ep1/skeleton.mp4"
+            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1/rgb.mp4",
+            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1/skeleton.mp4"
           }
         },
         {
@@ -464,8 +464,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/basic_tasks/pick_the_object_into_trashcan/ep2/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/basic_tasks/pick_the_object_into_trashcan/ep2/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep2/rgb.mp4",
-            "skeleton": "processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep2/skeleton.mp4"
+            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep2/rgb.mp4",
+            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep2/skeleton.mp4"
           }
         },
         {
@@ -476,8 +476,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep2/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep2/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep2/rgb.mp4",
-            "skeleton": "processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep2/skeleton.mp4"
+            "rgb": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep2/rgb.mp4",
+            "skeleton": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep2/skeleton.mp4"
           }
         },
         {
@@ -488,8 +488,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/articulation_tasks/close_the_electriccooker/ep2/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/articulation_tasks/close_the_electriccooker/ep2/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/interndata/articulation_tasks_close_the_electriccooker_ep2/rgb.mp4",
-            "skeleton": "processed/interndata/articulation_tasks_close_the_electriccooker_ep2/skeleton.mp4"
+            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep2/rgb.mp4",
+            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep2/skeleton.mp4"
           }
         },
         {
@@ -500,8 +500,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/basic_tasks/pick_the_object_into_trashcan/ep3/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/interndata/basic_tasks/pick_the_object_into_trashcan/ep3/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep3/rgb.mp4",
-            "skeleton": "processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep3/skeleton.mp4"
+            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep3/rgb.mp4",
+            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep3/skeleton.mp4"
           }
         }
       ]
@@ -518,8 +518,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/440_684756_a0_0_274/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/440_684756_a0_0_274/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/agibot/440_684756_a0_0_274/rgb.mp4",
-            "skeleton": "processed/agibot/440_684756_a0_0_274/skeleton.mp4"
+            "rgb": "videos/processed/agibot/440_684756_a0_0_274/rgb.mp4",
+            "skeleton": "videos/processed/agibot/440_684756_a0_0_274/skeleton.mp4"
           }
         },
         {
@@ -530,8 +530,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/446_687380_a0_0_201/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/446_687380_a0_0_201/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/agibot/446_687380_a0_0_201/rgb.mp4",
-            "skeleton": "processed/agibot/446_687380_a0_0_201/skeleton.mp4"
+            "rgb": "videos/processed/agibot/446_687380_a0_0_201/rgb.mp4",
+            "skeleton": "videos/processed/agibot/446_687380_a0_0_201/skeleton.mp4"
           }
         },
         {
@@ -542,8 +542,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/494_714711_a0_0_149/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/494_714711_a0_0_149/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/agibot/494_714711_a0_0_149/rgb.mp4",
-            "skeleton": "processed/agibot/494_714711_a0_0_149/skeleton.mp4"
+            "rgb": "videos/processed/agibot/494_714711_a0_0_149/rgb.mp4",
+            "skeleton": "videos/processed/agibot/494_714711_a0_0_149/skeleton.mp4"
           }
         },
         {
@@ -554,8 +554,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/783_896051_a0_0_208/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/783_896051_a0_0_208/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/agibot/783_896051_a0_0_208/rgb.mp4",
-            "skeleton": "processed/agibot/783_896051_a0_0_208/skeleton.mp4"
+            "rgb": "videos/processed/agibot/783_896051_a0_0_208/rgb.mp4",
+            "skeleton": "videos/processed/agibot/783_896051_a0_0_208/skeleton.mp4"
           }
         },
         {
@@ -566,8 +566,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/590_802430_a0_0_114/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/590_802430_a0_0_114/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/agibot/590_802430_a0_0_114/rgb.mp4",
-            "skeleton": "processed/agibot/590_802430_a0_0_114/skeleton.mp4"
+            "rgb": "videos/processed/agibot/590_802430_a0_0_114/rgb.mp4",
+            "skeleton": "videos/processed/agibot/590_802430_a0_0_114/skeleton.mp4"
           }
         },
         {
@@ -578,8 +578,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/498_770171_a0_0_227/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/498_770171_a0_0_227/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/agibot/498_770171_a0_0_227/rgb.mp4",
-            "skeleton": "processed/agibot/498_770171_a0_0_227/skeleton.mp4"
+            "rgb": "videos/processed/agibot/498_770171_a0_0_227/rgb.mp4",
+            "skeleton": "videos/processed/agibot/498_770171_a0_0_227/skeleton.mp4"
           }
         },
         {
@@ -590,8 +590,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/377_648559_a0_0_134/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/377_648559_a0_0_134/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/agibot/377_648559_a0_0_134/rgb.mp4",
-            "skeleton": "processed/agibot/377_648559_a0_0_134/skeleton.mp4"
+            "rgb": "videos/processed/agibot/377_648559_a0_0_134/rgb.mp4",
+            "skeleton": "videos/processed/agibot/377_648559_a0_0_134/skeleton.mp4"
           }
         },
         {
@@ -602,8 +602,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/535_775488_a0_0_212/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/535_775488_a0_0_212/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/agibot/535_775488_a0_0_212/rgb.mp4",
-            "skeleton": "processed/agibot/535_775488_a0_0_212/skeleton.mp4"
+            "rgb": "videos/processed/agibot/535_775488_a0_0_212/rgb.mp4",
+            "skeleton": "videos/processed/agibot/535_775488_a0_0_212/skeleton.mp4"
           }
         },
         {
@@ -614,8 +614,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/460_712335_a0_49_256/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/460_712335_a0_49_256/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/agibot/460_712335_a0_49_256/rgb.mp4",
-            "skeleton": "processed/agibot/460_712335_a0_49_256/skeleton.mp4"
+            "rgb": "videos/processed/agibot/460_712335_a0_49_256/rgb.mp4",
+            "skeleton": "videos/processed/agibot/460_712335_a0_49_256/skeleton.mp4"
           }
         },
         {
@@ -626,8 +626,8 @@
           "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/545_835730_a0_0_181/head/rgb.mp4",
           "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/agibot/545_835730_a0_0_181/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "processed/agibot/545_835730_a0_0_181/rgb.mp4",
-            "skeleton": "processed/agibot/545_835730_a0_0_181/skeleton.mp4"
+            "rgb": "videos/processed/agibot/545_835730_a0_0_181/rgb.mp4",
+            "skeleton": "videos/processed/agibot/545_835730_a0_0_181/skeleton.mp4"
           }
         }
       ]
