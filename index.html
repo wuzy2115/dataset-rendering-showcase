@@ -315,29 +315,6 @@
     <span class="badge badge-green">Full Pipeline</span>
   </h2>
 
-  <!-- RH20T cfg3 - UR5 -->
-  <div class="dataset-section">
-  <div class="dataset-section-header">RH20T &mdash; UR5 (cfg3)</div>
-  <p style="margin: 0.3rem 0 0.5rem; padding: 0.4rem 0.8rem; background: #fff3cd; border-left: 3px solid #ffc107; font-size: 0.85rem; color: #664d03;">
-    ⚠️ Known issue: Skeleton alignment varies by camera due to extrinsic calibration quality. Gripper orientation differs from actual due to URDF ee_link frame convention mismatch.
-    <a href="analysis/ur5-calibration.html" style="color: #0d6efd;">View detailed analysis →</a>
-  </p>
-  <div class="config-info">
-    <dl><dt>Dataset</dt><dd>RH20T</dd></dl>
-    <dl><dt>Robot</dt><dd>UR5</dd></dl>
-    <dl><dt>DOF</dt><dd>6</dd></dl>
-    <dl><dt>Gripper</dt><dd>Parallel-jaw</dd></dl>
-    <dl><dt>Skeleton</dt><dd>Yes (FK from joint angles)</dd></dl>
-    <dl><dt>Calibration</dt><dd>Intrinsics + Extrinsics</dd></dl>
-    <dl><dt>Total Episodes</dt><dd>800</dd></dl>
-  </div>
-  <div class="video-grid" id="grid-rh20t-cfg3">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg3/rh20t_cfg3_00.mp4"></video><div class="video-meta"><span class="scene-name">task_0070 scene_0007</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg3/rh20t_cfg3_01.mp4"></video><div class="video-meta"><span class="scene-name">task_0009 scene_0005</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg3/rh20t_cfg3_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0009 scene_0009</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-  </div>
-  </div>
-
   <!-- RH20T cfg5 - Franka -->
   <div class="dataset-section">
   <div class="dataset-section-header">RH20T &mdash; Franka Panda (cfg5)</div>
@@ -354,11 +331,11 @@
     <dl><dt>Total Episodes</dt><dd>1,324</dd></dl>
   </div>
   <div class="video-grid" id="grid-rh20t-cfg5">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg5/rh20t_cfg5_00.mp4"></video><div class="video-meta"><span class="scene-name">task_0088 scene_0007</span> &middot; 150 frames &middot; tiled_6cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg5/rh20t_cfg5_01.mp4"></video><div class="video-meta"><span class="scene-name">task_0074 scene_0004</span> &middot; 150 frames &middot; tiled_5cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg5/rh20t_cfg5_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0034 scene_0003</span> &middot; 150 frames &middot; tiled_6cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg5/rh20t_cfg5_03.mp4"></video><div class="video-meta"><span class="scene-name">task_0056 scene_0002</span> &middot; 150 frames &middot; tiled_5cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg5/rh20t_cfg5_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0010 scene_0008</span> &middot; 150 frames &middot; tiled_6cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/rh20t_cfg5/rh20t_cfg5_00.mp4"></video><div class="video-meta"><span class="scene-name">task_0088 scene_0007</span> &middot; 150 frames &middot; tiled_6cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/rh20t_cfg5/rh20t_cfg5_01.mp4"></video><div class="video-meta"><span class="scene-name">task_0074 scene_0004</span> &middot; 150 frames &middot; tiled_5cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/rh20t_cfg5/rh20t_cfg5_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0034 scene_0003</span> &middot; 150 frames &middot; tiled_6cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/rh20t_cfg5/rh20t_cfg5_03.mp4"></video><div class="video-meta"><span class="scene-name">task_0056 scene_0002</span> &middot; 150 frames &middot; tiled_5cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/rh20t_cfg5/rh20t_cfg5_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0010 scene_0008</span> &middot; 150 frames &middot; tiled_6cam &middot; skeleton+gripper</div></div>
   </div>
   </div>
 
@@ -379,32 +356,11 @@
     <dl><dt>Total Episodes</dt><dd>917</dd></dl>
   </div>
   <div class="video-grid" id="grid-rh20t-cfg7">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg7/rh20t_cfg7_00.mp4"></video><div class="video-meta"><span class="scene-name">task_0002 scene_0009</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg7/rh20t_cfg7_01.mp4"></video><div class="video-meta"><span class="scene-name">task_0049 scene_0002</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg7/rh20t_cfg7_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0226 scene_0002</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg7/rh20t_cfg7_03.mp4"></video><div class="video-meta"><span class="scene-name">task_0051 scene_0009</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg7/rh20t_cfg7_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0064 scene_0008</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-  </div>
-  </div>
-
-  <!-- RH20T cfg1 - Flexiv (gripper only) -->
-  <div class="dataset-section">
-  <div class="dataset-section-header">RH20T &mdash; Flexiv Rizon (cfg1) <span class="badge badge-yellow">Gripper Only</span></div>
-  <div class="config-info">
-    <dl><dt>Dataset</dt><dd>RH20T</dd></dl>
-    <dl><dt>Robot</dt><dd>Flexiv Rizon</dd></dl>
-    <dl><dt>DOF</dt><dd>7</dd></dl>
-    <dl><dt>Gripper</dt><dd>Parallel-jaw</dd></dl>
-    <dl><dt>Skeleton</dt><dd>No (cfg1 lacks joint.npy)</dd></dl>
-    <dl><dt>Calibration</dt><dd>Intrinsics + Extrinsics</dd></dl>
-    <dl><dt>Total Episodes</dt><dd>8,734</dd></dl>
-  </div>
-  <div class="video-grid" id="grid-rh20t-cfg1">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg1/rh20t_cfg1_00.mp4"></video><div class="video-meta"><span class="scene-name">task_0003 scene_0005</span> &middot; 150 frames &middot; 640x360 &middot; gripper only</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg1/rh20t_cfg1_01.mp4"></video><div class="video-meta"><span class="scene-name">task_0076 scene_0004</span> &middot; 150 frames &middot; 640x360 &middot; gripper only</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg1/rh20t_cfg1_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0055 scene_0003</span> &middot; 150 frames &middot; 640x360 &middot; gripper only</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg1/rh20t_cfg1_03.mp4"></video><div class="video-meta"><span class="scene-name">task_0209 scene_0002</span> &middot; 150 frames &middot; 640x360 &middot; gripper only</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg1/rh20t_cfg1_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0007 scene_0002</span> &middot; 150 frames &middot; 640x360 &middot; gripper only</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/rh20t_cfg7/rh20t_cfg7_00.mp4"></video><div class="video-meta"><span class="scene-name">task_0002 scene_0009</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/rh20t_cfg7/rh20t_cfg7_01.mp4"></video><div class="video-meta"><span class="scene-name">task_0049 scene_0002</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/rh20t_cfg7/rh20t_cfg7_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0226 scene_0002</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/rh20t_cfg7/rh20t_cfg7_03.mp4"></video><div class="video-meta"><span class="scene-name">task_0051 scene_0009</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/rh20t_cfg7/rh20t_cfg7_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0064 scene_0008</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
   </div>
   </div>
 
@@ -422,11 +378,11 @@
     <dl><dt>Environment</dt><dd>Simulation (IsaacGym)</dd></dl>
   </div>
   <div class="video-grid" id="grid-interndata">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/interndata_franka/interndata_franka_00.mp4"></video><div class="video-meta"><span class="scene-name">close_the_electriccooker / ep1037</span> &middot; 237 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/interndata_franka/interndata_franka_01.mp4"></video><div class="video-meta"><span class="scene-name">close_the_electriccooker / ep834</span> &middot; 210 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/interndata_franka/interndata_franka_02.mp4"></video><div class="video-meta"><span class="scene-name">pick_the_object_into_trashcan / ep210</span> &middot; 450 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/interndata_franka/interndata_franka_03.mp4"></video><div class="video-meta"><span class="scene-name">close_the_electriccooker / ep148</span> &middot; 271 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/interndata_franka/interndata_franka_04.mp4"></video><div class="video-meta"><span class="scene-name">close_the_electriccooker / ep976</span> &middot; 265 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/interndata_franka/interndata_franka_00.mp4"></video><div class="video-meta"><span class="scene-name">close_the_electriccooker / ep1037</span> &middot; 237 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/interndata_franka/interndata_franka_01.mp4"></video><div class="video-meta"><span class="scene-name">close_the_electriccooker / ep834</span> &middot; 210 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/interndata_franka/interndata_franka_02.mp4"></video><div class="video-meta"><span class="scene-name">pick_the_object_into_trashcan / ep210</span> &middot; 450 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/interndata_franka/interndata_franka_03.mp4"></video><div class="video-meta"><span class="scene-name">close_the_electriccooker / ep148</span> &middot; 271 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/interndata_franka/interndata_franka_04.mp4"></video><div class="video-meta"><span class="scene-name">close_the_electriccooker / ep976</span> &middot; 265 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
   </div>
   </div>
 
@@ -444,11 +400,11 @@
     <dl><dt>Total Episodes</dt><dd>~76k raw / 47k processed</dd></dl>
   </div>
   <div class="video-grid" id="grid-droid">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_00.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-07</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_01.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-08</span> &middot; 172 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_02.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-08</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_03.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-08</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_04.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-08</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/droid_franka/droid_franka_00.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-07</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/droid_franka/droid_franka_01.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-08</span> &middot; 172 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/droid_franka/droid_franka_02.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-08</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/droid_franka/droid_franka_03.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-08</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/droid_franka/droid_franka_04.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-08</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
   </div>
   </div>
 
@@ -465,11 +421,11 @@
     <dl><dt>Total Episodes</dt><dd>77,431 (gripper_scenario rendered)</dd></dl>
   </div>
   <div class="video-grid" id="grid-agibot">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_g1/agibot_g1_00.mp4"></video><div class="video-meta"><span class="scene-name">Task 711 / Ep 868498</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_g1/agibot_g1_01.mp4"></video><div class="video-meta"><span class="scene-name">Task 475 / Ep 700072</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_g1/agibot_g1_02.mp4"></video><div class="video-meta"><span class="scene-name">Task 711 / Ep 906821</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_g1/agibot_g1_03.mp4"></video><div class="video-meta"><span class="scene-name">Task 711 / Ep 891869</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_g1/agibot_g1_04.mp4"></video><div class="video-meta"><span class="scene-name">Task 711 / Ep 894099</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/agibot_g1/agibot_g1_00.mp4"></video><div class="video-meta"><span class="scene-name">Task 711 / Ep 868498</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/agibot_g1/agibot_g1_01.mp4"></video><div class="video-meta"><span class="scene-name">Task 475 / Ep 700072</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/agibot_g1/agibot_g1_02.mp4"></video><div class="video-meta"><span class="scene-name">Task 711 / Ep 906821</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/agibot_g1/agibot_g1_03.mp4"></video><div class="video-meta"><span class="scene-name">Task 711 / Ep 891869</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/agibot_g1/agibot_g1_04.mp4"></video><div class="video-meta"><span class="scene-name">Task 711 / Ep 894099</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
   </div>
   </div>
 </div>
@@ -491,13 +447,13 @@
     <dl><dt>Total Episodes</dt><dd>23,762</dd></dl>
   </div>
   <div class="video-grid" id="grid-airoa-moma">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/airoa_moma/pull_chain.mp4"></video><div class="video-meta"><span class="scene-name">Pull lamp chain</span> &middot; 678 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/airoa_moma/bake_toast.mp4"></video><div class="video-meta"><span class="scene-name">Bake a toast</span> &middot; 321 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/airoa_moma/make_coffee.mp4"></video><div class="video-meta"><span class="scene-name">Make coffee</span> &middot; 666 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/airoa_moma/wash_dishes.mp4"></video><div class="video-meta"><span class="scene-name">Washing dishes</span> &middot; 399 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/airoa_moma/hang_towel.mp4"></video><div class="video-meta"><span class="scene-name">Hang towel</span> &middot; 255 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/airoa_moma/stand_slippers.mp4"></video><div class="video-meta"><span class="scene-name">Stand slippers</span> &middot; 360 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/airoa_moma/press_button.mp4"></video><div class="video-meta"><span class="scene-name">Press lamp button</span> &middot; 81 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/airoa_moma/pull_chain.mp4"></video><div class="video-meta"><span class="scene-name">Pull lamp chain</span> &middot; 678 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/airoa_moma/bake_toast.mp4"></video><div class="video-meta"><span class="scene-name">Bake a toast</span> &middot; 321 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/airoa_moma/make_coffee.mp4"></video><div class="video-meta"><span class="scene-name">Make coffee</span> &middot; 666 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/airoa_moma/wash_dishes.mp4"></video><div class="video-meta"><span class="scene-name">Washing dishes</span> &middot; 399 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/airoa_moma/hang_towel.mp4"></video><div class="video-meta"><span class="scene-name">Hang towel</span> &middot; 255 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/airoa_moma/stand_slippers.mp4"></video><div class="video-meta"><span class="scene-name">Stand slippers</span> &middot; 360 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/airoa_moma/press_button.mp4"></video><div class="video-meta"><span class="scene-name">Press lamp button</span> &middot; 81 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
   </div>
 </div>
 
