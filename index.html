@@ -245,6 +245,26 @@
   .acc-body {
     padding-top: 0.25rem;
   }
+
+  /* Dataset section header (flat layout) */
+  .dataset-section {
+    margin: 2rem 0 0;
+  }
+  .dataset-section-header {
+    background: linear-gradient(90deg, var(--accent), #a855f7);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .dataset-section-header .badge {
+    background: rgba(255,255,255,0.2);
+    color: white;
+  }
 </style>
 </head>
 <body>
@@ -283,7 +303,6 @@
     <div class="stat-label">Total Investigated</div>
   </div>
   </div>
-  </details>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -297,9 +316,8 @@
   </h2>
 
   <!-- RH20T cfg3 - UR5 -->
-  <details class="dataset-accordion">
-  <summary><h3 style="margin:0;font-size:1.1rem">RH20T &mdash; UR5 (cfg3)</h3><span class="acc-chevron">&#9654;</span></summary>
-  <div class="acc-body">
+  <div class="dataset-section">
+  <div class="dataset-section-header">RH20T &mdash; UR5 (cfg3)</div>
   <p style="margin: 0.3rem 0 0.5rem; padding: 0.4rem 0.8rem; background: #fff3cd; border-left: 3px solid #ffc107; font-size: 0.85rem; color: #664d03;">
     ⚠️ Known issue: Skeleton alignment varies by camera due to extrinsic calibration quality. Gripper orientation differs from actual due to URDF ee_link frame convention mismatch.
     <a href="analysis/ur5-calibration.html" style="color: #0d6efd;">View detailed analysis →</a>
@@ -319,12 +337,10 @@
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg3/rh20t_cfg3_02.mp4"></video><div class="video-meta"><span class="scene-name">task_0009 scene_0009</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
   </div>
   </div>
-  </details>
 
   <!-- RH20T cfg5 - Franka -->
-  <details class="dataset-accordion">
-  <summary><h3 style="margin:0;font-size:1.1rem">RH20T &mdash; Franka Panda (cfg5)</h3><span class="acc-chevron">&#9654;</span></summary>
-  <div class="acc-body">
+  <div class="dataset-section">
+  <div class="dataset-section-header">RH20T &mdash; Franka Panda (cfg5)</div>
   <p style="background: #1a2a3a; border-left: 3px solid #64b5f6; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #b3d9f7; font-size: 0.9rem;">
     &#9432; Note: Franka gripper feedback (<code>gripper_info</code>) is binary &mdash; reports open/closed state rather than continuous position. Gripper transitions appear as instant jumps. No continuous finger position signal is available in this dataset.
   </p>
@@ -345,12 +361,10 @@
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg5/rh20t_cfg5_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0010 scene_0008</span> &middot; 150 frames &middot; tiled_6cam &middot; skeleton+gripper</div></div>
   </div>
   </div>
-  </details>
 
   <!-- RH20T cfg7 - KUKA -->
-  <details class="dataset-accordion">
-  <summary><h3 style="margin:0;font-size:1.1rem">RH20T &mdash; KUKA iiwa (cfg7)</h3><span class="acc-chevron">&#9654;</span></summary>
-  <div class="acc-body">
+  <div class="dataset-section">
+  <div class="dataset-section-header">RH20T &mdash; KUKA iiwa (cfg7)</div>
   <p style="background: #332b00; border-left: 3px solid #ffc107; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #ffe082; font-size: 0.9rem;">
     &#9888; Known issue: Cameras with f-prefix serials (e.g. <code>f0271510</code>) show skeleton offset due to poor base alignment calibration. These cameras are excluded from the pipeline. Only digit-serial cameras are used for rendering.
     <a href="analysis/kuka-f-camera.html" style="color: #64b5f6;">View detailed analysis &rarr;</a>
@@ -372,12 +386,10 @@
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg7/rh20t_cfg7_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0064 scene_0008</span> &middot; 150 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
   </div>
   </div>
-  </details>
 
   <!-- RH20T cfg1 - Flexiv (gripper only) -->
-  <details class="dataset-accordion">
-  <summary><h3 style="margin:0;font-size:1.1rem">RH20T &mdash; Flexiv Rizon (cfg1) <span class="badge badge-yellow">Gripper Only</span></h3><span class="acc-chevron">&#9654;</span></summary>
-  <div class="acc-body">
+  <div class="dataset-section">
+  <div class="dataset-section-header">RH20T &mdash; Flexiv Rizon (cfg1) <span class="badge badge-yellow">Gripper Only</span></div>
   <div class="config-info">
     <dl><dt>Dataset</dt><dd>RH20T</dd></dl>
     <dl><dt>Robot</dt><dd>Flexiv Rizon</dd></dl>
@@ -395,12 +407,10 @@
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/rh20t_cfg1/rh20t_cfg1_04.mp4"></video><div class="video-meta"><span class="scene-name">task_0007 scene_0002</span> &middot; 150 frames &middot; 640x360 &middot; gripper only</div></div>
   </div>
   </div>
-  </details>
 
   <!-- InternData-A1 Franka -->
-  <details class="dataset-accordion">
-  <summary><h3 style="margin:0;font-size:1.1rem">InternData-A1 &mdash; Franka Panda (Simulation)</h3><span class="acc-chevron">&#9654;</span></summary>
-  <div class="acc-body">
+  <div class="dataset-section">
+  <div class="dataset-section-header">InternData-A1 &mdash; Franka Panda (Simulation)</div>
   <div class="config-info">
     <dl><dt>Dataset</dt><dd>InternData-A1</dd></dl>
     <dl><dt>Robot</dt><dd>Franka Panda</dd></dl>
@@ -419,12 +429,10 @@
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/interndata_franka/interndata_franka_04.mp4"></video><div class="video-meta"><span class="scene-name">close_the_electriccooker / ep976</span> &middot; 265 frames &middot; 640x360 &middot; skeleton+gripper</div></div>
   </div>
   </div>
-  </details>
 
   <!-- DROID - Franka Panda -->
-  <details class="dataset-accordion">
-  <summary><h3 style="margin:0;font-size:1.1rem">DROID &mdash; Franka Panda</h3><span class="acc-chevron">&#9654;</span></summary>
-  <div class="acc-body">
+  <div class="dataset-section">
+  <div class="dataset-section-header">DROID &mdash; Franka Panda</div>
   <div class="config-info">
     <dl><dt>Dataset</dt><dd>DROID</dd></dl>
     <dl><dt>Robot</dt><dd>Franka Panda</dd></dl>
@@ -443,12 +451,10 @@
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_04.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-08</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
   </div>
   </div>
-  </details>
 
   <!-- AGIBot - Unitree G1 -->
-  <details class="dataset-accordion">
-  <summary><h3 style="margin:0;font-size:1.1rem">AGIBot Beta &mdash; Unitree G1 (Dual-Arm)</h3><span class="acc-chevron">&#9654;</span></summary>
-  <div class="acc-body">
+  <div class="dataset-section">
+  <div class="dataset-section-header">AGIBot Beta &mdash; Unitree G1 (Dual-Arm)</div>
   <div class="config-info">
     <dl><dt>Dataset</dt><dd>AGIBot Beta</dd></dl>
     <dl><dt>Robot</dt><dd>Unitree G1 (dual-arm)</dd></dl>
@@ -466,14 +472,12 @@
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_g1/agibot_g1_04.mp4"></video><div class="video-meta"><span class="scene-name">Task 711 / Ep 894099</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
   </div>
   </div>
-  </details>
 </div>
 
 <!-- AIRoA MoMa - Toyota HSR -->
 <div class="dataset-section" id="airoa-moma">
-  <details class="dataset-accordion">
-  <summary><h3 style="margin:0;font-size:1.1rem">AIRoA MoMa &mdash; Toyota HSR</h3><span class="acc-chevron">&#9654;</span></summary>
-  <div class="acc-body">
+  <div class="dataset-section">
+  <div class="dataset-section-header">AIRoA MoMa &mdash; Toyota HSR</div>
   <p style="background: #1b3a1b; border-left: 3px solid #4caf50; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #a5d6a7; font-size: 0.9rem;">
     &#9989; New dataset! Camera extrinsic computed via FK (head pan/tilt joints recorded). 23,762 episodes, 87 hours, 7 household tasks.
   </p>
@@ -1836,20 +1840,21 @@
 </div>
 
 <script>
-// Inject video src when a dataset accordion is opened
-document.querySelectorAll('details.dataset-accordion').forEach(function(details) {
-  function loadVideos() {
-    details.querySelectorAll('video[data-src]').forEach(function(video) {
-      if (!video.getAttribute('src')) {
-        video.setAttribute('src', video.dataset.src);
+// Lazy load videos when they scroll into view
+const videoObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const video = entry.target;
+      if (video.dataset.src && !video.src) {
+        video.src = video.dataset.src;
       }
-    });
-  }
-  // Load immediately if already open on page load
-  if (details.open) loadVideos();
-  details.addEventListener('toggle', function() {
-    if (details.open) loadVideos();
+      videoObserver.unobserve(video);
+    }
   });
+}, { rootMargin: '100px' });
+
+document.querySelectorAll('video[data-src]').forEach(video => {
+  videoObserver.observe(video);
 });
 </script>
 </body>
