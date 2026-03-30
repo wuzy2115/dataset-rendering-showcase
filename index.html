@@ -2079,6 +2079,7 @@
 </div>
 
 
+  
   <div id="processed-tab" class="tab-content">
     <h2 class="section-title">Processed Datasets <span class="badge badge-green">Training Ready</span></h2>
     <p class="section-desc">RGB + skeleton overlay videos with AI-generated captions, ready for training.</p>
@@ -2089,54 +2090,68 @@
         <h3>By Dataset</h3>
         
         <div class="stat-row">
+          <span class="stat-label">agibot</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar" style="width: 73.11249931929393%"></div>
+          </div>
+          <span class="stat-value">93,981 (73.1%)</span>
+        </div>
+        <div class="stat-row">
           <span class="stat-label">droid</span>
           <div class="stat-bar-container">
-            <div class="stat-bar" style="width: 89.47688212487704%"></div>
+            <div class="stat-bar" style="width: 24.05809729040088%"></div>
           </div>
-          <span class="stat-value">30,925 (89.5%)</span>
+          <span class="stat-value">30,925 (24.1%)</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">interndata</span>
           <div class="stat-bar-container">
-            <div class="stat-bar" style="width: 6.71546785486951%"></div>
+            <div class="stat-bar" style="width: 1.8056214651906366%"></div>
           </div>
-          <span class="stat-value">2,321 (6.7%)</span>
+          <span class="stat-value">2,321 (1.8%)</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">rh20t_cfg5</span>
           <div class="stat-bar-container">
-            <div class="stat-bar" style="width: 2.239453735316243%"></div>
+            <div class="stat-bar" style="width: 0.6021331383272523%"></div>
           </div>
-          <span class="stat-value">774 (2.2%)</span>
+          <span class="stat-value">774 (0.6%)</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">rh20t_cfg7</span>
           <div class="stat-bar-container">
-            <div class="stat-bar" style="width: 1.5681962849372142%"></div>
+            <div class="stat-bar" style="width: 0.4216487867873008%"></div>
           </div>
-          <span class="stat-value">542 (1.6%)</span>
+          <span class="stat-value">542 (0.4%)</span>
         </div>
       </div>
       <div class="stats-section">
         <h3>By Robot</h3>
         
         <div class="stat-row">
+          <span class="stat-label">Unitree G1</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar stat-bar-robot" style="width: 73.11249931929393%"></div>
+          </div>
+          <span class="stat-value">93,981 (73.1%)</span>
+        </div>
+        <div class="stat-row">
           <span class="stat-label">Franka Panda</span>
           <div class="stat-bar-container">
-            <div class="stat-bar stat-bar-robot" style="width: 98.43180371506278%"></div>
+            <div class="stat-bar stat-bar-robot" style="width: 26.465851893918767%"></div>
           </div>
-          <span class="stat-value">34,020 (98.4%)</span>
+          <span class="stat-value">34,020 (26.5%)</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">Kuka Iiwa</span>
           <div class="stat-bar-container">
-            <div class="stat-bar stat-bar-robot" style="width: 1.5681962849372142%"></div>
+            <div class="stat-bar stat-bar-robot" style="width: 0.4216487867873008%"></div>
           </div>
-          <span class="stat-value">542 (1.6%)</span>
+          <span class="stat-value">542 (0.4%)</span>
         </div>
       </div>
       <div class="stats-section stats-total">
-        <div class="total-number">34,562</div>
+        <div class="total-number">128,543</div>
         <div class="total-label">Total Episodes</div>
       </div>
     </div>
@@ -2144,11 +2159,11 @@
     <div class="filter-bar">
       <div class="filter-group">
         <span class="filter-label">Dataset:</span>
-        <button class="filter-btn active" data-filter="all" data-type="dataset">All</button><button class="filter-btn" data-filter="droid" data-type="dataset">droid</button><button class="filter-btn" data-filter="rh20t_cfg5" data-type="dataset">rh20t_cfg5</button><button class="filter-btn" data-filter="rh20t_cfg7" data-type="dataset">rh20t_cfg7</button><button class="filter-btn" data-filter="interndata" data-type="dataset">interndata</button>
+        <button class="filter-btn active" data-filter="all" data-type="dataset">All</button><button class="filter-btn" data-filter="droid" data-type="dataset">droid</button><button class="filter-btn" data-filter="rh20t_cfg5" data-type="dataset">rh20t_cfg5</button><button class="filter-btn" data-filter="rh20t_cfg7" data-type="dataset">rh20t_cfg7</button><button class="filter-btn" data-filter="interndata" data-type="dataset">interndata</button><button class="filter-btn" data-filter="agibot" data-type="dataset">agibot</button>
       </div>
       <div class="filter-group">
         <span class="filter-label">Robot:</span>
-        <button class="filter-btn active" data-filter="all" data-type="robot">All</button><button class="filter-btn" data-filter="franka_panda" data-type="robot">Franka Panda</button><button class="filter-btn" data-filter="kuka_iiwa" data-type="robot">Kuka Iiwa</button>
+        <button class="filter-btn active" data-filter="all" data-type="robot">All</button><button class="filter-btn" data-filter="franka_panda" data-type="robot">Franka Panda</button><button class="filter-btn" data-filter="kuka_iiwa" data-type="robot">Kuka Iiwa</button><button class="filter-btn" data-filter="unitree_g1" data-type="robot">Unitree G1</button>
       </div>
     </div>
     
@@ -3031,6 +3046,226 @@
         <div class="card-caption">
           <div class="caption-truncated">A white robotic arm with a yellow skeletal structure and blue joint markers moves in a controlled manner on a light-colored table. The arm, equipped...</div>
           <div class="caption-full" style="display:none">A white robotic arm with a yellow skeletal structure and blue joint markers moves in a controlled manner on a light-colored table. The arm, equipped with a gripper, picks up a blue cylindrical object and repositions it. It then approaches a white rectangular container with a hinged lid, opening the lid with precision. The arm&#39;s movements are smooth and deliberate, showcasing its ability to manipulate objects. The background features a plain wall and a cardboard box, emphasizing the focus on the robotic arm&#39;s actions. The scene is well-lit, highlighting the mechanical details and the interaction between the arm and the objects.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/440_684756_a0_0_274/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/440_684756_a0_0_274/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">agibot</span>
+          <span class="meta-robot">Unitree G1</span>
+          <span class="meta-episode">440_684756_a0_0_274</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A robotic arm with a white handheld device moves toward a striped short-sleeve shirt hanging on a mannequin. The shirt is light-colored with thin...</div>
+          <div class="caption-full" style="display:none">A robotic arm with a white handheld device moves toward a striped short-sleeve shirt hanging on a mannequin. The shirt is light-colored with thin vertical stripes and is displayed on a white stand in a room with wooden flooring and a speckled tile wall. The robotic arm, equipped with black grippers, positions the device near the shirt, likely for steaming or smoothing. The camera captures the scene from a slightly elevated angle, focusing on the interaction between the robot and the garment. The environment appears clean and modern, with minimal background distractions. The robotic arm&#39;s movements are precise and deliberate, suggesting a controlled and automated process. The device emits a faint glow, indicating it is active. The overall scene conveys a sense of advanced technology being used for garment care.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/446_687380_a0_0_201/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/446_687380_a0_0_201/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">agibot</span>
+          <span class="meta-robot">Unitree G1</span>
+          <span class="meta-episode">446_687380_a0_0_201</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A first-person view of robotic arms with black grippers positioned over a white rectangular table in a laboratory setting. The arms are initially...</div>
+          <div class="caption-full" style="display:none">A first-person view of robotic arms with black grippers positioned over a white rectangular table in a laboratory setting. The arms are initially open, then slowly close around the edges of the table. In the background, a person wearing light-colored pants walks past, and various lab equipment, cables, and a chair are visible. The floor is gray concrete with yellow and black caution tape marking a boundary. The scene is well-lit with overhead lighting, creating a clean, technical atmosphere. A medium shot from a low angle, focusing on the interaction between the robotic arms and the table.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/494_714711_a0_0_149/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/494_714711_a0_0_149/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">agibot</span>
+          <span class="meta-robot">Unitree G1</span>
+          <span class="meta-episode">494_714711_a0_0_149</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A top-down view of a kitchen countertop with a black two-tiered metal rack. On the counter, there are two dark glass bottles with orange caps, a...</div>
+          <div class="caption-full" style="display:none">A top-down view of a kitchen countertop with a black two-tiered metal rack. On the counter, there are two dark glass bottles with orange caps, a white packet with blue text, a yellow package, and a white bottle with a pink pump labeled &quot;SODA.&quot; A robotic arm with black mechanical fingers is positioned on the left, reaching toward the bottles. The background features a white marble-patterned wall. The scene is static, with no visible movement or action.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/783_896051_a0_0_208/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/783_896051_a0_0_208/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">agibot</span>
+          <span class="meta-robot">Unitree G1</span>
+          <span class="meta-episode">783_896051_a0_0_208</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A first-person view of robotic arms manipulating a patterned fabric on a table in a laboratory setting. The fabric, featuring a beige and white...</div>
+          <div class="caption-full" style="display:none">A first-person view of robotic arms manipulating a patterned fabric on a table in a laboratory setting. The fabric, featuring a beige and white design with blue accents, is being handled by multiple robotic arms with black grippers. In the background, a person in dark clothing stands near a white table, observing the process. The environment is a spacious, well-lit room with a gray floor, scattered equipment, and cables. The robotic arms move with precision, adjusting the fabric&#39;s position. The scene captures a technological demonstration of robotic coordination in a controlled industrial or research space. A medium shot with a slightly elevated perspective.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/590_802430_a0_0_114/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/590_802430_a0_0_114/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">agibot</span>
+          <span class="meta-robot">Unitree G1</span>
+          <span class="meta-episode">590_802430_a0_0_114</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A top-down view of a robotic arm with black grippers positioned over a light-colored table. The arm is attempting to pick up a gray felt tote bag,...</div>
+          <div class="caption-full" style="display:none">A top-down view of a robotic arm with black grippers positioned over a light-colored table. The arm is attempting to pick up a gray felt tote bag, with its left gripper holding the handle. On the table, there is a small cup of mixed fruit, a chocolate bar, and a miniature Christmas tree decoration. The background features a white chair and a potted plant. The scene is well-lit, with a focus on the mechanical interaction between the robotic arm and the objects.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/498_770171_a0_0_227/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/498_770171_a0_0_227/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">agibot</span>
+          <span class="meta-robot">Unitree G1</span>
+          <span class="meta-episode">498_770171_a0_0_227</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A robotic arm with a black and silver design operates on a white countertop in a beverage station. The arm extends its gripper toward a stainless...</div>
+          <div class="caption-full" style="display:none">A robotic arm with a black and silver design operates on a white countertop in a beverage station. The arm extends its gripper toward a stainless steel container, retrieving a metal ladle. In the background, three white beverage dispensers with heart-shaped handles are mounted on a metal shelf, each labeled with yellow tags. A clear plastic cup is held by a second robotic arm on the left. The scene is well-lit, with a clean, modern kitchen setting. The robotic arm moves smoothly, demonstrating precision in handling the ladle.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/377_648559_a0_0_134/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/377_648559_a0_0_134/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">agibot</span>
+          <span class="meta-robot">Unitree G1</span>
+          <span class="meta-episode">377_648559_a0_0_134</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A high-angle view of a robotic arm system in a warehouse setting, featuring two robotic arms positioned over a cardboard box on a white table. The...</div>
+          <div class="caption-full" style="display:none">A high-angle view of a robotic arm system in a warehouse setting, featuring two robotic arms positioned over a cardboard box on a white table. The arms, with black grippers and silver joints, are stationary and appear ready for action. In the background, a person in black pants and white shoes walks past a wooden pallet, while another individual in gray pants and sneakers moves across the frame. The environment includes a black office chair, a white machine with cables, and a gray floor marked with yellow and black tape. The scene is well-lit, suggesting an indoor industrial or testing area.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/535_775488_a0_0_212/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/535_775488_a0_0_212/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">agibot</span>
+          <span class="meta-robot">Unitree G1</span>
+          <span class="meta-episode">535_775488_a0_0_212</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A high-angle view of a modern bathroom sink area, featuring a robotic arm with a white and black design. The arm, equipped with a gripper, extends...</div>
+          <div class="caption-full" style="display:none">A high-angle view of a modern bathroom sink area, featuring a robotic arm with a white and black design. The arm, equipped with a gripper, extends from the left side of the frame and moves toward a roll of toilet paper on the countertop. It grasps the roll, lifting it slightly while the mirror reflects its movements. The sink is white with a chrome faucet, and various toiletries, including tubes and a toothbrush holder, are arranged nearby. The wall is tiled in gray marble, and the scene is well-lit, highlighting the sleek, futuristic design. A second robotic arm remains stationary on the right side, partially visible. The camera remains fixed, capturing the precise, controlled motion of the robotic arm as it interacts with the objects.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/460_712335_a0_49_256/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/460_712335_a0_49_256/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">agibot</span>
+          <span class="meta-robot">Unitree G1</span>
+          <span class="meta-episode">460_712335_a0_49_256</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A white robotic arm with a black gripper extends toward a gray and yellow patterned cloth hanging on a rack. The arm carefully grasps the fabric,...</div>
+          <div class="caption-full" style="display:none">A white robotic arm with a black gripper extends toward a gray and yellow patterned cloth hanging on a rack. The arm carefully grasps the fabric, pulling it downward and folding it over a beige basket below. The left side of the frame shows a green cloth with white leaf patterns. The robot&#39;s movements are precise and controlled, demonstrating its ability to handle delicate materials. The background is a simple indoor setting with a gray floor and some cardboard boxes visible. A medium shot captures the entire process from a slightly elevated angle.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/545_835730_a0_0_181/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="processed/agibot/545_835730_a0_0_181/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">agibot</span>
+          <span class="meta-robot">Unitree G1</span>
+          <span class="meta-episode">545_835730_a0_0_181</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A robotic arm with black and white mechanical hands is positioned over a stainless steel sink. The left hand holds a spoon, while the right hand...</div>
+          <div class="caption-full" style="display:none">A robotic arm with black and white mechanical hands is positioned over a stainless steel sink. The left hand holds a spoon, while the right hand remains open. A blue and white patterned plate with a spoon on it sits in the sink. To the left, a yellow bottle of dish soap and a purple scrubber are on the counter. To the right, a blue plastic bin contains clean dishes. The robotic arm slowly moves the spoon from the plate, lifting it out of the sink. The camera remains stationary, providing a clear view of the robotic arm&#39;s precise movements. The scene is well-lit, highlighting the metallic surfaces and the contrast between the robotic arm and the kitchen environment.</div>
           <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
         </div>
       </div>
