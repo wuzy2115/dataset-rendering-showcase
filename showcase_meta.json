@@ -14,7 +14,7 @@
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "tiled_5cam",
+      "resolution": "tiled_4cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_01.mp4"
     },
@@ -23,7 +23,7 @@
       "robot": "Franka Panda",
       "cfg": "cfg5",
       "frames": 150,
-      "resolution": "tiled_6cam",
+      "resolution": "tiled_5cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg5/rh20t_cfg5_02.mp4"
     },
@@ -79,7 +79,7 @@
       "robot": "KUKA iiwa",
       "cfg": "cfg7",
       "frames": 150,
-      "resolution": "640x360",
+      "resolution": "tiled_2cam",
       "skeleton": true,
       "video_path": "videos/rh20t_cfg7/rh20t_cfg7_03.mp4"
     },
@@ -142,34 +142,34 @@
   ],
   "droid_franka": [
     {
-      "scene": "AUTOLab/success/2023-07-07/Fri_Jul__7_16:11:11_2023",
+      "scene": "IRIS__success__2023-05-26__Fri_May_26_11:06:47_2023",
       "robot": "Franka Panda",
       "cfg": "",
-      "frames": 225,
+      "frames": 119,
       "resolution": "tiled_2cam",
       "skeleton": true,
       "video_path": "videos/droid_franka/droid_franka_00.mp4"
     },
     {
-      "scene": "AUTOLab/success/2023-07-08/Sat_Jul__8_10:33:32_2023",
+      "scene": "WEIRD__success__2023-11-28__Tue_Nov_28_19:52:11_2023",
       "robot": "Franka Panda",
       "cfg": "",
-      "frames": 172,
+      "frames": 217,
       "resolution": "tiled_2cam",
       "skeleton": true,
       "video_path": "videos/droid_franka/droid_franka_01.mp4"
     },
     {
-      "scene": "AUTOLab/success/2023-07-08/Sat_Jul__8_10:16:10_2023",
+      "scene": "CLVR__success__2023-06-05__Mon_Jun__5_23:18:19_2023",
       "robot": "Franka Panda",
       "cfg": "",
-      "frames": 225,
+      "frames": 142,
       "resolution": "tiled_2cam",
       "skeleton": true,
       "video_path": "videos/droid_franka/droid_franka_02.mp4"
     },
     {
-      "scene": "AUTOLab/success/2023-07-08/Sat_Jul__8_10:13:30_2023",
+      "scene": "PennPAL__success__2023-10-06__Fri_Oct__6_20:32:21_2023",
       "robot": "Franka Panda",
       "cfg": "",
       "frames": 225,
@@ -178,10 +178,10 @@
       "video_path": "videos/droid_franka/droid_franka_03.mp4"
     },
     {
-      "scene": "AUTOLab/success/2023-07-08/Sat_Jul__8_09:57:29_2023",
+      "scene": "IPRL__success__2023-08-23__Wed_Aug_23_12:17:54_2023",
       "robot": "Franka Panda",
       "cfg": "",
-      "frames": 225,
+      "frames": 179,
       "resolution": "tiled_2cam",
       "skeleton": true,
       "video_path": "videos/droid_franka/droid_franka_04.mp4"
@@ -193,7 +193,7 @@
       "subject": "s01",
       "object": "box",
       "action": "grab",
-      "cameras": "cams 1-4 (third-person, 2×2 tiled)",
+      "cameras": "cams 1-4 (third-person, 2\u00d72 tiled)",
       "frames": 150,
       "resolution": "tiled_4cam",
       "skeleton": true,
@@ -206,7 +206,7 @@
       "subject": "s01",
       "object": "box",
       "action": "grab",
-      "cameras": "cams 5-8 (third-person, 2×2 tiled)",
+      "cameras": "cams 5-8 (third-person, 2\u00d72 tiled)",
       "frames": 150,
       "resolution": "tiled_4cam",
       "skeleton": true,
