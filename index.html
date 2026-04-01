@@ -687,6 +687,11 @@
     <dl><dt>Views</dt><dd>Multi-view (2 external cameras, hand cam excluded)</dd></dl>
     <dl><dt>Total Episodes</dt><dd>~76k raw / 47k processed</dd></dl>
   </div>
+  <div class="warning" style="margin: 0.5rem 0 1rem 0;">
+    <strong>&#9888; Known Issue: Extrinsic source quality varies by camera.</strong>
+    Skeleton alignment depends on which extrinsic source is used for each camera (superset, cam2base, or H5 fallback). The <code>superset</code> source is most reliable (~91% accuracy); <code>h5</code> fallback is poor (~33%). Cameras within the same episode can have different quality.
+    <br><a href="analysis/droid-extrinsic-sources.html" style="color: #64b5f6;">&#8594; Full analysis with video evidence</a>
+  </div>
   <div class="video-grid" id="grid-droid">
     <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/droid_franka/droid_franka_00.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-07</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
     <div class="video-card"><video controls muted loop preload="metadata" data-src="videos/droid_franka/droid_franka_01.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-07-08</span> &middot; 172 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
