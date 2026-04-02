@@ -880,23 +880,26 @@
       </tr>
       <!-- ═══ RoboMIND 2.0 ═══ -->
       <tr>
-        <td><strong>RoboMIND 2.0</strong></td>
-        <td>AgileX (bimanual), Franka Panda, UR, Tien Kung GELLO</td>
-        <td>1,111 (example, 310K+ full)</td>
-        <td><span class="status-dot dot-green"></span>1-3 cams 640x480 JPEG-in-HDF5</td>
+        <td><strong>RoboMIND 2.0</strong> <span class="badge badge-yellow" style="font-size:0.65rem">Partial Calibration</span></td>
+        <td>Tienkung humanoid (7+7 DOF), Tianyi bimanual (7+7 DOF), AgileX dual-arm, Franka Panda (7 DOF), UR5e (6 DOF), UR5+DexHand (6+12 DOF), Ark</td>
+        <td>310K+ total (6 robots, 15 sub-repos)</td>
+        <td><span class="status-dot dot-green"></span>1–6 cams JPEG-in-HDF5; RealSense D435if; 480×640 to 1280×720; ~55 Hz</td>
         <td>
           <ul class="missing-list">
-            <li>No camera extrinsics (has intrinsics only)</li>
-            <li>AgileX/Tien Kung URDFs not in registry</li>
-            <li>FPS not stored in HDF5</li>
+            <li>Calibration only for Franka + AgileX (separate JSON, not in HDF5)</li>
+            <li>Tienkung/Tianyi/Ark: no URDF, no EE pose, no calibration</li>
+            <li>UR5-Dex: no dex-hand URDF (arm URDF available)</li>
+            <li>Extrinsics are cam-to-arm, base_to_robot empty</li>
           </ul>
         </td>
         <td>
           <ul class="missing-list present-list">
-            <li>Camera intrinsics (3x3 per camera)</li>
-            <li>Joint positions, EE pose [6/7D]</li>
-            <li>Language + DistilBERT embeddings</li>
-            <li>Tactile data (12K eps), sim subset (20K)</li>
+            <li>Franka/AgileX: intrinsics (3x3 + distortion) + extrinsics (4x4)</li>
+            <li>Joint positions (7 DOF arms), EE pose (7D quat, UR5-Dex only)</li>
+            <li>Dex hand 12-DOF positions, gripper openness</li>
+            <li>Language annotations (via meta_info JSON + task dirs)</li>
+            <li>Tactile data (12K eps), force sensing, depth images</li>
+            <li>Intervention flags + timestamps per field</li>
           </ul>
         </td>
       </tr>
