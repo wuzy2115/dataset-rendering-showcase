@@ -34,7 +34,7 @@
           "episode_id": "AUTOLab__success__2023-11-04__Sat_Nov__4_18:13:22_2023",
           "camera_id": "unknown",
           "category": "AUTOLab",
-          "caption": "",
+          "caption": "A white robotic arm with a yellow and green gripper moves slowly over a green-covered table in an office setting. The arm, mounted on a vertical stand, extends downward, positioning its gripper above a gray cylindrical object. On the table, various items are arranged: a black bowl, a white rope, a long black rod, a roll of gray tape, and a white paper with metallic fragments. In the background, office desks, chairs, and computer monitors are visible, with a person working at a desk in the distance. The scene is well-lit, with overhead lights illuminating the workspace. The robotic arm's movement is precise and controlled, suggesting a demonstration of automated handling or manipulation. A medium shot captures the robot's arm and the objects on the table, with the office environment providing context.",
           "rgb_path": "",
           "scenario_path": "",
           "local_paths": {
@@ -58,7 +58,7 @@
           "episode_id": "AUTOLab__success__2023-12-02__Sat_Dec__2_15:18:32_2023",
           "camera_id": "unknown",
           "category": "AUTOLab",
-          "caption": "",
+          "caption": "A white robotic arm with black joints and cables moves over a wooden table in a dimly lit room. The robot's gripper, holding a small green and gold object, lifts and repositions it above a cylindrical container with a purple top and black base. The arm lowers the object toward the container, then lifts it again, adjusting its position with precise movements. The background is dark, with a white VR headset and tools visible on the left. The scene is captured from a slightly elevated angle, focusing on the robotic arm's controlled actions.",
           "rgb_path": "",
           "scenario_path": "",
           "local_paths": {
@@ -82,7 +82,7 @@
           "episode_id": "CLVR__success__2023-06-03__Sat_Jun__3_22:15:25_2023",
           "camera_id": "unknown",
           "category": "CLVR",
-          "caption": "",
+          "caption": "A robotic arm with a white and black design moves into frame from the top right, extending downward toward a black table. The arm's gripper opens and closes as it approaches a white power strip with orange buttons. It carefully positions itself over the power strip, then slowly lowers its claw to plug in a white cable. The background reveals a modern office space with white walls, fluorescent lighting, a glass partition, and a green screen setup. The camera angle is tilted, providing a high-angle view of the scene. The robotic arm completes the task with precise movements, demonstrating automated functionality in a tech lab environment.",
           "rgb_path": "",
           "scenario_path": "",
           "local_paths": {
