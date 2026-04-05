@@ -5,28 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AGIBot Rendering Issues Investigation</title>
 <style>
-  :root { --bg:#0f1117; --card:#1a1d27; --border:#2a2d3a; --text:#e4e6ef; --muted:#8b8fa3; --accent:#6366f1; --green:#22c55e; --red:#ef4444; --yellow:#eab308; --orange:#f97316; }
+  :root { --bg:#0f1117; --card:#1a1d27; --border:#2a2d3a; --text:#e4e6ef; --muted:#8b8fa3; --accent:#6366f1; --green:#22c55e; --red:#ef4444; --yellow:#eab308; --orange:#f97316; --blue:#3b82f6; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
-  .container { max-width:1400px; margin:0 auto; padding:2rem; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+  .container { max-width:1200px; margin:0 auto; padding:2rem; }
   h1 { font-size:1.8rem; margin-bottom:0.5rem; }
-  h2 { font-size:1.3rem; margin:2rem 0 1rem; padding-bottom:0.5rem; border-bottom:2px solid var(--border); }
-  h3 { font-size:1.1rem; margin:1.5rem 0 0.5rem; color:var(--accent); }
+  h2 { font-size:1.3rem; margin:2.5rem 0 1rem; padding-bottom:0.5rem; border-bottom:2px solid var(--border); }
+  h3 { font-size:1.05rem; margin:1.5rem 0 0.5rem; color:var(--accent); }
   .back-link { display:inline-block; margin-bottom:1.5rem; color:var(--accent); text-decoration:none; font-size:0.9rem; }
   .back-link:hover { text-decoration:underline; }
-  .info-box { background:#2d2d2d; padding:1em; border-radius:8px; margin-bottom:1em; font-size:0.9em; line-height:1.7; }
-  .info-box p { margin-bottom:0.5em; }
+  .info-box { background:#2d2d2d; padding:1.2em 1.4em; border-radius:8px; margin-bottom:1.2em; font-size:0.9em; line-height:1.8; }
+  .info-box p { margin-bottom:0.6em; }
   .info-box p:last-child { margin-bottom:0; }
+  .info-box ul { margin:0.5em 0 0.5em 1.5em; }
+  .info-box li { margin-bottom:0.3em; }
   code { background:rgba(99,102,241,0.15); padding:2px 6px; border-radius:4px; font-size:0.85em; }
-  .stats-row { display:flex; gap:1.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
-  .stat-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem 1.5rem; text-align:center; min-width:140px; }
-  .stat-card .value { font-size:1.5rem; font-weight:700; }
-  .stat-card .label { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.02em; }
-  .stat-card.red .value { color:var(--red); }
-  .stat-card.green .value { color:var(--green); }
-  .stat-card.orange .value { color:var(--orange); }
-  .stat-card.yellow .value { color:var(--yellow); }
-  .video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(400px,1fr)); gap:1rem; }
+  pre { background:#1e1e2e; padding:1em; border-radius:8px; overflow-x:auto; font-size:0.82em; line-height:1.5; margin:0.8em 0; }
+  .video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(380px,1fr)); gap:1rem; }
   .video-card { background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; transition:border-color 0.2s; }
   .video-card:hover { border-color:var(--accent); }
   .video-card video { width:100%; display:block; background:#000; }
@@ -35,129 +30,247 @@
   .tag { display:inline-block; padding:1px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; margin-left:0.5rem; }
   .tag-red { background:rgba(239,68,68,0.15); color:var(--red); }
   .tag-orange { background:rgba(249,115,22,0.15); color:var(--orange); }
-  .tag-yellow { background:rgba(234,179,8,0.15); color:var(--yellow); }
   .tag-green { background:rgba(34,197,94,0.15); color:var(--green); }
+  .tag-blue { background:rgba(59,130,246,0.15); color:var(--blue); }
   video[data-src] { min-height:200px; }
   table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.85em; }
   th, td { padding:0.5rem 0.75rem; text-align:left; border-bottom:1px solid var(--border); }
   th { color:var(--muted); font-weight:600; text-transform:uppercase; font-size:0.75em; letter-spacing:0.03em; }
-  td code { font-size:0.8em; }
-  .severity-table { max-width:600px; }
-  .section-type-a { border-left:3px solid var(--red); padding-left:1rem; margin-bottom:2rem; }
-  .section-type-b { border-left:3px solid var(--orange); padding-left:1rem; margin-bottom:2rem; }
+  .callout { border-left:3px solid var(--accent); padding:0.8em 1.2em; background:rgba(99,102,241,0.06); border-radius:0 8px 8px 0; margin:1em 0; font-size:0.9em; }
+  .callout-warn { border-left-color:var(--orange); background:rgba(249,115,22,0.06); }
+  .callout-red { border-left-color:var(--red); background:rgba(239,68,68,0.06); }
+  .diagram { background:#1e1e2e; padding:1.5em; border-radius:8px; margin:1em 0; font-size:0.82em; line-height:1.6; font-family:'SF Mono',Consolas,monospace; color:var(--muted); overflow-x:auto; }
+  .diagram em { color:var(--accent); font-style:normal; }
+  .diagram strong { color:var(--text); font-weight:normal; }
+  a { color:var(--accent); }
+  .toc { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1.2em 1.5em; margin-bottom:2rem; }
+  .toc ul { list-style:none; margin:0; }
+  .toc li { margin:0.3em 0; }
+  .toc a { text-decoration:none; font-size:0.9em; }
+  .toc a:hover { text-decoration:underline; }
 </style>
 </head>
 <body>
 <div class="container">
 <a href="index.html#rendering" class="back-link">&larr; Back to Showcase</a>
 <h1>AGIBot Rendering Issues Investigation</h1>
-<p style="color:var(--muted);margin-bottom:1.5rem;">Coordinate frame mismatch between end-effector poses and camera extrinsics &mdash; full scan of 44,358 rendered episodes</p>
+<p style="color:var(--muted);margin-bottom:1.5rem;">An in-depth analysis of skeleton projection errors in the AGIBot World dataset (44,358 episodes scanned)</p>
 
-<h2>Problem Overview</h2>
+<nav class="toc">
+  <strong style="font-size:0.85em;color:var(--muted);text-transform:uppercase;">Contents</strong>
+  <ul>
+    <li><a href="#background">1. Background: How Skeleton Rendering Works</a></li>
+    <li><a href="#problem">2. The Problem</a></li>
+    <li><a href="#investigation">3. Investigation</a></li>
+    <li><a href="#completely-wrong">4. Issue A: Completely Wrong Calibrations</a></li>
+    <li><a href="#systematic-offset">5. Issue B: Systematic Projection Offset</a></li>
+    <li><a href="#community">6. Community Reports</a></li>
+    <li><a href="#videos">7. Example Videos</a></li>
+    <li><a href="#status">8. Current Status</a></li>
+  </ul>
+</nav>
+
+<!-- ===== SECTION 1: BACKGROUND ===== -->
+<h2 id="background">1. Background: How Skeleton Rendering Works</h2>
+
+<p style="margin-bottom:1em;">To overlay a robot skeleton on a camera image, we need to project 3D joint positions onto the 2D image plane. This requires three pieces of data from the AGIBot dataset:</p>
+
 <div class="info-box">
-  <p><strong>Core issue:</strong> End-effector positions (<code>state/end/position</code>) are in <strong>robot base frame</strong>, but camera extrinsics (<code>head_extrinsic_params_aligned.json</code>) are in <strong>world frame</strong>. The rendering code projects base-frame 3D points using world-frame camera parameters without any coordinate transform, causing misaligned skeleton overlays.</p>
-  <p>This manifests as two distinct failure modes depending on the relationship between the robot's odometry origin and the camera calibration origin.</p>
+  <p><strong>1. End-effector pose</strong> (<code>state/end/position</code> + <code>state/end/orientation</code> in <code>proprio_stats.h5</code>)<br>
+  The 3D position (XYZ in meters) and orientation (quaternion XYZW) of each arm's flange (wrist). Shape: <code>[N, 2, 3]</code> for position (left arm <code>[:, 0]</code>, right arm <code>[:, 1]</code>), where N is the number of timesteps.</p>
+
+  <p><strong>2. Camera extrinsics</strong> (<code>head_extrinsic_params_aligned.json</code>)<br>
+  Per-frame camera pose, consisting of a 3&times;3 <code>rotation_matrix</code> (R) and a 3D <code>translation_vector</code> (t). Together, R and t describe where the camera is and how it's oriented. The <code>_aligned</code> version provides one entry per video frame (temporally aligned with the proprioception data).</p>
+
+  <p><strong>3. Camera intrinsics</strong> (<code>head_intrinsic_params.json</code>)<br>
+  The internal optical parameters: focal lengths (<code>fx</code>, <code>fy</code>) and principal point (<code>ppx</code>, <code>ppy</code>). These describe how the camera lens maps 3D camera-space coordinates to 2D pixel positions. Typical values: <code>fx&asymp;322</code>, <code>fy&asymp;430</code>, <code>ppx&asymp;320</code>, <code>ppy&asymp;244</code> for the 640&times;480 head camera.</p>
 </div>
 
-<div class="stats-row">
-  <div class="stat-card green"><div class="value">31,569</div><div class="label">Clean episodes</div></div>
-  <div class="stat-card red"><div class="value">2,102</div><div class="label">Type A &mdash; calibration</div></div>
-  <div class="stat-card orange"><div class="value">6,653</div><div class="label">Type B &mdash; offset</div></div>
-  <div class="stat-card"><div class="value">44,358</div><div class="label">Total scanned</div></div>
-</div>
+<h3>The projection formula</h3>
+<p style="margin-bottom:0.5em;">To project a 3D world point onto the image:</p>
+<pre>
+<span style="color:#8b8fa3;"># Step 1: Transform from world frame to camera frame</span>
+point_camera = R.T @ (point_world - t)
 
-<!-- ===== TYPE A ===== -->
-<h2 style="color:var(--red);">Type A: Calibration Coordinate System Mismatch</h2>
-<div class="section-type-a">
+<span style="color:#8b8fa3;"># Step 2: Perspective projection to pixel coordinates</span>
+u = fx * (point_camera.x / point_camera.z) + ppx   <span style="color:#8b8fa3;"># horizontal pixel</span>
+v = fy * (point_camera.y / point_camera.z) + ppy   <span style="color:#8b8fa3;"># vertical pixel</span>
+</pre>
+
+<p style="margin:1em 0;">For this to work correctly, <strong>the 3D point and the camera parameters (R, t) must be expressed in the same coordinate frame</strong>. This is where the problems begin.</p>
+
+<h3>The robot's kinematic chain</h3>
+<p style="margin-bottom:0.5em;">The Unitree G1 humanoid robot has the following structure (simplified):</p>
+<div class="diagram">
+<strong>base_link</strong> (hip/pelvis, the root of the robot)
+  &rarr; <em>waist joints</em> (pitch + lift, 2 DOF) &rarr; <strong>body_link2</strong> (torso)
+      &rarr; <em>head joints</em> (pan + tilt, 2 DOF) &rarr; <strong>head_link2</strong> &rarr; [<em>HEAD CAMERA</em>]
+      &rarr; <em>arm joints</em> (7 DOF each) &rarr; <strong>arm_end_link</strong> (flange)
+          &rarr; gripper (CTAG2F120S, ~220&ndash;248mm extension)
+</div>
+<p style="margin:0.5em 0;">Key point: the <strong>head camera</strong> and the <strong>arm end-effector</strong> are on different branches of the kinematic tree, connected through the torso. They share the waist joints but diverge at the head vs. arm joints.</p>
+
+<!-- ===== SECTION 2: THE PROBLEM ===== -->
+<h2 id="problem">2. The Problem</h2>
 
 <div class="info-box">
-  <p><strong>Symptom:</strong> Skeleton rendering is completely wrong &mdash; projected bones appear in entirely wrong positions on the image, or the end-effector floats far off screen.</p>
-  <p><strong>Cause:</strong> The camera extrinsics world origin does not coincide with the robot's odometry origin. The head camera (physically mounted on the robot at ~0.9m height) reports a world-frame position &gt;1.5m from the robot's reported position &mdash; physically impossible for a head-mounted camera. This means the calibration board that defined the "world frame" was placed at a different location than where the robot's SLAM/odometry initializes its origin.</p>
-  <p><strong>Diagnosis metric:</strong> <code>||cam_translation - robot_position|| &gt; 1.5m</code></p>
-  <p><strong>Impact:</strong> 2,102 episodes across 79 tasks. <strong>Not fixable by code</strong> &mdash; requires either re-calibration or finding the calibration-to-odometry transform for each affected scene.</p>
+  <p>When we overlay the rendered skeleton on the actual camera image, the projected bones <strong>do not align with the visible robot arms</strong> in most episodes. The offset ranges from subtle (a few pixels) to severe (skeleton appears in a completely different part of the image).</p>
 </div>
 
-<h3>Severity examples</h3>
-<table class="severity-table">
-  <tr><th>Task</th><th>Episodes</th><th>Camera-Robot Distance</th></tr>
-  <tr><td>726</td><td>15</td><td>2.2 &ndash; 31.2 m</td></tr>
-  <tr><td>373</td><td>56</td><td>1.5 &ndash; 28.1 m</td></tr>
-  <tr><td>462</td><td>52</td><td>1.6 &ndash; 20.0 m</td></tr>
-  <tr><td>507</td><td>17</td><td>14.0 m</td></tr>
-  <tr><td>556</td><td>54</td><td>6.3 m</td></tr>
-  <tr><td>494</td><td>52</td><td>2.5 m</td></tr>
-  <tr><td>351</td><td>268</td><td>1.5 &ndash; 11.9 m</td></tr>
-  <tr><td>708</td><td>149</td><td>1.5 &ndash; 4.2 m</td></tr>
+<p>According to an official response on HuggingFace (<a href="https://huggingface.co/datasets/agibot-world/AgiBotWorld-Alpha/discussions/28">Discussion #28</a>), both <code>state/end/position</code> and camera extrinsics are defined in the <strong>same coordinate system</strong>. The projection formula above should therefore work directly.</p>
+
+<p style="margin:0.8em 0;">However, in practice we observe two distinct failure modes, suggesting the data may not fully satisfy this assumption.</p>
+
+<!-- ===== SECTION 3: INVESTIGATION ===== -->
+<h2 id="investigation">3. Investigation</h2>
+
+<h3>What the data actually looks like</h3>
+<p style="margin-bottom:0.5em;">We examined the raw data for specific episodes where we could visually verify the rendering quality:</p>
+
+<div class="info-box">
+  <p><strong>Key observation 1: Camera extrinsics are static within each episode.</strong><br>
+  Despite being labeled as "per-frame aligned," the <code>translation_vector</code> barely changes across frames (variation &lt; 0.0001m). Even for episodes where the robot moves 0.23m during the recording, the camera extrinsics stay essentially constant. This means the extrinsics are a <strong>one-time calibration per recording session</strong>, duplicated for each frame &mdash; not a dynamically tracked camera pose.</p>
+
+  <p><strong>Key observation 2: Extrinsics are per-session, not per-episode.</strong><br>
+  Within the same task, episodes are grouped into "calibration sessions" that share nearly identical extrinsics. For example, Task 698 (1,993 episodes) has 19 distinct calibration groups. The largest group has 686 episodes with <code>cam_trans&asymp;[0.50, -0.01, 0.98]</code>, while a smaller group of 199 episodes has <code>cam_trans&asymp;[0.29, -0.04, 0.88]</code>. Different groups correspond to different physical camera/robot configurations at calibration time.</p>
+
+  <p><strong>Key observation 3: Camera height tracks waist configuration.</strong><br>
+  The camera Z coordinate (height) correlates with the waist lift joint value. Episodes with <code>waist_lift=0.37</code> show <code>cam_z&asymp;1.18</code>, while <code>waist_lift=0.03</code> gives <code>cam_z&asymp;0.79</code>. This is physically expected &mdash; raising the waist raises the head camera. It also confirms that the extrinsics capture the camera's actual spatial position, including the effect of body configuration.</p>
+</div>
+
+<h3>Numerical verification</h3>
+<p style="margin-bottom:0.5em;">We projected the right-arm end-effector onto the image for several episodes and compared with the visible arm position in the RGB video:</p>
+
+<table>
+  <tr><th>Episode</th><th>Visual quality</th><th>R arm projected pixel</th><th>In frame?</th><th>Waist config</th></tr>
+  <tr><td>Task 351 / Ep 815062</td><td style="color:var(--green)">Looks correct</td><td>(515, 329)</td><td>Yes</td><td>pitch=0.26, lift=0.37</td></tr>
+  <tr><td>Task 773 / Ep 923378</td><td style="color:var(--orange)">Has offset</td><td>(569, &minus;30)</td><td>No (above frame)</td><td>pitch=0.49, lift=0.27</td></tr>
+  <tr><td>Task 428 / Ep 728891</td><td style="color:var(--orange)">Has offset</td><td>(593, 701)</td><td>No (below frame)</td><td>pitch=0.52, lift=0.03</td></tr>
+  <tr><td>Task 698 / Ep 899278</td><td style="color:var(--orange)">Has offset</td><td>(453, &minus;310)</td><td>No (above frame)</td><td>pitch=0.49, lift=0.29</td></tr>
 </table>
 
-<h3>Example videos</h3>
-<p style="color:var(--muted);margin-bottom:1rem;font-size:0.85em;">Skeleton appears in completely wrong positions relative to the actual robot arms.</p>
-<div class="video-grid">
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/494_718252_a5_800_960.mp4"></video><div class="video-meta"><span class="scene-name">Task 494 / Ep 718252</span><span class="tag tag-red">Type A</span><br>cam&harr;robot: 2.53m &middot; robot_offset: 0.001m</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/505_735944_a4_569_778.mp4"></video><div class="video-meta"><span class="scene-name">Task 505 / Ep 735944</span><span class="tag tag-red">Type A</span><br>cam&harr;robot: 2.53m &middot; robot_offset: 0.000m</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/351_815062_a1_75_305.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 815062</span><span class="tag tag-red">Type A</span><br>cam&harr;robot: 1.89m &middot; robot_offset: 1.08m</div></div>
-</div>
-</div>
+<p style="margin:0.8em 0;">For the "offset" episodes, the projected end-effector consistently lands <strong>above or below the visible image frame</strong> (v &lt; 0 or v &gt; 480), even though the actual arm is clearly visible in the camera view. This indicates a systematic vertical projection error.</p>
 
-<!-- ===== TYPE B ===== -->
-<h2 style="color:var(--orange);">Type B: Robot Base Offset (Fixable)</h2>
-<div class="section-type-b">
+<!-- ===== SECTION 4: ISSUE A ===== -->
+<h2 id="completely-wrong">4. Issue A: Completely Wrong Calibrations</h2>
 
 <div class="info-box">
-  <p><strong>Symptom:</strong> Skeleton shape is roughly correct but shifted &mdash; bones track the arms but with a consistent positional offset.</p>
-  <p><strong>Cause:</strong> The robot base has moved from the world origin (<code>state/robot/position &gt; 0.1m</code>), but end-effector positions are still in robot base frame. The camera extrinsics are in world frame and close to the robot (cam&harr;robot &le; 1.5m), confirming they share the same coordinate system. The missing step is transforming end-effector poses from base frame to world frame.</p>
-  <p><strong>Fix:</strong> Before projection, apply the robot base transform: <code>p_world = R_base @ p_base + t_base</code> using per-frame <code>state/robot/position</code> and <code>state/robot/orientation</code>.</p>
-  <p><strong>Impact:</strong> 6,653 episodes across 107 tasks.</p>
+  <p><strong>Symptom:</strong> The skeleton appears in a completely unrelated part of the image, or is entirely off-screen. The rendering is not just shifted &mdash; it bears no spatial relationship to the actual robot arms.</p>
+
+  <p><strong>Cause:</strong> Some recording sessions have camera extrinsics in a <strong>different world frame origin</strong> from the rest of the data. The camera <code>translation_vector</code> shows the camera at positions like <code>[1.02, 1.02, 2.07]</code> or <code>[-1.11, 0.48, 2.58]</code>, when the robot's head camera should be at roughly <code>[0.5, -0.01, 1.0]</code> relative to the robot base. These calibrations appear to be from a room-scale calibration setup where the origin (calibration board) was placed far from the robot.</p>
+
+  <p><strong>How to detect:</strong> These episodes stand out because their <code>cam_trans</code> values are far from the per-task majority calibration. For example, Task 428 has 54 calibration groups; most have <code>cam_trans_x &asymp; 0.49&ndash;0.52</code>, but 3 groups have <code>cam_trans_x &lt; -0.3</code> (clearly from a different coordinate system).</p>
 </div>
 
-<h3>Severity breakdown</h3>
-<table class="severity-table">
-  <tr><th>Severity</th><th>Offset range</th><th>Episodes</th><th>Visual impact</th></tr>
-  <tr><td><span class="tag tag-yellow">Mild</span></td><td>0.1 &ndash; 0.3 m</td><td>3,798</td><td>Subtle shift, may not be immediately obvious</td></tr>
-  <tr><td><span class="tag tag-orange">Moderate</span></td><td>0.3 &ndash; 0.5 m</td><td>1,579</td><td>Clearly visible misalignment</td></tr>
-  <tr><td><span class="tag tag-red">Severe</span></td><td>&gt; 0.5 m</td><td>1,276</td><td>Large offset, bones clearly disconnected from arms</td></tr>
+<h3>Examples from the data</h3>
+<table style="max-width:700px;">
+  <tr><th>Task</th><th>Normal calibration</th><th>Broken calibration</th><th>Broken episode count</th></tr>
+  <tr><td>428</td><td>(0.52, -0.02, 0.75)</td><td>(-1.11, 0.48, 2.58)</td><td>65 + 30 + 29 = 124</td></tr>
+  <tr><td>494</td><td>No clear majority</td><td>(1.02, 1.02, 2.07)</td><td>52</td></tr>
+  <tr><td>505</td><td>(0.49, -0.01, 0.85)</td><td>(1.16, 1.02, 2.00)</td><td>16</td></tr>
 </table>
 
-<h3>Most affected tasks</h3>
-<table class="severity-table">
-  <tr><th>Task</th><th>Episodes</th><th>Offset range</th></tr>
-  <tr><td>527</td><td>741</td><td>0.10 &ndash; 1.27 m</td></tr>
-  <tr><td>764</td><td>463</td><td>0.10 &ndash; 0.70 m</td></tr>
-  <tr><td>740</td><td>336</td><td>0.10 &ndash; 1.05 m</td></tr>
-  <tr><td>708</td><td>335</td><td>0.10 &ndash; 1.42 m</td></tr>
-  <tr><td>373</td><td>289</td><td>0.10 &ndash; 1.69 m</td></tr>
-  <tr><td>712</td><td>274</td><td>0.10 &ndash; 0.80 m</td></tr>
-  <tr><td>363</td><td>254</td><td>0.10 &ndash; 0.72 m</td></tr>
-  <tr><td>445</td><td>235</td><td>0.10 &ndash; 0.72 m</td></tr>
-</table>
+<!-- ===== SECTION 5: ISSUE B ===== -->
+<h2 id="systematic-offset">5. Issue B: Systematic Projection Offset</h2>
 
-<h3>Example videos</h3>
-<p style="color:var(--muted);margin-bottom:1rem;font-size:0.85em;">Skeleton shape is correct but shifted from the actual arm position.</p>
-<div class="video-grid">
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_900765_a2_284_479.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 900765</span><span class="tag tag-orange">Type B</span><br>robot_offset: 0.218m &middot; cam&harr;robot: 0.87m</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_862865_a1_162_370.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862865</span><span class="tag tag-orange">Type B</span><br>robot_offset: 0.138m &middot; cam&harr;robot: 0.91m</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_862682_a2_260_327.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862682</span><span class="tag tag-orange">Type B</span><br>robot_offset: 0.138m &middot; cam&harr;robot: 0.91m</div></div>
-</div>
-</div>
-
-<!-- ===== CLEAN ===== -->
-<h2 style="color:var(--green);">Reference: Clean Renders</h2>
 <div class="info-box">
-  <p>These episodes have <code>robot_offset &lt; 0.01m</code> and <code>cam&harr;robot &le; 1.5m</code> &mdash; the coordinate frame mismatch is negligible and the rendering is correct.</p>
-</div>
-<div class="video-grid">
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/773_923378_a0_0_86.mp4"></video><div class="video-meta"><span class="scene-name">Task 773 / Ep 923378</span><span class="tag tag-green">Clean</span><br>robot_offset: 0.000m &middot; cam&harr;robot: 0.92m</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/428_728891_a1_283_390.mp4"></video><div class="video-meta"><span class="scene-name">Task 428 / Ep 728891</span><span class="tag tag-green">Clean</span><br>robot_offset: 0.001m &middot; cam&harr;robot: 0.96m</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_899278_a1_142_253.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 899278</span><span class="tag tag-green">Clean</span><br>robot_offset: 0.005m &middot; cam&harr;robot: 0.94m</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/440_714998_a2_284_510.mp4"></video><div class="video-meta"><span class="scene-name">Task 440 / Ep 714998</span><span class="tag tag-green">Clean</span><br>robot_offset: 0.001m &middot; cam&harr;robot: 1.17m</div></div>
+  <p><strong>Symptom:</strong> The skeleton shape is roughly correct, but it is shifted from the actual arm position &mdash; typically vertically. The overall arm structure (shoulder, elbow, wrist angles) tracks the real motion, but the whole skeleton is displaced.</p>
+
+  <p><strong>This affects the majority of episodes</strong>, not just a few outliers. It is a widespread data-level issue in the AGIBot World dataset, not a rendering code bug.</p>
 </div>
 
-<h2>Detection Methodology</h2>
+<h3>Why does this happen?</h3>
+
+<p style="margin-bottom:0.8em;">The root cause is not yet definitively identified, but our investigation points to a <strong>mismatch between the coordinate frame assumptions</strong>. Several factors contribute:</p>
+
 <div class="info-box">
-  <p><strong>Scan approach:</strong> For each of 44,358 rendered episodes (from dedup manifests), read <code>state/robot/position[0]</code> from <code>proprio_stats.h5</code> and the first <code>translation_vector</code> from <code>head_extrinsic_params_aligned.json</code>. Compute:</p>
-  <p>&bull; <code>robot_offset = ||robot_position||</code> &mdash; how far the robot base is from world origin</p>
-  <p>&bull; <code>cam_robot_dist = ||cam_translation - robot_position||</code> &mdash; distance from camera to robot (should be ~0.9m for head-mounted camera)</p>
-  <p>Classification: <strong>Type A</strong> if cam_robot_dist &gt; 1.5m. <strong>Type B</strong> if robot_offset &gt; 0.1m and cam_robot_dist &le; 1.5m.</p>
+  <p><strong>1. Static calibration vs. dynamic robot configuration</strong><br>
+  The camera extrinsics are captured once per recording session and stay constant. But the robot's waist and head joints change between sessions and sometimes during a session. If the calibration was performed with the robot in a different body configuration (e.g., different waist lift or head tilt) than the actual episode, the camera's true position during the episode differs from what the extrinsics describe.</p>
+
+  <p><strong>2. The head camera moves with body joints, but extrinsics don't update</strong><br>
+  The head camera sits at the end of the kinematic chain: base &rarr; waist &rarr; torso &rarr; head &rarr; camera. When the waist lifts or the head tilts, the camera physically moves. However, the extrinsics remain the same static calibration throughout. If <code>state/end/position</code> is correctly reported in an odometry/world frame (as officially stated), but the extrinsics reflect the camera pose at calibration time only, any movement since calibration introduces a discrepancy.</p>
+
+  <p><strong>3. Ambiguity in the coordinate frame of <code>state/end/position</code></strong><br>
+  The official documentation does not explicitly state which frame <code>state/end/position</code> is in. An official response confirms it shares a frame with the extrinsics, but <a href="https://huggingface.co/datasets/agibot-world/AgiBotWorld-Alpha/discussions/34">Discussion #34</a> (an unanswered community post) specifically asks whether it's in <code>base_link</code> or world frame, and reports a <em>"significant and consistent offset: the projected points appear noticeably below the actual grippers"</em> when assuming they share a frame.</p>
+</div>
+
+<h3>What we ruled out</h3>
+<div class="info-box">
+  <p><strong>Camera intrinsics are NOT the issue</strong> (for these episodes). All examined episodes have intrinsic parameters consistent with 640&times;480 resolution: <code>fx&asymp;322</code>, <code>fy&asymp;430</code>, <code>ppx&asymp;320</code>, <code>ppy&asymp;244</code>. No divide-by-2 correction is needed (though this may apply to other episodes &mdash; see Community Reports below).</p>
+
+  <p><strong>Robot base position (<code>state/robot/position</code>) is NOT a reliable indicator.</strong> We initially hypothesized that episodes with large robot base offsets would have worse rendering. This turned out to be false: Task 351 / Ep 815062 has <code>robot_pos=[-0.99, 0.42, 0]</code> (far from origin) but renders correctly, while Task 773 / Ep 923378 has <code>robot_pos=[0, 0, 0]</code> but has visible offset.</p>
+
+  <p><strong>The rendering code itself is correct.</strong> The projection formula <code>R.T @ (p - t)</code> matches the official recommendation from the AGIBot team. The URDF skeleton chain computation (from end-effector to arm base link) only involves arm joints, so waist/head joints do not affect the chain geometry. The issue is in the input data, not the code.</p>
+</div>
+
+<!-- ===== SECTION 6: COMMUNITY ===== -->
+<h2 id="community">6. Community Reports (HuggingFace Discussions)</h2>
+
+<p style="margin-bottom:1em;">Multiple users have reported similar issues on the AGIBot World HuggingFace repository. These reports corroborate our findings and provide additional context:</p>
+
+<div class="info-box">
+  <p><strong><a href="https://huggingface.co/datasets/agibot-world/AgiBotWorld-Alpha/discussions/28">Discussion #28</a> &mdash; Camera extrinsics and hand pose</strong><br>
+  Official response from the AGIBot team (BobXie): <em>"the head camera's extrinsic and hand poses are defined in the same coordinate system."</em> The recommended projection formula is confirmed as <code>R.T @ (point - t)</code>. Despite this, multiple users in the thread report visualization errors.</p>
+
+  <p><strong><a href="https://huggingface.co/datasets/agibot-world/AgiBotWorld-Alpha/discussions/34">Discussion #34</a> &mdash; Coordinate systems &amp; transformations for EE-pose projection</strong><br>
+  A user (KY97) reports: <em>"the projected points appear noticeably below the actual grippers"</em> when using the official projection formula. They ask whether <code>state/end/position</code> is in <code>base_link</code> or world frame, and whether there is a <code>T_base2world</code> transform available. <strong>No official response was provided.</strong></p>
+
+  <p><strong><a href="https://huggingface.co/datasets/agibot-world/AgiBotWorld-Alpha/discussions/32">Discussion #32</a> &mdash; Camera-to-base conversion script</strong><br>
+  Users request a URDF file and camera-to-robot-base conversion script. The AGIBot team responds that they <em>"haven't been able to upload the URDF"</em> and that the frame-by-frame extrinsics should make the conversion unnecessary. Users also report <strong>inconsistent camera intrinsic parameters</strong> across episodes: some episodes have correct intrinsics, while others appear to be calibrated for a different resolution (potentially requiring a divide-by-2 correction).</p>
+
+  <p><strong><a href="https://huggingface.co/datasets/agibot-world/AgiBotWorld-Alpha/discussions/37">Discussion #37</a> &mdash; Camera extrinsics reference frame</strong><br>
+  A user asks whether the extrinsics represent camera-to-world or world-to-camera transform. <strong>No official response.</strong></p>
+
+  <p><strong>Missing URDF and flange-to-gripper transform:</strong><br>
+  The AGIBot team has not released the robot's URDF file. Additionally, the fixed transform from the robot flange (where <code>state/end/position</code> is reported) to the gripper tip (where the visible gripper is) has not been provided. The gripper (Changtaik CTAG2F120S) extends 220&ndash;248mm beyond the flange, which could account for part of the observed offset between projected skeleton and visible gripper.</p>
+</div>
+
+<!-- ===== SECTION 7: VIDEOS ===== -->
+<h2 id="videos">7. Example Videos</h2>
+
+<p style="color:var(--muted);margin-bottom:0.5em;font-size:0.85em;">Each video shows the rendered <code>gripper_scenario</code> (skeleton overlay on black background). Compare the skeleton position with the corresponding RGB frame to see the alignment quality.</p>
+
+<h3>Issue A: Completely wrong calibrations</h3>
+<p style="color:var(--muted);margin-bottom:1rem;font-size:0.85em;">These episodes use extrinsics from a mismatched coordinate system. The skeleton bears no spatial relation to the actual arms.</p>
+<div class="video-grid">
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/494_718252_a5_800_960.mp4"></video><div class="video-meta"><span class="scene-name">Task 494 / Ep 718252</span><span class="tag tag-red">Wrong calibration</span><br>cam_trans=(1.02, 1.02, 2.07) &mdash; far from expected ~(0.5, 0, 1.0)</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/505_735944_a4_569_778.mp4"></video><div class="video-meta"><span class="scene-name">Task 505 / Ep 735944</span><span class="tag tag-red">Wrong calibration</span><br>cam_trans=(1.16, 1.02, 2.00) &mdash; different world origin</div></div>
+</div>
+
+<h3>Issue B: Systematic offset</h3>
+<p style="color:var(--muted);margin-bottom:1rem;font-size:0.85em;">Skeleton shape tracks the arms but is displaced. Most visible as a vertical shift. This affects the majority of episodes.</p>
+<div class="video-grid">
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/773_923378_a0_0_86.mp4"></video><div class="video-meta"><span class="scene-name">Task 773 / Ep 923378</span><span class="tag tag-orange">Offset</span><br>R arm projects to v=&minus;30 (above frame), but arm is visible in image</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/428_728891_a1_283_390.mp4"></video><div class="video-meta"><span class="scene-name">Task 428 / Ep 728891</span><span class="tag tag-orange">Offset</span><br>R arm projects to v=701 (below frame), but arm is visible in image</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_899278_a1_142_253.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 899278</span><span class="tag tag-orange">Offset</span><br>R arm projects to v=&minus;310 (above frame), but arm is visible in image</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_900765_a2_284_479.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 900765</span><span class="tag tag-orange">Offset</span><br>robot_pos=(0.218, 0, 0), cam_trans=(0.29, -0.04, 0.87)</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_862865_a1_162_370.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862865</span><span class="tag tag-orange">Offset</span></div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_862682_a2_260_327.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862682</span><span class="tag tag-orange">Offset</span></div></div>
+</div>
+
+<h3>Visually acceptable rendering</h3>
+<p style="color:var(--muted);margin-bottom:1rem;font-size:0.85em;">This episode renders with acceptable alignment. R arm projects to (515, 329) &mdash; correctly within the frame.</p>
+<div class="video-grid">
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/351_815062_a1_75_305.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 815062</span><span class="tag tag-green">Acceptable</span><br>waist=(0.26, 0.37) &mdash; this specific configuration aligns well</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/440_714998_a2_284_510.mp4"></video><div class="video-meta"><span class="scene-name">Task 440 / Ep 714998</span><span class="tag tag-green">Acceptable</span></div></div>
+</div>
+
+<!-- ===== SECTION 8: STATUS ===== -->
+<h2 id="status">8. Current Status &amp; Next Steps</h2>
+
+<div class="info-box">
+  <p><strong>Issue A (wrong calibrations):</strong> Detectable and filterable. These episodes should be excluded from training data that requires accurate skeleton rendering. We have identified the affected calibration groups per task.</p>
+
+  <p><strong>Issue B (systematic offset):</strong> This is a widespread data quality issue in the AGIBot World dataset. The root cause is likely related to the static nature of the calibration and/or ambiguity in the coordinate frame of <code>state/end/position</code>. Possible mitigation strategies:</p>
+  <ul>
+    <li><strong>Accept as-is for training:</strong> The offset may not significantly impact video generation model training, since the skeleton provides approximate spatial guidance even with some displacement.</li>
+    <li><strong>Attempt FK-based correction:</strong> Use the URDF model with waist/head joint angles to compute the expected camera position, then derive a per-frame correction transform. This requires an accurate URDF (not officially released by AGIBot).</li>
+    <li><strong>Wait for upstream fix:</strong> The AGIBot team is aware of the community questions about coordinate frames. A future dataset update may clarify or fix the issue.</li>
+  </ul>
+</div>
+
+<div class="callout">
+  <strong>Note:</strong> This analysis was performed on the processed AGIBot Beta dataset (44,358 unique episodes / 93,981 action clips). The findings may not apply identically to the Alpha release, though the same data format and calibration approach are used.
 </div>
 
 </div>
