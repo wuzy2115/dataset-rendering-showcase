@@ -50,20 +50,20 @@
   <p><strong>Fix:</strong> Transform camera extrinsics into robot base frame using per-frame <code>state/robot/position</code> and <code>state/robot/orientation</code> before projection.</p>
 </div>
 
-<h2>Before / After Comparison</h2>
-<p style="color:var(--muted);margin-bottom:1rem;">Each video: <strong>RGB (left)</strong> | <strong>Before (center)</strong> | <strong>After fix (right)</strong></p>
+<h2>Before / After Comparison (Skeleton on RGB)</h2>
+<p style="color:var(--muted);margin-bottom:1rem;">Each video: <strong>Before fix (left, skeleton on RGB)</strong> | <strong>After fix (right, skeleton on RGB)</strong>. Check if the skeleton aligns with the actual arm.</p>
 
 <div class="video-grid">
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_900765_a2_284_479.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 900765</span> &middot; 195f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/351_815062_a1_75_305.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 815062</span> &middot; 230f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/505_735944_a4_569_778.mp4"></video><div class="video-meta"><span class="scene-name">Task 505 / Ep 735944</span> &middot; 209f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_862865_a1_162_370.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862865</span> &middot; 208f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/773_923378_a0_0_86.mp4"></video><div class="video-meta"><span class="scene-name">Task 773 / Ep 923378</span> &middot; 86f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/428_728891_a1_283_390.mp4"></video><div class="video-meta"><span class="scene-name">Task 428 / Ep 728891</span> &middot; 107f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_899278_a1_142_253.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 899278</span> &middot; 111f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_862682_a2_260_327.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862682</span> &middot; 67f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/440_714998_a2_284_510.mp4"></video><div class="video-meta"><span class="scene-name">Task 440 / Ep 714998</span> &middot; 226f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/494_718252_a5_800_960.mp4"></video><div class="video-meta"><span class="scene-name">Task 494 / Ep 718252</span> &middot; 160f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/698_900765_a2_284_479.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 900765</span> &middot; 195f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/351_815062_a1_75_305.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 815062</span> &middot; 230f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/505_735944_a4_569_778.mp4"></video><div class="video-meta"><span class="scene-name">Task 505 / Ep 735944</span> &middot; 209f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/698_862865_a1_162_370.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862865</span> &middot; 208f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/773_923378_a0_0_86.mp4"></video><div class="video-meta"><span class="scene-name">Task 773 / Ep 923378</span> &middot; 86f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/428_728891_a1_283_390.mp4"></video><div class="video-meta"><span class="scene-name">Task 428 / Ep 728891</span> &middot; 107f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/698_899278_a1_142_253.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 899278</span> &middot; 111f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/698_862682_a2_260_327.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862682</span> &middot; 67f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/440_714998_a2_284_510.mp4"></video><div class="video-meta"><span class="scene-name">Task 440 / Ep 714998</span> &middot; 226f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/494_718252_a5_800_960.mp4"></video><div class="video-meta"><span class="scene-name">Task 494 / Ep 718252</span> &middot; 160f</div></div>
 </div>
 </div>
 <script>
