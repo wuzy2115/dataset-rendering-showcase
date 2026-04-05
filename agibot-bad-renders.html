@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AGIBot Bad Render Investigation</title>
+<title>AGIBot Rendering Issues Investigation</title>
 <style>
   :root { --bg:#0f1117; --card:#1a1d27; --border:#2a2d3a; --text:#e4e6ef; --muted:#8b8fa3; --accent:#6366f1; --green:#22c55e; --red:#ef4444; --yellow:#eab308; --orange:#f97316; }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
   .container { max-width:1400px; margin:0 auto; padding:2rem; }
-  h1 { font-size:1.8rem; margin-bottom:0.5rem; color:var(--red); }
+  h1 { font-size:1.8rem; margin-bottom:0.5rem; }
   h2 { font-size:1.3rem; margin:2rem 0 1rem; padding-bottom:0.5rem; border-bottom:2px solid var(--border); }
   h3 { font-size:1.1rem; margin:1.5rem 0 0.5rem; color:var(--accent); }
   .back-link { display:inline-block; margin-bottom:1.5rem; color:var(--accent); text-decoration:none; font-size:0.9rem; }
@@ -19,52 +19,147 @@
   .info-box p:last-child { margin-bottom:0; }
   code { background:rgba(99,102,241,0.15); padding:2px 6px; border-radius:4px; font-size:0.85em; }
   .stats-row { display:flex; gap:1.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
-  .stat-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem 1.5rem; text-align:center; min-width:120px; }
+  .stat-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem 1.5rem; text-align:center; min-width:140px; }
   .stat-card .value { font-size:1.5rem; font-weight:700; }
-  .stat-card .label { font-size:0.75rem; color:var(--muted); text-transform:uppercase; }
+  .stat-card .label { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.02em; }
   .stat-card.red .value { color:var(--red); }
   .stat-card.green .value { color:var(--green); }
   .stat-card.orange .value { color:var(--orange); }
+  .stat-card.yellow .value { color:var(--yellow); }
   .video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(400px,1fr)); gap:1rem; }
   .video-card { background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; transition:border-color 0.2s; }
   .video-card:hover { border-color:var(--accent); }
   .video-card video { width:100%; display:block; background:#000; }
   .video-meta { padding:0.75rem 1rem; font-size:0.8rem; color:var(--muted); }
   .video-meta .scene-name { color:var(--text); font-weight:600; font-size:0.85rem; }
-  .tag { display:inline-block; padding:1px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; }
+  .tag { display:inline-block; padding:1px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; margin-left:0.5rem; }
   .tag-red { background:rgba(239,68,68,0.15); color:var(--red); }
   .tag-orange { background:rgba(249,115,22,0.15); color:var(--orange); }
   .tag-yellow { background:rgba(234,179,8,0.15); color:var(--yellow); }
+  .tag-green { background:rgba(34,197,94,0.15); color:var(--green); }
   video[data-src] { min-height:200px; }
+  table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.85em; }
+  th, td { padding:0.5rem 0.75rem; text-align:left; border-bottom:1px solid var(--border); }
+  th { color:var(--muted); font-weight:600; text-transform:uppercase; font-size:0.75em; letter-spacing:0.03em; }
+  td code { font-size:0.8em; }
+  .severity-table { max-width:600px; }
+  .section-type-a { border-left:3px solid var(--red); padding-left:1rem; margin-bottom:2rem; }
+  .section-type-b { border-left:3px solid var(--orange); padding-left:1rem; margin-bottom:2rem; }
 </style>
 </head>
 <body>
 <div class="container">
 <a href="index.html#rendering" class="back-link">&larr; Back to Showcase</a>
-<h1>AGIBot Render Fix: Before / After</h1>
-<p style="color:var(--muted);margin-bottom:1.5rem;">Robot base pose compensation fix for gripper_scenario projection</p>
+<h1>AGIBot Rendering Issues Investigation</h1>
+<p style="color:var(--muted);margin-bottom:1.5rem;">Coordinate frame mismatch between end-effector poses and camera extrinsics &mdash; full scan of 44,358 rendered episodes</p>
 
-<h2>Root Cause</h2>
+<h2>Problem Overview</h2>
 <div class="info-box">
-  <p><strong>Bug:</strong> End-effector positions (<code>state/end/position</code>) are in <strong>robot base frame</strong>, but camera extrinsics are in <strong>world frame</strong>. When the robot base has non-zero position or orientation, the skeleton projection is offset or distorted.</p>
-  <p><strong>Fix:</strong> Transform camera extrinsics into robot base frame using per-frame <code>state/robot/position</code> and <code>state/robot/orientation</code> before projection.</p>
+  <p><strong>Core issue:</strong> End-effector positions (<code>state/end/position</code>) are in <strong>robot base frame</strong>, but camera extrinsics (<code>head_extrinsic_params_aligned.json</code>) are in <strong>world frame</strong>. The rendering code projects base-frame 3D points using world-frame camera parameters without any coordinate transform, causing misaligned skeleton overlays.</p>
+  <p>This manifests as two distinct failure modes depending on the relationship between the robot's odometry origin and the camera calibration origin.</p>
 </div>
 
-<h2>Before / After Comparison (Skeleton on RGB)</h2>
-<p style="color:var(--muted);margin-bottom:1rem;">Each video: <strong>Before fix (left, skeleton on RGB)</strong> | <strong>After fix (right, skeleton on RGB)</strong>. Check if the skeleton aligns with the actual arm.</p>
+<div class="stats-row">
+  <div class="stat-card green"><div class="value">31,569</div><div class="label">Clean episodes</div></div>
+  <div class="stat-card red"><div class="value">2,102</div><div class="label">Type A &mdash; calibration</div></div>
+  <div class="stat-card orange"><div class="value">6,653</div><div class="label">Type B &mdash; offset</div></div>
+  <div class="stat-card"><div class="value">44,358</div><div class="label">Total scanned</div></div>
+</div>
 
+<!-- ===== TYPE A ===== -->
+<h2 style="color:var(--red);">Type A: Calibration Coordinate System Mismatch</h2>
+<div class="section-type-a">
+
+<div class="info-box">
+  <p><strong>Symptom:</strong> Skeleton rendering is completely wrong &mdash; projected bones appear in entirely wrong positions on the image, or the end-effector floats far off screen.</p>
+  <p><strong>Cause:</strong> The camera extrinsics world origin does not coincide with the robot's odometry origin. The head camera (physically mounted on the robot at ~0.9m height) reports a world-frame position &gt;1.5m from the robot's reported position &mdash; physically impossible for a head-mounted camera. This means the calibration board that defined the "world frame" was placed at a different location than where the robot's SLAM/odometry initializes its origin.</p>
+  <p><strong>Diagnosis metric:</strong> <code>||cam_translation - robot_position|| &gt; 1.5m</code></p>
+  <p><strong>Impact:</strong> 2,102 episodes across 79 tasks. <strong>Not fixable by code</strong> &mdash; requires either re-calibration or finding the calibration-to-odometry transform for each affected scene.</p>
+</div>
+
+<h3>Severity examples</h3>
+<table class="severity-table">
+  <tr><th>Task</th><th>Episodes</th><th>Camera-Robot Distance</th></tr>
+  <tr><td>726</td><td>15</td><td>2.2 &ndash; 31.2 m</td></tr>
+  <tr><td>373</td><td>56</td><td>1.5 &ndash; 28.1 m</td></tr>
+  <tr><td>462</td><td>52</td><td>1.6 &ndash; 20.0 m</td></tr>
+  <tr><td>507</td><td>17</td><td>14.0 m</td></tr>
+  <tr><td>556</td><td>54</td><td>6.3 m</td></tr>
+  <tr><td>494</td><td>52</td><td>2.5 m</td></tr>
+  <tr><td>351</td><td>268</td><td>1.5 &ndash; 11.9 m</td></tr>
+  <tr><td>708</td><td>149</td><td>1.5 &ndash; 4.2 m</td></tr>
+</table>
+
+<h3>Example videos</h3>
+<p style="color:var(--muted);margin-bottom:1rem;font-size:0.85em;">Skeleton appears in completely wrong positions relative to the actual robot arms.</p>
 <div class="video-grid">
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/698_900765_a2_284_479.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 900765</span> &middot; 195f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/351_815062_a1_75_305.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 815062</span> &middot; 230f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/505_735944_a4_569_778.mp4"></video><div class="video-meta"><span class="scene-name">Task 505 / Ep 735944</span> &middot; 209f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/698_862865_a1_162_370.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862865</span> &middot; 208f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/773_923378_a0_0_86.mp4"></video><div class="video-meta"><span class="scene-name">Task 773 / Ep 923378</span> &middot; 86f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/428_728891_a1_283_390.mp4"></video><div class="video-meta"><span class="scene-name">Task 428 / Ep 728891</span> &middot; 107f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/698_899278_a1_142_253.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 899278</span> &middot; 111f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/698_862682_a2_260_327.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862682</span> &middot; 67f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/440_714998_a2_284_510.mp4"></video><div class="video-meta"><span class="scene-name">Task 440 / Ep 714998</span> &middot; 226f</div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_fix_overlay/494_718252_a5_800_960.mp4"></video><div class="video-meta"><span class="scene-name">Task 494 / Ep 718252</span> &middot; 160f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/494_718252_a5_800_960.mp4"></video><div class="video-meta"><span class="scene-name">Task 494 / Ep 718252</span><span class="tag tag-red">Type A</span><br>cam&harr;robot: 2.53m &middot; robot_offset: 0.001m</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/505_735944_a4_569_778.mp4"></video><div class="video-meta"><span class="scene-name">Task 505 / Ep 735944</span><span class="tag tag-red">Type A</span><br>cam&harr;robot: 2.53m &middot; robot_offset: 0.000m</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/351_815062_a1_75_305.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 815062</span><span class="tag tag-red">Type A</span><br>cam&harr;robot: 1.89m &middot; robot_offset: 1.08m</div></div>
 </div>
+</div>
+
+<!-- ===== TYPE B ===== -->
+<h2 style="color:var(--orange);">Type B: Robot Base Offset (Fixable)</h2>
+<div class="section-type-b">
+
+<div class="info-box">
+  <p><strong>Symptom:</strong> Skeleton shape is roughly correct but shifted &mdash; bones track the arms but with a consistent positional offset.</p>
+  <p><strong>Cause:</strong> The robot base has moved from the world origin (<code>state/robot/position &gt; 0.1m</code>), but end-effector positions are still in robot base frame. The camera extrinsics are in world frame and close to the robot (cam&harr;robot &le; 1.5m), confirming they share the same coordinate system. The missing step is transforming end-effector poses from base frame to world frame.</p>
+  <p><strong>Fix:</strong> Before projection, apply the robot base transform: <code>p_world = R_base @ p_base + t_base</code> using per-frame <code>state/robot/position</code> and <code>state/robot/orientation</code>.</p>
+  <p><strong>Impact:</strong> 6,653 episodes across 107 tasks.</p>
+</div>
+
+<h3>Severity breakdown</h3>
+<table class="severity-table">
+  <tr><th>Severity</th><th>Offset range</th><th>Episodes</th><th>Visual impact</th></tr>
+  <tr><td><span class="tag tag-yellow">Mild</span></td><td>0.1 &ndash; 0.3 m</td><td>3,798</td><td>Subtle shift, may not be immediately obvious</td></tr>
+  <tr><td><span class="tag tag-orange">Moderate</span></td><td>0.3 &ndash; 0.5 m</td><td>1,579</td><td>Clearly visible misalignment</td></tr>
+  <tr><td><span class="tag tag-red">Severe</span></td><td>&gt; 0.5 m</td><td>1,276</td><td>Large offset, bones clearly disconnected from arms</td></tr>
+</table>
+
+<h3>Most affected tasks</h3>
+<table class="severity-table">
+  <tr><th>Task</th><th>Episodes</th><th>Offset range</th></tr>
+  <tr><td>527</td><td>741</td><td>0.10 &ndash; 1.27 m</td></tr>
+  <tr><td>764</td><td>463</td><td>0.10 &ndash; 0.70 m</td></tr>
+  <tr><td>740</td><td>336</td><td>0.10 &ndash; 1.05 m</td></tr>
+  <tr><td>708</td><td>335</td><td>0.10 &ndash; 1.42 m</td></tr>
+  <tr><td>373</td><td>289</td><td>0.10 &ndash; 1.69 m</td></tr>
+  <tr><td>712</td><td>274</td><td>0.10 &ndash; 0.80 m</td></tr>
+  <tr><td>363</td><td>254</td><td>0.10 &ndash; 0.72 m</td></tr>
+  <tr><td>445</td><td>235</td><td>0.10 &ndash; 0.72 m</td></tr>
+</table>
+
+<h3>Example videos</h3>
+<p style="color:var(--muted);margin-bottom:1rem;font-size:0.85em;">Skeleton shape is correct but shifted from the actual arm position.</p>
+<div class="video-grid">
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_900765_a2_284_479.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 900765</span><span class="tag tag-orange">Type B</span><br>robot_offset: 0.218m &middot; cam&harr;robot: 0.87m</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_862865_a1_162_370.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862865</span><span class="tag tag-orange">Type B</span><br>robot_offset: 0.138m &middot; cam&harr;robot: 0.91m</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_862682_a2_260_327.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862682</span><span class="tag tag-orange">Type B</span><br>robot_offset: 0.138m &middot; cam&harr;robot: 0.91m</div></div>
+</div>
+</div>
+
+<!-- ===== CLEAN ===== -->
+<h2 style="color:var(--green);">Reference: Clean Renders</h2>
+<div class="info-box">
+  <p>These episodes have <code>robot_offset &lt; 0.01m</code> and <code>cam&harr;robot &le; 1.5m</code> &mdash; the coordinate frame mismatch is negligible and the rendering is correct.</p>
+</div>
+<div class="video-grid">
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/773_923378_a0_0_86.mp4"></video><div class="video-meta"><span class="scene-name">Task 773 / Ep 923378</span><span class="tag tag-green">Clean</span><br>robot_offset: 0.000m &middot; cam&harr;robot: 0.92m</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/428_728891_a1_283_390.mp4"></video><div class="video-meta"><span class="scene-name">Task 428 / Ep 728891</span><span class="tag tag-green">Clean</span><br>robot_offset: 0.001m &middot; cam&harr;robot: 0.96m</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_899278_a1_142_253.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 899278</span><span class="tag tag-green">Clean</span><br>robot_offset: 0.005m &middot; cam&harr;robot: 0.94m</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/440_714998_a2_284_510.mp4"></video><div class="video-meta"><span class="scene-name">Task 440 / Ep 714998</span><span class="tag tag-green">Clean</span><br>robot_offset: 0.001m &middot; cam&harr;robot: 1.17m</div></div>
+</div>
+
+<h2>Detection Methodology</h2>
+<div class="info-box">
+  <p><strong>Scan approach:</strong> For each of 44,358 rendered episodes (from dedup manifests), read <code>state/robot/position[0]</code> from <code>proprio_stats.h5</code> and the first <code>translation_vector</code> from <code>head_extrinsic_params_aligned.json</code>. Compute:</p>
+  <p>&bull; <code>robot_offset = ||robot_position||</code> &mdash; how far the robot base is from world origin</p>
+  <p>&bull; <code>cam_robot_dist = ||cam_translation - robot_position||</code> &mdash; distance from camera to robot (should be ~0.9m for head-mounted camera)</p>
+  <p>Classification: <strong>Type A</strong> if cam_robot_dist &gt; 1.5m. <strong>Type B</strong> if robot_offset &gt; 0.1m and cam_robot_dist &le; 1.5m.</p>
+</div>
+
 </div>
 <script>
 const observer = new IntersectionObserver((entries) => {
