@@ -41,72 +41,29 @@
 <body>
 <div class="container">
 <a href="index.html#rendering" class="back-link">&larr; Back to Showcase</a>
-<h1>AGIBot Bad Render Investigation</h1>
-<p style="color:var(--muted);margin-bottom:1.5rem;">Gripper_scenario rendering anomalies in AGIBot Beta dataset</p>
+<h1>AGIBot Render Fix: Before / After</h1>
+<p style="color:var(--muted);margin-bottom:1.5rem;">Robot base pose compensation fix for gripper_scenario projection</p>
 
-<div class="stats-row">
-  <div class="stat-card green"><div class="value">93,981</div><div class="label">Total Actions</div></div>
-  <div class="stat-card red"><div class="value">195</div><div class="label">Anomalous (0.21%)</div></div>
-  <div class="stat-card red"><div class="value">49</div><div class="label">Zero Coverage</div></div>
-  <div class="stat-card orange"><div class="value">146</div><div class="label">Near-Zero (&lt;0.2%)</div></div>
-</div>
-
-<h2>Root Cause Analysis</h2>
-
-<h3>1. Skeleton Out of Frame (zero coverage)</h3>
+<h2>Root Cause</h2>
 <div class="info-box">
-  <p><strong>Symptom:</strong> Gripper_scenario is completely black.</p>
-  <p><strong>Cause:</strong> Head camera looks up/forward, both arms project below the image frame (y &gt; 480). The old FOV check used axis-tip projections that could pass even when the full FK skeleton chain was out of frame.</p>
-  <p><strong>Fix:</strong> Post-render pixel coverage check replaces axis-tip projection.</p>
+  <p><strong>Bug:</strong> End-effector positions (<code>state/end/position</code>) are in <strong>robot base frame</strong>, but camera extrinsics are in <strong>world frame</strong>. When the robot base has non-zero position or orientation, the skeleton projection is offset or distorted.</p>
+  <p><strong>Fix:</strong> Transform camera extrinsics into robot base frame using per-frame <code>state/robot/position</code> and <code>state/robot/orientation</code> before projection.</p>
 </div>
 
-<h3>2. Skeleton Offset from Actual Arm Position</h3>
-<div class="info-box">
-  <p><strong>Symptom:</strong> Skeleton has correct shape but is shifted from the actual arm in RGB.</p>
-  <p><strong>Cause:</strong> End-effector positions (<code>state/end/position</code>) are in <strong>robot base frame</strong>, but camera extrinsics are in <strong>world frame</strong>. When the robot base moves, the coordinate frames diverge. Example: Ep 698/900765 has robot at (0.22m, 0, 0) with yaw=0.08 rad, but calibration assumes a different base pose.</p>
-  <p><strong>Fix needed:</strong> Transform camera extrinsics into robot base frame using per-frame <code>state/robot/position</code> and <code>state/robot/orientation</code>.</p>
-</div>
+<h2>Before / After Comparison</h2>
+<p style="color:var(--muted);margin-bottom:1rem;">Each video: <strong>RGB (left)</strong> | <strong>Before (center)</strong> | <strong>After fix (right)</strong></p>
 
-<h3>3. Wrong Camera Calibration Data</h3>
-<div class="info-box">
-  <p><strong>Symptom:</strong> Projection direction is completely wrong.</p>
-  <p><strong>Cause:</strong> Some episodes have extrinsics/intrinsics from a different physical camera (external/overhead), not the head camera. Intrinsics (ppx=318, ppy=252) differ from task typical values (ppx=322-324, ppy=239-244), and camera translation ~2.5m from origin (too far for head-mounted).</p>
-  <p><strong>Fix needed:</strong> Detect and filter episodes with mismatched camera calibration.</p>
-</div>
-
-<h2>Sample Videos</h2>
-<p style="color:var(--muted);margin-bottom:1rem;">Each video: <strong>RGB (left)</strong> | <strong>gripper_scenario (right)</strong></p>
-
-<h3>Category 1: Skeleton Out of Frame</h3>
 <div class="video-grid">
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_00.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 813066</span> &middot; 220f &middot; <span class="tag tag-red">zero coverage</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_01.mp4"></video><div class="video-meta"><span class="scene-name">Task 462 / Ep 876055</span> &middot; 140f &middot; <span class="tag tag-red">zero coverage</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_02.mp4"></video><div class="video-meta"><span class="scene-name">Task 561 / Ep 843888</span> &middot; 120f &middot; <span class="tag tag-red">zero coverage</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_03.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 901209</span> &middot; 125f &middot; <span class="tag tag-red">zero coverage</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_04.mp4"></video><div class="video-meta"><span class="scene-name">Task 725 / Ep 891949</span> &middot; 157f &middot; <span class="tag tag-red">zero coverage</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_05.mp4"></video><div class="video-meta"><span class="scene-name">Task 748 / Ep 893196</span> &middot; 144f &middot; <span class="tag tag-red">zero coverage</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_09.mp4"></video><div class="video-meta"><span class="scene-name">Task 692 / Ep 895716</span> &middot; 20f &middot; <span class="tag tag-red">0.088%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_10.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 799183</span> &middot; 269f &middot; <span class="tag tag-red">0.101%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_11.mp4"></video><div class="video-meta"><span class="scene-name">Task 372 / Ep 675587</span> &middot; 37f &middot; <span class="tag tag-red">0.112%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_17.mp4"></video><div class="video-meta"><span class="scene-name">Task 600 / Ep 817123</span> &middot; 129f &middot; <span class="tag tag-red">0.177%</span></div></div>
-</div>
-
-<h3>Category 2: Skeleton Offset from Actual Position</h3>
-<div class="video-grid">
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_06.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 900765</span> &middot; 195f &middot; <span class="tag tag-orange">offset &middot; 0.015%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_07.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 815062</span> &middot; 84f &middot; <span class="tag tag-orange">offset &middot; 0.040%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_08.mp4"></video><div class="video-meta"><span class="scene-name">Task 505 / Ep 735944</span> &middot; 209f &middot; <span class="tag tag-orange">offset &middot; 0.073%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_12.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862865</span> &middot; 208f &middot; <span class="tag tag-orange">offset &middot; 0.128%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_13.mp4"></video><div class="video-meta"><span class="scene-name">Task 773 / Ep 923378</span> &middot; 60f &middot; <span class="tag tag-orange">offset &middot; 0.135%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_14.mp4"></video><div class="video-meta"><span class="scene-name">Task 428 / Ep 728891</span> &middot; 107f &middot; <span class="tag tag-orange">offset &middot; 0.162%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_16.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 899278</span> &middot; 111f &middot; <span class="tag tag-orange">offset &middot; 0.172%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_18.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862682</span> &middot; 67f &middot; <span class="tag tag-orange">offset &middot; 0.188%</span></div></div>
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_19.mp4"></video><div class="video-meta"><span class="scene-name">Task 440 / Ep 714998</span> &middot; 226f &middot; <span class="tag tag-orange">offset &middot; 0.195%</span></div></div>
-</div>
-
-<h3>Category 3: Wrong Camera Calibration</h3>
-<div class="video-grid">
-  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_15.mp4"></video><div class="video-meta"><span class="scene-name">Task 494 / Ep 718252</span> &middot; 160f &middot; <span class="tag tag-yellow">wrong camera &middot; 0.167%</span></div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_900765_a2_284_479.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 900765</span> &middot; 195f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/351_815062_a1_75_305.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 815062</span> &middot; 230f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/505_735944_a4_569_778.mp4"></video><div class="video-meta"><span class="scene-name">Task 505 / Ep 735944</span> &middot; 209f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_862865_a1_162_370.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862865</span> &middot; 208f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/773_923378_a0_0_86.mp4"></video><div class="video-meta"><span class="scene-name">Task 773 / Ep 923378</span> &middot; 86f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/428_728891_a1_283_390.mp4"></video><div class="video-meta"><span class="scene-name">Task 428 / Ep 728891</span> &middot; 107f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_899278_a1_142_253.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 899278</span> &middot; 111f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/698_862682_a2_260_327.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862682</span> &middot; 67f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/440_714998_a2_284_510.mp4"></video><div class="video-meta"><span class="scene-name">Task 440 / Ep 714998</span> &middot; 226f</div></div>
+  <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders_fixed/494_718252_a5_800_960.mp4"></video><div class="video-meta"><span class="scene-name">Task 494 / Ep 718252</span> &middot; 160f</div></div>
 </div>
 </div>
 <script>
