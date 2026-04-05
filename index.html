@@ -722,37 +722,11 @@
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_g1/agibot_g1_04.mp4"></video><div class="video-meta"><span class="scene-name">Task 475 / Ep 757620</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
   </div>
 
-  <!-- Bad Render Investigation -->
-  <h3 id="agibot-bad-renders" style="margin-top:2em; color:#e74c3c;">Bad Render Investigation (195 / 93,981 actions = 0.21%)</h3>
-  <div style="background:#2d2d2d; padding:1em; border-radius:8px; margin-bottom:1em; font-size:0.9em; line-height:1.6;">
-    <p><strong>Issue:</strong> 195 actions have gripper_scenario videos with &lt;0.2% pixel coverage (skeleton barely visible or completely absent).</p>
-    <p><strong>Root cause:</strong> The FOV visibility check (<code>_frame_end_effector_visible_in_fov</code>) uses axis-tip projections (0.2m radius) which can pass when the skeleton chain projects entirely outside the frame. These actions correspond to moments when the G1 head camera looks away from the workspace.</p>
-    <p><strong>Breakdown:</strong> 49 with zero pixels, 48 with &lt;0.1% coverage, 98 with 0.1&ndash;0.2% coverage.</p>
-    <p><strong>Fix:</strong> Replace axis-tip FOV check with post-render pixel coverage validation. Filter these 195 actions from training manifests.</p>
-    <p>Each video below shows: <strong>RGB (left)</strong> | <strong>gripper_scenario (right)</strong>. Note the skeleton is tiny or absent on the right half.</p>
-  </div>
-  <div class="video-grid" id="grid-agibot-bad-renders">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_00.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 813066</span> &middot; 220 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">zero coverage</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_01.mp4"></video><div class="video-meta"><span class="scene-name">Task 462 / Ep 876055</span> &middot; 140 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">zero coverage</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_02.mp4"></video><div class="video-meta"><span class="scene-name">Task 561 / Ep 843888</span> &middot; 120 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">zero coverage</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_03.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 901209</span> &middot; 125 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">zero coverage</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_04.mp4"></video><div class="video-meta"><span class="scene-name">Task 725 / Ep 891949</span> &middot; 157 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">zero coverage</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_05.mp4"></video><div class="video-meta"><span class="scene-name">Task 748 / Ep 893196</span> &middot; 144 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">zero coverage</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_06.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 900765</span> &middot; 195 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.015%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_07.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 815062</span> &middot; 84 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.040%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_08.mp4"></video><div class="video-meta"><span class="scene-name">Task 505 / Ep 735944</span> &middot; 209 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.073%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_09.mp4"></video><div class="video-meta"><span class="scene-name">Task 692 / Ep 895716</span> &middot; 20 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.088%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_10.mp4"></video><div class="video-meta"><span class="scene-name">Task 351 / Ep 799183</span> &middot; 269 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.101%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_11.mp4"></video><div class="video-meta"><span class="scene-name">Task 372 / Ep 675587</span> &middot; 37 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.112%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_12.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862865</span> &middot; 208 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.128%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_13.mp4"></video><div class="video-meta"><span class="scene-name">Task 773 / Ep 923378</span> &middot; 60 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.135%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_14.mp4"></video><div class="video-meta"><span class="scene-name">Task 428 / Ep 728891</span> &middot; 107 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.162%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_15.mp4"></video><div class="video-meta"><span class="scene-name">Task 494 / Ep 718252</span> &middot; 160 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.167%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_16.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 899278</span> &middot; 111 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.172%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_17.mp4"></video><div class="video-meta"><span class="scene-name">Task 600 / Ep 817123</span> &middot; 129 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.177%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_18.mp4"></video><div class="video-meta"><span class="scene-name">Task 698 / Ep 862682</span> &middot; 67 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.188%</span></div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_bad_renders/bad_render_19.mp4"></video><div class="video-meta"><span class="scene-name">Task 440 / Ep 714998</span> &middot; 226 frames &middot; RGB | gripper_scenario &middot; <span style="color:#e74c3c">coverage=0.195%</span></div></div>
-  </div>
+  <p style="margin-top:1rem;">
+    <a href="agibot-bad-renders.html" style="color:#ef4444; text-decoration:none; font-weight:600; font-size:0.9rem;">
+      &#9888; Bad Render Investigation (195 / 93,981 actions) &rarr;
+    </a>
+  </p>
 
   </div>
 </div>
