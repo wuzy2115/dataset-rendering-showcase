@@ -1,0 +1,187 @@
+{
+  "total_bad": 195,
+  "sampled": 20,
+  "threshold": 0.002,
+  "entries": [
+    {
+      "index": 0,
+      "action_id": "351_813066_a3_426_646",
+      "task_id": "351",
+      "episode_id": "813066",
+      "coverage": 0.0,
+      "frames": 220,
+      "video_file": "videos/agibot_bad_renders/bad_render_00.mp4"
+    },
+    {
+      "index": 1,
+      "action_id": "462_876055_a4_556_696",
+      "task_id": "462",
+      "episode_id": "876055",
+      "coverage": 0.0,
+      "frames": 140,
+      "video_file": "videos/agibot_bad_renders/bad_render_01.mp4"
+    },
+    {
+      "index": 2,
+      "action_id": "561_843888_a1_296_416",
+      "task_id": "561",
+      "episode_id": "843888",
+      "coverage": 0.0,
+      "frames": 120,
+      "video_file": "videos/agibot_bad_renders/bad_render_02.mp4"
+    },
+    {
+      "index": 3,
+      "action_id": "698_901209_a1_165_290",
+      "task_id": "698",
+      "episode_id": "901209",
+      "coverage": 0.0,
+      "frames": 125,
+      "video_file": "videos/agibot_bad_renders/bad_render_03.mp4"
+    },
+    {
+      "index": 4,
+      "action_id": "725_891949_a6_603_760",
+      "task_id": "725",
+      "episode_id": "891949",
+      "coverage": 0.0,
+      "frames": 157,
+      "video_file": "videos/agibot_bad_renders/bad_render_04.mp4"
+    },
+    {
+      "index": 5,
+      "action_id": "748_893196_a5_709_853",
+      "task_id": "748",
+      "episode_id": "893196",
+      "coverage": 0.0,
+      "frames": 144,
+      "video_file": "videos/agibot_bad_renders/bad_render_05.mp4"
+    },
+    {
+      "index": 6,
+      "action_id": "698_900765_a2_284_479",
+      "task_id": "698",
+      "episode_id": "900765",
+      "coverage": 0.000146484375,
+      "frames": 195,
+      "video_file": "videos/agibot_bad_renders/bad_render_06.mp4"
+    },
+    {
+      "index": 7,
+      "action_id": "351_815062_a2_305_389",
+      "task_id": "351",
+      "episode_id": "815062",
+      "coverage": 0.0004036458333333333,
+      "frames": 84,
+      "video_file": "videos/agibot_bad_renders/bad_render_07.mp4"
+    },
+    {
+      "index": 8,
+      "action_id": "505_735944_a4_569_778",
+      "task_id": "505",
+      "episode_id": "735944",
+      "coverage": 0.0007259114583333333,
+      "frames": 209,
+      "video_file": "videos/agibot_bad_renders/bad_render_08.mp4"
+    },
+    {
+      "index": 9,
+      "action_id": "692_895716_a3_160_180",
+      "task_id": "692",
+      "episode_id": "895716",
+      "coverage": 0.0008821614583333333,
+      "frames": 20,
+      "video_file": "videos/agibot_bad_renders/bad_render_09.mp4"
+    },
+    {
+      "index": 10,
+      "action_id": "351_799183_a3_405_674",
+      "task_id": "351",
+      "episode_id": "799183",
+      "coverage": 0.0010091145833333334,
+      "frames": 269,
+      "video_file": "videos/agibot_bad_renders/bad_render_10.mp4"
+    },
+    {
+      "index": 11,
+      "action_id": "372_675587_a6_411_448",
+      "task_id": "372",
+      "episode_id": "675587",
+      "coverage": 0.0011197916666666667,
+      "frames": 37,
+      "video_file": "videos/agibot_bad_renders/bad_render_11.mp4"
+    },
+    {
+      "index": 12,
+      "action_id": "698_862865_a1_162_370",
+      "task_id": "698",
+      "episode_id": "862865",
+      "coverage": 0.0012825520833333332,
+      "frames": 208,
+      "video_file": "videos/agibot_bad_renders/bad_render_12.mp4"
+    },
+    {
+      "index": 13,
+      "action_id": "773_923378_a11_1189_1249",
+      "task_id": "773",
+      "episode_id": "923378",
+      "coverage": 0.0013541666666666667,
+      "frames": 60,
+      "video_file": "videos/agibot_bad_renders/bad_render_13.mp4"
+    },
+    {
+      "index": 14,
+      "action_id": "428_728891_a1_283_390",
+      "task_id": "428",
+      "episode_id": "728891",
+      "coverage": 0.0016178385416666667,
+      "frames": 107,
+      "video_file": "videos/agibot_bad_renders/bad_render_14.mp4"
+    },
+    {
+      "index": 15,
+      "action_id": "494_718252_a5_800_960",
+      "task_id": "494",
+      "episode_id": "718252",
+      "coverage": 0.0016731770833333334,
+      "frames": 160,
+      "video_file": "videos/agibot_bad_renders/bad_render_15.mp4"
+    },
+    {
+      "index": 16,
+      "action_id": "698_899278_a1_142_253",
+      "task_id": "698",
+      "episode_id": "899278",
+      "coverage": 0.0017220052083333332,
+      "frames": 111,
+      "video_file": "videos/agibot_bad_renders/bad_render_16.mp4"
+    },
+    {
+      "index": 17,
+      "action_id": "600_817123_a3_497_626",
+      "task_id": "600",
+      "episode_id": "817123",
+      "coverage": 0.0017740885416666669,
+      "frames": 129,
+      "video_file": "videos/agibot_bad_renders/bad_render_17.mp4"
+    },
+    {
+      "index": 18,
+      "action_id": "698_862682_a2_260_327",
+      "task_id": "698",
+      "episode_id": "862682",
+      "coverage": 0.001875,
+      "frames": 67,
+      "video_file": "videos/agibot_bad_renders/bad_render_18.mp4"
+    },
+    {
+      "index": 19,
+      "action_id": "440_714998_a2_284_510",
+      "task_id": "440",
+      "episode_id": "714998",
+      "coverage": 0.0019466145833333334,
+      "frames": 226,
+      "video_file": "videos/agibot_bad_renders/bad_render_19.mp4"
+    }
+  ]
+}
