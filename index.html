@@ -560,6 +560,7 @@
 <div class="tab-nav">
   <button class="tab-btn active" data-tab="rendering-tab">Rendering Showcase</button>
   <button class="tab-btn" data-tab="processed-tab">Processed Datasets</button>
+  <button class="tab-btn" data-tab="droid-quality-tab">DROID Quality Filter</button>
   <button class="tab-btn" data-tab="training-tab">Model Training</button>
 </div>
 
@@ -721,6 +722,13 @@
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_g1/agibot_g1_03.mp4"></video><div class="video-meta"><span class="scene-name">Task 475 / Ep 757475</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/agibot_g1/agibot_g1_04.mp4"></video><div class="video-meta"><span class="scene-name">Task 475 / Ep 757620</span> &middot; 225 frames &middot; 640x480 &middot; skeleton+gripper</div></div>
   </div>
+
+  <p style="margin-top:1rem;">
+    <a href="agibot-bad-renders.html" style="color:#ef4444; text-decoration:none; font-weight:600; font-size:0.9rem;">
+      &#9888; Bad Render Investigation (195 / 93,981 actions) &rarr;
+    </a>
+  </p>
+
   </div>
 </div>
 
@@ -3745,6 +3753,424 @@
   </div>
 </div>
 
+<div id="droid-quality-tab" class="tab-content">
+<div class="section">
+  <h2 class="section-title">DROID VLM Quality Filter <span class="badge badge-green">Qwen3-VL-30B</span></h2>
+  <p style="margin: 0.5rem 0 1rem 0; color: #aaa;">
+    VLM-based alignment scoring of <strong>24,651</strong> rendered DROID episode-camera pairs.
+    Each overlay video was scored 1&ndash;5 by Qwen3-VL-30B based on skeleton-robot alignment quality.
+    10 random samples per score are shown below for manual review.</p>
+  <table style="border-collapse:collapse; margin:0.5rem 0 1.5rem 0; font-size:0.9rem;">
+    <tr style="border-bottom:1px solid #444;">
+      <th style="padding:4px 12px; text-align:left;">Score</th>
+      <th style="padding:4px 12px; text-align:right;">Count</th>
+      <th style="padding:4px 12px; text-align:right;">%</th>
+      <th style="padding:4px 12px; text-align:left;">Meaning</th>
+    </tr>
+    <tr><td style="padding:4px 12px;"><strong>1</strong></td>
+        <td style="padding:4px 12px; text-align:right;">20</td>
+        <td style="padding:4px 12px; text-align:right;">0.1%</td>
+        <td style="padding:4px 12px;">Completely Wrong &mdash; Skeleton far from robot, wrong scale/orientation</td></tr>
+    <tr><td style="padding:4px 12px;"><strong>2</strong></td>
+        <td style="padding:4px 12px; text-align:right;">40</td>
+        <td style="padding:4px 12px; text-align:right;">0.2%</td>
+        <td style="padding:4px 12px;">Significant Misalignment &mdash; Skeleton clearly in wrong position</td></tr>
+    <tr><td style="padding:4px 12px;"><strong>3</strong></td>
+        <td style="padding:4px 12px; text-align:right;">2,246</td>
+        <td style="padding:4px 12px; text-align:right;">9.1%</td>
+        <td style="padding:4px 12px;">Noticeable Offset &mdash; Skeleton shifted but follows correct shape/motion</td></tr>
+    <tr><td style="padding:4px 12px;"><strong>4</strong></td>
+        <td style="padding:4px 12px; text-align:right;">19,073</td>
+        <td style="padding:4px 12px; text-align:right;">77.4%</td>
+        <td style="padding:4px 12px;">Minor Offset &mdash; Mostly aligned, acceptable for training</td></tr>
+    <tr><td style="padding:4px 12px;"><strong>5</strong></td>
+        <td style="padding:4px 12px; text-align:right;">3,272</td>
+        <td style="padding:4px 12px; text-align:right;">13.3%</td>
+        <td style="padding:4px 12px;">Perfect Alignment &mdash; Skeleton precisely matches robot arm</td></tr>
+  </table>
+  <div class="dataset-section" id="quality-score-1">
+    <div class="dataset-section-header">Score 1: Completely Wrong <span class="badge badge-red">20 episodes (0.1%)</span></div>
+    <p style="margin:0.3rem 0 0.8rem 0; color:#aaa; font-size:0.85rem;">Skeleton far from robot, wrong scale/orientation</p>
+    <div class="video-grid" id="grid-quality-1">
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_1/00.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 24400334 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay is completely wrong; it does not align with the robot arm visible in the image. The yellow lines appear to be incorrectly placed, showing a structure that does not match the actual robot's position or orientation. The scale and orientation are incorrect, and the skeleton does not follow the robot's actual shape or motion. There is no visible robot arm in the overlay that corresponds to the physical setup.">The skeleton overlay is completely wrong; it does not align with the robot arm visible in the image. The yellow lines ap...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_1/01.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 22008760 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay is completely wrong, showing incorrect scale and orientation. The yellow lines and red/blue/green arrows do not align with any visible robot arm in the scene. The skeleton appears to be projecting from an incorrect position and does not match the actual robot's structure or motion. There is no visible robot arm in the images, suggesting the overlay is entirely misaligned with the scene.">The skeleton overlay is completely wrong, showing incorrect scale and orientation. The yellow lines and red/blue/green a...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_1/02.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">CLVR</span> &middot; cam 20103212 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay is completely wrong, with no visible alignment to the robot arm. The yellow lines do not correspond to any part of the robot, and the gripper arrows are not positioned near the actual end-effector. The skeleton appears to be in the wrong location and orientation, indicating a fundamental error in computation or overlay.">The skeleton overlay is completely wrong, with no visible alignment to the robot arm. The yellow lines do not correspond...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_1/03.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 24259877 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay is completely wrong; it does not match the visible robot arm. The yellow lines and arrows appear to be misaligned with the actual robot structure, and the scale and orientation are incorrect. The overlay seems to be placed on a different object entirely, possibly a cable or other unrelated item, indicating a fundamental error in the skeleton computation or overlay.">The skeleton overlay is completely wrong; it does not match the visible robot arm. The yellow lines and arrows appear to...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_1/04.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">PennPAL</span> &middot; cam 25455306 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay is completely wrong, showing a large red line pointing downward from the top left, which does not match the actual robot arm visible in the scene. The robot arm is on the right side of the image, while the overlay is in the wrong position and orientation, indicating incorrect detection or calibration. The scale and alignment are severely off, and the skeleton does not correspond to any visible part of the robot.">The skeleton overlay is completely wrong, showing a large red line pointing downward from the top left, which does not m...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_1/05.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 24259877 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay is completely wrong, showing a large yellow line and red/blue/green arrows in an incorrect position and orientation, not matching the actual robot arm visible in the scene. The scale and position are inaccurate, and the gripper representation does not align with any visible robotic component.">The skeleton overlay is completely wrong, showing a large yellow line and red/blue/green arrows in an incorrect position...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_1/06.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">CLVR</span> &middot; cam 20103212 &middot; src: cam2base+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay is completely wrong, showing incorrect scale and orientation. The yellow lines do not match the robot arm's position or structure, and the gripper arrows are misplaced relative to the actual robot visible in the scene. There is no clear alignment between the overlay and the physical robot.">The skeleton overlay is completely wrong, showing incorrect scale and orientation. The yellow lines do not match the rob...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_1/07.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 24259877 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay is completely wrong; it does not align with the robot arm visible in the image. The yellow lines appear to be misaligned with the actual robot structure, and the red/blue/green arrows indicating the gripper do not correspond to the actual gripper position. The skeleton is either in the wrong location or has incorrect scale/orientation, making it unusable for training. There is no clear correspondence between the overlay and the robot arm.">The skeleton overlay is completely wrong; it does not align with the robot arm visible in the image. The yellow lines ap...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_1/08.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">CLVR</span> &middot; cam 20103212 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay is completely wrong; it is not aligned with the robot arm and appears to be in the wrong position and orientation. The yellow lines and red/blue/green arrows do not correspond to the visible robot arm, indicating a significant error in the skeleton computation or overlay.">The skeleton overlay is completely wrong; it is not aligned with the robot arm and appears to be in the wrong position a...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_1/09.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">RAIL</span> &middot; cam 24259877 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay is completely wrong; it does not match the robot arm's position or orientation. The yellow lines appear to be pointing at unrelated objects in the background, and the gripper arrows (red/blue/green) are misaligned with the actual robot arm. The scale and position are incorrect, indicating a fundamental error in the skeleton computation or overlay.">The skeleton overlay is completely wrong; it does not match the robot arm's position or orientation. The yellow lines ap...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dataset-section" id="quality-score-2">
+    <div class="dataset-section-header">Score 2: Significant Misalignment <span class="badge badge-red">40 episodes (0.2%)</span></div>
+    <p style="margin:0.3rem 0 0.8rem 0; color:#aaa; font-size:0.85rem;">Skeleton clearly in wrong position</p>
+    <div class="video-grid" id="grid-quality-2">
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_2/00.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 24400334 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines do not follow the visible arm structure, and the gripper indicators (red/blue/green) are not properly positioned at the end of the arm. The skeleton appears to be in the wrong position and orientation relative to the robot, with noticeable displacement and incorrect scale. There is also some jitter in the skeleton's position across frames.">The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines do not follow the visibl...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_2/01.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">REAL</span> &middot; cam 23960472 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay shows significant misalignment with the actual robot arm. In the first frame, the yellow lines and red/green arrows are positioned far from the visible robot arm, which is not even in the same location as the skeleton. The skeleton appears to be in the wrong position and orientation, and there's a noticeable shift in the robot's position across frames, suggesting poor tracking. The scale also seems off, as the skeleton doesn't match the physical size of the robot arm.">The skeleton overlay shows significant misalignment with the actual robot arm. In the first frame, the yellow lines and ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_2/02.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">PennPAL</span> &middot; cam 25455306 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines do not accurately follow the arm's structure, and the gripper arrows (red/blue/green) are positioned far from the actual end-effector. There is also noticeable jitter between frames, with the skeleton shifting abruptly, and the scale appears inconsistent with the robot's size.">The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines do not accurately follow...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_2/03.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 24400334 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines representing the arm are positioned incorrectly relative to the visible robot structure, and the gripper arrows (red/blue/green) do not align with the physical end-effector. There is also noticeable jitter between frames, as the skeleton's position shifts erratically, indicating poor tracking consistency. The scale appears off, with the skeleton being either too long or improperly scaled compared to the robot.">The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines representing the arm are...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_2/04.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 24400334 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines representing the arm are positioned incorrectly relative to the visible arm structure, and the gripper arrows (red/blue/green) do not accurately reflect the arm's end-effector position. There is also noticeable jitter across frames, with the skeleton shifting abruptly, indicating poor tracking stability. The scale appears generally correct, but the positional errors are substantial.">The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines representing the arm are...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_2/05.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">REAL</span> &middot; cam 20540549 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines do not follow the robot's structure, and the red/blue/green gripper indicators are incorrectly positioned relative to the arm's end-effector. The scale appears off, and the skeleton does not match the arm's orientation or joint positions, indicating a poor fit. There is no noticeable jitter, but the overall alignment is clearly wrong.">The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines do not follow the robot'...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_2/06.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">CLVR</span> &middot; cam 20103212 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines and red arrow indicating the arm are positioned incorrectly relative to the visible robot components. The skeleton appears to be in the wrong position and orientation, and there is noticeable jitter between frames, with the skeleton shifting abruptly. The scale also seems off, as the skeleton does not match the actual size of the robot arm.">The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines and red arrow indicating...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_2/07.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">ILIAD</span> &middot; cam 27904255 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay shows significant misalignment with the actual robot arm. In the left and middle images, the yellow lines do not match the arm's structure, and the red/blue/green gripper indicators are misplaced relative to the arm's end-effector. The skeleton appears to be in the wrong position and orientation, with noticeable errors in both alignment and scale. There is also some jitter visible as the skeleton shifts abruptly between frames.">The skeleton overlay shows significant misalignment with the actual robot arm. In the left and middle images, the yellow...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_2/08.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">RAIL</span> &middot; cam 20521388 &middot; src: cam2base+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay shows significant misalignment with the robot arm. In the middle frame, the yellow lines do not follow the actual arm's position, and the gripper arrows (red/blue/green) are incorrectly placed relative to the arm's end-effector. The skeleton appears to be in the wrong position and orientation, especially when compared to the arm's actual location and movement across the frames. There is also noticeable jitter in the skeleton's position between frames. Scale appears generally consistent but the alignment is poor.">The skeleton overlay shows significant misalignment with the robot arm. In the middle frame, the yellow lines do not fol...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_2/09.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">ILIAD</span> &middot; cam 23897859 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines do not follow the visible arm structure, and the gripper arrows (red/blue/green) are positioned incorrectly relative to the arm's end effector. The skeleton appears to be in the wrong position and orientation, indicating poor tracking. There is also some jitter visible between frames, with the skeleton shifting abruptly. Scale appears off as well, with the skeleton not matching the physical size of the robot arm.">The skeleton overlay shows significant misalignment with the actual robot arm. The yellow lines do not follow the visibl...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dataset-section" id="quality-score-3">
+    <div class="dataset-section-header">Score 3: Noticeable Offset <span class="badge badge-yellow">2,246 episodes (9.1%)</span></div>
+    <p style="margin:0.3rem 0 0.8rem 0; color:#aaa; font-size:0.85rem;">Skeleton shifted but follows correct shape/motion</p>
+    <div class="video-grid" id="grid-quality-3">
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_3/00.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">CLVR</span> &middot; cam 20655732 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly at the gripper end where the red/blue/green arrows do not perfectly align with the physical gripper. The scale appears mostly correct, and there is no significant jitter observed. The alignment is acceptable but not precise.">The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_3/01.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">REAL</span> &middot; cam 20540549 &middot; src: cam2base+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly at the gripper end where the yellow lines do not perfectly align with the physical arm. The red/blue/green arrows at the gripper are somewhat misaligned with the actual gripper position. There is no significant jitter, and the scale appears reasonable.">The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_3/02.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">RAIL</span> &middot; cam 20521388 &middot; src: cam2base+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly at the gripper end where the yellow lines do not precisely align with the actual arm. The red/blue/green arrows at the gripper are inconsistently positioned relative to the arm's end-effector. There is no significant jitter, and the scale appears reasonable, but the alignment is not precise enough for high-accuracy applications.">The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_3/03.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">ILIAD</span> &middot; cam 23897859 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay follows the general shape and motion of the robot arm but shows noticeable offset, particularly at the gripper end where the yellow lines do not align with the actual arm position. The scale appears roughly correct, but the alignment is inconsistent across frames, suggesting some tracking error. No significant jitter is visible.">The skeleton overlay follows the general shape and motion of the robot arm but shows noticeable offset, particularly at ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_3/04.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">RAIL</span> &middot; cam 20521388 &middot; src: cam2base+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly at the gripper end where the yellow lines do not align with the actual arm position. The red/blue/green arrows at the gripper are also misaligned with the skeleton's endpoint. There is no significant jitter, but the scale appears slightly off, with the skeleton being slightly shorter than the actual arm.">The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_3/05.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">IPRL</span> &middot; cam 27432424 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly at the gripper end where the yellow lines do not precisely align with the actual arm. The red/blue/green arrows representing the gripper are inconsistently placed relative to the physical gripper. There is no significant jitter, and the scale appears reasonable, but the alignment is not precise enough for high-accuracy applications.">The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_3/06.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 24400334 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly at the gripper end where the red/blue/green arrows do not align perfectly with the actual gripper position. The alignment is consistent across frames, with no significant jitter or scale issues.">The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_3/07.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 20521388 &middot; src: cam2base+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, especially near the gripper where the yellow lines do not perfectly align with the actual arm structure. The gripper arrows (red/blue/green) appear to be correctly oriented relative to the end-effector, but the main arm skeleton shows some misalignment in position. There is no significant jitter, and the scale appears reasonable, but the alignment is not precise enough for perfect scoring.">The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, especially ne...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_3/08.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">RAIL</span> &middot; cam 24259877 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly in the positioning of the gripper and the end-effector. The alignment is not precise, and the skeleton appears to be slightly shifted from the actual arm, especially in the third frame where the red/green lines diverge from the arm's actual position. There is no significant jitter or scale issue, but the alignment is not accurate enough for high-precision applications.">The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_3/09.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">IRIS</span> &middot; cam 29838012 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly at the gripper end where the yellow lines do not precisely align with the actual arm. The red/blue/green arrows at the gripper are somewhat misaligned with the physical gripper's position. There is no significant jitter or scale issue, but the alignment is not perfect.">The skeleton overlay generally follows the robot arm's shape and motion, but there is a noticeable offset, particularly ...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dataset-section" id="quality-score-4">
+    <div class="dataset-section-header">Score 4: Minor Offset <span class="badge badge-green">19,073 episodes (77.4%)</span></div>
+    <p style="margin:0.3rem 0 0.8rem 0; color:#aaa; font-size:0.85rem;">Mostly aligned, acceptable for training</p>
+    <div class="video-grid" id="grid-quality-4">
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_4/00.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">IPRL</span> &middot; cam 28221883 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay closely follows the robot arm's structure and motion across frames, with minor positional offsets (less than 20px) likely due to camera calibration or tracking noise. The gripper arrows align well with the end-effector. No significant jitter or scale issues are observed.">The skeleton overlay closely follows the robot arm's structure and motion across frames, with minor positional offsets (...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_4/01.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">CLVR</span> &middot; cam 20655732 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's shape and motion with minor offsets (less than 20px) in some frames, particularly around the gripper. The alignment is mostly accurate, with consistent scale and orientation. There is minimal jitter, and the skeleton remains correctly positioned relative to the actual robot arm throughout the sequence.">The skeleton overlay generally follows the robot arm's shape and motion with minor offsets (less than 20px) in some fram...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_4/02.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">ILIAD</span> &middot; cam 23897859 &middot; src: cam2base+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay generally follows the robot arm's structure and motion across frames, with minor positional offsets (less than ~20px) likely due to camera calibration or tracking noise. The gripper orientation and joint positions are consistent with the physical arm. There is no noticeable jitter or scale issues. The alignment is acceptable for training purposes.">The skeleton overlay generally follows the robot arm's structure and motion across frames, with minor positional offsets...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_4/03.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">IPRL</span> &middot; cam 28221883 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay closely matches the robot arm's position and motion across the frames, with only minor offsets (less than 20px) likely due to camera calibration or tracking noise. The gripper orientation is also well-represented by the red/blue/green arrows. There is no significant jitter or scale issues observed.">The skeleton overlay closely matches the robot arm's position and motion across the frames, with only minor offsets (les...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_4/04.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 24400334 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay closely follows the robot arm's structure and motion across frames, with only minor positional offsets (less than ~20px) likely due to camera calibration or tracking noise. The gripper arrows align well with the actual end-effector. There is no significant jitter or scale issues; the overlay remains consistent and usable for training.">The skeleton overlay closely follows the robot arm's structure and motion across frames, with only minor positional offs...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_4/05.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 24400334 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay closely follows the robot arm's position and orientation across frames, with minor offsets (less than 20px) likely due to camera calibration or tracking errors. The gripper markers align well with the physical gripper. No significant jitter or scale issues are observed.">The skeleton overlay closely follows the robot arm's position and orientation across frames, with minor offsets (less th...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_4/06.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">IRIS</span> &middot; cam 23404442 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay closely follows the robot arm's structure and motion across frames, with minor offsets (less than 20px) likely due to camera calibration or tracking errors. The gripper arrows align well with the end-effector. There is no significant jitter or scale issues; the skeleton maintains consistent size and shape relative to the robot.">The skeleton overlay closely follows the robot arm's structure and motion across frames, with minor offsets (less than 2...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_4/07.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 22008760 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay closely follows the robot arm's structure and motion across frames, with minor positional offsets (less than 20px) likely due to camera calibration or tracking noise. The gripper orientation and joint positions are generally accurate, and there is no significant jitter or scale mismatch. The alignment is acceptable for training purposes.">The skeleton overlay closely follows the robot arm's structure and motion across frames, with minor positional offsets (...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_4/08.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">IPRL</span> &middot; cam 27432424 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay closely matches the robot arm's shape and motion across frames, with only minor offsets (less than 20px) likely due to camera calibration or tracking noise. The gripper arrows align well with the end-effector. There is no significant jitter or scale issues; the skeleton maintains consistent size and position relative to the robot.">The skeleton overlay closely matches the robot arm's shape and motion across frames, with only minor offsets (less than ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_4/09.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">IPRL</span> &middot; cam 27432424 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay closely follows the robot arm's structure and motion across frames, with minor positional offsets (less than ~20px) likely due to camera calibration or tracking noise. The gripper arrows align well with the end-effector. There is no significant jitter or scale error. Overall alignment is acceptable for training purposes.">The skeleton overlay closely follows the robot arm's structure and motion across frames, with minor positional offsets (...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dataset-section" id="quality-score-5">
+    <div class="dataset-section-header">Score 5: Perfect Alignment <span class="badge badge-green">3,272 episodes (13.3%)</span></div>
+    <p style="margin:0.3rem 0 0.8rem 0; color:#aaa; font-size:0.85rem;">Skeleton precisely matches robot arm</p>
+    <div class="video-grid" id="grid-quality-5">
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_5/00.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">PennPAL</span> &middot; cam 25455306 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The yellow skeleton lines precisely follow the robot arm's structure and joints across all frames, with no noticeable offset or jitter. The gripper (red/blue/green arrows) aligns correctly with the end-effector. The scale matches the actual robot arm, and the overlay remains stable without motion artifacts.">The yellow skeleton lines precisely follow the robot arm's structure and joints across all frames, with no noticeable of...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_5/01.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">GuptaLab</span> &middot; cam 26638268 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The yellow skeleton lines precisely follow the robot arm's joints and segments across all frames, with no visible jitter or scale issues. The gripper arrows align correctly with the end-effector, and the overlay maintains consistent, accurate positioning relative to the robot's actual pose.">The yellow skeleton lines precisely follow the robot arm's joints and segments across all frames, with no visible jitter...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_5/02.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 22008760 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The yellow skeleton lines precisely follow the robot arm's structure and movement across all frames. The joints align accurately with the actual arm segments, and the gripper (red/blue/green arrows) is correctly positioned at the end-effector. There is no noticeable jitter or scale error, and the overlay maintains consistent alignment with the robot's motion.">The yellow skeleton lines precisely follow the robot arm's structure and movement across all frames. The joints align ac...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_5/03.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">REAL</span> &middot; cam 23960472 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The skeleton overlay precisely matches the robot arm's position, orientation, and scale across all frames. The yellow lines follow the arm segments accurately, and the red/blue/green arrows at the end align with the gripper's position and orientation. There is no noticeable jitter or scaling error.">The skeleton overlay precisely matches the robot arm's position, orientation, and scale across all frames. The yellow li...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_5/04.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">IPRL</span> &middot; cam 28221883 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The yellow skeleton lines precisely follow the robot arm's structure and movement across all frames. The red/blue/green gripper arrows align perfectly with the end-effector, showing no noticeable offset or jitter. The scale matches the actual robot arm, and the alignment remains consistent throughout the sequence.">The yellow skeleton lines precisely follow the robot arm's structure and movement across all frames. The red/blue/green ...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_5/05.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">IRIS</span> &middot; cam 29838012 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The yellow skeleton lines precisely follow the robot arm's structure and joints across all frames. The gripper (red/blue/green arrows) aligns correctly with the end effector. There is no noticeable jitter or scale error; the overlay matches the robot's position and motion accurately.">The yellow skeleton lines precisely follow the robot arm's structure and joints across all frames. The gripper (red/blue...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_5/06.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 22008760 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The yellow skeleton lines precisely follow the robot arm's structure and joints across all frames, with no noticeable offset or jitter. The gripper arrows (red/blue/green) align correctly with the end-effector. The scale matches the actual robot arm, and the overlay maintains consistent alignment with the robot's motion and orientation.">The yellow skeleton lines precisely follow the robot arm's structure and joints across all frames, with no noticeable of...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_5/07.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">ILIAD</span> &middot; cam 27904255 &middot; src: superset
+          <br><span style="color:#888; font-size:0.8rem;" title="The yellow skeleton lines precisely follow the robot arm's structure and joints across all frames, with no noticeable offset or jitter. The gripper arrows (red/blue/green) align correctly with the end-effector, and the scale matches the actual robot arm. The overlay consistently tracks the arm's motion without drift or misalignment.">The yellow skeleton lines precisely follow the robot arm's structure and joints across all frames, with no noticeable of...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_5/08.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">AUTOLab</span> &middot; cam 22008760 &middot; src: superset+cam2cam
+          <br><span style="color:#888; font-size:0.8rem;" title="The yellow skeleton lines precisely follow the robot arm's structure and joints across all frames, with the gripper arrows (red/blue/green) correctly aligned with the end-effector. There is no noticeable jitter or scale discrepancy, and the overlay accurately reflects the robot's pose and motion.">The yellow skeleton lines precisely follow the robot arm's structure and joints across all frames, with the gripper arro...</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/droid_quality/score_5/09.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">IRIS</span> &middot; cam 29838012 &middot; src: cam2base
+          <br><span style="color:#888; font-size:0.8rem;" title="The yellow skeleton lines precisely follow the robot arm's joints and segments across all frames, with no noticeable offset or jitter. The scale matches the robot's size, and the gripper arrows align correctly with the end-effector. The overlay accurately represents the robot's pose and motion.">The yellow skeleton lines precisely follow the robot arm's joints and segments across all frames, with no noticeable off...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 <div class="footer">
   WorldSim Dataset Rendering Showcase &mdash; Auto-generated by <code>scripts/render_showcase.py</code>
 </div>
@@ -3773,6 +4199,8 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 // Handle initial hash
 if (location.hash === '#processed') {
   document.querySelector('[data-tab="processed-tab"]').click();
+} else if (location.hash === '#droid-quality') {
+  document.querySelector('[data-tab="droid-quality-tab"]').click();
 } else if (location.hash === '#training') {
   document.querySelector('[data-tab="training-tab"]').click();
 }
