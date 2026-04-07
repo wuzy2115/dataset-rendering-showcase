@@ -3528,16 +3528,16 @@
   <div class="section">
     <h2 class="section-title">DataLoader — Embodiment-Based Multi-Dataset Sampling</h2>
     <p class="section-desc">
-      多数据集联合训练时，不同数据集的帧数差异悬殊（从 24 万到 1234 万帧不等）。
-      直接按帧数比例采样会导致大数据集强势主导，小数据集严重欠训练。
-      本节介绍我们采用的 Temperature Sampling 策略及其对各数据集采样比例的影响。
+      When training on multiple datasets jointly, frame counts vary by orders of magnitude (from ~250K to ~12M frames).
+      Sampling proportional to frame count lets the largest datasets dominate and leaves small datasets severely undertrained.
+      This section describes the temperature sampling strategy we use and its effect on per-dataset sampling probabilities.
     </p>
 
     <!-- Section 1: Dataset Info -->
     <div style="margin-bottom: 2.5rem;">
-      <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text);">1. 数据集基本信息</h3>
+      <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text);">1. Dataset Overview</h3>
       <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
-        当前训练数据集共 6 个配置，涵盖 3 种机器人本体（embodiment），总帧数约 2800 万帧。
+        The training mix consists of 6 dataset configurations spanning 3 robot embodiments, totaling approximately 28M frames.
       </p>
       <table class="datasets-table">
         <thead>
@@ -3584,37 +3584,36 @@
 
     <!-- Section 2: Temperature Sampling Principle -->
     <div style="margin-bottom: 2.5rem;">
-      <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text);">2. Temperature Sampling 原理</h3>
+      <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text);">2. Temperature Sampling</h3>
       <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
-        Temperature Sampling 通过一个温度参数 T 控制采样分布的均匀程度：
+        A temperature parameter T controls how uniform the sampling distribution is across datasets:
       </p>
       <div style="background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1rem;">
         <ul style="list-style: none; padding: 0; font-size: 0.9rem; line-height: 2;">
           <li>
-            <strong style="color: var(--accent);">权重公式：</strong>
-            <code style="background: rgba(99,102,241,0.12); padding: 2px 8px; border-radius: 4px; font-size: 0.95rem;">weight_i = total_frames_i ^ (1/T)</code>，
-            再归一化为采样概率
+            <strong style="color: var(--accent);">Weight formula:</strong>
+            <code style="background: rgba(99,102,241,0.12); padding: 2px 8px; border-radius: 4px; font-size: 0.95rem;">weight_i = total_frames_i ^ (1/T)</code>,
+            then normalized to sampling probabilities
           </li>
-          <li><strong style="color: var(--text);">T = 1：</strong>按帧数比例采样，大数据集强势主导</li>
-          <li><strong style="color: var(--text);">T = 2：</strong>sqrt weighting，中度平衡</li>
-          <li><strong style="color: var(--accent);">T = 3：</strong>当前默认，经实验选取的平衡点</li>
-          <li><strong style="color: var(--text);">T → ∞：</strong>完全均匀采样，每个数据集等概率</li>
+          <li><strong style="color: var(--text);">T = 1:</strong> proportional to frame count — large datasets dominate</li>
+          <li><strong style="color: var(--text);">T = 2:</strong> sqrt weighting — moderate balance</li>
+          <li><strong style="color: var(--accent);">T = 3:</strong> current default — empirically chosen balance point</li>
+          <li><strong style="color: var(--text);">T → ∞:</strong> fully uniform — each dataset sampled equally</li>
         </ul>
       </div>
       <p style="color: var(--muted); font-size: 0.9rem;">
-        采样采用两层 hierarchy：先在 <strong>Embodiment 层</strong> 按权重采一个 embodiment，
-        再在该 embodiment 下的各 dataset 之间再次按权重采样。
-        Embodiment weight = 该 embodiment 下所有 dataset weight 之和，
-        与扁平化 T-sampling（直接在所有数据集之间采样）完全等价。
+        Sampling uses a two-level hierarchy: first sample an <strong>embodiment</strong> by weight,
+        then sample a dataset within that embodiment by weight.
+        The embodiment weight equals the sum of its constituent dataset weights,
+        making this exactly equivalent to flat temperature sampling across all datasets.
       </p>
     </div>
 
     <!-- Section 3: Sampling ratio comparison -->
     <div style="margin-bottom: 2.5rem;">
-      <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text);">3. 不同 T 下的采样比例对比</h3>
+      <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text);">3. Sampling Probability by Temperature</h3>
       <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
-        下表展示各数据集在不同温度参数 T 下对应的采样概率（百分比）。
-        高亮列为当前使用的配置（T = 3）。
+        Per-dataset sampling probabilities (%) at each value of T. The highlighted column is the current configuration (T = 3).
       </p>
       <table class="datasets-table">
         <thead>
@@ -3682,17 +3681,17 @@
 
     <!-- Section 4: Repeat rate -->
     <div style="margin-bottom: 2.5rem;">
-      <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text);">4. 数据重复率说明</h3>
+      <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text);">4. Effective Repeat Rate</h3>
       <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem;">
-        训练采用 iteration-based 模式，无 epoch 概念，每次 iteration 按权重随机采样。
-        定义数据集 <em>i</em> 的重复倍数为：
+        Training is iteration-based with no epoch boundary — each iteration draws a sample according to the sampling weights.
+        The effective repeat rate for dataset <em>i</em> is defined as:
       </p>
       <div style="background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 1rem; text-align: center;">
         <code style="font-size: 1rem; background: rgba(99,102,241,0.12); padding: 4px 16px; border-radius: 6px;">
           repeat_i = p_i × N / n_i
         </code>
         <p style="color: var(--muted); font-size: 0.8rem; margin-top: 0.5rem;">
-          p_i：数据集 i 的采样概率 &nbsp;|&nbsp; n_i：数据集 i 的帧数 &nbsp;|&nbsp; N：参考总样本量（取 28M，即所有数据集帧数之和）
+          p_i: sampling probability of dataset i &nbsp;|&nbsp; n_i: frame count of dataset i &nbsp;|&nbsp; N: reference total (28M = sum of all dataset frames)
         </p>
       </div>
       <table class="datasets-table">
@@ -3744,10 +3743,10 @@
         </tbody>
       </table>
       <div style="margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(99,102,241,0.08); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; font-size: 0.9rem; color: var(--muted);">
-        <strong style="color: var(--text);">结论：</strong>
-        小数据集（rh20t 系列）不可避免会被重复采样。T=3 下 rh20t 重复约 7–8 次，
-        在 iteration-based 训练中配合 shuffle 影响可接受；T=5 下重复率更高（10–12 次），
-        过拟合风险上升。选择 <strong style="color: var(--accent);">T=3</strong> 作为规模多样性与训练覆盖率之间的平衡点。
+        <strong style="color: var(--text);">Summary:</strong>
+        Small datasets (rh20t series) inevitably get oversampled. At T=3, rh20t is repeated ~7–8×,
+        which is acceptable in iteration-based training with shuffling; at T=5 the repeat rate rises to ~10–12×,
+        increasing overfitting risk. <strong style="color: var(--accent);">T=3</strong> is chosen as the balance point between dataset diversity and training coverage.
       </div>
     </div>
   </div>
