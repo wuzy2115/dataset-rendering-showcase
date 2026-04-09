@@ -4150,7 +4150,7 @@
       <dl><dt>Hand Model</dt><dd>MANO (Arctic Gloves sensors)</dd></dl>
       <dl><dt>Body Model</dt><dd>SMPL-X + MoSh (optical mocap)</dd></dl>
       <dl><dt>Cameras</dt><dd>8 third-person + 1 egocentric</dd></dl>
-      <dl><dt>Total Frames</dt><dd>~2.1M (10 subjects &times; 11 objects)</dd></dl>
+      <dl><dt>Total Data</dt><dd>339 sequences, ~2.1M frames (10 subjects &times; 11 objects)</dd></dl>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem;">
       <div class="video-card"><video controls muted loop preload="none" data-src="videos/arctic/arctic_00.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cams 1-4 tiled 2x2 &middot; MANO hand + SMPL-X arm skeleton</div></div>
@@ -4169,12 +4169,12 @@
       <strong>Verdict:</strong> Hand skeleton overlay
     </div>
     <div class="config-info">
-      <dl><dt>Dataset</dt><dd>H2O (CVPR 2021)</dd></dl>
+      <dl><dt>Dataset</dt><dd>H2O (ICCV 2021)</dd></dl>
       <dl><dt>Subject</dt><dd>Human (bimanual)</dd></dl>
       <dl><dt>Hand Model</dt><dd>Custom skeleton (21-pt keypoints)</dd></dl>
       <dl><dt>Body Model</dt><dd>None (hand only)</dd></dl>
       <dl><dt>Cameras</dt><dd>4 third-person views</dd></dl>
-      <dl><dt>Total Sequences</dt><dd>~4 hours, 6 subjects</dd></dl>
+      <dl><dt>Total Sequences</dt><dd>184 clips, 4 subjects</dd></dl>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem;">
       <div class="video-card"><video controls muted loop preload="none" data-src="videos/h2o/subject1_h1_0_overlay.mp4"></video><div class="video-meta"><span class="scene-name">subject1 / h1 (bowl)</span> &middot; 150 frames &middot; cam0 &middot; hand skeleton overlay</div></div>
@@ -4198,7 +4198,7 @@
       <dl><dt>Hand Model</dt><dd>UmeTrack (21-pt keypoints) + MANO</dd></dl>
       <dl><dt>Body Model</dt><dd>None (hand + wrist only)</dd></dl>
       <dl><dt>Devices</dt><dd>Project Aria (fisheye) + Quest 3</dd></dl>
-      <dl><dt>Total Data</dt><dd>833 min, 19 subjects, 33 objects</dd></dl>
+      <dl><dt>Total Data</dt><dd>3,832 clips, 19 subjects, 33 objects (5 sample clips downloaded)</dd></dl>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem;">
       <div class="video-card"><video controls muted loop preload="none" data-src="videos/hot3d/overlay_skeleton.mp4"></video><div class="video-meta"><span class="scene-name">P0003_c701bd11</span> &middot; 30 frames &middot; Aria RGB egocentric &middot; UmeTrack hand skeleton</div></div>
@@ -4273,7 +4273,7 @@
       <tr style="border-bottom:1px solid #333;">
         <td style="padding:8px;"><strong>ARCTIC</strong> <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></td>
         <td style="padding:8px;">8 third-person + 1 egocentric</td>
-        <td style="padding:8px; text-align:right;">301 sequences</td>
+        <td style="padding:8px; text-align:right;">339 sequences (10 subjects)</td>
         <td style="padding:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;margin-right:4px;"></span>Yes</td>
         <td style="padding:8px;">MANO + SMPL-X hybrid (Arctic Gloves EM sensors)</td>
         <td style="padding:8px;">SMPL-X (MoSh optical mocap)</td>
@@ -4290,7 +4290,7 @@
       <tr style="border-bottom:1px solid #333;">
         <td style="padding:8px;"><strong>H2O</strong> <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></td>
         <td style="padding:8px;">Third-person (4 cameras)</td>
-        <td style="padding:8px; text-align:right;">~500 sequences</td>
+        <td style="padding:8px; text-align:right;">184 clips (4 subjects)</td>
         <td style="padding:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;margin-right:4px;"></span>Yes</td>
         <td style="padding:8px;">Pre-computed 3D joints (21/hand)</td>
         <td style="padding:8px;">None</td>
@@ -4306,7 +4306,7 @@
       <tr style="border-bottom:1px solid #333;">
         <td style="padding:8px;"><strong>HOT3D</strong> <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></td>
         <td style="padding:8px;">Egocentric (Quest 3, Aria)</td>
-        <td style="padding:8px; text-align:right;">800+ clips</td>
+        <td style="padding:8px; text-align:right;">3,832 clips (19 subjects)</td>
         <td style="padding:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;margin-right:4px;"></span>Yes</td>
         <td style="padding:8px;">MANO parameters</td>
         <td style="padding:8px;">None</td>
