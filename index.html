@@ -563,6 +563,7 @@
   <button class="tab-btn" data-tab="droid-quality-tab">DROID Quality Filter</button>
   <button class="tab-btn" data-tab="training-tab">Model Training</button>
   <button class="tab-btn" data-tab="human-tab">Human Datasets</button>
+  <button class="tab-btn" data-tab="eval-tab">Eval</button>
 </div>
 
 <div id="rendering-tab" class="tab-content active">
@@ -4346,6 +4347,121 @@
 </div>
 
 
+<div id="eval-tab" class="tab-content">
+<div class="section">
+  <h2 class="section-title">
+    Model Evaluation — Cosmos2 2B (iter 7000)
+    <span class="badge badge-green">guidance=7.0 shift=5.0</span>
+  </h2>
+  <p style="color: var(--muted); margin-bottom: 1.5rem; font-size: 0.9rem;">
+    Comparison videos: Generated | Condition | Ground Truth. Checkpoint: <code>cosmos2_agibot_init_from_pretraining_concat</code> iter_000007000, 35 diffusion steps.
+  </p>
+
+  <!-- Franka Panda — DROID -->
+  <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem; color: var(--accent);">Franka Panda — DROID</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <video data-src="videos/eval/franka_panda/droid/AUTOLab__failure__2023-11-25__Sat_Nov_25_11:11:08_2023_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">AUTOLab / 2023-11-25</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/franka_panda/droid/CLVR__failure__2023-05-19__Fri_May_19_20:51:47_2023_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">CLVR / 2023-05-19</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/franka_panda/droid/IPRL__success__2023-12-18__Mon_Dec_18_15:55:12_2023_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">IPRL / 2023-12-18</div>
+    </div>
+  </div>
+
+  <!-- Franka Panda — InternData -->
+  <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem; color: var(--accent);">Franka Panda — InternData</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <video data-src="videos/eval/franka_panda/interndata/ep1181_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Episode 1181</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/franka_panda/interndata/ep1686_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Episode 1686</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/franka_panda/interndata/ep750_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Episode 750</div>
+    </div>
+  </div>
+
+  <!-- Franka Panda — RH20T cfg5 -->
+  <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem; color: var(--accent);">Franka Panda — RH20T (cfg5)</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <video data-src="videos/eval/franka_panda/rh20t_cfg5/task_0001_user_0010_scene_0001_cfg_0005_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Task 0001 / User 0010 / Scene 0001</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/franka_panda/rh20t_cfg5/task_0036_user_0007_scene_0004_cfg_0005_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Task 0036 / User 0007 / Scene 0004</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/franka_panda/rh20t_cfg5/task_0082_user_0007_scene_0008_cfg_0005_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Task 0082 / User 0007 / Scene 0008</div>
+    </div>
+  </div>
+
+  <!-- Kuka IIWA — RH20T cfg7 -->
+  <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem; color: var(--accent);">Kuka IIWA — RH20T (cfg7)</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <video data-src="videos/eval/kuka_iiwa/rh20t_cfg7/task_0016_user_0020_scene_0009_cfg_0007_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Task 0016 / User 0020 / Scene 0009</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/kuka_iiwa/rh20t_cfg7/task_0017_user_0014_scene_0005_cfg_0007_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Task 0017 / User 0014 / Scene 0005</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/kuka_iiwa/rh20t_cfg7/task_0050_user_0020_scene_0005_cfg_0007_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Task 0050 / User 0020 / Scene 0005</div>
+    </div>
+  </div>
+
+  <!-- Toyota HSR — AIROA -->
+  <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem; color: var(--accent);">Toyota HSR — AIROA</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <video data-src="videos/eval/toyota_hsr/airoa/ep_009145_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Episode 009145</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/toyota_hsr/airoa/ep_016675_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Episode 016675</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/toyota_hsr/airoa/ep_021192_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Episode 021192</div>
+    </div>
+  </div>
+
+  <!-- Unitree G1 — AgiBotWorld -->
+  <h3 style="margin: 1.5rem 0 0.75rem; font-size: 1.1rem; color: var(--accent);">Unitree G1 — AgiBotWorld</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <video data-src="videos/eval/unitree_g1/agibot/389_656573_a3_445_606_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Task 389 / Episode a3_445_606</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/unitree_g1/agibot/470_697900_a5_707_831_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Task 470 / Episode a5_707_831</div>
+    </div>
+    <div class="video-card">
+      <video data-src="videos/eval/unitree_g1/agibot/525_821186_a5_451_535_comparison.mp4" controls muted loop playsinline></video>
+      <div class="video-meta">Task 525 / Episode a5_451_535</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
 <script>
 // Tab switching
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -4373,6 +4489,8 @@ if (location.hash === '#processed') {
   document.querySelector('[data-tab="training-tab"]').click();
 } else if (location.hash === '#human') {
   document.querySelector('[data-tab="human-tab"]').click();
+} else if (location.hash === '#eval') {
+  document.querySelector('[data-tab="eval-tab"]').click();
 }
 
 // Filtering
