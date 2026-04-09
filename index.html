@@ -760,87 +760,6 @@
   </div>
 </div>
 
-<!-- ARCTIC - Human Hand Dataset -->
-<div class="dataset-section" id="arctic">
-  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">ARCTIC &mdash; Bimanual Hand-Object Manipulation <span class="badge badge-green">New</span></h3>
-  <p style="background: #1b3a1b; border-left: 3px solid #4caf50; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #a5d6a7; font-size: 0.9rem;">
-    &#9989; Human hand dataset (CVPR 2023). Hand joints via MANO FK (Arctic Gloves electromagnetic sensors). Arm via SMPL-X + MoSh (optical mocap markers). 9 camera views per sequence (8 third-person + 1 egocentric). 2.1M frames, 10 subjects, 11 objects.
-  </p>
-  <div class="config-info">
-    <dl><dt>Dataset</dt><dd>ARCTIC (CVPR 2023)</dd></dl>
-    <dl><dt>Subject</dt><dd>Human (bimanual)</dd></dl>
-    <dl><dt>Hand Model</dt><dd>MANO (Arctic Gloves sensors)</dd></dl>
-    <dl><dt>Body Model</dt><dd>SMPL-X + MoSh (optical mocap)</dd></dl>
-    <dl><dt>Cameras</dt><dd>8 third-person + 1 egocentric</dd></dl>
-    <dl><dt>Total Frames</dt><dd>~2.1M (10 subjects × 11 objects)</dd></dl>
-  </div>
-  <div class="video-grid" id="grid-arctic">
-    <div class="video-card"><video controls muted loop preload="metadata" src="videos/arctic/arctic_00.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cams 1–4 tiled 2×2 &middot; MANO hand + SMPL-X arm skeleton</div></div>
-    <div class="video-card"><video controls muted loop preload="metadata" src="videos/arctic/arctic_01.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cams 5–8 tiled 2×2 &middot; MANO hand + SMPL-X arm skeleton</div></div>
-    <div class="video-card"><video controls muted loop preload="metadata" src="videos/arctic/arctic_02.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cam 0 egocentric &middot; MANO hand + SMPL-X arm skeleton</div></div>
-  </div>
-</div>
-
-<!-- H2O - Hand-Hand-Object Dataset -->
-<div class="dataset-section" id="h2o">
-  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">H2O &mdash; Hand-Hand-Object Interaction <span class="badge badge-green">New</span></h3>
-  <p style="background: #1b3a1b; border-left: 3px solid #4caf50; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #a5d6a7; font-size: 0.9rem;">
-    &#9989; Human hand dataset (CVPR 2021). Bimanual hand-object manipulation with 21-point hand keypoints per hand. 4 camera views, 6 subjects, ~4 hours of data. Hand skeleton only (no arm GT).
-  </p>
-  <div class="config-info">
-    <dl><dt>Dataset</dt><dd>H2O (CVPR 2021)</dd></dl>
-    <dl><dt>Subject</dt><dd>Human (bimanual)</dd></dl>
-    <dl><dt>Hand Model</dt><dd>Custom skeleton (21-pt keypoints)</dd></dl>
-    <dl><dt>Body Model</dt><dd>None (hand only)</dd></dl>
-    <dl><dt>Cameras</dt><dd>4 third-person views</dd></dl>
-    <dl><dt>Total Sequences</dt><dd>~4 hours, 6 subjects</dd></dl>
-  </div>
-  <div class="video-grid" id="grid-h2o">
-    <div class="video-card"><video controls muted loop preload="metadata" src="videos/h2o/subject1_h1_0_overlay.mp4"></video><div class="video-meta"><span class="scene-name">subject1 / h1 (bowl)</span> &middot; 150 frames &middot; cam0 &middot; hand skeleton overlay</div></div>
-    <div class="video-card"><video controls muted loop preload="metadata" src="videos/h2o/subject1_h1_3_overlay.mp4"></video><div class="video-meta"><span class="scene-name">subject1 / h1 (bowl)</span> &middot; 150 frames &middot; cam3 &middot; hand skeleton overlay</div></div>
-    <div class="video-card"><video controls muted loop preload="metadata" src="videos/h2o/subject1_h2_1_overlay.mp4"></video><div class="video-meta"><span class="scene-name">subject1 / h2 (mug)</span> &middot; 150 frames &middot; cam1 &middot; hand skeleton overlay</div></div>
-  </div>
-</div>
-
-<!-- HOT3D - Egocentric Hand Tracking Dataset -->
-<div class="dataset-section" id="hot3d">
-  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">HOT3D &mdash; Egocentric Hand-Object Tracking <span class="badge badge-green">New</span></h3>
-  <p style="background: #1b3a1b; border-left: 3px solid #4caf50; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #a5d6a7; font-size: 0.9rem;">
-    &#9989; Egocentric hand tracking dataset (CVPR 2025 Highlight). Project Aria &amp; Quest 3 devices with per-frame 6-DoF tracking. UmeTrack hand model with 21 keypoints. FISHEYE624 camera model. Hand skeleton only (no arm GT).
-  </p>
-  <div class="config-info">
-    <dl><dt>Dataset</dt><dd>HOT3D (CVPR 2025)</dd></dl>
-    <dl><dt>Subject</dt><dd>Human (egocentric)</dd></dl>
-    <dl><dt>Hand Model</dt><dd>UmeTrack (21-pt keypoints) + MANO</dd></dl>
-    <dl><dt>Body Model</dt><dd>None (hand + wrist only)</dd></dl>
-    <dl><dt>Devices</dt><dd>Project Aria (fisheye) + Quest 3</dd></dl>
-    <dl><dt>Total Data</dt><dd>833 min, 19 subjects, 33 objects</dd></dl>
-  </div>
-  <div class="video-grid" id="grid-hot3d">
-    <div class="video-card"><video controls muted loop preload="metadata" src="videos/hot3d/overlay_skeleton.mp4"></video><div class="video-meta"><span class="scene-name">P0003_c701bd11</span> &middot; 30 frames &middot; Aria RGB egocentric &middot; UmeTrack hand skeleton</div></div>
-  </div>
-</div>
-
-<!-- EgoBody - Egocentric Full-Body Dataset -->
-<div class="dataset-section" id="egobody">
-  <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">EgoBody &mdash; Egocentric Full-Body Pose <span class="badge badge-green">New</span></h3>
-  <p style="background: #1b3a1b; border-left: 3px solid #4caf50; padding: 0.6rem 0.8rem; margin: 0.5rem 0; color: #a5d6a7; font-size: 0.9rem;">
-    &#9989; Egocentric body+hand dataset (ECCV 2022). HoloLens 2 + multi-view Kinects. SMPL-X full body with PCA hands. Per-frame camera extrinsics from pv.txt. Arm + hand skeleton (48 joints).
-  </p>
-  <div class="config-info">
-    <dl><dt>Dataset</dt><dd>EgoBody (ECCV 2022)</dd></dl>
-    <dl><dt>Subject</dt><dd>Human (egocentric interactee)</dd></dl>
-    <dl><dt>Body Model</dt><dd>SMPL-X (127 joints, PCA hands)</dd></dl>
-    <dl><dt>Device</dt><dd>HoloLens 2 (PV camera, 1920×1080)</dd></dl>
-    <dl><dt>Skeleton</dt><dd>Arm + Hand (48 joints: 3+21 per side)</dd></dl>
-    <dl><dt>Total Data</dt><dd>125 sequences, 36 subjects, 15 scenes</dd></dl>
-  </div>
-  <div class="video-grid" id="grid-egobody">
-    <div class="video-card"><video controls muted loop preload="metadata" src="videos/egobody/S02_S01_01.mp4"></video><div class="video-meta"><span class="scene-name">S02_S01_01</span> &middot; 300 frames &middot; HoloLens PV egocentric &middot; SMPL-X arm+hand skeleton</div></div>
-  </div>
-  <p style="color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem;">3 additional videos temporarily unavailable (re-rendering in progress).</p>
-</div>
-
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 2: Other investigated datasets                -->
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -4216,6 +4135,99 @@
     </div>
   </div>
 
+  <!-- ARCTIC Rendered Section -->
+  <div class="dataset-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">ARCTIC &mdash; Bimanual Hand-Object Manipulation <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></h4>
+    <div style="color: #aaa; font-size: 0.8rem; margin-bottom: 0.8rem;">
+      <strong>View:</strong> 8 third-person + 1 egocentric &middot;
+      <strong>Hand data:</strong> MANO FK (Arctic Gloves sensors) &middot;
+      <strong>Body data:</strong> SMPL-X + MoSh (optical mocap) &middot;
+      <strong>Verdict:</strong> Full hand+arm skeleton overlay
+    </div>
+    <div class="config-info">
+      <dl><dt>Dataset</dt><dd>ARCTIC (CVPR 2023)</dd></dl>
+      <dl><dt>Subject</dt><dd>Human (bimanual)</dd></dl>
+      <dl><dt>Hand Model</dt><dd>MANO (Arctic Gloves sensors)</dd></dl>
+      <dl><dt>Body Model</dt><dd>SMPL-X + MoSh (optical mocap)</dd></dl>
+      <dl><dt>Cameras</dt><dd>8 third-person + 1 egocentric</dd></dl>
+      <dl><dt>Total Frames</dt><dd>~2.1M (10 subjects &times; 11 objects)</dd></dl>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem;">
+      <div class="video-card"><video controls muted loop preload="none" data-src="videos/arctic/arctic_00.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cams 1-4 tiled 2x2 &middot; MANO hand + SMPL-X arm skeleton</div></div>
+      <div class="video-card"><video controls muted loop preload="none" data-src="videos/arctic/arctic_01.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cams 5-8 tiled 2x2 &middot; MANO hand + SMPL-X arm skeleton</div></div>
+      <div class="video-card"><video controls muted loop preload="none" data-src="videos/arctic/arctic_02.mp4"></video><div class="video-meta"><span class="scene-name">s01 / box_grab_01</span> &middot; 150 frames &middot; cam 0 egocentric &middot; MANO hand + SMPL-X arm skeleton</div></div>
+    </div>
+  </div>
+
+  <!-- H2O Rendered Section -->
+  <div class="dataset-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">H2O &mdash; Hand-Hand-Object Interaction <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></h4>
+    <div style="color: #aaa; font-size: 0.8rem; margin-bottom: 0.8rem;">
+      <strong>View:</strong> Third-person (4 cameras) &middot;
+      <strong>Hand data:</strong> Custom skeleton (21-pt keypoints) &middot;
+      <strong>Body data:</strong> None (hand only) &middot;
+      <strong>Verdict:</strong> Hand skeleton overlay
+    </div>
+    <div class="config-info">
+      <dl><dt>Dataset</dt><dd>H2O (CVPR 2021)</dd></dl>
+      <dl><dt>Subject</dt><dd>Human (bimanual)</dd></dl>
+      <dl><dt>Hand Model</dt><dd>Custom skeleton (21-pt keypoints)</dd></dl>
+      <dl><dt>Body Model</dt><dd>None (hand only)</dd></dl>
+      <dl><dt>Cameras</dt><dd>4 third-person views</dd></dl>
+      <dl><dt>Total Sequences</dt><dd>~4 hours, 6 subjects</dd></dl>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem;">
+      <div class="video-card"><video controls muted loop preload="none" data-src="videos/h2o/subject1_h1_0_overlay.mp4"></video><div class="video-meta"><span class="scene-name">subject1 / h1 (bowl)</span> &middot; 150 frames &middot; cam0 &middot; hand skeleton overlay</div></div>
+      <div class="video-card"><video controls muted loop preload="none" data-src="videos/h2o/subject1_h1_3_overlay.mp4"></video><div class="video-meta"><span class="scene-name">subject1 / h1 (bowl)</span> &middot; 150 frames &middot; cam3 &middot; hand skeleton overlay</div></div>
+      <div class="video-card"><video controls muted loop preload="none" data-src="videos/h2o/subject1_h2_1_overlay.mp4"></video><div class="video-meta"><span class="scene-name">subject1 / h2 (mug)</span> &middot; 150 frames &middot; cam1 &middot; hand skeleton overlay</div></div>
+    </div>
+  </div>
+
+  <!-- HOT3D Rendered Section -->
+  <div class="dataset-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">HOT3D &mdash; Egocentric Hand-Object Tracking <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></h4>
+    <div style="color: #aaa; font-size: 0.8rem; margin-bottom: 0.8rem;">
+      <strong>View:</strong> Egocentric (Quest 3, Aria) &middot;
+      <strong>Hand data:</strong> UmeTrack (21-pt keypoints) + MANO &middot;
+      <strong>Body data:</strong> None (hand + wrist only) &middot;
+      <strong>Verdict:</strong> Hand skeleton overlay
+    </div>
+    <div class="config-info">
+      <dl><dt>Dataset</dt><dd>HOT3D (CVPR 2025)</dd></dl>
+      <dl><dt>Subject</dt><dd>Human (egocentric)</dd></dl>
+      <dl><dt>Hand Model</dt><dd>UmeTrack (21-pt keypoints) + MANO</dd></dl>
+      <dl><dt>Body Model</dt><dd>None (hand + wrist only)</dd></dl>
+      <dl><dt>Devices</dt><dd>Project Aria (fisheye) + Quest 3</dd></dl>
+      <dl><dt>Total Data</dt><dd>833 min, 19 subjects, 33 objects</dd></dl>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem;">
+      <div class="video-card"><video controls muted loop preload="none" data-src="videos/hot3d/overlay_skeleton.mp4"></video><div class="video-meta"><span class="scene-name">P0003_c701bd11</span> &middot; 30 frames &middot; Aria RGB egocentric &middot; UmeTrack hand skeleton</div></div>
+    </div>
+  </div>
+
+  <!-- EgoBody Rendered Section -->
+  <div class="dataset-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">EgoBody &mdash; Egocentric Full-Body Pose <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></h4>
+    <div style="color: #aaa; font-size: 0.8rem; margin-bottom: 0.8rem;">
+      <strong>View:</strong> Egocentric (HoloLens 2) &middot;
+      <strong>Hand data:</strong> SMPL-X PCA hands (12D) &middot;
+      <strong>Body data:</strong> SMPL-X full body (127 joints) &middot;
+      <strong>Verdict:</strong> Full body arm+hand skeleton overlay
+    </div>
+    <div class="config-info">
+      <dl><dt>Dataset</dt><dd>EgoBody (ECCV 2022)</dd></dl>
+      <dl><dt>Subject</dt><dd>Human (egocentric interactee)</dd></dl>
+      <dl><dt>Body Model</dt><dd>SMPL-X (127 joints, PCA hands)</dd></dl>
+      <dl><dt>Device</dt><dd>HoloLens 2 (PV camera, 1920&times;1080)</dd></dl>
+      <dl><dt>Skeleton</dt><dd>Arm + Hand (48 joints: 3+21 per side)</dd></dl>
+      <dl><dt>Total Data</dt><dd>125 sequences, 36 subjects, 15 scenes</dd></dl>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem;">
+      <div class="video-card"><video controls muted loop preload="none" data-src="videos/egobody/S02_S01_01.mp4"></video><div class="video-meta"><span class="scene-name">S02_S01_01</span> &middot; 300 frames &middot; HoloLens PV egocentric &middot; SMPL-X arm+hand skeleton</div></div>
+    </div>
+    <p style="color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem;">3 additional videos temporarily unavailable (re-rendering in progress).</p>
+  </div>
+
   <!-- Section 2: Investigated Human Datasets -->
   <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">Investigated Human Datasets</h3>
   <table class="data-table" style="width:100%; border-collapse:collapse; font-size:0.85rem;">
@@ -4254,6 +4266,71 @@
             <li>Per-frame extrinsics (T,4,4)</li>
             <li>Language annotations + GPT-4 rephrase</li>
             <li>MANO shape (beta), validity masks</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- ═══ ARCTIC ═══ -->
+      <tr style="border-bottom:1px solid #333;">
+        <td style="padding:8px;"><strong>ARCTIC</strong> <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></td>
+        <td style="padding:8px;">8 third-person + 1 egocentric</td>
+        <td style="padding:8px; text-align:right;">301 sequences</td>
+        <td style="padding:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;margin-right:4px;"></span>Yes</td>
+        <td style="padding:8px;">MANO + SMPL-X hybrid (Arctic Gloves EM sensors)</td>
+        <td style="padding:8px;">SMPL-X (MoSh optical mocap)</td>
+        <td style="padding:8px;">&mdash;</td>
+        <td style="padding:8px;">
+          <ul style="margin:0; padding-left:1rem; list-style:disc; color:#2ecc71;">
+            <li>Bimanual hand-object manipulation</li>
+            <li>MANO FK hand skeleton</li>
+            <li>SMPL-X body model</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- ═══ H2O ═══ -->
+      <tr style="border-bottom:1px solid #333;">
+        <td style="padding:8px;"><strong>H2O</strong> <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></td>
+        <td style="padding:8px;">Third-person (4 cameras)</td>
+        <td style="padding:8px; text-align:right;">~500 sequences</td>
+        <td style="padding:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;margin-right:4px;"></span>Yes</td>
+        <td style="padding:8px;">Pre-computed 3D joints (21/hand)</td>
+        <td style="padding:8px;">None</td>
+        <td style="padding:8px;">&mdash;</td>
+        <td style="padding:8px;">
+          <ul style="margin:0; padding-left:1rem; list-style:disc; color:#2ecc71;">
+            <li>Hand joints in camera space</li>
+            <li>Multi-view (4 cameras)</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- ═══ HOT3D ═══ -->
+      <tr style="border-bottom:1px solid #333;">
+        <td style="padding:8px;"><strong>HOT3D</strong> <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></td>
+        <td style="padding:8px;">Egocentric (Quest 3, Aria)</td>
+        <td style="padding:8px; text-align:right;">800+ clips</td>
+        <td style="padding:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;margin-right:4px;"></span>Yes</td>
+        <td style="padding:8px;">MANO parameters</td>
+        <td style="padding:8px;">None</td>
+        <td style="padding:8px;">&mdash;</td>
+        <td style="padding:8px;">
+          <ul style="margin:0; padding-left:1rem; list-style:disc; color:#2ecc71;">
+            <li>MANO FK hand skeleton</li>
+            <li>Egocentric tracking</li>
+          </ul>
+        </td>
+      </tr>
+      <!-- ═══ EgoBody ═══ -->
+      <tr style="border-bottom:1px solid #333;">
+        <td style="padding:8px;"><strong>EgoBody</strong> <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></td>
+        <td style="padding:8px;">Egocentric (HoloLens 2)</td>
+        <td style="padding:8px; text-align:right;">125 recordings</td>
+        <td style="padding:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;margin-right:4px;"></span>Yes</td>
+        <td style="padding:8px;">SMPL-X PCA hands (12D)</td>
+        <td style="padding:8px;">SMPL-X full body</td>
+        <td style="padding:8px;">&mdash;</td>
+        <td style="padding:8px;">
+          <ul style="margin:0; padding-left:1rem; list-style:disc; color:#2ecc71;">
+            <li>Full body SMPL-X model</li>
+            <li>Egocentric view</li>
           </ul>
         </td>
       </tr>
