@@ -4177,7 +4177,44 @@
 
   <!-- Section 1: Rendered Human Datasets -->
   <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">Rendered Human Datasets</h3>
-  <p style="color: #aaa; margin-bottom: 1rem;">Human body/hand datasets with successful skeleton overlay rendering. See individual entries in the Rendering Showcase tab for video previews.</p>
+  <p style="color: #aaa; margin-bottom: 1rem;">Human body/hand datasets with successful skeleton overlay rendering.</p>
+
+  <!-- VITRA-1M Rendered Section -->
+  <div class="dataset-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">VITRA-1M &mdash; Hand Skeleton Overlay (EPIC-Kitchens P01) <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></h4>
+    <div style="color: #aaa; font-size: 0.8rem; margin-bottom: 0.8rem;">
+      <strong>View:</strong> Egocentric &middot;
+      <strong>Hand data:</strong> Pre-computed joints_camspace (21/hand) &middot;
+      <strong>Body data:</strong> None (hand-only) &middot;
+      <strong>Verdict:</strong> Acceptable (hand-only overlay)
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem;">
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/vitra_1m/epic_P01_01_ep559_overlay.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">P01_01 ep559</span> &middot; Egocentric &middot; Both hands, 123 frames
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/vitra_1m/epic_P01_01_ep003_overlay.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">P01_01 ep003</span> &middot; Egocentric &middot; Both hands, 65 frames
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/vitra_1m/epic_P01_01_ep014_overlay.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">P01_01 ep014</span> &middot; Egocentric &middot; Both hands, 52 frames
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/vitra_1m/epic_P01_01_ep002_overlay.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">P01_01 ep002</span> &middot; Egocentric &middot; Both hands, 47 frames
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Section 2: Investigated Human Datasets -->
   <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">Investigated Human Datasets</h3>
@@ -4197,7 +4234,7 @@
     <tbody>
       <!-- ═══ VITRA-1M ═══ -->
       <tr style="border-bottom:1px solid #333;">
-        <td style="padding:8px;"><strong>VITRA-1M</strong> <span class="badge" style="font-size:0.6rem; background:#555; color:#ccc;">Annotation-Only</span></td>
+        <td style="padding:8px;"><strong>VITRA-1M</strong> <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></td>
         <td style="padding:8px;">Egocentric (Ego4D, EgoExo4D, EPIC) + Third-person (SSv2)</td>
         <td style="padding:8px; text-align:right;">1,222,918</td>
         <td style="padding:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e74c3c;margin-right:4px;"></span>Not included</td>
