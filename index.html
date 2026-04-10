@@ -4155,6 +4155,45 @@
     </div>
   </div>
 
+  <!-- VITRA-1M SSv2 Rendered Section -->
+  <div class="dataset-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">VITRA-1M &mdash; Hand Skeleton Overlay (Something-Something-v2) <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></h4>
+    <div style="color: #aaa; font-size: 0.8rem; margin-bottom: 0.8rem;">
+      <strong>Source:</strong> Something-Something-v2 (SSv2) &mdash; 220,847 third-person videos, 240p webm &middot;
+      <strong>Episodes:</strong> 52,718 covering 39,980 videos &middot;
+      <strong>View:</strong> Third-person (hands manipulating objects on a table) &middot;
+      <strong>Hand data:</strong> Pre-computed joints_camspace (T, 21, 3) &middot;
+      <strong>Body data:</strong> None (hands only) &middot;
+      <strong>Verdict:</strong> Acceptable (hand-only overlay)
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem;">
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/vitra_ssv2/ssv2_101204_ep_000000_overlay.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">video 101204 ep000</span> &middot; Third-person &middot; Both hands, 23 frames
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/vitra_ssv2/ssv2_101748_ep_000000_overlay.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">video 101748 ep000</span> &middot; Third-person &middot; Both hands, 27 frames
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/vitra_ssv2/ssv2_102219_ep_000001_overlay.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">video 102219 ep001</span> &middot; Third-person &middot; Both hands, 32 frames
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls muted loop preload="none" data-src="videos/vitra_ssv2/ssv2_100603_ep_000000_overlay.mp4"></video>
+        <div class="video-meta">
+          <span class="scene-name">video 100603 ep000</span> &middot; Third-person &middot; Left hand only, 26 frames
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ARCTIC Rendered Section -->
   <div class="dataset-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
     <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">ARCTIC &mdash; Bimanual Hand-Object Manipulation <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></h4>
@@ -4267,7 +4306,7 @@
       <!-- ═══ VITRA-1M ═══ -->
       <tr style="border-bottom:1px solid #333;">
         <td style="padding:8px;"><strong>VITRA-1M</strong> <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></td>
-        <td style="padding:8px;">Egocentric (Ego4D, EgoExo4D, EPIC) + Third-person (SSv2)</td>
+        <td style="padding:8px;">Egocentric (Ego4D, EgoExo4D, EPIC) + Third-person (SSv2) &mdash; <em>EPIC + SSv2 rendered</em></td>
         <td style="padding:8px; text-align:right;">1,222,918</td>
         <td style="padding:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e74c3c;margin-right:4px;"></span>Not included</td>
         <td style="padding:8px;">Pre-computed 3D joints (21/hand, cam+world space) + MANO params (rotation matrices)</td>
