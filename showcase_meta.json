@@ -233,5 +233,79 @@
       "skeleton": true,
       "video_path": "videos/agibot_g1/agibot_g1_04.mp4"
     }
+  ],
+  "egodex": [
+    {
+      "scene": "test/basic_pick_place/0",
+      "robot": "Human Hand (Vision Pro)",
+      "cfg": "",
+      "frames": 126,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "video_path": "videos/egodex/egodex_00.mp4"
+    },
+    {
+      "scene": "test/assemble_disassemble_legos/0",
+      "robot": "Human Hand (Vision Pro)",
+      "cfg": "",
+      "frames": 240,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "video_path": "videos/egodex/egodex_01.mp4"
+    },
+    {
+      "scene": "test/braid_unbraid/0",
+      "robot": "Human Hand (Vision Pro)",
+      "cfg": "",
+      "frames": 300,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "video_path": "videos/egodex/egodex_02.mp4"
+    },
+    {
+      "scene": "test/add_remove_lid/0",
+      "robot": "Human Hand (Vision Pro)",
+      "cfg": "",
+      "frames": 94,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "video_path": "videos/egodex/egodex_03.mp4"
+    },
+    {
+      "scene": "test/arrange_topple_dominoes/0",
+      "robot": "Human Hand (Vision Pro)",
+      "cfg": "",
+      "frames": 75,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "video_path": "videos/egodex/egodex_04.mp4"
+    },
+    {
+      "scene": "test/assemble_disassemble_furniture_bench_chair/0",
+      "robot": "Human Hand (Vision Pro)",
+      "cfg": "",
+      "frames": 74,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "video_path": "videos/egodex/egodex_05.mp4"
+    },
+    {
+      "scene": "test/assemble_disassemble_furniture_bench_desk/0",
+      "robot": "Human Hand (Vision Pro)",
+      "cfg": "",
+      "frames": 124,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "video_path": "videos/egodex/egodex_06.mp4"
+    },
+    {
+      "scene": "test/assemble_disassemble_furniture_bench_drawer/0",
+      "robot": "Human Hand (Vision Pro)",
+      "cfg": "",
+      "frames": 42,
+      "resolution": "1920x1080",
+      "skeleton": true,
+      "video_path": "videos/egodex/egodex_07.mp4"
+    }
   ]
 }

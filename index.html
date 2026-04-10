@@ -716,11 +716,11 @@
     <br><a href="analysis/droid-extrinsic-sources.html" style="color: #64b5f6;">&#8594; Full analysis with video evidence</a>
   </div>
   <div class="video-grid" id="grid-droid">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_00.mp4"></video><div class="video-meta"><span class="scene-name">TRI 2023-11-02</span> &middot; 143 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_01.mp4"></video><div class="video-meta"><span class="scene-name">IRIS 2023-03-08</span> &middot; 87 frames &middot; 1280x720 &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_02.mp4"></video><div class="video-meta"><span class="scene-name">WEIRD 2023-11-29</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_03.mp4"></video><div class="video-meta"><span class="scene-name">PennPAL 2023-10-09</span> &middot; 146 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_04.mp4"></video><div class="video-meta"><span class="scene-name">WEIRD 2023-11-29</span> &middot; 225 frames &middot; 1280x720 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_00.mp4"></video><div class="video-meta"><span class="scene-name">TRI__success__2023-11-02__Thu_Nov__2_17:43:47_2023</span> &middot; 143 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_01.mp4"></video><div class="video-meta"><span class="scene-name">IRIS__success__2023-03-08__Wed_Mar__8_13_59_07_2023</span> &middot; 87 frames &middot; 1280x720 &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_02.mp4"></video><div class="video-meta"><span class="scene-name">WEIRD__success__2023-11-29__Wed_Nov_29_19:20:22_2023</span> &middot; 225 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_03.mp4"></video><div class="video-meta"><span class="scene-name">PennPAL__success__2023-10-09__Mon_Oct__9_20:56:51_2023</span> &middot; 146 frames &middot; tiled_2cam &middot; skeleton+gripper</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/droid_franka/droid_franka_04.mp4"></video><div class="video-meta"><span class="scene-name">WEIRD__success__2023-11-29__Wed_Nov_29_17:16:30_2023</span> &middot; 225 frames &middot; 1280x720 &middot; skeleton+gripper</div></div>
   </div>
   </div>
 
@@ -4117,6 +4117,28 @@
   <!-- Section 1: Rendered Human Datasets -->
   <h3 style="margin: 1.5rem 0 0.5rem; font-size: 1.1rem;">Rendered Human Datasets</h3>
   <p style="color: #aaa; margin-bottom: 1rem;">Human body/hand datasets with successful skeleton overlay rendering.</p>
+
+  <!-- EgoDex Rendered Section -->
+  <div class="dataset-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">EgoDex &mdash; Egocentric Dexterous Manipulation (Apple Vision Pro) <span class="badge badge-green" style="font-size:0.6rem">Rendered</span></h4>
+    <div style="color: #aaa; font-size: 0.8rem; margin-bottom: 0.8rem;">
+      <strong>View:</strong> Egocentric (1920&times;1080@30fps) &middot;
+      <strong>Hand data:</strong> ARKit SE(3) transforms &rarr; MANO 21-joint (per-finger colored) &middot;
+      <strong>Arm data:</strong> 3 joints (shoulder/elbow/wrist) &middot;
+      <strong>Source:</strong> 829 hours, 194 tasks &middot;
+      <strong>Verdict:</strong> Good (full hand+arm skeleton)
+    </div>
+    <div class="video-grid" id="grid-egodex">
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/egodex/egodex_00.mp4"></video><div class="video-meta"><span class="scene-name">basic_pick_place / ep 0</span> &middot; 126 frames &middot; 1920x1080 &middot; hand skeleton</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/egodex/egodex_01.mp4"></video><div class="video-meta"><span class="scene-name">assemble_disassemble_legos / ep 0</span> &middot; 240 frames &middot; 1920x1080 &middot; hand skeleton</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/egodex/egodex_02.mp4"></video><div class="video-meta"><span class="scene-name">braid_unbraid / ep 0</span> &middot; 300 frames &middot; 1920x1080 &middot; hand skeleton</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/egodex/egodex_03.mp4"></video><div class="video-meta"><span class="scene-name">add_remove_lid / ep 0</span> &middot; 94 frames &middot; 1920x1080 &middot; hand skeleton</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/egodex/egodex_04.mp4"></video><div class="video-meta"><span class="scene-name">arrange_topple_dominoes / ep 0</span> &middot; 75 frames &middot; 1920x1080 &middot; hand skeleton</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/egodex/egodex_05.mp4"></video><div class="video-meta"><span class="scene-name">assemble_disassemble_furniture_bench_chair / ep 0</span> &middot; 74 frames &middot; 1920x1080 &middot; hand skeleton</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/egodex/egodex_06.mp4"></video><div class="video-meta"><span class="scene-name">assemble_disassemble_furniture_bench_desk / ep 0</span> &middot; 124 frames &middot; 1920x1080 &middot; hand skeleton</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/egodex/egodex_07.mp4"></video><div class="video-meta"><span class="scene-name">assemble_disassemble_furniture_bench_drawer / ep 0</span> &middot; 42 frames &middot; 1920x1080 &middot; hand skeleton</div></div>
+  </div>
+  </div>
 
   <!-- VITRA-1M Rendered Section -->
   <div class="dataset-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
