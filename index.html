@@ -583,6 +583,7 @@
   <button class="tab-btn" data-tab="training-tab">Model Training</button>
   <button class="tab-btn" data-tab="human-tab">Human Datasets</button>
   <button class="tab-btn" data-tab="eval-tab">Eval</button>
+  <button class="tab-btn" data-tab="convention-tab">Convention</button>
 </div>
 
 <div id="rendering-tab" class="tab-content active">
@@ -4505,6 +4506,101 @@
 </div>
 </div>
 
+<!-- Convention Tab -->
+<div id="convention-tab" class="tab-content">
+<div class="section">
+  <h2 class="section-title">Skeleton Rendering Convention</h2>
+  <p style="color: #aaa; margin-bottom: 1.5rem;">Unified visual language for cross-embodiment skeleton overlays. All robot and human datasets follow these rendering rules.</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+
+    <!-- Human Skeleton -->
+    <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem;">
+      <h3 style="color: #e94560; margin: 0 0 1rem;">Human Skeleton</h3>
+      <img src="convention_skeleton.png" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;" alt="Human skeleton convention">
+      <div style="color: #aaa; font-size: 0.85rem; line-height: 1.8;">
+        <strong>Standard:</strong> MANO 21-joint per hand + 3-joint arm<br>
+        <strong>Total:</strong> 48 joints = (3 arm + 21 hand) &times; left/right<br>
+        <strong>Left/Right:</strong> Same colors, spatial distinction only<br>
+        <strong>Datasets:</strong> EgoDex, ARCTIC, H2O, EgoBody, VITRA, HOI4D
+      </div>
+    </div>
+
+    <!-- Robot Skeleton -->
+    <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem;">
+      <h3 style="color: #e94560; margin: 0 0 1rem;">Robot Skeleton</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-bottom: 1rem;">
+        <tr style="border-bottom: 1px solid #333;">
+          <th style="text-align: left; padding: 8px; color: #888;">Component</th>
+          <th style="text-align: left; padding: 8px; color: #888;">Color</th>
+          <th style="text-align: left; padding: 8px; color: #888;">RGB</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #333;">
+          <td style="padding: 8px;">Arm link chain</td>
+          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#ffff00;border-radius:3px;vertical-align:middle;"></span> Yellow</td>
+          <td style="padding: 8px; color: #888;">(255, 255, 0)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #333;">
+          <td style="padding: 8px;">Joint circles</td>
+          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#0000ff;border-radius:3px;vertical-align:middle;"></span> Blue</td>
+          <td style="padding: 8px; color: #888;">(0, 0, 255)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #333;">
+          <td style="padding: 8px;">Gripper / fingers</td>
+          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#ff0000;border-radius:3px;vertical-align:middle;"></span> Red</td>
+          <td style="padding: 8px; color: #888;">(255, 0, 0)</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px;">EE axes (X/Y/Z)</td>
+          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#0000ff;border-radius:3px;vertical-align:middle;"></span><span style="display:inline-block;width:16px;height:16px;background:#00ff00;border-radius:3px;vertical-align:middle;margin-left:2px;"></span><span style="display:inline-block;width:16px;height:16px;background:#ff0000;border-radius:3px;vertical-align:middle;margin-left:2px;"></span> B/G/R</td>
+          <td style="padding: 8px; color: #888;">X=(0,0,255) Y=(0,255,0) Z=(255,0,0)</td>
+        </tr>
+      </table>
+      <div style="color: #aaa; font-size: 0.85rem; line-height: 1.8;">
+        <strong>Link chain:</strong> EE &rarr; wrist &rarr; ... &rarr; base (FK-computed)<br>
+        <strong>Left/Right:</strong> Same colors, spatial distinction only<br>
+        <strong>Robots:</strong> Franka, KUKA, UR5, Flexiv, Unitree G1, Toyota HSR
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Cross-Embodiment Mapping -->
+  <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem;">
+    <h3 style="color: #e94560; margin: 0 0 1rem;">Cross-Embodiment Correspondence</h3>
+    <p style="color: #aaa; margin-bottom: 1rem; font-size: 0.9rem;">Humans are treated as another embodiment type. The skeleton overlay provides a unified visual language for training cross-embodiment generative models.</p>
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+      <tr style="border-bottom: 1px solid #444;">
+        <th style="text-align: left; padding: 10px; color: #888; width: 33%;">Concept</th>
+        <th style="text-align: left; padding: 10px; color: #888; width: 33%;">Robot</th>
+        <th style="text-align: left; padding: 10px; color: #888; width: 33%;">Human</th>
+      </tr>
+      <tr style="border-bottom: 1px solid #333;">
+        <td style="padding: 10px;">Arm chain</td>
+        <td style="padding: 10px;">URDF link chain (7-DOF typical)</td>
+        <td style="padding: 10px;">Shoulder &rarr; Elbow &rarr; Wrist (3 joints)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #333;">
+        <td style="padding: 10px;">End effector</td>
+        <td style="padding: 10px;">Gripper (parallel-jaw or dex hand)</td>
+        <td style="padding: 10px;">5 fingers &times; 4 joints = 20 joints per hand</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #333;">
+        <td style="padding: 10px;">Bimanual</td>
+        <td style="padding: 10px;">Dual-arm (e.g., AgiBotG1 L+R)</td>
+        <td style="padding: 10px;">Left hand + Right hand (same colors)</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;">Camera view</td>
+        <td style="padding: 10px;">Third-person (typical) or wrist-mounted</td>
+        <td style="padding: 10px;">Egocentric (head-mounted) or third-person</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+</div>
+
 <script>
 // Tab switching
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -4534,6 +4630,8 @@ if (location.hash === '#processed') {
   document.querySelector('[data-tab="human-tab"]').click();
 } else if (location.hash === '#eval') {
   document.querySelector('[data-tab="eval-tab"]').click();
+} else if (location.hash === '#convention') {
+  document.querySelector('[data-tab="convention-tab"]').click();
 }
 
 // Filtering
