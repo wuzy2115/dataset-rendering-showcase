@@ -405,6 +405,25 @@
     color: white;
   }
 
+  /* Video Cards - Eval (wide comparison videos: Generated | Condition | GT) */
+  #eval-tab .video-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  #eval-tab .video-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  #eval-tab .video-card:hover {
+    border-color: var(--accent);
+  }
+
   /* Video Cards - Processed */
   #processed-tab .video-grid {
     display: grid;
