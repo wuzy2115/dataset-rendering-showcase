@@ -4589,12 +4589,15 @@
     <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
       <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">3</div>
       <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">K-Means Medoid Selection</div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">Coverage-Based Diverse Subset Selection</div>
         <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          K-means clustering on the 2D feature space with K = allocated budget (clamped to N if budget exceeds dataset size).
-          From each cluster, we select the sample closest to the centroid (medoid). This guarantees uniform coverage in the
-          joint semantic-motion space &mdash; rare task types (bi-manual coordination, tool use, long-horizon tasks) get equal
-          footing with common ones (e.g., "pick up object from table").
+          We need to select K episodes (= allocated budget) that are maximally spread out in the 2D feature space.
+          To do this, we partition the space into K regions using K-means (where K is the desired sample count, not
+          the number of "natural clusters") and pick the episode closest to each region's centroid (medoid).
+          This is a standard coverage sampling technique &mdash; K-means is used as a space-partitioning tool,
+          not for cluster discovery. The result: episodes are as diverse as possible across both task semantics
+          and motion complexity, so rare patterns (bi-manual coordination, tool use, long-horizon tasks)
+          get equal representation alongside common ones (e.g., "pick up object from table").
         </div>
       </div>
     </div>
@@ -4752,8 +4755,9 @@
   <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Paper Description</h3>
   <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
     <blockquote style="margin: 0; padding-left: 1rem; border-left: 3px solid var(--accent); color: var(--muted); font-size: 0.9rem; font-style: italic; line-height: 1.7;">
-      "We cluster episodes jointly by semantic task embedding and end-effector trajectory length,
-      selecting the medoid of each cluster to maximize coverage across task type and motion complexity."
+      "We partition the joint space of semantic task embeddings and end-effector trajectory lengths
+      into K regions via K-means (K = desired sample count), selecting the medoid of each region
+      to maximize coverage across task type and motion complexity."
     </blockquote>
   </div>
 
