@@ -4516,9 +4516,12 @@
     <span class="badge badge-green">1,000 Episodes</span>
   </h2>
   <p style="color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7;">
-    We construct a held-out evaluation benchmark of <strong>1,000 episodes</strong> (284,037 frames) across 6 datasets.
-    The goal is a diverse, representative subset that covers the full range of task semantics and motion patterns
-    in our training data — without cherry-picking or random sampling.
+    We construct a held-out evaluation benchmark of <strong>1,000 episodes</strong> (284,037 frames) across 6 datasets
+    for the world model evaluation. The benchmark is drawn exclusively from quality-filtered, deduplicated episodes
+    (<code>manifest.json["kept"]</code>) — dropped episodes (moving camera, near-duplicates) are never used,
+    as near-duplicate leakage would bias metrics upward. The split is a <strong>separate offline step</strong>
+    that runs after the full data processing pipeline (camera filter &rarr; dedup &rarr; render &rarr; caption &rarr; episode_meta)
+    and does not modify the pipeline's <code>manifest.json</code>.
   </p>
 
   <!-- Overview Stats -->
@@ -4536,64 +4539,83 @@
       <div style="color: var(--muted); font-size: 0.85rem;">Datasets</div>
     </div>
     <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center;">
-      <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">5</div>
+      <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">4</div>
       <div style="color: var(--muted); font-size: 0.85rem;">Robot Embodiments</div>
     </div>
+  </div>
+
+  <!-- Related Work Context -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Design Context</h3>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; color: var(--muted); font-size: 0.9rem; line-height: 1.7;">
+    <p style="margin-bottom: 0.75rem;">
+      Multiple baselines will run inference over this benchmark, so total size must be small enough for practical inference (~1,000 samples).
+      Metrics are reported <strong>per dataset</strong> (not merged by embodiment), because datasets differ in origin (real vs. sim),
+      scene background, and collection setup.
+    </p>
+    <p>
+      Related work precedents:
+      <strong>Genie Envisioner</strong> (EWMBench) uses 10 tasks &times; 100 samples = 1,000 total with tasks fully disjoint from pretraining;
+      <strong>Kinema4D</strong> uses a stratified ~2% hold-out (3,200 / 201K) with per-source reporting;
+      <strong>DreamZero</strong> uses task-level seen/unseen split with per-task reporting.
+      We rejected task-level held-out splits because OOD tasks with unseen action renderings would produce
+      systematically poor results, confounding model quality with distribution shift.
+    </p>
   </div>
 
   <!-- Pipeline Steps -->
   <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Construction Pipeline</h3>
   <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
-
     <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
       <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">1</div>
       <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">Budget Allocation (sqrt-N weighting)</div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">Budget Allocation (&radic;N weighting)</div>
         <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          Each dataset receives a share of the 1,000-episode budget proportional to <code>sqrt(N)</code>, where N is the number of
+          Each dataset receives a share of the 1,000-episode budget proportional to <code>&radic;N</code>, where N is the number of
           kept episodes after quality filtering. This prevents large datasets (agibot: 94K episodes) from dominating while still
-          giving them more representation than tiny ones (rh20t_cfg7: 557 episodes). The square-root weighting balances
-          dataset diversity against per-dataset coverage.
+          giving them more representation than tiny ones (rh20t_cfg7: 557 episodes). The &radic;N weighting is consistent
+          with the DataLoader's embodiment-level sampling philosophy. Per-dataset counts can be overridden via config YAML.
         </div>
       </div>
     </div>
-
     <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
       <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">2</div>
       <div>
         <div style="font-weight: 600; margin-bottom: 0.3rem;">Feature Extraction (caption + motion)</div>
         <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
           For each episode we extract two signals:<br>
-          <strong>Semantic:</strong> VLM-generated captions are embedded using <code>all-MiniLM-L6-v2</code> (384-dim), then reduced to 2D via PCA.<br>
-          <strong>Motion:</strong> End-effector trajectory path length is computed from <code>episode_meta.npz</code> (sum of frame-to-frame Euclidean displacements).
-          For dual-arm robots (agibot), left and right arm trajectories are summed.<br>
-          The 3D feature vector (2D semantic + 1D motion) is projected to 2D via a second PCA, then min-max normalized.
+          <strong>Semantic:</strong> VLM-generated captions (from <code>caption.pickle</code>) are embedded using <code>all-MiniLM-L6-v2</code> (384-dim), then reduced to 2D via PCA. Episodes with unreadable or missing captions are skipped entirely.<br>
+          <strong>Motion:</strong> End-effector trajectory path length from <code>episode_meta.npz</code> &mdash; sum of frame-to-frame Euclidean displacements of the EE translation vector.
+          For dual-arm robots (agibot), left and right arm trajectories (<code>ee_pose_left</code> / <code>ee_pose_right</code>) are summed.
+          Missing motion data is imputed with the dataset median (episode kept if caption is valid).<br>
+          The 3D feature vector (2D semantic + 1D motion) is projected to 2D via a second PCA, then min-max normalized to [0, 1].
         </div>
       </div>
     </div>
-
     <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
       <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">3</div>
       <div>
         <div style="font-weight: 600; margin-bottom: 0.3rem;">K-Means Medoid Selection</div>
         <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          We run K-means clustering on the 2D feature space with K = allocated budget for that dataset.
-          From each cluster, we select the sample closest to the centroid (medoid). This ensures maximum coverage
-          of the joint semantic-motion space — the benchmark contains episodes that are as diverse as possible
-          rather than accidentally clustering around popular task types.
+          K-means clustering on the 2D feature space with K = allocated budget (clamped to N if budget exceeds dataset size).
+          From each cluster, we select the sample closest to the centroid (medoid). This guarantees uniform coverage in the
+          joint semantic-motion space &mdash; rare task types (bi-manual coordination, tool use, long-horizon tasks) get equal
+          footing with common ones (e.g., "pick up object from table").
         </div>
       </div>
     </div>
-
     <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
       <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">4</div>
       <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">Train / Benchmark Split</div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">Three-Manifest Split</div>
         <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          Selected episodes go into <code>benchmark_manifest.json</code>; the remainder stays in <code>train_manifest.json</code>.
-          The split is deterministic (seed=42) and reproducible. Benchmark episodes are exported via hardlinks to a
-          dedicated directory, each containing: <code>rgb.mp4</code>, <code>overlay.mp4</code>, <code>gripper_scenario.mp4</code>,
-          <code>caption.pickle</code>, and <code>episode_meta.npz</code>.
+          Each dataset directory ends up with three manifests, all using the same <code>"kept"</code> list format
+          that <code>EmbodimentDataLoader</code> already reads &mdash; <strong>zero DataLoader code changes</strong> required:<br>
+          <code>manifest.json</code> &mdash; pipeline output (never modified)<br>
+          <code>benchmark_manifest.json</code> &mdash; selected benchmark episodes<br>
+          <code>train_manifest.json</code> &mdash; kept &minus; benchmark = training episodes<br>
+          The split is deterministic (seed=42) and fully reproducible. Benchmark episodes are exported via hardlinks
+          to a dedicated directory with per-episode files: <code>rgb.mp4</code>, <code>overlay.mp4</code>,
+          <code>gripper_scenario.mp4</code>, <code>caption.pickle</code>, <code>episode_meta.npz</code>.
         </div>
       </div>
     </div>
@@ -4608,9 +4630,9 @@
           <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Dataset</th>
           <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Robot</th>
           <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Pool Size</th>
+          <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">&radic;N Weight</th>
           <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Benchmark</th>
           <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Frames</th>
-          <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">% of Total</th>
         </tr>
       </thead>
       <tbody>
@@ -4618,56 +4640,56 @@
           <td style="padding: 0.75rem 1rem; font-weight: 500;">agibot</td>
           <td style="padding: 0.75rem 1rem; color: var(--muted);">Unitree G1 (dual-arm)</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">93,981</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 307</td>
           <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">490</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">65,288</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">49.0%</td>
         </tr>
         <tr style="border-bottom: 1px solid var(--border);">
           <td style="padding: 0.75rem 1rem; font-weight: 500;">droid</td>
           <td style="padding: 0.75rem 1rem; color: var(--muted);">Franka Panda</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">23,887</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 155</td>
           <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">247</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">84,215</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">24.7%</td>
         </tr>
         <tr style="border-bottom: 1px solid var(--border);">
           <td style="padding: 0.75rem 1rem; font-weight: 500;">airoa_moma</td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">Airoa MoMa</td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">Toyota HSR</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">4,192</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 65</td>
           <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">103</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">46,919</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">10.3%</td>
         </tr>
         <tr style="border-bottom: 1px solid var(--border);">
           <td style="padding: 0.75rem 1rem; font-weight: 500;">interndata</td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">Franka Panda</td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">Franka Panda (sim)</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">2,321</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 48</td>
           <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">77</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">51,711</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">7.7%</td>
         </tr>
         <tr style="border-bottom: 1px solid var(--border);">
           <td style="padding: 0.75rem 1rem; font-weight: 500;">rh20t_cfg5</td>
           <td style="padding: 0.75rem 1rem; color: var(--muted);">Franka Panda</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">796</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 28</td>
           <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">45</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">17,327</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">4.5%</td>
         </tr>
         <tr style="border-bottom: 1px solid var(--border);">
           <td style="padding: 0.75rem 1rem; font-weight: 500;">rh20t_cfg7</td>
           <td style="padding: 0.75rem 1rem; color: var(--muted);">KUKA iiwa</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">557</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 24</td>
           <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">38</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">18,577</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">3.8%</td>
         </tr>
         <tr style="border-top: 2px solid var(--border); font-weight: 600;">
           <td style="padding: 0.75rem 1rem;" colspan="2">Total</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">125,734</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">626</td>
           <td style="padding: 0.75rem 1rem; text-align: right; color: var(--accent);">1,000</td>
           <td style="padding: 0.75rem 1rem; text-align: right;">284,037</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">100%</td>
         </tr>
       </tbody>
     </table>
@@ -4727,35 +4749,28 @@
       </div>
     </div>
     <div style="margin-top: 1rem; color: var(--muted); font-size: 0.8rem; text-align: center;">
-      Episode count per dataset (sqrt-N weighted allocation from pool of 125,734 total kept episodes)
+      Episode count per dataset (&radic;N weighted allocation, normalized from raw weight sum of 626 to 1,000)
     </div>
   </div>
 
-  <!-- Why not random sampling -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Why K-Means Coverage, Not Random Sampling?</h3>
-  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; color: var(--muted); font-size: 0.9rem; line-height: 1.7;">
-    <p style="margin-bottom: 0.75rem;">
-      Random sampling from a heavily imbalanced dataset tends to over-represent common task types
-      (e.g., "pick up object from table") while under-representing rare but important patterns
-      (e.g., bi-manual coordination, tool use, long-horizon tasks).
-    </p>
-    <p style="margin-bottom: 0.75rem;">
-      By clustering in the joint caption-embedding + motion-magnitude feature space, we ensure the benchmark
-      covers the full distribution of <em>what</em> the robot does (semantic diversity via captions) and
-      <em>how much</em> it moves (kinematic diversity via EE path length). Each cluster contributes exactly
-      one representative episode, so rare task types get equal footing with common ones.
-    </p>
-    <p>
-      The <code>sqrt(N)</code> inter-dataset weighting provides a middle ground between equal representation
-      (which would give too much weight to tiny datasets) and proportional representation (which would let
-      agibot consume ~75% of the benchmark budget).
-    </p>
+  <!-- Paper description -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Paper Description</h3>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+    <blockquote style="margin: 0; padding-left: 1rem; border-left: 3px solid var(--accent); color: var(--muted); font-size: 0.9rem; font-style: italic; line-height: 1.7;">
+      "We cluster episodes jointly by semantic task embedding and end-effector trajectory length,
+      selecting the medoid of each cluster to maximize coverage across task type and motion complexity."
+    </blockquote>
   </div>
 
   <!-- Export structure -->
   <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Export Structure</h3>
   <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
-    <pre style="margin: 0; font-size: 0.85rem; line-height: 1.6; color: var(--text); overflow-x: auto;"><code>benchmark_export/
+    <pre style="margin: 0; font-size: 0.85rem; line-height: 1.6; color: var(--text); overflow-x: auto;"><code>pipeline_output_fix/{dataset}/
+  manifest.json                    # pipeline output (never modified)
+  train_manifest.json              # kept = manifest.kept - benchmark
+  benchmark_manifest.json          # kept = benchmark-selected episodes
+
+benchmark_export/
   benchmark_manifest.json          # top-level manifest with all dataset stats
   agibot/                          # 490 episodes
     603_832938_a0_0_122/
@@ -4766,9 +4781,6 @@
         caption.pickle             # VLM-generated task caption
         episode_meta.npz           # EE pose, joint angles, camera params
   droid/                           # 247 episodes
-    AUTOLab__failure__2023.../
-      22008760/
-        rgb.mp4, overlay.mp4, ...
   airoa_moma/                      # 103 episodes
   interndata/                      #  77 episodes
   rh20t_cfg5/                      #  45 episodes
@@ -4776,12 +4788,10 @@
   </div>
   <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem;">
     Files are hardlinked from the pipeline output directory to avoid duplication on the same filesystem.
-    The full benchmark export lives at <code>/nfs/turbo/.../benchmark_export</code> (~284K frames).
+    DataLoader requires <strong>zero code changes</strong> &mdash; training and evaluation configs simply point to different manifest paths.
   </p>
 
 </div>
-</div>
-
 </div>
 
 <!-- Convention Tab -->
