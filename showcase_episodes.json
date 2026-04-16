@@ -1,354 +1,236 @@
 {
-  "generated_at": "2026-04-03",
+  "generated_at": "2026-04-16T02:50:38.197739",
   "episodes_per_dataset": 10,
   "datasets": {
     "droid": {
       "robot": "franka_panda",
-      "total_episodes": 23887,
+      "total_episodes": 30925,
       "showcase_episodes": [
         {
-          "episode_id": "RAIL__success__2023-04-05__Wed_Apr__5_15:08:50_2023",
-          "camera_id": "20521388",
-          "category": "RAIL",
-          "caption": "A white robotic arm with a black gripper descends from the ceiling in a laboratory setting, its blue light glowing as it moves toward a wooden table. On the table, an orange and a metal bowl sit beside a cardboard box. The robot's arm extends forward, positioning its gripper above the objects. The background shows a cluttered workspace with desks, monitors, and shelves filled with equipment. A fire extinguisher is mounted on a concrete pillar. The scene is well-lit with overhead fluorescent lights. A medium shot captures the robot's precise movement and the surrounding lab environment.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/RAIL__success__2023-04-05__Wed_Apr__5_15:08:50_2023/20521388/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/RAIL__success__2023-04-05__Wed_Apr__5_15:08:50_2023/20521388/gripper_scenario.mp4",
+          "episode_id": "AUTOLab__failure__2023-11-16__Thu_Nov_16_15:37:50_2023",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/droid/RAIL__success__2023-04-05__Wed_Apr__5_15:08:50_2023/rgb.mp4",
-            "skeleton": "videos/processed/droid/RAIL__success__2023-04-05__Wed_Apr__5_15:08:50_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/AUTOLab__failure__2023-11-16__Thu_Nov_16_15:37:50_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/AUTOLab__failure__2023-11-16__Thu_Nov_16_15:37:50_2023/skeleton.mp4"
           }
         },
         {
-          "episode_id": "IRIS__success__2023-03-02__Thu_Mar__2_14_57_27_2023",
-          "camera_id": "29838012",
-          "category": "IRIS",
-          "caption": "A white robotic arm with black joints operates in an office setting, its end effector gripping a black marker. The robot carefully lifts the marker from a dark countertop, where a green cloth, a water bottle, and several cans are also placed. It then moves the marker toward a white bowl positioned nearby. In the background, a person wearing a face mask sits at the table, handling a small object. The scene is brightly lit, with glass walls and office furniture visible. A blue light glows from the base of the robot, which is mounted on a black platform. The camera remains static, capturing the robot's precise movements from a medium shot.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/IRIS__success__2023-03-02__Thu_Mar__2_14_57_27_2023/29838012/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/IRIS__success__2023-03-02__Thu_Mar__2_14_57_27_2023/29838012/gripper_scenario.mp4",
+          "episode_id": "AUTOLab__success__2023-07-21__Fri_Jul_21_15:31:36_2023",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "A white robotic arm with black joints moves over a wooden table in a tech lab. The arm descends, its gripper opening and closing above a small blue cup and a metal cylinder. In the background, a person in an orange shirt works at a computer, surrounded by monitors, a whiteboard with writing, and lab equipment. A large softbox light stands to the right. The camera remains static, capturing the robot's precise movements from a slightly elevated angle. A medium shot focusing on the robotic arm and the table.",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/droid/IRIS__success__2023-03-02__Thu_Mar__2_14_57_27_2023/rgb.mp4",
-            "skeleton": "videos/processed/droid/IRIS__success__2023-03-02__Thu_Mar__2_14_57_27_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/AUTOLab__success__2023-07-21__Fri_Jul_21_15:31:36_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/AUTOLab__success__2023-07-21__Fri_Jul_21_15:31:36_2023/skeleton.mp4"
           }
         },
         {
-          "episode_id": "GuptaLab__success__2023-04-30__Sun_Apr_30_15:02:19_2023",
-          "camera_id": "22246076",
-          "category": "GuptaLab",
-          "caption": "A white robotic arm with black joints is positioned in a modern laboratory setting, its articulated arm extending over a stainless steel sink. The robot's gripper is holding a small object, possibly a tool or component, and it moves with precision, adjusting its position above the sink. The surrounding environment includes a wooden table in the foreground, a metal shelf with various items, and office equipment in the background. The robot's base emits a blue light, indicating it is active. The scene is well-lit with overhead fluorescent lights, and the overall atmosphere suggests a high-tech research or development environment. The camera remains stationary, providing a clear view of the robot's movements and the surrounding workspace.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/GuptaLab__success__2023-04-30__Sun_Apr_30_15:02:19_2023/22246076/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/GuptaLab__success__2023-04-30__Sun_Apr_30_15:02:19_2023/22246076/gripper_scenario.mp4",
+          "episode_id": "AUTOLab__success__2023-11-04__Sat_Nov__4_18:13:22_2023",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/droid/GuptaLab__success__2023-04-30__Sun_Apr_30_15:02:19_2023/rgb.mp4",
-            "skeleton": "videos/processed/droid/GuptaLab__success__2023-04-30__Sun_Apr_30_15:02:19_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/AUTOLab__success__2023-11-04__Sat_Nov__4_18:13:22_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/AUTOLab__success__2023-11-04__Sat_Nov__4_18:13:22_2023/skeleton.mp4"
           }
         },
         {
-          "episode_id": "REAL__success__2023-04-06__Thu_Apr__6_14_26_59_2023",
-          "camera_id": "20540549",
-          "category": "REAL",
-          "caption": "A modern office space with gray walls and concrete flooring, featuring several desks with computer monitors and ergonomic office chairs. In the foreground, a stack of cardboard boxes is placed on a table, with a clear plastic cup and an orange-handled tool resting on top. A blue recycling bin is visible near a pillar, and the background shows more workstations and a glass partition leading to another area. The scene is well-lit with overhead lighting, creating a clean and organized workspace. A hand briefly enters the frame from the top right, partially obscuring the view.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/REAL__success__2023-04-06__Thu_Apr__6_14_26_59_2023/20540549/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/REAL__success__2023-04-06__Thu_Apr__6_14_26_59_2023/20540549/gripper_scenario.mp4",
+          "episode_id": "AUTOLab__success__2023-11-30__Thu_Nov_30_13:33:58_2023",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "A robotic arm with a white and black body descends into view, positioning itself over a cluttered countertop. The arm's gripper, equipped with a yellow and black component, extends toward crumpled white paper towels. It carefully grasps one of the paper towels, lifting it from the counter. The robotic arm then moves the paper towel toward a black cabinet below, which has a sign reading \"MIXED PAPER\" on its front. The arm continues its motion, moving the paper towel toward the cabinet's opening, preparing to dispose of it. The scene takes place in a room with a dark blue wall and a large printer on the right side of the frame. The countertop is made of dark granite and is scattered with various items, including a plastic container, a knife, and a few other small objects. The robotic arm's movements are precise and deliberate, showcasing its ability to handle objects in a controlled manner.",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/droid/REAL__success__2023-04-06__Thu_Apr__6_14_26_59_2023/rgb.mp4",
-            "skeleton": "videos/processed/droid/REAL__success__2023-04-06__Thu_Apr__6_14_26_59_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/AUTOLab__success__2023-11-30__Thu_Nov_30_13:33:58_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/AUTOLab__success__2023-11-30__Thu_Nov_30_13:33:58_2023/skeleton.mp4"
           }
         },
         {
-          "episode_id": "RPL__success__2023-04-23__Sun_Apr_23_17:15:32_2023",
-          "camera_id": "24013089",
-          "category": "RPL",
-          "caption": "A white robotic arm with a black gripper extends from the left, its joints moving smoothly as it adjusts its position. The arm is positioned over a wooden table, with a clear plastic container filled with stuffed animals to the right. In the background, a large screen displays a blue interface, and several cardboard boxes are stacked on a shelf. The room is well-lit with overhead fluorescent lights, and a window on the right side lets in natural light. The robotic arm's movements are precise and deliberate, showcasing its capability in a laboratory or testing environment. A medium shot captures the entire scene, emphasizing the interaction between the robot and its surroundings.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/RPL__success__2023-04-23__Sun_Apr_23_17:15:32_2023/24013089/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/RPL__success__2023-04-23__Sun_Apr_23_17:15:32_2023/24013089/gripper_scenario.mp4",
+          "episode_id": "AUTOLab__success__2023-12-02__Sat_Dec__2_15:18:32_2023",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/droid/RPL__success__2023-04-23__Sun_Apr_23_17:15:32_2023/rgb.mp4",
-            "skeleton": "videos/processed/droid/RPL__success__2023-04-23__Sun_Apr_23_17:15:32_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/AUTOLab__success__2023-12-02__Sat_Dec__2_15:18:32_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/AUTOLab__success__2023-12-02__Sat_Dec__2_15:18:32_2023/skeleton.mp4"
           }
         },
         {
-          "episode_id": "PennPAL__success__2023-04-27__Thu_Apr_27_22:24:23_2023",
-          "camera_id": "23748752",
-          "category": "PennPAL",
-          "caption": "A white and black robotic arm with a gripper attachment is positioned over a kitchen counter. The arm extends toward a green plastic cup containing a blue pen. It carefully grasps the pen with its gripper, lifting it from the cup. The robotic arm then retracts, holding the pen securely. The scene takes place in a kitchen with a stainless steel sink, a black keyboard, and a wooden cabinet visible in the background. The camera remains stationary, providing a clear view of the robotic arm's precise movements.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/PennPAL__success__2023-04-27__Thu_Apr_27_22:24:23_2023/23748752/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/PennPAL__success__2023-04-27__Thu_Apr_27_22:24:23_2023/23748752/gripper_scenario.mp4",
+          "episode_id": "CLVR__success__2023-05-20__Sat_May_20_18:01:06_2023",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "A white robotic arm with black joints and cables is positioned on a black perforated table in a laboratory setting. The arm, mounted on a sturdy base, extends its articulated arm toward a yellow mug with a green handle placed on a black table. The robotic hand, equipped with a gripper, carefully approaches the mug, then grasps a green object inside it. The background reveals a cluttered lab environment with various equipment, including a laptop, a whiteboard, and other tools. The robotic arm moves with precision, demonstrating its capability to manipulate objects in a controlled manner. The scene is well-lit, highlighting the sleek design of the robot and the surrounding workspace. A medium shot captures the robot's movements and the interaction with the objects on the table.",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/droid/PennPAL__success__2023-04-27__Thu_Apr_27_22:24:23_2023/rgb.mp4",
-            "skeleton": "videos/processed/droid/PennPAL__success__2023-04-27__Thu_Apr_27_22:24:23_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/CLVR__success__2023-05-20__Sat_May_20_18:01:06_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/CLVR__success__2023-05-20__Sat_May_20_18:01:06_2023/skeleton.mp4"
           }
         },
         {
-          "episode_id": "ILIAD__success__2023-04-19__Wed_Apr_19_16:19:43_2023",
-          "camera_id": "23897859",
-          "category": "ILIAD",
-          "caption": "A robotic arm with a black and white design descends from above into a cluttered workspace, its joints and cables visible as it moves. The arm positions itself over a wooden table, where a black cup and a marker lie. The background features a white curtain, shelves with equipment, and a computer monitor. The arm's gripper opens and closes as it prepares to interact with the objects on the table. A medium shot captures the robotic arm's movements from a slightly elevated angle.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/ILIAD__success__2023-04-19__Wed_Apr_19_16:19:43_2023/23897859/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/ILIAD__success__2023-04-19__Wed_Apr_19_16:19:43_2023/23897859/gripper_scenario.mp4",
+          "episode_id": "CLVR__success__2023-06-03__Sat_Jun__3_22:15:25_2023",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/droid/ILIAD__success__2023-04-19__Wed_Apr_19_16:19:43_2023/rgb.mp4",
-            "skeleton": "videos/processed/droid/ILIAD__success__2023-04-19__Wed_Apr_19_16:19:43_2023/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "IPRL__success__2023-02-28__Tue_Feb_28_20:25:47_2023",
-          "camera_id": "23404442",
-          "category": "IPRL",
-          "caption": "A white robotic arm with black joints and cables extends from a base with blue lights, positioned in a lab-like workspace. The arm moves forward, its gripper descending toward a white mug and a red marker on a dark countertop. The background features a long room with fluorescent lighting, whiteboards covered in diagrams, and various equipment. A white bucket with a red logo sits on the right side of the counter. The robotic arm carefully approaches the objects, preparing to interact with them. A medium shot captures the scene from a slightly elevated angle.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/IPRL__success__2023-02-28__Tue_Feb_28_20:25:47_2023/23404442/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/IPRL__success__2023-02-28__Tue_Feb_28_20:25:47_2023/23404442/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/droid/IPRL__success__2023-02-28__Tue_Feb_28_20:25:47_2023/rgb.mp4",
-            "skeleton": "videos/processed/droid/IPRL__success__2023-02-28__Tue_Feb_28_20:25:47_2023/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "AUTOLab__success__2023-07-07__Fri_Jul__7_09:42:23_2023",
-          "camera_id": "22008760",
-          "category": "AUTOLab",
-          "caption": "A robotic arm with a black and white mechanical design enters the frame from the right, moving toward a wooden table in a cluttered office space. On the table, a pink bowl and a yellow cup sit side by side. The robot's articulated arm extends and lowers a tool toward the objects, appearing to prepare for an action. In the background, office equipment, desks, and a white curtain are visible, with a large softbox light positioned above the scene. The camera remains fixed, capturing the robot's precise movement in a medium shot.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/AUTOLab__success__2023-07-07__Fri_Jul__7_09:42:23_2023/22008760/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/AUTOLab__success__2023-07-07__Fri_Jul__7_09:42:23_2023/22008760/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/droid/AUTOLab__success__2023-07-07__Fri_Jul__7_09:42:23_2023/rgb.mp4",
-            "skeleton": "videos/processed/droid/AUTOLab__success__2023-07-07__Fri_Jul__7_09:42:23_2023/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "CLVR__success__2023-05-09__Tue_May__9_01:17:11_2023",
-          "camera_id": "20103212",
-          "category": "CLVR",
-          "caption": "A white robotic arm with a black gripper descends from above, moving toward a bright green mug on a white table. The mug, featuring a cartoon design, sits next to a small green cylindrical object. The robot's arm, with a sleek silver and black body, lowers steadily, positioning its gripper directly above the mug. The scene is set in a lab-like environment with lighting equipment and cardboard boxes visible in the background. A medium shot captures the robot's precise movement as it prepares to interact with the mug.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/CLVR__success__2023-05-09__Tue_May__9_01:17:11_2023/20103212/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/droid/droid/CLVR__success__2023-05-09__Tue_May__9_01:17:11_2023/20103212/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/droid/CLVR__success__2023-05-09__Tue_May__9_01:17:11_2023/rgb.mp4",
-            "skeleton": "videos/processed/droid/CLVR__success__2023-05-09__Tue_May__9_01:17:11_2023/skeleton.mp4"
+            "rgb": "videos/processed/droid/CLVR__success__2023-06-03__Sat_Jun__3_22:15:25_2023/rgb.mp4",
+            "skeleton": "videos/processed/droid/CLVR__success__2023-06-03__Sat_Jun__3_22:15:25_2023/skeleton.mp4"
           }
         }
-      ]
+      ],
+      "type": "robotics"
     },
     "rh20t_cfg5": {
       "robot": "franka_panda",
-      "total_episodes": 796,
+      "total_episodes": 774,
       "showcase_episodes": [
         {
-          "episode_id": "task_0081_user_0007_scene_0001_cfg_0005",
-          "camera_id": "036422060215",
-          "category": "task_0081",
-          "caption": "A white robotic arm with black joints and a blue indicator light is positioned over a transparent, textured surface with a marbled pattern of orange and white. The robot's gripper, equipped with a small camera or sensor, hovers above the surface, attempting to pick up a pair of glasses and a small wooden block. A person's hand occasionally enters the frame from the left, adjusting the objects on the surface. The background includes a computer keyboard, papers, and various lab equipment, indicating a controlled experimental setup. The robot makes slight adjustments to its position, focusing on the task of grasping the objects. The scene is well-lit, highlighting the mechanical precision and the intricate details of the robotic arm's movements. The camera remains stationary, providing a clear view of the interaction between the robot and the objects.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/036422060215/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/036422060215/gripper_scenario.mp4",
+          "episode_id": "task_0008_user_0007_scene_0001_cfg_0005",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0008_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0008_user_0007_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
-          "episode_id": "task_0094_user_0007_scene_0001_cfg_0005",
-          "camera_id": "036422060215",
-          "category": "task_0094",
-          "caption": "A white robotic arm with black joints and a blue-lit end effector is positioned over a green textured mat on a metal grid table. The robot slowly lowers its gripper into an open cardboard box, adjusting its position slightly before inserting the tool deeper into the box. A small wooden cube rests nearby on the mat, and papers with diagrams are visible in the background near a computer keyboard. The camera remains fixed, capturing the robotic arm’s precise movements from a slightly elevated side angle. The scene is well-lit, suggesting a lab or testing environment.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/036422060215/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/036422060215/gripper_scenario.mp4",
+          "episode_id": "task_0019_user_0010_scene_0009_cfg_0005",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0038_user_0007_scene_0001_cfg_0005",
-          "camera_id": "036422060215",
-          "category": "task_0038",
-          "caption": "A white robotic arm with a black gripper hovers over a colorful tabletop scene featuring a painted landscape. The arm slowly descends toward a blue cup, its joints moving with precision. A Rubik's cube sits nearby on the table, along with red and green cups and a gold-wrapped object. In the background, a keyboard and computer monitor are visible. The camera remains fixed, capturing the robotic arm's controlled movement from a high-angle perspective.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/036422060215/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/036422060215/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0118_user_0007_scene_0001_cfg_0005",
-          "camera_id": "036422060215",
-          "category": "task_0118",
-          "caption": "A white robotic arm with black joints and a blue indicator light hovers over a large, flat, marble-like surface with beige veining. The arm, mounted on a silver aluminum frame, slowly lowers a tool toward a black C-clamp holding a metal rod. The clamp rests on the surface, which is positioned on a slatted metal platform. In the background, a computer keyboard and scattered papers are visible, suggesting a lab or workshop setting. The robot’s movements are precise and deliberate, indicating a controlled operation. The scene is well-lit, highlighting the mechanical components and the smooth texture of the surface. The camera remains stationary, providing a clear, overhead view of the robotic arm’s operation.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/036422060215/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/036422060215/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0028_user_0010_scene_0001_cfg_0005",
-          "camera_id": "036422060215",
-          "category": "task_0028",
-          "caption": "A robotic arm with a white and black mechanical design is positioned over a workbench, holding a small white 3D-printed object with a rectangular shape and internal compartments. The object rests on a green, textured surface with a wavy pattern, likely a protective mat. The robotic arm's gripper is carefully manipulating the object, suggesting a precision task such as assembly or inspection. In the background, a keyboard and computer monitor are visible, indicating a laboratory or workshop setting. The scene is well-lit, with the focus on the interaction between the robotic arm and the object. The camera angle is slightly elevated, providing a clear view of the robotic arm's movements and the object's position on the mat. The overall atmosphere is one of technological precision and controlled automation.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/036422060215/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/036422060215/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0072_user_0007_scene_0001_cfg_0005",
-          "camera_id": "036422060215",
-          "category": "task_0072",
-          "caption": "A white robotic arm with a blue-lit sensor is positioned over a wooden table, attempting to insert a coin into a golden piggy bank. The piggy bank, adorned with red Chinese characters, sits next to a small gray box with a red button. The robot's gripper moves precisely, but the coin falls short. A person's hand, wearing a black sleeve with white text, intervenes, placing the coin into the piggy bank. The background features a keyboard, papers, and a computer monitor, suggesting a lab or workshop setting. The scene is well-lit, with natural light reflecting off the polished wood surface. A medium shot captures the interaction between the robot and the human.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/036422060215/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/036422060215/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0046_user_0007_scene_0001_cfg_0005",
-          "camera_id": "036422060215",
-          "category": "task_0046",
-          "caption": "A white robotic arm with a black gripper moves over a marble-patterned surface in a laboratory setting. The arm carefully approaches a blue cylindrical object, grasps it with its claw-like end effector, and lifts it. The robot then maneuvers the blue object toward a black metal rack, positioning it above the structure. In the background, a computer keyboard, monitor, and a red cone are visible, indicating a workspace environment. The scene is well-lit, highlighting the mechanical precision of the robotic movement. A medium shot captures the entire process from a slightly elevated angle.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/036422060215/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/036422060215/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0019_user_0010_scene_0009_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0019_user_0010_scene_0009_cfg_0005/skeleton.mp4"
           }
         },
         {
           "episode_id": "task_0022_user_0010_scene_0001_cfg_0005",
-          "camera_id": "036422060215",
-          "category": "task_0022",
-          "caption": "A white robotic arm with a black and white gripper performs precise movements on a transparent surface with a marbled orange and white pattern. The robot holds a green rectangular object and carefully places it over two small wooden blocks. It then lifts the green object, repositions it, and presses it down onto the blocks, adjusting its position multiple times. The background includes a keyboard and a computer monitor, suggesting a lab or workshop setting. The robot's movements are smooth and controlled, demonstrating advanced manipulation capabilities. A medium shot captures the entire process from a slightly elevated angle.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0022_user_0010_scene_0001_cfg_0005/036422060215/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0022_user_0010_scene_0001_cfg_0005/036422060215/gripper_scenario.mp4",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
             "rgb": "videos/processed/rh20t_cfg5/task_0022_user_0010_scene_0001_cfg_0005/rgb.mp4",
             "skeleton": "videos/processed/rh20t_cfg5/task_0022_user_0010_scene_0001_cfg_0005/skeleton.mp4"
           }
         },
         {
-          "episode_id": "task_0119_user_0007_scene_0001_cfg_0005",
-          "camera_id": "036422060215",
-          "category": "task_0119",
-          "caption": "A white robotic arm with black joints and cables is positioned over a light-colored, marble-patterned surface on a metal workbench. The arm slowly lowers a small tool toward a black C-clamp holding a metal rod in place. The background shows a cluttered workspace with papers, a keyboard, and shelves. The robot's movements are precise and deliberate, demonstrating a controlled mechanical operation. A medium shot captures the interaction from a slightly elevated angle.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/036422060215/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/036422060215/gripper_scenario.mp4",
+          "episode_id": "task_0022_user_0010_scene_0010_cfg_0005",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0022_user_0010_scene_0010_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0022_user_0010_scene_0010_cfg_0005/skeleton.mp4"
           }
         },
         {
-          "episode_id": "task_0085_user_0007_scene_0001_cfg_0005",
-          "camera_id": "036422060215",
-          "category": "task_0085",
-          "caption": "A white robotic arm with black joints and a blue sensor moves precisely over a colorful geometric canvas resembling a Mondrian painting. The canvas features bold red, yellow, and blue rectangles separated by black lines on a white background. A small yellow ring and a white-and-black soccer ball are positioned on the canvas. The robotic arm, equipped with a gripper, slowly descends, carefully aligns above the objects, and gently picks up the soccer ball. The arm lifts the ball slightly, then repositions it with controlled movements. In the background, a laptop, papers, and various lab equipment are visible, suggesting a research or testing environment. The scene is well-lit, highlighting the mechanical precision and the vibrant colors of the canvas. The robotic arm demonstrates advanced coordination and dexterity in handling delicate objects.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/036422060215/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg5/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/036422060215/gripper_scenario.mp4",
+          "episode_id": "task_0026_user_0010_scene_0006_cfg_0005",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+            "rgb": "videos/processed/rh20t_cfg5/task_0026_user_0010_scene_0006_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0026_user_0010_scene_0006_cfg_0005/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "task_0028_user_0010_scene_0001_cfg_0005",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "task_0034_user_0007_scene_0003_cfg_0005",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg5/task_0034_user_0007_scene_0003_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0034_user_0007_scene_0003_cfg_0005/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "task_0038_user_0007_scene_0001_cfg_0005",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "task_0046_user_0007_scene_0001_cfg_0005",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "task_0046_user_0010_scene_0002_cfg_0005",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg5/task_0046_user_0010_scene_0002_cfg_0005/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg5/task_0046_user_0010_scene_0002_cfg_0005/skeleton.mp4"
           }
         }
-      ]
+      ],
+      "type": "robotics"
     },
     "rh20t_cfg7": {
       "robot": "kuka_iiwa",
-      "total_episodes": 557,
+      "total_episodes": 542,
       "showcase_episodes": [
         {
-          "episode_id": "task_0025_user_0014_scene_0001_cfg_0007",
-          "camera_id": "104122060811",
-          "category": "task_0025",
-          "caption": "A robotic arm with orange and gray segments is positioned over a dark brown table in a laboratory setting. The arm holds a small white object with a blue light on top. It carefully lowers the object onto the table, then adjusts its position slightly. The surrounding area includes a computer monitor, keyboard, and various tools. The scene is well-lit, with reflections visible on the table surface. A high-angle shot captures the robotic arm's precise movements as it manipulates the object.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/104122060811/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0022_user_0020_scene_0001_cfg_0007",
-          "camera_id": "104122060811",
-          "category": "task_0022",
-          "caption": "A robotic arm with a gray and orange design operates on a wooden board placed on a metal workbench. The arm, equipped with a camera and sensors, manipulates a small cube-shaped object, rotating and repositioning it with precise movements. The workspace is cluttered with tools, a keyboard, a monitor, and various electronic devices. The robot's movements are smooth and controlled, showcasing its ability to perform delicate tasks. The scene is well-lit, highlighting the intricate details of the robotic arm and the surrounding equipment. A high-angle shot captures the entire setup, emphasizing the complexity and precision of the robotic operation.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/104122060811/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0042_user_0020_scene_0001_cfg_0007",
-          "camera_id": "037522061512",
-          "category": "task_0042",
-          "caption": "A robotic arm with an orange and gray body and a green end effector is positioned over a dark marble-like surface. The arm, equipped with blue LED lights, moves its gripper toward a small white container secured by a black C-clamp. The gripper, which has a cylindrical shape, lowers and makes contact with the container, applying pressure. The background includes various objects such as a keyboard, a Rubik's cube, and a device with an orange casing. The scene is well-lit, with the robotic arm's movements being the primary focus. The camera remains stationary, providing a clear view of the robotic arm's operation. The overall environment appears to be a laboratory or workshop setting. A medium shot captures the interaction between the robotic arm and the container.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/037522061512/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/037522061512/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0062_user_0014_scene_0001_cfg_0007",
-          "camera_id": "104122060811",
-          "category": "task_0062",
-          "caption": "A robotic arm with a gray and orange design is positioned on a wooden table in a laboratory setting. The arm, equipped with a gripper, moves with precision to pick up a white cylindrical object from the table. The robot's movements are smooth and deliberate, showcasing its ability to handle objects with care. The surrounding area includes various lab equipment, such as a keyboard, monitor, and other tools, indicating a controlled environment for testing and experimentation. The robotic arm's joints and segments articulate fluidly, demonstrating advanced mechanical engineering. The scene is well-lit, highlighting the intricate details of the robot and its surroundings. The robot's gripper securely holds the object, and it then lifts it slightly, preparing for the next action. The overall atmosphere is one of technological advancement and precision. A high-angle shot captures the entire setup, providing a clear view of the robot's operations and the workspace.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/104122060811/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0031_user_0020_scene_0001_cfg_0007",
-          "camera_id": "104122060811",
-          "category": "task_0031",
-          "caption": "A robotic arm with orange and gray segments operates on a workbench, manipulating a small pink box. The arm's gripper holds a tool, possibly a drill or screwdriver, and moves precisely over the box, making contact and applying pressure. The workbench is cluttered with various items, including a computer monitor, keyboard, and other equipment. The scene is well-lit, highlighting the mechanical movements and the detailed components of the robotic arm. The camera angle provides a clear view of the arm's actions and the surrounding workspace.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/104122060811/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0226_user_0066_scene_0001_cfg_0007",
-          "camera_id": "104122060811",
-          "category": "task_0226",
-          "caption": "A robotic arm with a gray and orange design is positioned over a cluttered workspace, which includes a computer monitor, keyboard, and various tools. The robot is holding a knife and is in the process of cutting a cucumber on a wooden cutting board. The arm moves with precision, adjusting its grip and angle to make clean cuts. The surrounding area is filled with items such as a plastic bag, a green cloth, and a box of tissues, creating a busy yet functional environment. The robot's movements are smooth and deliberate, showcasing its ability to perform tasks with accuracy. The scene is well-lit, highlighting the details of the robot's components and the objects on the table. The overall atmosphere suggests a laboratory or testing environment where the robot is being evaluated for its cutting capabilities. A high-angle shot captures the entire setup, providing a clear view of the robot's actions and the surrounding workspace.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/104122060811/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "task_0007_user_0014_scene_0001_cfg_0007",
-          "camera_id": "104122060811",
-          "category": "task_0007",
-          "caption": "A robotic arm with a gray and orange design is positioned over a wooden surface in a laboratory setting. The arm, equipped with a gripper, moves with precision, manipulating a small object on the table. The surrounding area includes a laptop, a monitor, and various tools, indicating a workspace for testing or experimentation. The robotic arm's movements are smooth and controlled, showcasing its ability to perform delicate tasks. The scene is well-lit, highlighting the intricate details of the robotic arm and the workspace. The overall environment suggests a focus on robotics and automation research. A high-angle shot captures the entire setup, providing a clear view of the robotic arm's operations.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/104122060811/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/rgb.mp4",
-            "skeleton": "videos/processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/skeleton.mp4"
-          }
-        },
-        {
           "episode_id": "task_0002_user_0014_scene_0001_cfg_0007",
-          "camera_id": "104122060811",
-          "category": "task_0002",
-          "caption": "A gray and orange robotic arm with a blue gripper is positioned over a wooden table in a lab setting. The robot slowly lowers its arm, carefully placing the gripper onto a small white box. It then gently presses down on the box, appearing to manipulate or inspect it. The surrounding area includes a keyboard, monitor, and various electronic devices, with a person partially visible in the background. The scene is captured from a high-angle view, focusing on the robot's precise movements.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0002_user_0014_scene_0001_cfg_0007/104122060811/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0002_user_0014_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
             "rgb": "videos/processed/rh20t_cfg7/task_0002_user_0014_scene_0001_cfg_0007/rgb.mp4",
             "skeleton": "videos/processed/rh20t_cfg7/task_0002_user_0014_scene_0001_cfg_0007/skeleton.mp4"
@@ -356,329 +238,392 @@
         },
         {
           "episode_id": "task_0003_user_0014_scene_0001_cfg_0007",
-          "camera_id": "104122060811",
-          "category": "task_0003",
-          "caption": "A robotic arm with a gray and orange design is positioned over a wooden table in a laboratory setting. The arm, equipped with a gripper, moves precisely to pick up and manipulate small colored blocks placed on the table. The blocks are arranged in a line, and the robot's movements are smooth and deliberate, showcasing its ability to perform tasks with accuracy. In the background, a computer monitor, keyboard, and various electronic devices are visible, indicating a controlled environment for testing or demonstration. The scene is well-lit, highlighting the intricate details of the robotic arm and the surrounding equipment. A medium shot captures the entire setup, providing a clear view of the robot's actions and the workspace.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0003_user_0014_scene_0001_cfg_0007/104122060811/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0003_user_0014_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
             "rgb": "videos/processed/rh20t_cfg7/task_0003_user_0014_scene_0001_cfg_0007/rgb.mp4",
             "skeleton": "videos/processed/rh20t_cfg7/task_0003_user_0014_scene_0001_cfg_0007/skeleton.mp4"
           }
         },
         {
+          "episode_id": "task_0007_user_0014_scene_0001_cfg_0007",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "task_0017_user_0020_scene_0002_cfg_0007",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg7/task_0017_user_0020_scene_0002_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0017_user_0020_scene_0002_cfg_0007/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "task_0022_user_0020_scene_0001_cfg_0007",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "task_0025_user_0014_scene_0001_cfg_0007",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/skeleton.mp4"
+          }
+        },
+        {
           "episode_id": "task_0028_user_0020_scene_0001_cfg_0007",
-          "camera_id": "104122060811",
-          "category": "task_0028",
-          "caption": "A gray and orange robotic arm with black cables performs precise movements on a wooden board placed on a metal workbench. The robot's gripper manipulates a small electronic device with red and green lights, adjusting its position and orientation. The workspace is cluttered with tools, including a keyboard, monitor, and various components, indicating a tech lab environment. The robotic arm moves smoothly, demonstrating controlled and deliberate actions as it interacts with the device. A static overhead shot captures the entire scene, emphasizing the mechanical precision and the intricate details of the robotic operation.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0028_user_0020_scene_0001_cfg_0007/104122060811/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/rh20t_cfg7/rh20t_cfg7/task_0028_user_0020_scene_0001_cfg_0007/104122060811/gripper_scenario.mp4",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
             "rgb": "videos/processed/rh20t_cfg7/task_0028_user_0020_scene_0001_cfg_0007/rgb.mp4",
             "skeleton": "videos/processed/rh20t_cfg7/task_0028_user_0020_scene_0001_cfg_0007/skeleton.mp4"
           }
+        },
+        {
+          "episode_id": "task_0029_user_0020_scene_0006_cfg_0007",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg7/task_0029_user_0020_scene_0006_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0029_user_0020_scene_0006_cfg_0007/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "task_0031_user_0020_scene_0001_cfg_0007",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "task_0033_user_0020_scene_0004_cfg_0007",
+          "camera_id": "unknown",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/rh20t_cfg7/task_0033_user_0020_scene_0004_cfg_0007/rgb.mp4",
+            "skeleton": "videos/processed/rh20t_cfg7/task_0033_user_0020_scene_0004_cfg_0007/skeleton.mp4"
+          }
         }
-      ]
+      ],
+      "type": "robotics"
     },
     "interndata": {
       "robot": "franka_panda",
       "total_episodes": 2321,
       "showcase_episodes": [
         {
-          "episode_id": "basic_tasks_pick_the_object_into_trashcan_ep0",
+          "episode_id": "articulation_tasks_close_the_electriccooker_ep1366",
           "camera_id": "head",
-          "category": "pick_the_object_into_trashcan",
-          "caption": "A white robotic arm with yellow joint lines and blue markers moves over a white table. The arm, equipped with a gripper, extends downward and picks up a blue cylindrical object. It then lifts the object, rotates slightly, and places it into a white rectangular container with an open lid. The arm's movements are precise and controlled, with red, green, and blue arrows indicating the direction of motion. The scene is set in a simple indoor environment with a light-colored wall and a patterned floor. A medium shot captures the entire process from a slightly elevated angle.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/basic_tasks/pick_the_object_into_trashcan/ep0/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/basic_tasks/pick_the_object_into_trashcan/ep0/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep0/rgb.mp4",
-            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep0/skeleton.mp4"
+            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1366/rgb.mp4",
+            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1366/skeleton.mp4"
           }
         },
         {
-          "episode_id": "long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep0",
+          "episode_id": "articulation_tasks_close_the_electriccooker_ep1620",
           "camera_id": "head",
-          "category": "put_the_trashcan_in_trashcan_long",
-          "caption": "A robotic arm with a white and gray mechanical structure, featuring yellow joint lines and red, green, and blue directional arrows, moves across a green textured table. The arm extends its articulated arm to pick up a small red and white cup from the table. It then lifts the cup and moves it toward a gray cylindrical trash bin with an open lid. The arm carefully places the cup into the bin, then retracts its arm back to its original position. The scene takes place in a room with a wooden floor and a wall with a speckled white and orange pattern. The camera remains stationary, capturing the entire process from a slightly elevated angle. The robotic arm's movements are smooth and precise, demonstrating its ability to perform a simple task with accuracy.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep0/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep0/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep0/rgb.mp4",
-            "skeleton": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep0/skeleton.mp4"
+            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1620/rgb.mp4",
+            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1620/skeleton.mp4"
           }
         },
         {
-          "episode_id": "articulation_tasks_close_the_electriccooker_ep0",
+          "episode_id": "articulation_tasks_close_the_electriccooker_ep314",
           "camera_id": "head",
-          "category": "close_the_electriccooker",
-          "caption": "A white robotic arm with a sleek, modern design is positioned over a wooden table in a dimly lit room with a textured wooden wall. The robot's joints are articulated, and it has a green light on its base, indicating it is active. The arm moves smoothly and precisely, reaching down towards a small, open electronic device on the table. The device appears to be a portable speaker or a similar gadget with a black and silver color scheme. The robot's end effector, which is a small, black, cylindrical tool, gently touches the device, possibly to interact with it or perform a task. The scene is well-lit, highlighting the robot's movements and the details of the device. The overall atmosphere is one of advanced technology and precision engineering. A medium shot from a slightly elevated angle.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/articulation_tasks/close_the_electriccooker/ep0/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/articulation_tasks/close_the_electriccooker/ep0/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep0/rgb.mp4",
-            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep0/skeleton.mp4"
+            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep314/rgb.mp4",
+            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep314/skeleton.mp4"
           }
         },
         {
-          "episode_id": "basic_tasks_pick_the_object_into_trashcan_ep1",
+          "episode_id": "articulation_tasks_close_the_electriccooker_ep4",
           "camera_id": "head",
-          "category": "pick_the_object_into_trashcan",
-          "caption": "A white robotic arm with a black gripper extends over a textured white table, approaching a small white container with a gray lid. The robot's arm moves with precision, its joints articulating smoothly as it lowers the gripper toward the container. The background features a black wall with yellow ornate patterns, and the floor is covered in green carpet. The robotic arm's movements are deliberate and controlled, showcasing advanced mechanical design. A medium shot captures the interaction from a slightly elevated angle, emphasizing the robot's dexterity and the clean, modern setting.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/basic_tasks/pick_the_object_into_trashcan/ep1/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/basic_tasks/pick_the_object_into_trashcan/ep1/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep1/rgb.mp4",
-            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep1/skeleton.mp4"
+            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep4/rgb.mp4",
+            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep4/skeleton.mp4"
           }
         },
         {
-          "episode_id": "long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep1",
+          "episode_id": "articulation_tasks_close_the_electriccooker_ep471",
           "camera_id": "head",
-          "category": "put_the_trashcan_in_trashcan_long",
-          "caption": "A white robotic arm with a transparent gripper moves over a white table, picking up a small, round object with a red and white pattern. The arm, featuring yellow joint lines and blue connection points, lifts the object and moves it toward a gray trash can with a brown lid. The trash can is open, and the robotic arm carefully places the object inside. The background consists of a green textured wall and a blue fabric panel. The camera maintains a fixed angle, focusing on the robotic arm's precise movements and the interaction with the trash can. The scene is well-lit, highlighting the smooth, mechanical motion of the robot.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep1/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep1/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep1/rgb.mp4",
-            "skeleton": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep1/skeleton.mp4"
+            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep471/rgb.mp4",
+            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep471/skeleton.mp4"
           }
         },
         {
-          "episode_id": "articulation_tasks_close_the_electriccooker_ep1",
+          "episode_id": "articulation_tasks_close_the_electriccooker_ep477",
           "camera_id": "head",
-          "category": "close_the_electriccooker",
-          "caption": "A white robotic arm with a yellow skeletal structure and blue joints is positioned on a wooden table. The arm's end effector, highlighted in red and blue, moves toward a small white container with a lid. The robotic arm opens the lid, revealing the interior of the container. The background features a light green wall and a wooden floor. The camera remains stationary, providing a clear view of the robotic arm's movements. The scene is well-lit, with natural light coming from the left side. The robotic arm's movements are smooth and precise, demonstrating its ability to perform tasks with accuracy. The overall setting appears to be a laboratory or testing environment. A medium shot captures the entire robotic arm and its interaction with the container.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/articulation_tasks/close_the_electriccooker/ep1/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/articulation_tasks/close_the_electriccooker/ep1/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1/rgb.mp4",
-            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1/skeleton.mp4"
+            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep477/rgb.mp4",
+            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep477/skeleton.mp4"
           }
         },
         {
-          "episode_id": "basic_tasks_pick_the_object_into_trashcan_ep2",
+          "episode_id": "basic_tasks_pick_the_object_into_trashcan_ep170",
           "camera_id": "head",
-          "category": "pick_the_object_into_trashcan",
-          "caption": "A white robotic arm with a yellow joint line and blue markers moves over a pink patterned table. The arm, equipped with a gripper, lowers a small object toward a white container with a lid. The gripper releases the object into the container, then retracts. The arm’s motion is tracked by red, green, and blue directional arrows indicating movement. The scene is set indoors with a textured wall in the background. A medium shot captures the robot’s precise operation.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/basic_tasks/pick_the_object_into_trashcan/ep2/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/basic_tasks/pick_the_object_into_trashcan/ep2/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep2/rgb.mp4",
-            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep2/skeleton.mp4"
+            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep170/rgb.mp4",
+            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep170/skeleton.mp4"
           }
         },
         {
-          "episode_id": "long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep2",
+          "episode_id": "basic_tasks_pick_the_object_into_trashcan_ep181",
           "camera_id": "head",
-          "category": "put_the_trashcan_in_trashcan_long",
-          "caption": "A white robotic arm with a yellow structural frame and a black gripper moves across a white table in a room with brown and green walls. The robot first approaches a small, overturned paper cup, then picks it up using its gripper. It lifts the cup and moves it toward a black cylindrical trash can with a lid, which is positioned on the table. The robot carefully drops the cup into the trash can, completing the disposal action. The camera remains stationary, providing a clear view of the robot's movements and the objects on the table. The scene is well-lit, highlighting the smooth motion of the robotic arm and the interaction with the cup and trash can.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep2/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/long_horizon_tasks/put_the_trashcan_in_trashcan_long/ep2/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep2/rgb.mp4",
-            "skeleton": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep2/skeleton.mp4"
+            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep181/rgb.mp4",
+            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep181/skeleton.mp4"
           }
         },
         {
-          "episode_id": "articulation_tasks_close_the_electriccooker_ep2",
+          "episode_id": "basic_tasks_pick_the_object_into_trashcan_ep694",
           "camera_id": "head",
-          "category": "close_the_electriccooker",
-          "caption": "A white robotic arm with yellow joint lines and blue markers is positioned in a room with light-colored walls. The arm moves its end effector, marked by red and green arrows, toward a table with various objects. The camera remains static, focusing on the robotic arm's movements as it adjusts its position and orientation. The background features a patterned wall and a table with electronic devices and tools. The robotic arm's joints rotate and extend, demonstrating precise control and coordination. A medium shot captures the entire robotic arm and its immediate surroundings.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/articulation_tasks/close_the_electriccooker/ep2/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/articulation_tasks/close_the_electriccooker/ep2/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep2/rgb.mp4",
-            "skeleton": "videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep2/skeleton.mp4"
+            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep694/rgb.mp4",
+            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep694/skeleton.mp4"
           }
         },
         {
-          "episode_id": "basic_tasks_pick_the_object_into_trashcan_ep3",
+          "episode_id": "long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep59",
           "camera_id": "head",
-          "category": "pick_the_object_into_trashcan",
-          "caption": "A white robotic arm with a gripper attachment is positioned over a light-colored table in a minimalist indoor setting. The arm extends its arm, grasping a blue cylindrical object from the table. It lifts the object, rotates it slightly, and then drops it back onto the table. The robotic arm then moves toward a white rectangular container with a hinged lid, using its gripper to open the lid by lifting it. The background features plain walls and a neutral color palette, emphasizing the mechanical movements of the robotic arm. The camera remains stationary, providing a clear view of the arm's actions.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/basic_tasks/pick_the_object_into_trashcan/ep3/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/interndata/basic_tasks/pick_the_object_into_trashcan/ep3/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep3/rgb.mp4",
-            "skeleton": "videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep3/skeleton.mp4"
+            "rgb": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep59/rgb.mp4",
+            "skeleton": "videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep59/skeleton.mp4"
           }
         }
-      ]
+      ],
+      "type": "robotics"
     },
     "agibot": {
       "robot": "unitree_g1",
       "total_episodes": 93981,
       "showcase_episodes": [
         {
-          "episode_id": "440_684756_a0_0_274",
+          "episode_id": "354_653442_a1_166_338",
           "camera_id": "head",
-          "category": "task_440",
-          "caption": "A robotic arm with a white handheld device moves toward a striped short-sleeve shirt hanging on a mannequin. The shirt is light-colored with thin vertical stripes and is displayed on a white stand in a room with wooden flooring and a speckled tile wall. The robotic arm, equipped with black grippers, positions the device near the shirt, likely for steaming or smoothing. The camera captures the scene from a slightly elevated angle, focusing on the interaction between the robot and the garment. The environment appears clean and modern, with minimal background distractions. The robotic arm's movements are precise and deliberate, suggesting a controlled and automated process. The device emits a faint glow, indicating it is active. The overall scene conveys a sense of advanced technology being used for garment care.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/440_684756_a0_0_274/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/440_684756_a0_0_274/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/agibot/440_684756_a0_0_274/rgb.mp4",
-            "skeleton": "videos/processed/agibot/440_684756_a0_0_274/skeleton.mp4"
+            "rgb": "videos/processed/agibot/354_653442_a1_166_338/rgb.mp4",
+            "skeleton": "videos/processed/agibot/354_653442_a1_166_338/skeleton.mp4"
           }
         },
         {
-          "episode_id": "446_687380_a0_0_201",
+          "episode_id": "421_693891_a2_389_431",
           "camera_id": "head",
-          "category": "task_446",
-          "caption": "A first-person view of robotic arms with black grippers positioned over a white rectangular table in a laboratory setting. The arms are initially open, then slowly close around the edges of the table. In the background, a person wearing light-colored pants walks past, and various lab equipment, cables, and a chair are visible. The floor is gray concrete with yellow and black caution tape marking a boundary. The scene is well-lit with overhead lighting, creating a clean, technical atmosphere. A medium shot from a low angle, focusing on the interaction between the robotic arms and the table.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/446_687380_a0_0_201/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/446_687380_a0_0_201/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/agibot/446_687380_a0_0_201/rgb.mp4",
-            "skeleton": "videos/processed/agibot/446_687380_a0_0_201/skeleton.mp4"
+            "rgb": "videos/processed/agibot/421_693891_a2_389_431/rgb.mp4",
+            "skeleton": "videos/processed/agibot/421_693891_a2_389_431/skeleton.mp4"
           }
         },
         {
-          "episode_id": "494_714711_a0_0_149",
+          "episode_id": "422_712466_a5_645_820",
           "camera_id": "head",
-          "category": "task_494",
-          "caption": "A top-down view of a kitchen countertop with a black two-tiered metal rack. On the counter, there are two dark glass bottles with orange caps, a white packet with blue text, a yellow package, and a white bottle with a pink pump labeled \"SODA.\" A robotic arm with black mechanical fingers is positioned on the left, reaching toward the bottles. The background features a white marble-patterned wall. The scene is static, with no visible movement or action.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/494_714711_a0_0_149/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/494_714711_a0_0_149/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/agibot/494_714711_a0_0_149/rgb.mp4",
-            "skeleton": "videos/processed/agibot/494_714711_a0_0_149/skeleton.mp4"
+            "rgb": "videos/processed/agibot/422_712466_a5_645_820/rgb.mp4",
+            "skeleton": "videos/processed/agibot/422_712466_a5_645_820/skeleton.mp4"
           }
         },
         {
-          "episode_id": "783_896051_a0_0_208",
+          "episode_id": "492_804536_a5_392_423",
           "camera_id": "head",
-          "category": "task_783",
-          "caption": "A first-person view of robotic arms manipulating a patterned fabric on a table in a laboratory setting. The fabric, featuring a beige and white design with blue accents, is being handled by multiple robotic arms with black grippers. In the background, a person in dark clothing stands near a white table, observing the process. The environment is a spacious, well-lit room with a gray floor, scattered equipment, and cables. The robotic arms move with precision, adjusting the fabric's position. The scene captures a technological demonstration of robotic coordination in a controlled industrial or research space. A medium shot with a slightly elevated perspective.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/783_896051_a0_0_208/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/783_896051_a0_0_208/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/agibot/783_896051_a0_0_208/rgb.mp4",
-            "skeleton": "videos/processed/agibot/783_896051_a0_0_208/skeleton.mp4"
+            "rgb": "videos/processed/agibot/492_804536_a5_392_423/rgb.mp4",
+            "skeleton": "videos/processed/agibot/492_804536_a5_392_423/skeleton.mp4"
           }
         },
         {
-          "episode_id": "590_802430_a0_0_114",
+          "episode_id": "550_812244_a5_953_1011",
           "camera_id": "head",
-          "category": "task_590",
-          "caption": "A top-down view of a robotic arm with black grippers positioned over a light-colored table. The arm is attempting to pick up a gray felt tote bag, with its left gripper holding the handle. On the table, there is a small cup of mixed fruit, a chocolate bar, and a miniature Christmas tree decoration. The background features a white chair and a potted plant. The scene is well-lit, with a focus on the mechanical interaction between the robotic arm and the objects.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/590_802430_a0_0_114/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/590_802430_a0_0_114/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/agibot/590_802430_a0_0_114/rgb.mp4",
-            "skeleton": "videos/processed/agibot/590_802430_a0_0_114/skeleton.mp4"
+            "rgb": "videos/processed/agibot/550_812244_a5_953_1011/rgb.mp4",
+            "skeleton": "videos/processed/agibot/550_812244_a5_953_1011/skeleton.mp4"
           }
         },
         {
-          "episode_id": "498_770171_a0_0_227",
+          "episode_id": "589_852942_a1_120_186",
           "camera_id": "head",
-          "category": "task_498",
-          "caption": "A robotic arm with a black and silver design operates on a white countertop in a beverage station. The arm extends its gripper toward a stainless steel container, retrieving a metal ladle. In the background, three white beverage dispensers with heart-shaped handles are mounted on a metal shelf, each labeled with yellow tags. A clear plastic cup is held by a second robotic arm on the left. The scene is well-lit, with a clean, modern kitchen setting. The robotic arm moves smoothly, demonstrating precision in handling the ladle.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/498_770171_a0_0_227/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/498_770171_a0_0_227/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/agibot/498_770171_a0_0_227/rgb.mp4",
-            "skeleton": "videos/processed/agibot/498_770171_a0_0_227/skeleton.mp4"
+            "rgb": "videos/processed/agibot/589_852942_a1_120_186/rgb.mp4",
+            "skeleton": "videos/processed/agibot/589_852942_a1_120_186/skeleton.mp4"
           }
         },
         {
-          "episode_id": "377_648559_a0_0_134",
+          "episode_id": "621_912110_a18_1725_1842",
           "camera_id": "head",
-          "category": "task_377",
-          "caption": "A high-angle view of a robotic arm system in a warehouse setting, featuring two robotic arms positioned over a cardboard box on a white table. The arms, with black grippers and silver joints, are stationary and appear ready for action. In the background, a person in black pants and white shoes walks past a wooden pallet, while another individual in gray pants and sneakers moves across the frame. The environment includes a black office chair, a white machine with cables, and a gray floor marked with yellow and black tape. The scene is well-lit, suggesting an indoor industrial or testing area.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/377_648559_a0_0_134/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/377_648559_a0_0_134/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/agibot/377_648559_a0_0_134/rgb.mp4",
-            "skeleton": "videos/processed/agibot/377_648559_a0_0_134/skeleton.mp4"
+            "rgb": "videos/processed/agibot/621_912110_a18_1725_1842/rgb.mp4",
+            "skeleton": "videos/processed/agibot/621_912110_a18_1725_1842/skeleton.mp4"
           }
         },
         {
-          "episode_id": "535_775488_a0_0_212",
+          "episode_id": "708_911918_a4_227_363",
           "camera_id": "head",
-          "category": "task_535",
-          "caption": "A high-angle view of a modern bathroom sink area, featuring a robotic arm with a white and black design. The arm, equipped with a gripper, extends from the left side of the frame and moves toward a roll of toilet paper on the countertop. It grasps the roll, lifting it slightly while the mirror reflects its movements. The sink is white with a chrome faucet, and various toiletries, including tubes and a toothbrush holder, are arranged nearby. The wall is tiled in gray marble, and the scene is well-lit, highlighting the sleek, futuristic design. A second robotic arm remains stationary on the right side, partially visible. The camera remains fixed, capturing the precise, controlled motion of the robotic arm as it interacts with the objects.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/535_775488_a0_0_212/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/535_775488_a0_0_212/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/agibot/535_775488_a0_0_212/rgb.mp4",
-            "skeleton": "videos/processed/agibot/535_775488_a0_0_212/skeleton.mp4"
+            "rgb": "videos/processed/agibot/708_911918_a4_227_363/rgb.mp4",
+            "skeleton": "videos/processed/agibot/708_911918_a4_227_363/skeleton.mp4"
           }
         },
         {
-          "episode_id": "460_712335_a0_49_256",
+          "episode_id": "722_886838_a5_955_1036",
           "camera_id": "head",
-          "category": "task_460",
-          "caption": "A white robotic arm with a black gripper extends toward a gray and yellow patterned cloth hanging on a rack. The arm carefully grasps the fabric, pulling it downward and folding it over a beige basket below. The left side of the frame shows a green cloth with white leaf patterns. The robot's movements are precise and controlled, demonstrating its ability to handle delicate materials. The background is a simple indoor setting with a gray floor and some cardboard boxes visible. A medium shot captures the entire process from a slightly elevated angle.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/460_712335_a0_49_256/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/460_712335_a0_49_256/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/agibot/460_712335_a0_49_256/rgb.mp4",
-            "skeleton": "videos/processed/agibot/460_712335_a0_49_256/skeleton.mp4"
+            "rgb": "videos/processed/agibot/722_886838_a5_955_1036/rgb.mp4",
+            "skeleton": "videos/processed/agibot/722_886838_a5_955_1036/skeleton.mp4"
           }
         },
         {
-          "episode_id": "545_835730_a0_0_181",
+          "episode_id": "783_915495_a2_166_207",
           "camera_id": "head",
-          "category": "task_545",
-          "caption": "A robotic arm with black and white mechanical hands is positioned over a stainless steel sink. The left hand holds a spoon, while the right hand remains open. A blue and white patterned plate with a spoon on it sits in the sink. To the left, a yellow bottle of dish soap and a purple scrubber are on the counter. To the right, a blue plastic bin contains clean dishes. The robotic arm slowly moves the spoon from the plate, lifting it out of the sink. The camera remains stationary, providing a clear view of the robotic arm's precise movements. The scene is well-lit, highlighting the metallic surfaces and the contrast between the robotic arm and the kitchen environment.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/545_835730_a0_0_181/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/agibot/545_835730_a0_0_181/head/gripper_scenario.mp4",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
           "local_paths": {
-            "rgb": "videos/processed/agibot/545_835730_a0_0_181/rgb.mp4",
-            "skeleton": "videos/processed/agibot/545_835730_a0_0_181/skeleton.mp4"
+            "rgb": "videos/processed/agibot/783_915495_a2_166_207/rgb.mp4",
+            "skeleton": "videos/processed/agibot/783_915495_a2_166_207/skeleton.mp4"
           }
         }
-      ]
+      ],
+      "type": "robotics"
     },
     "airoa_moma": {
       "robot": "toyota_hsr",
       "total_episodes": 11451,
       "showcase_episodes": [
         {
-          "episode_id": "ep_000000",
+          "episode_id": "ep_013913",
           "camera_id": "head",
           "category": "moma",
-          "caption": "A white robotic arm with a black grip slowly approaches a rectangular lamp on a white desk. The lamp has a gray fabric shade and is initially lit. The robot's gripper moves toward the lamp base, then carefully lifts the lampshade, revealing the light source beneath. The robot then repositions the lampshade, adjusting its placement on the base. The desk also holds a microwave, a cup, a container with a knife and food, and a pen holder. The scene is captured from a high angle, focusing on the interaction between the robot and the lamp.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000000/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000000/head/gripper_scenario.mp4",
+          "caption": "",
+          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_013913/head/rgb.mp4",
+          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_013913/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "videos/processed/airoa_moma/ep_000000/rgb.mp4",
-            "skeleton": "videos/processed/airoa_moma/ep_000000/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "ep_000001",
-          "camera_id": "head",
-          "category": "moma",
-          "caption": "A white robotic arm with black joints is positioned on a white table, moving its arm to interact with a lamp. The lamp, with a square gray fabric shade, is turned on, emitting a warm light. The robot arm adjusts the lamp, causing the light to flicker. On the table, there is a microwave, a cup, a container with food, and a pen holder. The background is a plain white wall. The scene is captured from a high angle, focusing on the interaction between the robot and the lamp.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000001/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000001/head/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/airoa_moma/ep_000001/rgb.mp4",
-            "skeleton": "videos/processed/airoa_moma/ep_000001/skeleton.mp4"
-          }
-        },
-        {
-          "episode_id": "ep_000002",
-          "camera_id": "head",
-          "category": "moma",
-          "caption": "A white robotic arm moves into view, approaching a table with a lit lamp, a microwave, and a container with food. The robot's hand, equipped with a gripper, extends toward the lamp, which has a textured gray shade. The lamp is turned off as the robot's hand gently pushes it, causing the lamp to tilt and fall onto the table. The robot then retracts its arm, leaving the lamp lying on its side. The scene is captured from a high angle, showing the table's surface and the surrounding objects in a well-lit indoor environment. A medium shot with a static camera angle.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000002/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000002/head/gripper_scenario.mp4",
-          "local_paths": {
-            "rgb": "videos/processed/airoa_moma/ep_000002/rgb.mp4",
-            "skeleton": "videos/processed/airoa_moma/ep_000002/skeleton.mp4"
+            "rgb": "videos/processed/airoa_moma/ep_013913/rgb.mp4",
+            "skeleton": "videos/processed/airoa_moma/ep_013913/skeleton.mp4"
           }
         },
         {
           "episode_id": "ep_000003",
           "camera_id": "head",
           "category": "moma",
-          "caption": "A white robotic arm with a black grip moves into view from the bottom of the frame, approaching a rectangular table with a gray lamp, a microwave, a cup, a container with food, and a pen holder. The lamp is turned on, casting a warm glow on the table. The robotic arm stops in front of the lamp and remains stationary. The scene is captured from a high angle, providing a clear view of the table and the robotic arm's movements. The background is a plain white wall.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000003/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000003/head/gripper_scenario.mp4",
+          "caption": "",
+          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000003/head/rgb.mp4",
+          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000003/head/gripper_scenario.mp4",
           "local_paths": {
             "rgb": "videos/processed/airoa_moma/ep_000003/rgb.mp4",
             "skeleton": "videos/processed/airoa_moma/ep_000003/skeleton.mp4"
@@ -688,72 +633,427 @@
           "episode_id": "ep_000004",
           "camera_id": "head",
           "category": "moma",
-          "caption": "A white robotic arm approaches a table with a lit lamp, a microwave, and various items. The robot lifts the lampshade, revealing the lamp base, then places the shade back on. The lamp remains on throughout, casting a warm glow. The scene is static, with the robot's movements being the primary action. A medium shot from a slightly elevated perspective.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000004/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000004/head/gripper_scenario.mp4",
+          "caption": "",
+          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000004/head/rgb.mp4",
+          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000004/head/gripper_scenario.mp4",
           "local_paths": {
             "rgb": "videos/processed/airoa_moma/ep_000004/rgb.mp4",
             "skeleton": "videos/processed/airoa_moma/ep_000004/skeleton.mp4"
           }
         },
         {
-          "episode_id": "ep_000010",
+          "episode_id": "ep_000700",
           "camera_id": "head",
           "category": "moma",
-          "caption": "A white robotic arm with black joints moves into view from the bottom of the frame, approaching a rectangular gray lamp on a white table. The lamp has a textured fabric shade and a black base. The robot's end effector gently touches the lamp's base, then retracts. The lamp turns on, emitting a warm yellow light from within the shade. The scene is a high-angle shot of a desk with a microwave, a cup, a container with a knife, and a pen holder. The robot arm remains in the foreground, partially obscuring the view.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000010/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000010/head/gripper_scenario.mp4",
+          "caption": "",
+          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000700/head/rgb.mp4",
+          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000700/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "videos/processed/airoa_moma/ep_000010/rgb.mp4",
-            "skeleton": "videos/processed/airoa_moma/ep_000010/skeleton.mp4"
+            "rgb": "videos/processed/airoa_moma/ep_000700/rgb.mp4",
+            "skeleton": "videos/processed/airoa_moma/ep_000700/skeleton.mp4"
           }
         },
         {
-          "episode_id": "ep_000014",
+          "episode_id": "ep_009443",
           "camera_id": "head",
           "category": "moma",
-          "caption": "A white robotic arm with black joints moves into the frame and approaches a gray lamp on a white table. The arm positions itself in front of the lamp, then the lamp turns on, emitting a warm glow. The robotic arm remains stationary as the lamp illuminates the scene, casting soft light on the surrounding objects, including a microwave, a cup, and a container with food. The camera maintains a steady, slightly elevated view throughout.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000014/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000014/head/gripper_scenario.mp4",
+          "caption": "",
+          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_009443/head/rgb.mp4",
+          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_009443/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "videos/processed/airoa_moma/ep_000014/rgb.mp4",
-            "skeleton": "videos/processed/airoa_moma/ep_000014/skeleton.mp4"
+            "rgb": "videos/processed/airoa_moma/ep_009443/rgb.mp4",
+            "skeleton": "videos/processed/airoa_moma/ep_009443/skeleton.mp4"
           }
         },
         {
-          "episode_id": "ep_000015",
+          "episode_id": "ep_022492",
           "camera_id": "head",
           "category": "moma",
-          "caption": "A white robotic arm moves toward a lit table lamp on a white table, its head tilting as it approaches the lamp's base. The lamp, with a textured gray shade, is turned on, casting a warm glow. To the right, a microwave, a cup, a container with a knife and food, and a pen holder are visible. The robot's arm stops near the lamp, then the lamp is turned off, and the robot arm retracts. The scene is a close-up, slightly elevated view of the table.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000015/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000015/head/gripper_scenario.mp4",
+          "caption": "",
+          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_022492/head/rgb.mp4",
+          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_022492/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "videos/processed/airoa_moma/ep_000015/rgb.mp4",
-            "skeleton": "videos/processed/airoa_moma/ep_000015/skeleton.mp4"
+            "rgb": "videos/processed/airoa_moma/ep_022492/rgb.mp4",
+            "skeleton": "videos/processed/airoa_moma/ep_022492/skeleton.mp4"
           }
         },
         {
-          "episode_id": "ep_000018",
+          "episode_id": "ep_000000",
           "camera_id": "head",
           "category": "moma",
-          "caption": "A white robotic arm with black joints moves toward a table, positioning itself near a gray lamp with a square fabric shade. The lamp is placed on a white table alongside a microwave, a cup, a container with a knife, and a pen holder. The robotic arm adjusts the lamp's base, causing the lamp to turn on, emitting a warm glow. The lamp remains illuminated, casting light on the surrounding objects. The scene is static, with the robotic arm completing its task and remaining stationary. A high-angle shot captures the entire setup, focusing on the interaction between the robotic arm and the lamp.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000018/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000018/head/gripper_scenario.mp4",
+          "caption": "",
+          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000000/head/rgb.mp4",
+          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000000/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "videos/processed/airoa_moma/ep_000018/rgb.mp4",
-            "skeleton": "videos/processed/airoa_moma/ep_000018/skeleton.mp4"
+            "rgb": "videos/processed/airoa_moma/ep_000000/rgb.mp4",
+            "skeleton": "videos/processed/airoa_moma/ep_000000/skeleton.mp4"
           }
         },
         {
-          "episode_id": "ep_000022",
+          "episode_id": "ep_000002",
           "camera_id": "head",
           "category": "moma",
-          "caption": "A white robotic arm with black joints moves into the frame, approaching a table with a lamp, microwave, and various items. The lamp, with a textured beige shade, is initially on, casting a warm glow. The robotic arm, equipped with a gripper, reaches toward the lamp and turns it off. The lamp's shade then changes to a gray color, and the light extinguishes. The robotic arm remains in the frame, positioned near the now-off lamp. The scene is set on a white table with a microwave, a cup, a container with a knife, and some electronic devices. The background is a plain wall, and the lighting is dim, emphasizing the lamp's glow. The camera remains stationary, providing a clear view of the robotic arm's actions and the objects on the table.",
-          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000022/head/rgb.mp4",
-          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output_fix/airoa_moma/airoa/ep_000022/head/gripper_scenario.mp4",
+          "caption": "",
+          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000002/head/rgb.mp4",
+          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000002/head/gripper_scenario.mp4",
           "local_paths": {
-            "rgb": "videos/processed/airoa_moma/ep_000022/rgb.mp4",
-            "skeleton": "videos/processed/airoa_moma/ep_000022/skeleton.mp4"
+            "rgb": "videos/processed/airoa_moma/ep_000002/rgb.mp4",
+            "skeleton": "videos/processed/airoa_moma/ep_000002/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "ep_000001",
+          "camera_id": "head",
+          "category": "moma",
+          "caption": "",
+          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000001/head/rgb.mp4",
+          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_000001/head/gripper_scenario.mp4",
+          "local_paths": {
+            "rgb": "videos/processed/airoa_moma/ep_000001/rgb.mp4",
+            "skeleton": "videos/processed/airoa_moma/ep_000001/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "ep_021486",
+          "camera_id": "head",
+          "category": "moma",
+          "caption": "",
+          "rgb_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_021486/head/rgb.mp4",
+          "scenario_path": "/nfs/turbo/coe-jungaocv-turbo2/wzy/datasets/pipeline_output/airoa-moma/airoa/ep_021486/head/gripper_scenario.mp4",
+          "local_paths": {
+            "rgb": "videos/processed/airoa_moma/ep_021486/rgb.mp4",
+            "skeleton": "videos/processed/airoa_moma/ep_021486/skeleton.mp4"
+          }
+        }
+      ],
+      "type": "robotics"
+    },
+    "egodex": {
+      "robot": "human",
+      "type": "human",
+      "total_episodes": 139027,
+      "analysis_summary": {
+        "total_episodes": 338234,
+        "kept": 139027,
+        "dropped": 199207,
+        "drop_rate": "58.9%",
+        "candidate_pairs": 8245038,
+        "traj_threshold": 0.042484,
+        "cosine_threshold": 0.95,
+        "text_cosine_threshold": null,
+        "dedup_path": "task_group"
+      },
+      "showcase_episodes": [
+        {
+          "episode_id": "part1/assemble_disassemble_legos/789",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A first-person view of hands disassembling a colorful block structure on a dark blue surface. The hands, wearing a dark green long-sleeved shirt, carefully separate the blocks\u2014yellow, green, red, blue, and white\u2014into individual pieces. The background features a soft pink fabric draped over a surface, creating a calm and focused atmosphere. The blocks are arranged and moved with precision, highlighting the tactile interaction. A medium close-up shot captures the detailed hand movements and the vibrant colors of the blocks.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/egodex/part1__assemble_disassemble_legos__789/rgb.mp4",
+            "skeleton": "videos/processed/egodex/part1__assemble_disassemble_legos__789/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "part1/add_remove_lid/566",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A person in an orange sweater removes the lids from three white paper cups on a yellow table, placing the lids beside the cups. The hands move methodically, lifting each lid and setting it down, revealing the open tops of the cups. The background features a brown curtain and a light-colored wall. A close-up, top-down view captures the simple, deliberate actions in a warm-lit indoor setting.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/egodex/part1__add_remove_lid__566/rgb.mp4",
+            "skeleton": "videos/processed/egodex/part1__add_remove_lid__566/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "part1/declutter_desk/612",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/egodex/part1__declutter_desk__612/rgb.mp4",
+            "skeleton": "videos/processed/egodex/part1__declutter_desk__612/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "part1/arrange_topple_dominoes/235",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A hand with purple nail polish and a ring pushes the first domino in a curved line, triggering a chain reaction that topples the rest. The dominoes fall in sequence, creating a cascading effect across the table. After the last domino falls, the hand gathers the scattered pieces into a pile, moving them to one side. The scene takes place on a smooth, light-colored surface with a plain backdrop. A medium shot captures the action from a slightly elevated angle.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/egodex/part1__arrange_topple_dominoes__235/rgb.mp4",
+            "skeleton": "videos/processed/egodex/part1__arrange_topple_dominoes__235/skeleton.mp4"
+          }
+        }
+      ]
+    },
+    "vitra_ego4d_cooking": {
+      "robot": "human",
+      "type": "human",
+      "total_episodes": 414947,
+      "analysis_summary": {
+        "total_episodes": 454244,
+        "kept": 414947,
+        "dropped": 39297,
+        "drop_rate": "8.7%",
+        "candidate_pairs": 287251,
+        "traj_threshold": 0.055559,
+        "cosine_threshold": 0.95,
+        "text_cosine_threshold": 0.8,
+        "dedup_path": "text_first"
+      },
+      "showcase_episodes": [
+        {
+          "episode_id": "Ego4D_0d270946-95c5-4e71-ae49-b9e802548147_ep_000658",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ego4d_cooking/Ego4D_0d270946-95c5-4e71-ae49-b9e802548147_ep_000658/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ego4d_cooking/Ego4D_0d270946-95c5-4e71-ae49-b9e802548147_ep_000658/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "Ego4D_0b0c7c26-8f38-4a22-8a9e-b99e4ae334fc_ep_002625",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ego4d_cooking/Ego4D_0b0c7c26-8f38-4a22-8a9e-b99e4ae334fc_ep_002625/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ego4d_cooking/Ego4D_0b0c7c26-8f38-4a22-8a9e-b99e4ae334fc_ep_002625/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "Ego4D_082db032-f3f2-408b-a116-84d62f673915_ep_002124",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A person washes a blue and white garment in a large blue plastic basin filled with water. The hands, adorned with bangles, submerge and agitate the clothing, creating ripples. The person wears red sandals and a red and blue sweater. The scene is captured from a top-down perspective, focusing on the hands and the basin, with a concrete floor visible in the background. A close-up shot emphasizing the washing action.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ego4d_cooking/Ego4D_082db032-f3f2-408b-a116-84d62f673915_ep_002124/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ego4d_cooking/Ego4D_082db032-f3f2-408b-a116-84d62f673915_ep_002124/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "Ego4D_067037a6-71a9-4850-ac51-59183eeb6359_ep_000257",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A person in a red patterned shirt is placing black socks into a metal laundry basket on a white tiled floor. The basket is positioned next to a bathtub, and a gray bath mat is visible nearby. The person's hands move methodically, folding and arranging the socks inside the basket. The scene is illuminated by warm lighting, creating a cozy atmosphere. The camera angle is from above, providing a clear view of the actions and surroundings. The person's movements are deliberate and focused on organizing the laundry.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ego4d_cooking/Ego4D_067037a6-71a9-4850-ac51-59183eeb6359_ep_000257/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ego4d_cooking/Ego4D_067037a6-71a9-4850-ac51-59183eeb6359_ep_000257/skeleton.mp4"
+          }
+        }
+      ]
+    },
+    "vitra_ego4d_other": {
+      "robot": "human",
+      "type": "human",
+      "total_episodes": 457934,
+      "analysis_summary": {
+        "total_episodes": 494439,
+        "kept": 457934,
+        "dropped": 36505,
+        "drop_rate": "7.4%",
+        "candidate_pairs": 198118,
+        "traj_threshold": 0.076839,
+        "cosine_threshold": 0.95,
+        "text_cosine_threshold": 0.8,
+        "dedup_path": "text_first"
+      },
+      "showcase_episodes": [
+        {
+          "episode_id": "Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000763",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A person with tattooed arms is laying white marble tiles on a floor covered with orange waterproof membrane. They press down on the tiles with both hands to secure them in place, ensuring they are properly aligned. The tiles have a natural veined pattern, and the person uses small red spacers to maintain even gaps between them. A yellow bucket and a metal tile cutter are visible nearby, indicating ongoing tiling work. The scene is shot from an overhead angle, focusing on the hands and the tile installation process.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000763/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000763/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "Ego4D_01d793c6-e235-4af1-8a1d-c70dcf0c8654_ep_000035",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A first-person view of a person holding a large white drywall panel while standing on a metal ladder. The person wears a dark gray t-shirt and pants, with their right hand gripping the panel's edge. The room is under construction, with tools, cables, and boxes scattered on the floor. A yellow cable management strip runs across the floor, and a wooden cabinet and blue bucket are visible in the background. The camera angle is tilted, capturing the scene from above.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ego4d_other/Ego4D_01d793c6-e235-4af1-8a1d-c70dcf0c8654_ep_000035/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ego4d_other/Ego4D_01d793c6-e235-4af1-8a1d-c70dcf0c8654_ep_000035/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000098",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A person with tattooed arms is cutting a white marble tile using a tile cutter on a wooden board. The individual carefully positions the tile on the cutter, applies pressure to make the cut, and then lifts the tile to inspect it. The surrounding area includes scattered tiles, a red-handled tool, and a pink cylindrical object. The floor is carpeted, and a white cabinet is visible in the background. The scene is captured from a first-person perspective, focusing on the hands and the cutting process.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000098/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000098/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000877",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A man with tattooed arms, wearing a white shirt and gray pants, is kneeling on a green mat outdoors. He holds a yellow angle grinder in his right hand and a white marble tile in his left, preparing to cut it. The tile has a cross marked on it, and he carefully positions the grinder along the line. Surrounding him are various tools and materials, including a yellow bucket, a drill, and a paint can. The background shows a black metal railing and greenery. A high-angle shot captures the scene, emphasizing the man's focused actions.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000877/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000877/skeleton.mp4"
+          }
+        }
+      ]
+    },
+    "vitra_epic": {
+      "robot": "human",
+      "type": "human",
+      "total_episodes": 138488,
+      "analysis_summary": {
+        "total_episodes": 154464,
+        "kept": 138488,
+        "dropped": 15976,
+        "drop_rate": "10.3%",
+        "candidate_pairs": 140296,
+        "traj_threshold": 0.04789,
+        "cosine_threshold": 0.95,
+        "text_cosine_threshold": 0.8,
+        "dedup_path": "text_first"
+      },
+      "showcase_episodes": [
+        {
+          "episode_id": "epic_kitchens_P04_02_ep_000244",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A person in a star-patterned sweater is preparing food in a kitchen, slicing a cucumber on a wooden cutting board with a knife. The cutting board is covered with shredded carrots, and a plastic bag with more vegetables is nearby. The person places the sliced cucumber pieces into a white bowl. On the countertop, there is a rice cooker, a bottle of oil, a bowl with eggs and chopsticks, and a pan with a yellow mixture cooking on the stove. Another pan on the stove contains small round food items being cooked. The kitchen has a modern design with a black induction cooktop and a granite countertop. The person's hand movements are deliberate and focused on the task.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_epic/epic_kitchens_P04_02_ep_000244/rgb.mp4",
+            "skeleton": "videos/processed/vitra_epic/epic_kitchens_P04_02_ep_000244/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "epic_kitchens_P03_101_ep_000375",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A top-down view of a kitchen countertop with a person's hands opening a plastic bag containing bread. The left hand holds the bag while the right hand pulls it open. Two glass cutting boards with the words \"SLICE,\" \"PEEL,\" and \"CHOP\" printed on them are visible, one with the bread and the other with a white plate and knife. In the background, there is a knife block with wooden-handled utensils, a red hand mixer, several water bottles, and a mug rack with various mugs. The countertop is dark gray with a speckled pattern, and the wall behind is tiled in white. A medium shot from a fixed overhead angle.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_epic/epic_kitchens_P03_101_ep_000375/rgb.mp4",
+            "skeleton": "videos/processed/vitra_epic/epic_kitchens_P03_101_ep_000375/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "epic_kitchens_P06_09_ep_000624",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_epic/epic_kitchens_P06_09_ep_000624/rgb.mp4",
+            "skeleton": "videos/processed/vitra_epic/epic_kitchens_P06_09_ep_000624/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "epic_kitchens_P02_129_ep_000283",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A first-person view of a person wearing yellow rubber gloves washing dishes in a kitchen sink. The person holds a blue bottle of dish soap in one hand and a green and white sponge in the other. They squeeze the bottle, dispensing soap onto the sponge over the sink, which contains soapy water and a few knives. The sink area includes a faucet, a blue cutting board, a red dish rack, and wooden cutting boards on the counter. The background features white tiled walls. A close-up shot focusing on the hands and the cleaning action.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_epic/epic_kitchens_P02_129_ep_000283/rgb.mp4",
+            "skeleton": "videos/processed/vitra_epic/epic_kitchens_P02_129_ep_000283/skeleton.mp4"
+          }
+        }
+      ]
+    },
+    "vitra_ssv2": {
+      "robot": "human",
+      "type": "human",
+      "total_episodes": 51135,
+      "analysis_summary": {
+        "total_episodes": 52718,
+        "kept": 51135,
+        "dropped": 1583,
+        "drop_rate": "3.0%",
+        "candidate_pairs": 5714,
+        "traj_threshold": 0.027903,
+        "cosine_threshold": 0.95,
+        "text_cosine_threshold": 0.8,
+        "dedup_path": "text_first"
+      },
+      "showcase_episodes": [
+        {
+          "episode_id": "somethingsomethingv2_6713_ep_000000",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A hand holds a partially opened brown paper package with a black plastic strip, resting on a wooden surface. The hand gently rotates the package, revealing its contents, which include a small yellow object. The background is a plain wooden table with a slight texture, and the lighting is natural, creating soft shadows. The focus remains on the hand and the package throughout the short clip.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ssv2/somethingsomethingv2_6713_ep_000000/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ssv2/somethingsomethingv2_6713_ep_000000/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "somethingsomethingv2_206930_ep_000000",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A hand gently places a red notebook with a cartoon monster design onto a patterned bedspread. The notebook features large white eyes, a wide mouth with sharp teeth, and small yellow horns. The hand, with a light skin tone, rests on the notebook, slightly adjusting its position. The bedspread has a floral pattern in shades of pink and white. To the right, a dark-colored object, possibly a bag or another book, is partially visible. The scene is softly lit, creating a calm and intimate atmosphere. The camera remains steady, focusing on the interaction between the hand and the notebook.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ssv2/somethingsomethingv2_206930_ep_000000/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ssv2/somethingsomethingv2_206930_ep_000000/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "somethingsomethingv2_67030_ep_000000",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A hand reaches into a black backpack resting on a tiled floor, rummaging through its contents. The backpack is partially open, revealing dark fabric and some white accents. The hand, with a dark skin tone, moves inside the bag, searching or adjusting items. The scene is shot from a top-down perspective, focusing on the interaction between the hand and the backpack. The floor is made of light brown tiles with visible grout lines. The lighting is dim, creating shadows within the bag and on the floor. The movement is slow and deliberate, suggesting a careful search or organization of the bag's contents.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ssv2/somethingsomethingv2_67030_ep_000000/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ssv2/somethingsomethingv2_67030_ep_000000/skeleton.mp4"
+          }
+        },
+        {
+          "episode_id": "somethingsomethingv2_2529_ep_000000",
+          "camera_id": "ego",
+          "category": "local",
+          "caption": "A close-up shot of a hand holding a metal tool, pressing down on a clear glass cup placed on a colorful patterned fabric surface. The hand is positioned above the cup, with fingers gripping the tool's handle, applying pressure to the cup's rim. The background features a mix of red, orange, and beige patterns, with a leopard print cloth partially visible on the right side. The scene is well-lit, highlighting the reflective surface of the glass and the metallic sheen of the tool. The hand appears steady, suggesting a deliberate action, possibly for cutting or shaping the cup. The overall composition focuses on the interaction between the hand, tool, and glass, emphasizing the precision of the task.",
+          "rgb_path": "",
+          "scenario_path": "",
+          "local_paths": {
+            "rgb": "videos/processed/vitra_ssv2/somethingsomethingv2_2529_ep_000000/rgb.mp4",
+            "skeleton": "videos/processed/vitra_ssv2/somethingsomethingv2_2529_ep_000000/skeleton.mp4"
           }
         }
       ]
@@ -761,22 +1061,28 @@
   },
   "stats": {
     "by_dataset": {
-      "droid": 23887,
-      "rh20t_cfg5": 796,
-      "rh20t_cfg7": 557,
+      "droid": 30925,
+      "rh20t_cfg5": 774,
+      "rh20t_cfg7": 542,
       "interndata": 2321,
       "agibot": 93981,
-      "airoa_moma": 11451
+      "airoa_moma": 11451,
+      "egodex": 139027,
+      "vitra_ego4d_cooking": 414947,
+      "vitra_ego4d_other": 457934,
+      "vitra_epic": 138488,
+      "vitra_ssv2": 51135
     },
     "by_robot": {
-      "franka_panda": 27004,
-      "kuka_iiwa": 557,
+      "franka_panda": 34020,
+      "kuka_iiwa": 542,
       "unitree_g1": 93981,
       "toyota_hsr": 11451
     },
-    "by_render_type": {
-      "skeleton": 0
+    "by_type": {
+      "robotics": 139994,
+      "human": 1201531
     },
-    "total": 132993
+    "total": 1341525
   }
 }

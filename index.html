@@ -337,6 +337,11 @@
   .stat-bar-robot {
     background: linear-gradient(90deg, var(--green), #22d3ee);
   }
+  .stat-bar-human {
+    height: 100%;
+    background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+    border-radius: 4px;
+  }
   .stat-value {
     width: 120px;
     text-align: right;
@@ -487,6 +492,12 @@
   .meta-robot {
     background: rgba(34,197,94,0.15);
     color: var(--green);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .meta-type-human {
+    background: rgba(6,182,212,0.15);
+    color: #06b6d4;
     padding: 2px 8px;
     border-radius: 4px;
   }
@@ -2040,102 +2051,142 @@
   
   
   
+  
   <div id="processed-tab" class="tab-content">
     <h2 class="section-title">Processed Datasets <span class="badge badge-green">Training Ready</span></h2>
     <p class="section-desc">RGB + skeleton overlay videos with AI-generated captions, ready for training.</p>
 
     
     <div class="stats-panel">
-      <div class="stats-section">
+      <div class="stats-section" id="stats-by-dataset">
         <h3>By Dataset</h3>
         
-        <div class="stat-row">
+        <div class="stat-row" data-stat-type="human">
+          <span class="stat-label">vitra_ego4d_other</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar-human" style="width: 34.135331059801345%"></div>
+          </div>
+          <span class="stat-value">457,934 (34.1%)</span>
+        </div>
+        <div class="stat-row" data-stat-type="human">
+          <span class="stat-label">vitra_ego4d_cooking</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar-human" style="width: 30.930992713516336%"></div>
+          </div>
+          <span class="stat-value">414,947 (30.9%)</span>
+        </div>
+        <div class="stat-row" data-stat-type="human">
+          <span class="stat-label">egodex</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar-human" style="width: 10.363355136877807%"></div>
+          </div>
+          <span class="stat-value">139,027 (10.4%)</span>
+        </div>
+        <div class="stat-row" data-stat-type="human">
+          <span class="stat-label">vitra_epic</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar-human" style="width: 10.323176981420398%"></div>
+          </div>
+          <span class="stat-value">138,488 (10.3%)</span>
+        </div>
+        <div class="stat-row" data-stat-type="robotics">
           <span class="stat-label">agibot</span>
           <div class="stat-bar-container">
-            <div class="stat-bar" style="width: 70.66612528478943%"></div>
+            <div class="stat-bar" style="width: 7.005534745904847%"></div>
           </div>
-          <span class="stat-value">93,981 (70.7%)</span>
+          <span class="stat-value">93,981 (7.0%)</span>
         </div>
-        <div class="stat-row">
+        <div class="stat-row" data-stat-type="human">
+          <span class="stat-label">vitra_ssv2</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar-human" style="width: 3.8117068261866156%"></div>
+          </div>
+          <span class="stat-value">51,135 (3.8%)</span>
+        </div>
+        <div class="stat-row" data-stat-type="robotics">
           <span class="stat-label">droid</span>
           <div class="stat-bar-container">
-            <div class="stat-bar" style="width: 17.961095696765994%"></div>
+            <div class="stat-bar" style="width: 2.3052123516147667%"></div>
           </div>
-          <span class="stat-value">23,887 (18.0%)</span>
+          <span class="stat-value">30,925 (2.3%)</span>
         </div>
-        <div class="stat-row">
+        <div class="stat-row" data-stat-type="robotics">
           <span class="stat-label">airoa_moma</span>
           <div class="stat-bar-container">
-            <div class="stat-bar" style="width: 8.610227605964225%"></div>
+            <div class="stat-bar" style="width: 0.8535808128808633%"></div>
           </div>
-          <span class="stat-value">11,451 (8.6%)</span>
+          <span class="stat-value">11,451 (0.9%)</span>
         </div>
-        <div class="stat-row">
+        <div class="stat-row" data-stat-type="robotics">
           <span class="stat-label">interndata</span>
           <div class="stat-bar-container">
-            <div class="stat-bar" style="width: 1.7452046348304047%"></div>
+            <div class="stat-bar" style="width: 0.17301205717373885%"></div>
           </div>
-          <span class="stat-value">2,321 (1.7%)</span>
+          <span class="stat-value">2,321 (0.2%)</span>
         </div>
-        <div class="stat-row">
+        <div class="stat-row" data-stat-type="robotics">
           <span class="stat-label">rh20t_cfg5</span>
           <div class="stat-bar-container">
-            <div class="stat-bar" style="width: 0.5985277420616122%"></div>
+            <div class="stat-bar" style="width: 0.05769553306870912%"></div>
           </div>
-          <span class="stat-value">796 (0.6%)</span>
+          <span class="stat-value">774 (0.1%)</span>
         </div>
-        <div class="stat-row">
+        <div class="stat-row" data-stat-type="robotics">
           <span class="stat-label">rh20t_cfg7</span>
           <div class="stat-bar-container">
-            <div class="stat-bar" style="width: 0.4188190355883393%"></div>
+            <div class="stat-bar" style="width: 0.040401781554574086%"></div>
           </div>
-          <span class="stat-value">557 (0.4%)</span>
+          <span class="stat-value">542 (0.0%)</span>
         </div>
       </div>
-      <div class="stats-section">
+      <div class="stats-section" id="stats-by-robot">
         <h3>By Robot</h3>
         
         <div class="stat-row">
           <span class="stat-label">Unitree G1</span>
           <div class="stat-bar-container">
-            <div class="stat-bar stat-bar-robot" style="width: 70.66612528478943%"></div>
+            <div class="stat-bar stat-bar-robot" style="width: 67.13216280697745%"></div>
           </div>
-          <span class="stat-value">93,981 (70.7%)</span>
+          <span class="stat-value">93,981 (67.1%)</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">Franka Panda</span>
           <div class="stat-bar-container">
-            <div class="stat-bar stat-bar-robot" style="width: 20.304828073658012%"></div>
+            <div class="stat-bar stat-bar-robot" style="width: 24.301041473205995%"></div>
           </div>
-          <span class="stat-value">27,004 (20.3%)</span>
+          <span class="stat-value">34,020 (24.3%)</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">Toyota Hsr</span>
           <div class="stat-bar-container">
-            <div class="stat-bar stat-bar-robot" style="width: 8.610227605964225%"></div>
+            <div class="stat-bar stat-bar-robot" style="width: 8.179636270125863%"></div>
           </div>
-          <span class="stat-value">11,451 (8.6%)</span>
+          <span class="stat-value">11,451 (8.2%)</span>
         </div>
         <div class="stat-row">
           <span class="stat-label">Kuka Iiwa</span>
           <div class="stat-bar-container">
-            <div class="stat-bar stat-bar-robot" style="width: 0.4188190355883393%"></div>
+            <div class="stat-bar stat-bar-robot" style="width: 0.38715944969070104%"></div>
           </div>
-          <span class="stat-value">557 (0.4%)</span>
+          <span class="stat-value">542 (0.4%)</span>
         </div>
       </div>
       <div class="stats-section stats-total">
-        <div class="total-number">132,993</div>
+        <div class="total-number" id="stats-total-number">1,341,525</div>
         <div class="total-label">Total Episodes</div>
       </div>
     </div>
     
     <div class="filter-bar">
       <div class="filter-group">
-        <span class="filter-label">Dataset:</span>
-        <button class="filter-btn active" data-filter="all" data-type="dataset">All</button><button class="filter-btn" data-filter="droid" data-type="dataset">droid</button><button class="filter-btn" data-filter="rh20t_cfg5" data-type="dataset">rh20t_cfg5</button><button class="filter-btn" data-filter="rh20t_cfg7" data-type="dataset">rh20t_cfg7</button><button class="filter-btn" data-filter="interndata" data-type="dataset">interndata</button><button class="filter-btn" data-filter="agibot" data-type="dataset">agibot</button><button class="filter-btn" data-filter="airoa_moma" data-type="dataset">airoa_moma</button>
+        <span class="filter-label">Type:</span>
+        <button class="filter-btn active" data-filter="all" data-type="type">All</button><button class="filter-btn" data-filter="robotics" data-type="type">Robotics</button><button class="filter-btn" data-filter="human" data-type="type">Human</button>
       </div>
       <div class="filter-group">
+        <span class="filter-label">Dataset:</span>
+        <button class="filter-btn active" data-filter="all" data-type="dataset">All</button><button class="filter-btn" data-filter="droid" data-type="dataset" data-ds-type="robotics">droid</button><button class="filter-btn" data-filter="rh20t_cfg5" data-type="dataset" data-ds-type="robotics">rh20t_cfg5</button><button class="filter-btn" data-filter="rh20t_cfg7" data-type="dataset" data-ds-type="robotics">rh20t_cfg7</button><button class="filter-btn" data-filter="interndata" data-type="dataset" data-ds-type="robotics">interndata</button><button class="filter-btn" data-filter="agibot" data-type="dataset" data-ds-type="robotics">agibot</button><button class="filter-btn" data-filter="airoa_moma" data-type="dataset" data-ds-type="robotics">airoa_moma</button><button class="filter-btn" data-filter="egodex" data-type="dataset" data-ds-type="human">egodex</button><button class="filter-btn" data-filter="vitra_ego4d_cooking" data-type="dataset" data-ds-type="human">vitra_ego4d_cooking</button><button class="filter-btn" data-filter="vitra_ego4d_other" data-type="dataset" data-ds-type="human">vitra_ego4d_other</button><button class="filter-btn" data-filter="vitra_epic" data-type="dataset" data-ds-type="human">vitra_epic</button><button class="filter-btn" data-filter="vitra_ssv2" data-type="dataset" data-ds-type="human">vitra_ssv2</button>
+      </div>
+      <div class="filter-group" id="filter-robot-group">
         <span class="filter-label">Robot:</span>
         <button class="filter-btn active" data-filter="all" data-type="robot">All</button><button class="filter-btn" data-filter="franka_panda" data-type="robot">Franka Panda</button><button class="filter-btn" data-filter="kuka_iiwa" data-type="robot">Kuka Iiwa</button><button class="filter-btn" data-filter="toyota_hsr" data-type="robot">Toyota Hsr</button><button class="filter-btn" data-filter="unitree_g1" data-type="robot">Unitree G1</button>
       </div>
@@ -2143,381 +2194,205 @@
     
     <div class="video-grid">
       
-      <div class="video-card" data-dataset="droid" data-robot="franka_panda">
+      <div class="video-card" data-dataset="droid" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/RAIL__success__2023-04-05__Wed_Apr__5_15:08:50_2023/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__failure__2023-11-16__Thu_Nov_16_15:37:50_2023/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/RAIL__success__2023-04-05__Wed_Apr__5_15:08:50_2023/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__failure__2023-11-16__Thu_Nov_16_15:37:50_2023/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">droid</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">RAIL__success__2023-04-05__Wed...</span>
+          <span class="meta-episode">AUTOLab__failure__2023-11-16__...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a black gripper descends from the ceiling in a laboratory setting, its blue light glowing as it moves toward a wooden table....</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a black gripper descends from the ceiling in a laboratory setting, its blue light glowing as it moves toward a wooden table. On the table, an orange and a metal bowl sit beside a cardboard box. The robot&#39;s arm extends forward, positioning its gripper above the objects. The background shows a cluttered workspace with desks, monitors, and shelves filled with equipment. A fire extinguisher is mounted on a concrete pillar. The scene is well-lit with overhead fluorescent lights. A medium shot captures the robot&#39;s precise movement and the surrounding lab environment.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="droid" data-robot="franka_panda">
+      <div class="video-card" data-dataset="droid" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/IRIS__success__2023-03-02__Thu_Mar__2_14_57_27_2023/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__success__2023-07-21__Fri_Jul_21_15:31:36_2023/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/IRIS__success__2023-03-02__Thu_Mar__2_14_57_27_2023/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__success__2023-07-21__Fri_Jul_21_15:31:36_2023/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">droid</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">IRIS__success__2023-03-02__Thu...</span>
+          <span class="meta-episode">AUTOLab__success__2023-07-21__...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints operates in an office setting, its end effector gripping a black marker. The robot carefully lifts the marker...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints operates in an office setting, its end effector gripping a black marker. The robot carefully lifts the marker from a dark countertop, where a green cloth, a water bottle, and several cans are also placed. It then moves the marker toward a white bowl positioned nearby. In the background, a person wearing a face mask sits at the table, handling a small object. The scene is brightly lit, with glass walls and office furniture visible. A blue light glows from the base of the robot, which is mounted on a black platform. The camera remains static, capturing the robot&#39;s precise movements from a medium shot.</div>
+          <div class="caption-truncated">A white robotic arm with black joints moves over a wooden table in a tech lab. The arm descends, its gripper opening and closing above a small blue...</div>
+          <div class="caption-full" style="display:none">A white robotic arm with black joints moves over a wooden table in a tech lab. The arm descends, its gripper opening and closing above a small blue cup and a metal cylinder. In the background, a person in an orange shirt works at a computer, surrounded by monitors, a whiteboard with writing, and lab equipment. A large softbox light stands to the right. The camera remains static, capturing the robot&#39;s precise movements from a slightly elevated angle. A medium shot focusing on the robotic arm and the table.</div>
           <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
         </div>
       </div>
-      <div class="video-card" data-dataset="droid" data-robot="franka_panda">
+      <div class="video-card" data-dataset="droid" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/GuptaLab__success__2023-04-30__Sun_Apr_30_15:02:19_2023/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__success__2023-11-04__Sat_Nov__4_18:13:22_2023/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/GuptaLab__success__2023-04-30__Sun_Apr_30_15:02:19_2023/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__success__2023-11-04__Sat_Nov__4_18:13:22_2023/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">droid</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">GuptaLab__success__2023-04-30_...</span>
+          <span class="meta-episode">AUTOLab__success__2023-11-04__...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints is positioned in a modern laboratory setting, its articulated arm extending over a stainless steel sink. The...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints is positioned in a modern laboratory setting, its articulated arm extending over a stainless steel sink. The robot&#39;s gripper is holding a small object, possibly a tool or component, and it moves with precision, adjusting its position above the sink. The surrounding environment includes a wooden table in the foreground, a metal shelf with various items, and office equipment in the background. The robot&#39;s base emits a blue light, indicating it is active. The scene is well-lit with overhead fluorescent lights, and the overall atmosphere suggests a high-tech research or development environment. The camera remains stationary, providing a clear view of the robot&#39;s movements and the surrounding workspace.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="droid" data-robot="franka_panda">
+      <div class="video-card" data-dataset="droid" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/REAL__success__2023-04-06__Thu_Apr__6_14_26_59_2023/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__success__2023-11-30__Thu_Nov_30_13:33:58_2023/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/REAL__success__2023-04-06__Thu_Apr__6_14_26_59_2023/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__success__2023-11-30__Thu_Nov_30_13:33:58_2023/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">droid</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">REAL__success__2023-04-06__Thu...</span>
+          <span class="meta-episode">AUTOLab__success__2023-11-30__...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A modern office space with gray walls and concrete flooring, featuring several desks with computer monitors and ergonomic office chairs. In the...</div>
-          <div class="caption-full" style="display:none">A modern office space with gray walls and concrete flooring, featuring several desks with computer monitors and ergonomic office chairs. In the foreground, a stack of cardboard boxes is placed on a table, with a clear plastic cup and an orange-handled tool resting on top. A blue recycling bin is visible near a pillar, and the background shows more workstations and a glass partition leading to another area. The scene is well-lit with overhead lighting, creating a clean and organized workspace. A hand briefly enters the frame from the top right, partially obscuring the view.</div>
+          <div class="caption-truncated">A robotic arm with a white and black body descends into view, positioning itself over a cluttered countertop. The arm&#39;s gripper, equipped with a...</div>
+          <div class="caption-full" style="display:none">A robotic arm with a white and black body descends into view, positioning itself over a cluttered countertop. The arm&#39;s gripper, equipped with a yellow and black component, extends toward crumpled white paper towels. It carefully grasps one of the paper towels, lifting it from the counter. The robotic arm then moves the paper towel toward a black cabinet below, which has a sign reading &quot;MIXED PAPER&quot; on its front. The arm continues its motion, moving the paper towel toward the cabinet&#39;s opening, preparing to dispose of it. The scene takes place in a room with a dark blue wall and a large printer on the right side of the frame. The countertop is made of dark granite and is scattered with various items, including a plastic container, a knife, and a few other small objects. The robotic arm&#39;s movements are precise and deliberate, showcasing its ability to handle objects in a controlled manner.</div>
           <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
         </div>
       </div>
-      <div class="video-card" data-dataset="droid" data-robot="franka_panda">
+      <div class="video-card" data-dataset="droid" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/RPL__success__2023-04-23__Sun_Apr_23_17:15:32_2023/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__success__2023-12-02__Sat_Dec__2_15:18:32_2023/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/RPL__success__2023-04-23__Sun_Apr_23_17:15:32_2023/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__success__2023-12-02__Sat_Dec__2_15:18:32_2023/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">droid</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">RPL__success__2023-04-23__Sun_...</span>
+          <span class="meta-episode">AUTOLab__success__2023-12-02__...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a black gripper extends from the left, its joints moving smoothly as it adjusts its position. The arm is positioned over a...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a black gripper extends from the left, its joints moving smoothly as it adjusts its position. The arm is positioned over a wooden table, with a clear plastic container filled with stuffed animals to the right. In the background, a large screen displays a blue interface, and several cardboard boxes are stacked on a shelf. The room is well-lit with overhead fluorescent lights, and a window on the right side lets in natural light. The robotic arm&#39;s movements are precise and deliberate, showcasing its capability in a laboratory or testing environment. A medium shot captures the entire scene, emphasizing the interaction between the robot and its surroundings.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="droid" data-robot="franka_panda">
+      <div class="video-card" data-dataset="droid" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/PennPAL__success__2023-04-27__Thu_Apr_27_22:24:23_2023/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/CLVR__success__2023-05-20__Sat_May_20_18:01:06_2023/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/PennPAL__success__2023-04-27__Thu_Apr_27_22:24:23_2023/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/CLVR__success__2023-05-20__Sat_May_20_18:01:06_2023/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">droid</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">PennPAL__success__2023-04-27__...</span>
+          <span class="meta-episode">CLVR__success__2023-05-20__Sat...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white and black robotic arm with a gripper attachment is positioned over a kitchen counter. The arm extends toward a green plastic cup containing a...</div>
-          <div class="caption-full" style="display:none">A white and black robotic arm with a gripper attachment is positioned over a kitchen counter. The arm extends toward a green plastic cup containing a blue pen. It carefully grasps the pen with its gripper, lifting it from the cup. The robotic arm then retracts, holding the pen securely. The scene takes place in a kitchen with a stainless steel sink, a black keyboard, and a wooden cabinet visible in the background. The camera remains stationary, providing a clear view of the robotic arm&#39;s precise movements.</div>
+          <div class="caption-truncated">A white robotic arm with black joints and cables is positioned on a black perforated table in a laboratory setting. The arm, mounted on a sturdy...</div>
+          <div class="caption-full" style="display:none">A white robotic arm with black joints and cables is positioned on a black perforated table in a laboratory setting. The arm, mounted on a sturdy base, extends its articulated arm toward a yellow mug with a green handle placed on a black table. The robotic hand, equipped with a gripper, carefully approaches the mug, then grasps a green object inside it. The background reveals a cluttered lab environment with various equipment, including a laptop, a whiteboard, and other tools. The robotic arm moves with precision, demonstrating its capability to manipulate objects in a controlled manner. The scene is well-lit, highlighting the sleek design of the robot and the surrounding workspace. A medium shot captures the robot&#39;s movements and the interaction with the objects on the table.</div>
           <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
         </div>
       </div>
-      <div class="video-card" data-dataset="droid" data-robot="franka_panda">
+      <div class="video-card" data-dataset="droid" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/ILIAD__success__2023-04-19__Wed_Apr_19_16:19:43_2023/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/CLVR__success__2023-06-03__Sat_Jun__3_22:15:25_2023/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/ILIAD__success__2023-04-19__Wed_Apr_19_16:19:43_2023/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/droid/CLVR__success__2023-06-03__Sat_Jun__3_22:15:25_2023/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">droid</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">ILIAD__success__2023-04-19__We...</span>
+          <span class="meta-episode">CLVR__success__2023-06-03__Sat...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a black and white design descends from above into a cluttered workspace, its joints and cables visible as it moves. The arm...</div>
-          <div class="caption-full" style="display:none">A robotic arm with a black and white design descends from above into a cluttered workspace, its joints and cables visible as it moves. The arm positions itself over a wooden table, where a black cup and a marker lie. The background features a white curtain, shelves with equipment, and a computer monitor. The arm&#39;s gripper opens and closes as it prepares to interact with the objects on the table. A medium shot captures the robotic arm&#39;s movements from a slightly elevated angle.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="droid" data-robot="franka_panda">
+      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/IPRL__success__2023-02-28__Tue_Feb_28_20:25:47_2023/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0008_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/IPRL__success__2023-02-28__Tue_Feb_28_20:25:47_2023/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">droid</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">IPRL__success__2023-02-28__Tue...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints and cables extends from a base with blue lights, positioned in a lab-like workspace. The arm moves forward, its...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints and cables extends from a base with blue lights, positioned in a lab-like workspace. The arm moves forward, its gripper descending toward a white mug and a red marker on a dark countertop. The background features a long room with fluorescent lighting, whiteboards covered in diagrams, and various equipment. A white bucket with a red logo sits on the right side of the counter. The robotic arm carefully approaches the objects, preparing to interact with them. A medium shot captures the scene from a slightly elevated angle.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="droid" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__success__2023-07-07__Fri_Jul__7_09:42:23_2023/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/AUTOLab__success__2023-07-07__Fri_Jul__7_09:42:23_2023/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">droid</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">AUTOLab__success__2023-07-07__...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a black and white mechanical design enters the frame from the right, moving toward a wooden table in a cluttered office space. On...</div>
-          <div class="caption-full" style="display:none">A robotic arm with a black and white mechanical design enters the frame from the right, moving toward a wooden table in a cluttered office space. On the table, a pink bowl and a yellow cup sit side by side. The robot&#39;s articulated arm extends and lowers a tool toward the objects, appearing to prepare for an action. In the background, office equipment, desks, and a white curtain are visible, with a large softbox light positioned above the scene. The camera remains fixed, capturing the robot&#39;s precise movement in a medium shot.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="droid" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/CLVR__success__2023-05-09__Tue_May__9_01:17:11_2023/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/droid/CLVR__success__2023-05-09__Tue_May__9_01:17:11_2023/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">droid</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">CLVR__success__2023-05-09__Tue...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a black gripper descends from above, moving toward a bright green mug on a white table. The mug, featuring a cartoon design,...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a black gripper descends from above, moving toward a bright green mug on a white table. The mug, featuring a cartoon design, sits next to a small green cylindrical object. The robot&#39;s arm, with a sleek silver and black body, lowers steadily, positioning its gripper directly above the mug. The scene is set in a lab-like environment with lighting equipment and cardboard boxes visible in the background. A medium shot captures the robot&#39;s precise movement as it prepares to interact with the mug.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0081_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0008_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">rh20t_cfg5</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">task_0081_user_0007_scene_0001...</span>
+          <span class="meta-episode">task_0008_user_0007_scene_0001...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints and a blue indicator light is positioned over a transparent, textured surface with a marbled pattern of orange...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints and a blue indicator light is positioned over a transparent, textured surface with a marbled pattern of orange and white. The robot&#39;s gripper, equipped with a small camera or sensor, hovers above the surface, attempting to pick up a pair of glasses and a small wooden block. A person&#39;s hand occasionally enters the frame from the left, adjusting the objects on the surface. The background includes a computer keyboard, papers, and various lab equipment, indicating a controlled experimental setup. The robot makes slight adjustments to its position, focusing on the task of grasping the objects. The scene is well-lit, highlighting the mechanical precision and the intricate details of the robotic arm&#39;s movements. The camera remains stationary, providing a clear view of the interaction between the robot and the objects.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda">
+      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0019_user_0010_scene_0009_cfg_0005/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0094_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0019_user_0010_scene_0009_cfg_0005/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">rh20t_cfg5</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">task_0094_user_0007_scene_0001...</span>
+          <span class="meta-episode">task_0019_user_0010_scene_0009...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints and a blue-lit end effector is positioned over a green textured mat on a metal grid table. The robot slowly...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints and a blue-lit end effector is positioned over a green textured mat on a metal grid table. The robot slowly lowers its gripper into an open cardboard box, adjusting its position slightly before inserting the tool deeper into the box. A small wooden cube rests nearby on the mat, and papers with diagrams are visible in the background near a computer keyboard. The camera remains fixed, capturing the robotic arm’s precise movements from a slightly elevated side angle. The scene is well-lit, suggesting a lab or testing environment.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg5</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">task_0038_user_0007_scene_0001...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a black gripper hovers over a colorful tabletop scene featuring a painted landscape. The arm slowly descends toward a blue...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a black gripper hovers over a colorful tabletop scene featuring a painted landscape. The arm slowly descends toward a blue cup, its joints moving with precision. A Rubik&#39;s cube sits nearby on the table, along with red and green cups and a gold-wrapped object. In the background, a keyboard and computer monitor are visible. The camera remains fixed, capturing the robotic arm&#39;s controlled movement from a high-angle perspective.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0118_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg5</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">task_0118_user_0007_scene_0001...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints and a blue indicator light hovers over a large, flat, marble-like surface with beige veining. The arm, mounted...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints and a blue indicator light hovers over a large, flat, marble-like surface with beige veining. The arm, mounted on a silver aluminum frame, slowly lowers a tool toward a black C-clamp holding a metal rod. The clamp rests on the surface, which is positioned on a slatted metal platform. In the background, a computer keyboard and scattered papers are visible, suggesting a lab or workshop setting. The robot’s movements are precise and deliberate, indicating a controlled operation. The scene is well-lit, highlighting the mechanical components and the smooth texture of the surface. The camera remains stationary, providing a clear, overhead view of the robotic arm’s operation.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg5</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">task_0028_user_0010_scene_0001...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a white and black mechanical design is positioned over a workbench, holding a small white 3D-printed object with a rectangular...</div>
-          <div class="caption-full" style="display:none">A robotic arm with a white and black mechanical design is positioned over a workbench, holding a small white 3D-printed object with a rectangular shape and internal compartments. The object rests on a green, textured surface with a wavy pattern, likely a protective mat. The robotic arm&#39;s gripper is carefully manipulating the object, suggesting a precision task such as assembly or inspection. In the background, a keyboard and computer monitor are visible, indicating a laboratory or workshop setting. The scene is well-lit, with the focus on the interaction between the robotic arm and the object. The camera angle is slightly elevated, providing a clear view of the robotic arm&#39;s movements and the object&#39;s position on the mat. The overall atmosphere is one of technological precision and controlled automation.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0072_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg5</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">task_0072_user_0007_scene_0001...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a blue-lit sensor is positioned over a wooden table, attempting to insert a coin into a golden piggy bank. The piggy bank,...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a blue-lit sensor is positioned over a wooden table, attempting to insert a coin into a golden piggy bank. The piggy bank, adorned with red Chinese characters, sits next to a small gray box with a red button. The robot&#39;s gripper moves precisely, but the coin falls short. A person&#39;s hand, wearing a black sleeve with white text, intervenes, placing the coin into the piggy bank. The background features a keyboard, papers, and a computer monitor, suggesting a lab or workshop setting. The scene is well-lit, with natural light reflecting off the polished wood surface. A medium shot captures the interaction between the robot and the human.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg5</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">task_0046_user_0007_scene_0001...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a black gripper moves over a marble-patterned surface in a laboratory setting. The arm carefully approaches a blue...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a black gripper moves over a marble-patterned surface in a laboratory setting. The arm carefully approaches a blue cylindrical object, grasps it with its claw-like end effector, and lifts it. The robot then maneuvers the blue object toward a black metal rack, positioning it above the structure. In the background, a computer keyboard, monitor, and a red cone are visible, indicating a workspace environment. The scene is well-lit, highlighting the mechanical precision of the robotic movement. A medium shot captures the entire process from a slightly elevated angle.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda">
+      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
@@ -2534,210 +2409,166 @@
           <span class="meta-episode">task_0022_user_0010_scene_0001...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a black and white gripper performs precise movements on a transparent surface with a marbled orange and white pattern. The...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a black and white gripper performs precise movements on a transparent surface with a marbled orange and white pattern. The robot holds a green rectangular object and carefully places it over two small wooden blocks. It then lifts the green object, repositions it, and presses it down onto the blocks, adjusting its position multiple times. The background includes a keyboard and a computer monitor, suggesting a lab or workshop setting. The robot&#39;s movements are smooth and controlled, demonstrating advanced manipulation capabilities. A medium shot captures the entire process from a slightly elevated angle.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda">
+      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0022_user_0010_scene_0010_cfg_0005/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0119_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0022_user_0010_scene_0010_cfg_0005/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">rh20t_cfg5</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">task_0119_user_0007_scene_0001...</span>
+          <span class="meta-episode">task_0022_user_0010_scene_0010...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints and cables is positioned over a light-colored, marble-patterned surface on a metal workbench. The arm slowly...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints and cables is positioned over a light-colored, marble-patterned surface on a metal workbench. The arm slowly lowers a small tool toward a black C-clamp holding a metal rod in place. The background shows a cluttered workspace with papers, a keyboard, and shelves. The robot&#39;s movements are precise and deliberate, demonstrating a controlled mechanical operation. A medium shot captures the interaction from a slightly elevated angle.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda">
+      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0026_user_0010_scene_0006_cfg_0005/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0085_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0026_user_0010_scene_0006_cfg_0005/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">rh20t_cfg5</span>
           <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">task_0085_user_0007_scene_0001...</span>
+          <span class="meta-episode">task_0026_user_0010_scene_0006...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints and a blue sensor moves precisely over a colorful geometric canvas resembling a Mondrian painting. The canvas...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints and a blue sensor moves precisely over a colorful geometric canvas resembling a Mondrian painting. The canvas features bold red, yellow, and blue rectangles separated by black lines on a white background. A small yellow ring and a white-and-black soccer ball are positioned on the canvas. The robotic arm, equipped with a gripper, slowly descends, carefully aligns above the objects, and gently picks up the soccer ball. The arm lifts the ball slightly, then repositions it with controlled movements. In the background, a laptop, papers, and various lab equipment are visible, suggesting a research or testing environment. The scene is well-lit, highlighting the mechanical precision and the vibrant colors of the canvas. The robotic arm demonstrates advanced coordination and dexterity in handling delicate objects.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa">
+      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0028_user_0010_scene_0001_cfg_0005/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg7</span>
-          <span class="meta-robot">Kuka Iiwa</span>
-          <span class="meta-episode">task_0025_user_0014_scene_0001...</span>
+          <span class="meta-dataset">rh20t_cfg5</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">task_0028_user_0010_scene_0001...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with orange and gray segments is positioned over a dark brown table in a laboratory setting. The arm holds a small white object with a...</div>
-          <div class="caption-full" style="display:none">A robotic arm with orange and gray segments is positioned over a dark brown table in a laboratory setting. The arm holds a small white object with a blue light on top. It carefully lowers the object onto the table, then adjusts its position slightly. The surrounding area includes a computer monitor, keyboard, and various tools. The scene is well-lit, with reflections visible on the table surface. A high-angle shot captures the robotic arm&#39;s precise movements as it manipulates the object.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa">
+      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0034_user_0007_scene_0003_cfg_0005/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0034_user_0007_scene_0003_cfg_0005/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg7</span>
-          <span class="meta-robot">Kuka Iiwa</span>
-          <span class="meta-episode">task_0022_user_0020_scene_0001...</span>
+          <span class="meta-dataset">rh20t_cfg5</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">task_0034_user_0007_scene_0003...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a gray and orange design operates on a wooden board placed on a metal workbench. The arm, equipped with a camera and sensors,...</div>
-          <div class="caption-full" style="display:none">A robotic arm with a gray and orange design operates on a wooden board placed on a metal workbench. The arm, equipped with a camera and sensors, manipulates a small cube-shaped object, rotating and repositioning it with precise movements. The workspace is cluttered with tools, a keyboard, a monitor, and various electronic devices. The robot&#39;s movements are smooth and controlled, showcasing its ability to perform delicate tasks. The scene is well-lit, highlighting the intricate details of the robotic arm and the surrounding equipment. A high-angle shot captures the entire setup, emphasizing the complexity and precision of the robotic operation.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa">
+      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0042_user_0020_scene_0001_cfg_0007/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0038_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg7</span>
-          <span class="meta-robot">Kuka Iiwa</span>
-          <span class="meta-episode">task_0042_user_0020_scene_0001...</span>
+          <span class="meta-dataset">rh20t_cfg5</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">task_0038_user_0007_scene_0001...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with an orange and gray body and a green end effector is positioned over a dark marble-like surface. The arm, equipped with blue LED...</div>
-          <div class="caption-full" style="display:none">A robotic arm with an orange and gray body and a green end effector is positioned over a dark marble-like surface. The arm, equipped with blue LED lights, moves its gripper toward a small white container secured by a black C-clamp. The gripper, which has a cylindrical shape, lowers and makes contact with the container, applying pressure. The background includes various objects such as a keyboard, a Rubik&#39;s cube, and a device with an orange casing. The scene is well-lit, with the robotic arm&#39;s movements being the primary focus. The camera remains stationary, providing a clear view of the robotic arm&#39;s operation. The overall environment appears to be a laboratory or workshop setting. A medium shot captures the interaction between the robotic arm and the container.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa">
+      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0062_user_0014_scene_0001_cfg_0007/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0046_user_0007_scene_0001_cfg_0005/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg7</span>
-          <span class="meta-robot">Kuka Iiwa</span>
-          <span class="meta-episode">task_0062_user_0014_scene_0001...</span>
+          <span class="meta-dataset">rh20t_cfg5</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">task_0046_user_0007_scene_0001...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a gray and orange design is positioned on a wooden table in a laboratory setting. The arm, equipped with a gripper, moves with...</div>
-          <div class="caption-full" style="display:none">A robotic arm with a gray and orange design is positioned on a wooden table in a laboratory setting. The arm, equipped with a gripper, moves with precision to pick up a white cylindrical object from the table. The robot&#39;s movements are smooth and deliberate, showcasing its ability to handle objects with care. The surrounding area includes various lab equipment, such as a keyboard, monitor, and other tools, indicating a controlled environment for testing and experimentation. The robotic arm&#39;s joints and segments articulate fluidly, demonstrating advanced mechanical engineering. The scene is well-lit, highlighting the intricate details of the robot and its surroundings. The robot&#39;s gripper securely holds the object, and it then lifts it slightly, preparing for the next action. The overall atmosphere is one of technological advancement and precision. A high-angle shot captures the entire setup, providing a clear view of the robot&#39;s operations and the workspace.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa">
+      <div class="video-card" data-dataset="rh20t_cfg5" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0046_user_0010_scene_0002_cfg_0005/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg5/task_0046_user_0010_scene_0002_cfg_0005/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg7</span>
-          <span class="meta-robot">Kuka Iiwa</span>
-          <span class="meta-episode">task_0031_user_0020_scene_0001...</span>
+          <span class="meta-dataset">rh20t_cfg5</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">task_0046_user_0010_scene_0002...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with orange and gray segments operates on a workbench, manipulating a small pink box. The arm&#39;s gripper holds a tool, possibly a drill...</div>
-          <div class="caption-full" style="display:none">A robotic arm with orange and gray segments operates on a workbench, manipulating a small pink box. The arm&#39;s gripper holds a tool, possibly a drill or screwdriver, and moves precisely over the box, making contact and applying pressure. The workbench is cluttered with various items, including a computer monitor, keyboard, and other equipment. The scene is well-lit, highlighting the mechanical movements and the detailed components of the robotic arm. The camera angle provides a clear view of the arm&#39;s actions and the surrounding workspace.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0226_user_0066_scene_0001_cfg_0007/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg7</span>
-          <span class="meta-robot">Kuka Iiwa</span>
-          <span class="meta-episode">task_0226_user_0066_scene_0001...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a gray and orange design is positioned over a cluttered workspace, which includes a computer monitor, keyboard, and various tools....</div>
-          <div class="caption-full" style="display:none">A robotic arm with a gray and orange design is positioned over a cluttered workspace, which includes a computer monitor, keyboard, and various tools. The robot is holding a knife and is in the process of cutting a cucumber on a wooden cutting board. The arm moves with precision, adjusting its grip and angle to make clean cuts. The surrounding area is filled with items such as a plastic bag, a green cloth, and a box of tissues, creating a busy yet functional environment. The robot&#39;s movements are smooth and deliberate, showcasing its ability to perform tasks with accuracy. The scene is well-lit, highlighting the details of the robot&#39;s components and the objects on the table. The overall atmosphere suggests a laboratory or testing environment where the robot is being evaluated for its cutting capabilities. A high-angle shot captures the entire setup, providing a clear view of the robot&#39;s actions and the surrounding workspace.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">rh20t_cfg7</span>
-          <span class="meta-robot">Kuka Iiwa</span>
-          <span class="meta-episode">task_0007_user_0014_scene_0001...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a gray and orange design is positioned over a wooden surface in a laboratory setting. The arm, equipped with a gripper, moves with...</div>
-          <div class="caption-full" style="display:none">A robotic arm with a gray and orange design is positioned over a wooden surface in a laboratory setting. The arm, equipped with a gripper, moves with precision, manipulating a small object on the table. The surrounding area includes a laptop, a monitor, and various tools, indicating a workspace for testing or experimentation. The robotic arm&#39;s movements are smooth and controlled, showcasing its ability to perform delicate tasks. The scene is well-lit, highlighting the intricate details of the robotic arm and the workspace. The overall environment suggests a focus on robotics and automation research. A high-angle shot captures the entire setup, providing a clear view of the robotic arm&#39;s operations.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa">
+      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
@@ -2754,12 +2585,12 @@
           <span class="meta-episode">task_0002_user_0014_scene_0001...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A gray and orange robotic arm with a blue gripper is positioned over a wooden table in a lab setting. The robot slowly lowers its arm, carefully...</div>
-          <div class="caption-full" style="display:none">A gray and orange robotic arm with a blue gripper is positioned over a wooden table in a lab setting. The robot slowly lowers its arm, carefully placing the gripper onto a small white box. It then gently presses down on the box, appearing to manipulate or inspect it. The surrounding area includes a keyboard, monitor, and various electronic devices, with a person partially visible in the background. The scene is captured from a high-angle view, focusing on the robot&#39;s precise movements.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa">
+      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
@@ -2776,12 +2607,100 @@
           <span class="meta-episode">task_0003_user_0014_scene_0001...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a gray and orange design is positioned over a wooden table in a laboratory setting. The arm, equipped with a gripper, moves...</div>
-          <div class="caption-full" style="display:none">A robotic arm with a gray and orange design is positioned over a wooden table in a laboratory setting. The arm, equipped with a gripper, moves precisely to pick up and manipulate small colored blocks placed on the table. The blocks are arranged in a line, and the robot&#39;s movements are smooth and deliberate, showcasing its ability to perform tasks with accuracy. In the background, a computer monitor, keyboard, and various electronic devices are visible, indicating a controlled environment for testing or demonstration. The scene is well-lit, highlighting the intricate details of the robotic arm and the surrounding equipment. A medium shot captures the entire setup, providing a clear view of the robot&#39;s actions and the workspace.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa">
+      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0007_user_0014_scene_0001_cfg_0007/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">rh20t_cfg7</span>
+          <span class="meta-robot">Kuka Iiwa</span>
+          <span class="meta-episode">task_0007_user_0014_scene_0001...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0017_user_0020_scene_0002_cfg_0007/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0017_user_0020_scene_0002_cfg_0007/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">rh20t_cfg7</span>
+          <span class="meta-robot">Kuka Iiwa</span>
+          <span class="meta-episode">task_0017_user_0020_scene_0002...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0022_user_0020_scene_0001_cfg_0007/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">rh20t_cfg7</span>
+          <span class="meta-robot">Kuka Iiwa</span>
+          <span class="meta-episode">task_0022_user_0020_scene_0001...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0025_user_0014_scene_0001_cfg_0007/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">rh20t_cfg7</span>
+          <span class="meta-robot">Kuka Iiwa</span>
+          <span class="meta-episode">task_0025_user_0014_scene_0001...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
@@ -2798,130 +2717,86 @@
           <span class="meta-episode">task_0028_user_0020_scene_0001...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A gray and orange robotic arm with black cables performs precise movements on a wooden board placed on a metal workbench. The robot&#39;s gripper...</div>
-          <div class="caption-full" style="display:none">A gray and orange robotic arm with black cables performs precise movements on a wooden board placed on a metal workbench. The robot&#39;s gripper manipulates a small electronic device with red and green lights, adjusting its position and orientation. The workspace is cluttered with tools, including a keyboard, monitor, and various components, indicating a tech lab environment. The robotic arm moves smoothly, demonstrating controlled and deliberate actions as it interacts with the device. A static overhead shot captures the entire scene, emphasizing the mechanical precision and the intricate details of the robotic operation.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="interndata" data-robot="franka_panda">
+      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep0/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0029_user_0020_scene_0006_cfg_0007/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep0/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0029_user_0020_scene_0006_cfg_0007/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
-          <span class="meta-dataset">interndata</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">basic_tasks_pick_the_object_in...</span>
+          <span class="meta-dataset">rh20t_cfg7</span>
+          <span class="meta-robot">Kuka Iiwa</span>
+          <span class="meta-episode">task_0029_user_0020_scene_0006...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with yellow joint lines and blue markers moves over a white table. The arm, equipped with a gripper, extends downward and picks...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with yellow joint lines and blue markers moves over a white table. The arm, equipped with a gripper, extends downward and picks up a blue cylindrical object. It then lifts the object, rotates slightly, and places it into a white rectangular container with an open lid. The arm&#39;s movements are precise and controlled, with red, green, and blue arrows indicating the direction of motion. The scene is set in a simple indoor environment with a light-colored wall and a patterned floor. A medium shot captures the entire process from a slightly elevated angle.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="interndata" data-robot="franka_panda">
+      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep0/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep0/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0031_user_0020_scene_0001_cfg_0007/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
-          <span class="meta-dataset">interndata</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">long_horizon_tasks_put_the_tra...</span>
+          <span class="meta-dataset">rh20t_cfg7</span>
+          <span class="meta-robot">Kuka Iiwa</span>
+          <span class="meta-episode">task_0031_user_0020_scene_0001...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a white and gray mechanical structure, featuring yellow joint lines and red, green, and blue directional arrows, moves across a...</div>
-          <div class="caption-full" style="display:none">A robotic arm with a white and gray mechanical structure, featuring yellow joint lines and red, green, and blue directional arrows, moves across a green textured table. The arm extends its articulated arm to pick up a small red and white cup from the table. It then lifts the cup and moves it toward a gray cylindrical trash bin with an open lid. The arm carefully places the cup into the bin, then retracts its arm back to its original position. The scene takes place in a room with a wooden floor and a wall with a speckled white and orange pattern. The camera remains stationary, capturing the entire process from a slightly elevated angle. The robotic arm&#39;s movements are smooth and precise, demonstrating its ability to perform a simple task with accuracy.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="interndata" data-robot="franka_panda">
+      <div class="video-card" data-dataset="rh20t_cfg7" data-robot="kuka_iiwa" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep0/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0033_user_0020_scene_0004_cfg_0007/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep0/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/rh20t_cfg7/task_0033_user_0020_scene_0004_cfg_0007/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
-          <span class="meta-dataset">interndata</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">articulation_tasks_close_the_e...</span>
+          <span class="meta-dataset">rh20t_cfg7</span>
+          <span class="meta-robot">Kuka Iiwa</span>
+          <span class="meta-episode">task_0033_user_0020_scene_0004...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a sleek, modern design is positioned over a wooden table in a dimly lit room with a textured wooden wall. The robot&#39;s joints...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a sleek, modern design is positioned over a wooden table in a dimly lit room with a textured wooden wall. The robot&#39;s joints are articulated, and it has a green light on its base, indicating it is active. The arm moves smoothly and precisely, reaching down towards a small, open electronic device on the table. The device appears to be a portable speaker or a similar gadget with a black and silver color scheme. The robot&#39;s end effector, which is a small, black, cylindrical tool, gently touches the device, possibly to interact with it or perform a task. The scene is well-lit, highlighting the robot&#39;s movements and the details of the device. The overall atmosphere is one of advanced technology and precision engineering. A medium shot from a slightly elevated angle.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="interndata" data-robot="franka_panda">
+      <div class="video-card" data-dataset="interndata" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep1/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1366/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep1/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">interndata</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">basic_tasks_pick_the_object_in...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a black gripper extends over a textured white table, approaching a small white container with a gray lid. The robot&#39;s arm...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a black gripper extends over a textured white table, approaching a small white container with a gray lid. The robot&#39;s arm moves with precision, its joints articulating smoothly as it lowers the gripper toward the container. The background features a black wall with yellow ornate patterns, and the floor is covered in green carpet. The robotic arm&#39;s movements are deliberate and controlled, showcasing advanced mechanical design. A medium shot captures the interaction from a slightly elevated angle, emphasizing the robot&#39;s dexterity and the clean, modern setting.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="interndata" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep1/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep1/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">interndata</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">long_horizon_tasks_put_the_tra...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a transparent gripper moves over a white table, picking up a small, round object with a red and white pattern. The arm,...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a transparent gripper moves over a white table, picking up a small, round object with a red and white pattern. The arm, featuring yellow joint lines and blue connection points, lifts the object and moves it toward a gray trash can with a brown lid. The trash can is open, and the robotic arm carefully places the object inside. The background consists of a green textured wall and a blue fabric panel. The camera maintains a fixed angle, focusing on the robotic arm&#39;s precise movements and the interaction with the trash can. The scene is well-lit, highlighting the smooth, mechanical motion of the robot.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="interndata" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1366/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
@@ -2930,64 +2805,20 @@
           <span class="meta-episode">articulation_tasks_close_the_e...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a yellow skeletal structure and blue joints is positioned on a wooden table. The arm&#39;s end effector, highlighted in red and...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a yellow skeletal structure and blue joints is positioned on a wooden table. The arm&#39;s end effector, highlighted in red and blue, moves toward a small white container with a lid. The robotic arm opens the lid, revealing the interior of the container. The background features a light green wall and a wooden floor. The camera remains stationary, providing a clear view of the robotic arm&#39;s movements. The scene is well-lit, with natural light coming from the left side. The robotic arm&#39;s movements are smooth and precise, demonstrating its ability to perform tasks with accuracy. The overall setting appears to be a laboratory or testing environment. A medium shot captures the entire robotic arm and its interaction with the container.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="interndata" data-robot="franka_panda">
+      <div class="video-card" data-dataset="interndata" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep2/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1620/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep2/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">interndata</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">basic_tasks_pick_the_object_in...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a yellow joint line and blue markers moves over a pink patterned table. The arm, equipped with a gripper, lowers a small...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a yellow joint line and blue markers moves over a pink patterned table. The arm, equipped with a gripper, lowers a small object toward a white container with a lid. The gripper releases the object into the container, then retracts. The arm’s motion is tracked by red, green, and blue directional arrows indicating movement. The scene is set indoors with a textured wall in the background. A medium shot captures the robot’s precise operation.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="interndata" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep2/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep2/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">interndata</span>
-          <span class="meta-robot">Franka Panda</span>
-          <span class="meta-episode">long_horizon_tasks_put_the_tra...</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a yellow structural frame and a black gripper moves across a white table in a room with brown and green walls. The robot...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a yellow structural frame and a black gripper moves across a white table in a room with brown and green walls. The robot first approaches a small, overturned paper cup, then picks it up using its gripper. It lifts the cup and moves it toward a black cylindrical trash can with a lid, which is positioned on the table. The robot carefully drops the cup into the trash can, completing the disposal action. The camera remains stationary, providing a clear view of the robot&#39;s movements and the objects on the table. The scene is well-lit, highlighting the smooth motion of the robotic arm and the interaction with the cup and trash can.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="interndata" data-robot="franka_panda">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep2/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep2/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep1620/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
@@ -2996,20 +2827,108 @@
           <span class="meta-episode">articulation_tasks_close_the_e...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with yellow joint lines and blue markers is positioned in a room with light-colored walls. The arm moves its end effector, marked...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with yellow joint lines and blue markers is positioned in a room with light-colored walls. The arm moves its end effector, marked by red and green arrows, toward a table with various objects. The camera remains static, focusing on the robotic arm&#39;s movements as it adjusts its position and orientation. The background features a patterned wall and a table with electronic devices and tools. The robotic arm&#39;s joints rotate and extend, demonstrating precise control and coordination. A medium shot captures the entire robotic arm and its immediate surroundings.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="interndata" data-robot="franka_panda">
+      <div class="video-card" data-dataset="interndata" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep3/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep314/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep3/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep314/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">interndata</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">articulation_tasks_close_the_e...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="interndata" data-robot="franka_panda" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep4/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep4/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">interndata</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">articulation_tasks_close_the_e...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="interndata" data-robot="franka_panda" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep471/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep471/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">interndata</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">articulation_tasks_close_the_e...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="interndata" data-robot="franka_panda" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep477/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/articulation_tasks_close_the_electriccooker_ep477/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">interndata</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">articulation_tasks_close_the_e...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="interndata" data-robot="franka_panda" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep170/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep170/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
@@ -3018,298 +2937,320 @@
           <span class="meta-episode">basic_tasks_pick_the_object_in...</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a gripper attachment is positioned over a light-colored table in a minimalist indoor setting. The arm extends its arm,...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a gripper attachment is positioned over a light-colored table in a minimalist indoor setting. The arm extends its arm, grasping a blue cylindrical object from the table. It lifts the object, rotates it slightly, and then drops it back onto the table. The robotic arm then moves toward a white rectangular container with a hinged lid, using its gripper to open the lid by lifting it. The background features plain walls and a neutral color palette, emphasizing the mechanical movements of the robotic arm. The camera remains stationary, providing a clear view of the arm&#39;s actions.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+      <div class="video-card" data-dataset="interndata" data-robot="franka_panda" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/440_684756_a0_0_274/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep181/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/440_684756_a0_0_274/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep181/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">interndata</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">basic_tasks_pick_the_object_in...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="interndata" data-robot="franka_panda" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep694/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/basic_tasks_pick_the_object_into_trashcan_ep694/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">interndata</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">basic_tasks_pick_the_object_in...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="interndata" data-robot="franka_panda" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep59/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/interndata/long_horizon_tasks_put_the_trashcan_in_trashcan_long_ep59/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">interndata</span>
+          <span class="meta-robot">Franka Panda</span>
+          <span class="meta-episode">long_horizon_tasks_put_the_tra...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/354_653442_a1_166_338/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/354_653442_a1_166_338/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">agibot</span>
           <span class="meta-robot">Unitree G1</span>
-          <span class="meta-episode">440_684756_a0_0_274</span>
+          <span class="meta-episode">354_653442_a1_166_338</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a white handheld device moves toward a striped short-sleeve shirt hanging on a mannequin. The shirt is light-colored with thin...</div>
-          <div class="caption-full" style="display:none">A robotic arm with a white handheld device moves toward a striped short-sleeve shirt hanging on a mannequin. The shirt is light-colored with thin vertical stripes and is displayed on a white stand in a room with wooden flooring and a speckled tile wall. The robotic arm, equipped with black grippers, positions the device near the shirt, likely for steaming or smoothing. The camera captures the scene from a slightly elevated angle, focusing on the interaction between the robot and the garment. The environment appears clean and modern, with minimal background distractions. The robotic arm&#39;s movements are precise and deliberate, suggesting a controlled and automated process. The device emits a faint glow, indicating it is active. The overall scene conveys a sense of advanced technology being used for garment care.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/446_687380_a0_0_201/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/421_693891_a2_389_431/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/446_687380_a0_0_201/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/421_693891_a2_389_431/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">agibot</span>
           <span class="meta-robot">Unitree G1</span>
-          <span class="meta-episode">446_687380_a0_0_201</span>
+          <span class="meta-episode">421_693891_a2_389_431</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A first-person view of robotic arms with black grippers positioned over a white rectangular table in a laboratory setting. The arms are initially...</div>
-          <div class="caption-full" style="display:none">A first-person view of robotic arms with black grippers positioned over a white rectangular table in a laboratory setting. The arms are initially open, then slowly close around the edges of the table. In the background, a person wearing light-colored pants walks past, and various lab equipment, cables, and a chair are visible. The floor is gray concrete with yellow and black caution tape marking a boundary. The scene is well-lit with overhead lighting, creating a clean, technical atmosphere. A medium shot from a low angle, focusing on the interaction between the robotic arms and the table.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/494_714711_a0_0_149/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/422_712466_a5_645_820/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/494_714711_a0_0_149/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/422_712466_a5_645_820/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">agibot</span>
           <span class="meta-robot">Unitree G1</span>
-          <span class="meta-episode">494_714711_a0_0_149</span>
+          <span class="meta-episode">422_712466_a5_645_820</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A top-down view of a kitchen countertop with a black two-tiered metal rack. On the counter, there are two dark glass bottles with orange caps, a...</div>
-          <div class="caption-full" style="display:none">A top-down view of a kitchen countertop with a black two-tiered metal rack. On the counter, there are two dark glass bottles with orange caps, a white packet with blue text, a yellow package, and a white bottle with a pink pump labeled &quot;SODA.&quot; A robotic arm with black mechanical fingers is positioned on the left, reaching toward the bottles. The background features a white marble-patterned wall. The scene is static, with no visible movement or action.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/783_896051_a0_0_208/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/492_804536_a5_392_423/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/783_896051_a0_0_208/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/492_804536_a5_392_423/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">agibot</span>
           <span class="meta-robot">Unitree G1</span>
-          <span class="meta-episode">783_896051_a0_0_208</span>
+          <span class="meta-episode">492_804536_a5_392_423</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A first-person view of robotic arms manipulating a patterned fabric on a table in a laboratory setting. The fabric, featuring a beige and white...</div>
-          <div class="caption-full" style="display:none">A first-person view of robotic arms manipulating a patterned fabric on a table in a laboratory setting. The fabric, featuring a beige and white design with blue accents, is being handled by multiple robotic arms with black grippers. In the background, a person in dark clothing stands near a white table, observing the process. The environment is a spacious, well-lit room with a gray floor, scattered equipment, and cables. The robotic arms move with precision, adjusting the fabric&#39;s position. The scene captures a technological demonstration of robotic coordination in a controlled industrial or research space. A medium shot with a slightly elevated perspective.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/590_802430_a0_0_114/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/550_812244_a5_953_1011/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/590_802430_a0_0_114/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/550_812244_a5_953_1011/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">agibot</span>
           <span class="meta-robot">Unitree G1</span>
-          <span class="meta-episode">590_802430_a0_0_114</span>
+          <span class="meta-episode">550_812244_a5_953_1011</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A top-down view of a robotic arm with black grippers positioned over a light-colored table. The arm is attempting to pick up a gray felt tote bag,...</div>
-          <div class="caption-full" style="display:none">A top-down view of a robotic arm with black grippers positioned over a light-colored table. The arm is attempting to pick up a gray felt tote bag, with its left gripper holding the handle. On the table, there is a small cup of mixed fruit, a chocolate bar, and a miniature Christmas tree decoration. The background features a white chair and a potted plant. The scene is well-lit, with a focus on the mechanical interaction between the robotic arm and the objects.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/498_770171_a0_0_227/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/589_852942_a1_120_186/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/498_770171_a0_0_227/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/589_852942_a1_120_186/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">agibot</span>
           <span class="meta-robot">Unitree G1</span>
-          <span class="meta-episode">498_770171_a0_0_227</span>
+          <span class="meta-episode">589_852942_a1_120_186</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with a black and silver design operates on a white countertop in a beverage station. The arm extends its gripper toward a stainless...</div>
-          <div class="caption-full" style="display:none">A robotic arm with a black and silver design operates on a white countertop in a beverage station. The arm extends its gripper toward a stainless steel container, retrieving a metal ladle. In the background, three white beverage dispensers with heart-shaped handles are mounted on a metal shelf, each labeled with yellow tags. A clear plastic cup is held by a second robotic arm on the left. The scene is well-lit, with a clean, modern kitchen setting. The robotic arm moves smoothly, demonstrating precision in handling the ladle.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/377_648559_a0_0_134/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/621_912110_a18_1725_1842/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/377_648559_a0_0_134/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/621_912110_a18_1725_1842/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">agibot</span>
           <span class="meta-robot">Unitree G1</span>
-          <span class="meta-episode">377_648559_a0_0_134</span>
+          <span class="meta-episode">621_912110_a18_1725_1842</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A high-angle view of a robotic arm system in a warehouse setting, featuring two robotic arms positioned over a cardboard box on a white table. The...</div>
-          <div class="caption-full" style="display:none">A high-angle view of a robotic arm system in a warehouse setting, featuring two robotic arms positioned over a cardboard box on a white table. The arms, with black grippers and silver joints, are stationary and appear ready for action. In the background, a person in black pants and white shoes walks past a wooden pallet, while another individual in gray pants and sneakers moves across the frame. The environment includes a black office chair, a white machine with cables, and a gray floor marked with yellow and black tape. The scene is well-lit, suggesting an indoor industrial or testing area.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/535_775488_a0_0_212/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/708_911918_a4_227_363/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/535_775488_a0_0_212/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/708_911918_a4_227_363/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">agibot</span>
           <span class="meta-robot">Unitree G1</span>
-          <span class="meta-episode">535_775488_a0_0_212</span>
+          <span class="meta-episode">708_911918_a4_227_363</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A high-angle view of a modern bathroom sink area, featuring a robotic arm with a white and black design. The arm, equipped with a gripper, extends...</div>
-          <div class="caption-full" style="display:none">A high-angle view of a modern bathroom sink area, featuring a robotic arm with a white and black design. The arm, equipped with a gripper, extends from the left side of the frame and moves toward a roll of toilet paper on the countertop. It grasps the roll, lifting it slightly while the mirror reflects its movements. The sink is white with a chrome faucet, and various toiletries, including tubes and a toothbrush holder, are arranged nearby. The wall is tiled in gray marble, and the scene is well-lit, highlighting the sleek, futuristic design. A second robotic arm remains stationary on the right side, partially visible. The camera remains fixed, capturing the precise, controlled motion of the robotic arm as it interacts with the objects.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/460_712335_a0_49_256/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/722_886838_a5_955_1036/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/460_712335_a0_49_256/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/722_886838_a5_955_1036/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">agibot</span>
           <span class="meta-robot">Unitree G1</span>
-          <span class="meta-episode">460_712335_a0_49_256</span>
+          <span class="meta-episode">722_886838_a5_955_1036</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a black gripper extends toward a gray and yellow patterned cloth hanging on a rack. The arm carefully grasps the fabric,...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a black gripper extends toward a gray and yellow patterned cloth hanging on a rack. The arm carefully grasps the fabric, pulling it downward and folding it over a beige basket below. The left side of the frame shows a green cloth with white leaf patterns. The robot&#39;s movements are precise and controlled, demonstrating its ability to handle delicate materials. The background is a simple indoor setting with a gray floor and some cardboard boxes visible. A medium shot captures the entire process from a slightly elevated angle.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1">
+      <div class="video-card" data-dataset="agibot" data-robot="unitree_g1" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/545_835730_a0_0_181/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/783_915495_a2_166_207/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/545_835730_a0_0_181/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/agibot/783_915495_a2_166_207/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">agibot</span>
           <span class="meta-robot">Unitree G1</span>
-          <span class="meta-episode">545_835730_a0_0_181</span>
+          <span class="meta-episode">783_915495_a2_166_207</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A robotic arm with black and white mechanical hands is positioned over a stainless steel sink. The left hand holds a spoon, while the right hand...</div>
-          <div class="caption-full" style="display:none">A robotic arm with black and white mechanical hands is positioned over a stainless steel sink. The left hand holds a spoon, while the right hand remains open. A blue and white patterned plate with a spoon on it sits in the sink. To the left, a yellow bottle of dish soap and a purple scrubber are on the counter. To the right, a blue plastic bin contains clean dishes. The robotic arm slowly moves the spoon from the plate, lifting it out of the sink. The camera remains stationary, providing a clear view of the robotic arm&#39;s precise movements. The scene is well-lit, highlighting the metallic surfaces and the contrast between the robotic arm and the kitchen environment.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr">
+      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000000/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_013913/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000000/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_013913/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">airoa_moma</span>
           <span class="meta-robot">Toyota Hsr</span>
-          <span class="meta-episode">ep_000000</span>
+          <span class="meta-episode">ep_013913</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a black grip slowly approaches a rectangular lamp on a white desk. The lamp has a gray fabric shade and is initially lit....</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a black grip slowly approaches a rectangular lamp on a white desk. The lamp has a gray fabric shade and is initially lit. The robot&#39;s gripper moves toward the lamp base, then carefully lifts the lampshade, revealing the light source beneath. The robot then repositions the lampshade, adjusting its placement on the base. The desk also holds a microwave, a cup, a container with a knife and food, and a pen holder. The scene is captured from a high angle, focusing on the interaction between the robot and the lamp.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000001/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000001/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">airoa_moma</span>
-          <span class="meta-robot">Toyota Hsr</span>
-          <span class="meta-episode">ep_000001</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints is positioned on a white table, moving its arm to interact with a lamp. The lamp, with a square gray fabric...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints is positioned on a white table, moving its arm to interact with a lamp. The lamp, with a square gray fabric shade, is turned on, emitting a warm light. The robot arm adjusts the lamp, causing the light to flicker. On the table, there is a microwave, a cup, a container with food, and a pen holder. The background is a plain white wall. The scene is captured from a high angle, focusing on the interaction between the robot and the lamp.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr">
-        <div class="video-pair">
-          <div class="video-container">
-            <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000002/rgb.mp4"></video>
-          </div>
-          <div class="video-container">
-            <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000002/skeleton.mp4"></video>
-          </div>
-        </div>
-        <div class="card-meta">
-          <span class="meta-dataset">airoa_moma</span>
-          <span class="meta-robot">Toyota Hsr</span>
-          <span class="meta-episode">ep_000002</span>
-        </div>
-        <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm moves into view, approaching a table with a lit lamp, a microwave, and a container with food. The robot&#39;s hand, equipped with a...</div>
-          <div class="caption-full" style="display:none">A white robotic arm moves into view, approaching a table with a lit lamp, a microwave, and a container with food. The robot&#39;s hand, equipped with a gripper, extends toward the lamp, which has a textured gray shade. The lamp is turned off as the robot&#39;s hand gently pushes it, causing the lamp to tilt and fall onto the table. The robot then retracts its arm, leaving the lamp lying on its side. The scene is captured from a high angle, showing the table&#39;s surface and the surrounding objects in a well-lit indoor environment. A medium shot with a static camera angle.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
-        </div>
-      </div>
-      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr">
+      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
@@ -3326,12 +3267,12 @@
           <span class="meta-episode">ep_000003</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with a black grip moves into view from the bottom of the frame, approaching a rectangular table with a gray lamp, a microwave, a...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with a black grip moves into view from the bottom of the frame, approaching a rectangular table with a gray lamp, a microwave, a cup, a container with food, and a pen holder. The lamp is turned on, casting a warm glow on the table. The robotic arm stops in front of the lamp and remains stationary. The scene is captured from a high angle, providing a clear view of the table and the robotic arm&#39;s movements. The background is a plain white wall.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr">
+      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
@@ -3348,118 +3289,602 @@
           <span class="meta-episode">ep_000004</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm approaches a table with a lit lamp, a microwave, and various items. The robot lifts the lampshade, revealing the lamp base, then...</div>
-          <div class="caption-full" style="display:none">A white robotic arm approaches a table with a lit lamp, a microwave, and various items. The robot lifts the lampshade, revealing the lamp base, then places the shade back on. The lamp remains on throughout, casting a warm glow. The scene is static, with the robot&#39;s movements being the primary action. A medium shot from a slightly elevated perspective.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr">
+      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000010/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000700/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000010/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000700/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">airoa_moma</span>
           <span class="meta-robot">Toyota Hsr</span>
-          <span class="meta-episode">ep_000010</span>
+          <span class="meta-episode">ep_000700</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints moves into view from the bottom of the frame, approaching a rectangular gray lamp on a white table. The lamp...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints moves into view from the bottom of the frame, approaching a rectangular gray lamp on a white table. The lamp has a textured fabric shade and a black base. The robot&#39;s end effector gently touches the lamp&#39;s base, then retracts. The lamp turns on, emitting a warm yellow light from within the shade. The scene is a high-angle shot of a desk with a microwave, a cup, a container with a knife, and a pen holder. The robot arm remains in the foreground, partially obscuring the view.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr">
+      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000014/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_009443/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000014/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_009443/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">airoa_moma</span>
           <span class="meta-robot">Toyota Hsr</span>
-          <span class="meta-episode">ep_000014</span>
+          <span class="meta-episode">ep_009443</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints moves into the frame and approaches a gray lamp on a white table. The arm positions itself in front of the...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints moves into the frame and approaches a gray lamp on a white table. The arm positions itself in front of the lamp, then the lamp turns on, emitting a warm glow. The robotic arm remains stationary as the lamp illuminates the scene, casting soft light on the surrounding objects, including a microwave, a cup, and a container with food. The camera maintains a steady, slightly elevated view throughout.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr">
+      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000015/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_022492/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000015/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_022492/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">airoa_moma</span>
           <span class="meta-robot">Toyota Hsr</span>
-          <span class="meta-episode">ep_000015</span>
+          <span class="meta-episode">ep_022492</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm moves toward a lit table lamp on a white table, its head tilting as it approaches the lamp&#39;s base. The lamp, with a textured gray...</div>
-          <div class="caption-full" style="display:none">A white robotic arm moves toward a lit table lamp on a white table, its head tilting as it approaches the lamp&#39;s base. The lamp, with a textured gray shade, is turned on, casting a warm glow. To the right, a microwave, a cup, a container with a knife and food, and a pen holder are visible. The robot&#39;s arm stops near the lamp, then the lamp is turned off, and the robot arm retracts. The scene is a close-up, slightly elevated view of the table.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr">
+      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000018/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000000/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000018/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000000/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">airoa_moma</span>
           <span class="meta-robot">Toyota Hsr</span>
-          <span class="meta-episode">ep_000018</span>
+          <span class="meta-episode">ep_000000</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints moves toward a table, positioning itself near a gray lamp with a square fabric shade. The lamp is placed on a...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints moves toward a table, positioning itself near a gray lamp with a square fabric shade. The lamp is placed on a white table alongside a microwave, a cup, a container with a knife, and a pen holder. The robotic arm adjusts the lamp&#39;s base, causing the lamp to turn on, emitting a warm glow. The lamp remains illuminated, casting light on the surrounding objects. The scene is static, with the robotic arm completing its task and remaining stationary. A high-angle shot captures the entire setup, focusing on the interaction between the robotic arm and the lamp.</div>
-          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+          <div class="caption-truncated"></div>
+          
+          
         </div>
       </div>
-      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr">
+      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr" data-type="robotics">
         <div class="video-pair">
           <div class="video-container">
             <div class="video-label">RGB</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000022/rgb.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000002/rgb.mp4"></video>
           </div>
           <div class="video-container">
             <div class="video-label">Skeleton</div>
-            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000022/skeleton.mp4"></video>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000002/skeleton.mp4"></video>
           </div>
         </div>
         <div class="card-meta">
           <span class="meta-dataset">airoa_moma</span>
           <span class="meta-robot">Toyota Hsr</span>
-          <span class="meta-episode">ep_000022</span>
+          <span class="meta-episode">ep_000002</span>
         </div>
         <div class="card-caption">
-          <div class="caption-truncated">A white robotic arm with black joints moves into the frame, approaching a table with a lamp, microwave, and various items. The lamp, with a textured...</div>
-          <div class="caption-full" style="display:none">A white robotic arm with black joints moves into the frame, approaching a table with a lamp, microwave, and various items. The lamp, with a textured beige shade, is initially on, casting a warm glow. The robotic arm, equipped with a gripper, reaches toward the lamp and turns it off. The lamp&#39;s shade then changes to a gray color, and the light extinguishes. The robotic arm remains in the frame, positioned near the now-off lamp. The scene is set on a white table with a microwave, a cup, a container with a knife, and some electronic devices. The background is a plain wall, and the lighting is dim, emphasizing the lamp&#39;s glow. The camera remains stationary, providing a clear view of the robotic arm&#39;s actions and the objects on the table.</div>
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000001/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_000001/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">airoa_moma</span>
+          <span class="meta-robot">Toyota Hsr</span>
+          <span class="meta-episode">ep_000001</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="airoa_moma" data-robot="toyota_hsr" data-type="robotics">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_021486/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/airoa_moma/ep_021486/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">airoa_moma</span>
+          <span class="meta-robot">Toyota Hsr</span>
+          <span class="meta-episode">ep_021486</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="egodex" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/egodex/part1__assemble_disassemble_legos__789/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/egodex/part1__assemble_disassemble_legos__789/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">egodex</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">part1/assemble_disassemble_leg...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A first-person view of hands disassembling a colorful block structure on a dark blue surface. The hands, wearing a dark green long-sleeved shirt,...</div>
+          <div class="caption-full" style="display:none">A first-person view of hands disassembling a colorful block structure on a dark blue surface. The hands, wearing a dark green long-sleeved shirt, carefully separate the blocks—yellow, green, red, blue, and white—into individual pieces. The background features a soft pink fabric draped over a surface, creating a calm and focused atmosphere. The blocks are arranged and moved with precision, highlighting the tactile interaction. A medium close-up shot captures the detailed hand movements and the vibrant colors of the blocks.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="egodex" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/egodex/part1__add_remove_lid__566/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/egodex/part1__add_remove_lid__566/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">egodex</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">part1/add_remove_lid/566</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A person in an orange sweater removes the lids from three white paper cups on a yellow table, placing the lids beside the cups. The hands move...</div>
+          <div class="caption-full" style="display:none">A person in an orange sweater removes the lids from three white paper cups on a yellow table, placing the lids beside the cups. The hands move methodically, lifting each lid and setting it down, revealing the open tops of the cups. The background features a brown curtain and a light-colored wall. A close-up, top-down view captures the simple, deliberate actions in a warm-lit indoor setting.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="egodex" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/egodex/part1__declutter_desk__612/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/egodex/part1__declutter_desk__612/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">egodex</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">part1/declutter_desk/612</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="egodex" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/egodex/part1__arrange_topple_dominoes__235/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/egodex/part1__arrange_topple_dominoes__235/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">egodex</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">part1/arrange_topple_dominoes/...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A hand with purple nail polish and a ring pushes the first domino in a curved line, triggering a chain reaction that topples the rest. The dominoes...</div>
+          <div class="caption-full" style="display:none">A hand with purple nail polish and a ring pushes the first domino in a curved line, triggering a chain reaction that topples the rest. The dominoes fall in sequence, creating a cascading effect across the table. After the last domino falls, the hand gathers the scattered pieces into a pile, moving them to one side. The scene takes place on a smooth, light-colored surface with a plain backdrop. A medium shot captures the action from a slightly elevated angle.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ego4d_cooking" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_cooking/Ego4D_0d270946-95c5-4e71-ae49-b9e802548147_ep_000658/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_cooking/Ego4D_0d270946-95c5-4e71-ae49-b9e802548147_ep_000658/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ego4d_cooking</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">Ego4D_0d270946-95c5-4e71-ae49-...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ego4d_cooking" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_cooking/Ego4D_0b0c7c26-8f38-4a22-8a9e-b99e4ae334fc_ep_002625/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_cooking/Ego4D_0b0c7c26-8f38-4a22-8a9e-b99e4ae334fc_ep_002625/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ego4d_cooking</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">Ego4D_0b0c7c26-8f38-4a22-8a9e-...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ego4d_cooking" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_cooking/Ego4D_082db032-f3f2-408b-a116-84d62f673915_ep_002124/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_cooking/Ego4D_082db032-f3f2-408b-a116-84d62f673915_ep_002124/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ego4d_cooking</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">Ego4D_082db032-f3f2-408b-a116-...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A person washes a blue and white garment in a large blue plastic basin filled with water. The hands, adorned with bangles, submerge and agitate the...</div>
+          <div class="caption-full" style="display:none">A person washes a blue and white garment in a large blue plastic basin filled with water. The hands, adorned with bangles, submerge and agitate the clothing, creating ripples. The person wears red sandals and a red and blue sweater. The scene is captured from a top-down perspective, focusing on the hands and the basin, with a concrete floor visible in the background. A close-up shot emphasizing the washing action.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ego4d_cooking" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_cooking/Ego4D_067037a6-71a9-4850-ac51-59183eeb6359_ep_000257/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_cooking/Ego4D_067037a6-71a9-4850-ac51-59183eeb6359_ep_000257/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ego4d_cooking</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">Ego4D_067037a6-71a9-4850-ac51-...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A person in a red patterned shirt is placing black socks into a metal laundry basket on a white tiled floor. The basket is positioned next to a...</div>
+          <div class="caption-full" style="display:none">A person in a red patterned shirt is placing black socks into a metal laundry basket on a white tiled floor. The basket is positioned next to a bathtub, and a gray bath mat is visible nearby. The person&#39;s hands move methodically, folding and arranging the socks inside the basket. The scene is illuminated by warm lighting, creating a cozy atmosphere. The camera angle is from above, providing a clear view of the actions and surroundings. The person&#39;s movements are deliberate and focused on organizing the laundry.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ego4d_other" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000763/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000763/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ego4d_other</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">Ego4D_0031d268-818c-4ec4-a804-...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A person with tattooed arms is laying white marble tiles on a floor covered with orange waterproof membrane. They press down on the tiles with both...</div>
+          <div class="caption-full" style="display:none">A person with tattooed arms is laying white marble tiles on a floor covered with orange waterproof membrane. They press down on the tiles with both hands to secure them in place, ensuring they are properly aligned. The tiles have a natural veined pattern, and the person uses small red spacers to maintain even gaps between them. A yellow bucket and a metal tile cutter are visible nearby, indicating ongoing tiling work. The scene is shot from an overhead angle, focusing on the hands and the tile installation process.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ego4d_other" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_other/Ego4D_01d793c6-e235-4af1-8a1d-c70dcf0c8654_ep_000035/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_other/Ego4D_01d793c6-e235-4af1-8a1d-c70dcf0c8654_ep_000035/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ego4d_other</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">Ego4D_01d793c6-e235-4af1-8a1d-...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A first-person view of a person holding a large white drywall panel while standing on a metal ladder. The person wears a dark gray t-shirt and pants,...</div>
+          <div class="caption-full" style="display:none">A first-person view of a person holding a large white drywall panel while standing on a metal ladder. The person wears a dark gray t-shirt and pants, with their right hand gripping the panel&#39;s edge. The room is under construction, with tools, cables, and boxes scattered on the floor. A yellow cable management strip runs across the floor, and a wooden cabinet and blue bucket are visible in the background. The camera angle is tilted, capturing the scene from above.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ego4d_other" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000098/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000098/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ego4d_other</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">Ego4D_0031d268-818c-4ec4-a804-...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A person with tattooed arms is cutting a white marble tile using a tile cutter on a wooden board. The individual carefully positions the tile on the...</div>
+          <div class="caption-full" style="display:none">A person with tattooed arms is cutting a white marble tile using a tile cutter on a wooden board. The individual carefully positions the tile on the cutter, applies pressure to make the cut, and then lifts the tile to inspect it. The surrounding area includes scattered tiles, a red-handled tool, and a pink cylindrical object. The floor is carpeted, and a white cabinet is visible in the background. The scene is captured from a first-person perspective, focusing on the hands and the cutting process.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ego4d_other" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000877/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ego4d_other/Ego4D_0031d268-818c-4ec4-a804-935be610a61a_ep_000877/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ego4d_other</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">Ego4D_0031d268-818c-4ec4-a804-...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A man with tattooed arms, wearing a white shirt and gray pants, is kneeling on a green mat outdoors. He holds a yellow angle grinder in his right...</div>
+          <div class="caption-full" style="display:none">A man with tattooed arms, wearing a white shirt and gray pants, is kneeling on a green mat outdoors. He holds a yellow angle grinder in his right hand and a white marble tile in his left, preparing to cut it. The tile has a cross marked on it, and he carefully positions the grinder along the line. Surrounding him are various tools and materials, including a yellow bucket, a drill, and a paint can. The background shows a black metal railing and greenery. A high-angle shot captures the scene, emphasizing the man&#39;s focused actions.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_epic" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_epic/epic_kitchens_P04_02_ep_000244/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_epic/epic_kitchens_P04_02_ep_000244/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_epic</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">epic_kitchens_P04_02_ep_000244</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A person in a star-patterned sweater is preparing food in a kitchen, slicing a cucumber on a wooden cutting board with a knife. The cutting board is...</div>
+          <div class="caption-full" style="display:none">A person in a star-patterned sweater is preparing food in a kitchen, slicing a cucumber on a wooden cutting board with a knife. The cutting board is covered with shredded carrots, and a plastic bag with more vegetables is nearby. The person places the sliced cucumber pieces into a white bowl. On the countertop, there is a rice cooker, a bottle of oil, a bowl with eggs and chopsticks, and a pan with a yellow mixture cooking on the stove. Another pan on the stove contains small round food items being cooked. The kitchen has a modern design with a black induction cooktop and a granite countertop. The person&#39;s hand movements are deliberate and focused on the task.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_epic" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_epic/epic_kitchens_P03_101_ep_000375/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_epic/epic_kitchens_P03_101_ep_000375/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_epic</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">epic_kitchens_P03_101_ep_00037...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A top-down view of a kitchen countertop with a person&#39;s hands opening a plastic bag containing bread. The left hand holds the bag while the right...</div>
+          <div class="caption-full" style="display:none">A top-down view of a kitchen countertop with a person&#39;s hands opening a plastic bag containing bread. The left hand holds the bag while the right hand pulls it open. Two glass cutting boards with the words &quot;SLICE,&quot; &quot;PEEL,&quot; and &quot;CHOP&quot; printed on them are visible, one with the bread and the other with a white plate and knife. In the background, there is a knife block with wooden-handled utensils, a red hand mixer, several water bottles, and a mug rack with various mugs. The countertop is dark gray with a speckled pattern, and the wall behind is tiled in white. A medium shot from a fixed overhead angle.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_epic" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_epic/epic_kitchens_P06_09_ep_000624/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_epic/epic_kitchens_P06_09_ep_000624/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_epic</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">epic_kitchens_P06_09_ep_000624</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated"></div>
+          
+          
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_epic" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_epic/epic_kitchens_P02_129_ep_000283/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_epic/epic_kitchens_P02_129_ep_000283/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_epic</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">epic_kitchens_P02_129_ep_00028...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A first-person view of a person wearing yellow rubber gloves washing dishes in a kitchen sink. The person holds a blue bottle of dish soap in one...</div>
+          <div class="caption-full" style="display:none">A first-person view of a person wearing yellow rubber gloves washing dishes in a kitchen sink. The person holds a blue bottle of dish soap in one hand and a green and white sponge in the other. They squeeze the bottle, dispensing soap onto the sponge over the sink, which contains soapy water and a few knives. The sink area includes a faucet, a blue cutting board, a red dish rack, and wooden cutting boards on the counter. The background features white tiled walls. A close-up shot focusing on the hands and the cleaning action.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ssv2" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ssv2/somethingsomethingv2_6713_ep_000000/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ssv2/somethingsomethingv2_6713_ep_000000/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ssv2</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">somethingsomethingv2_6713_ep_0...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A hand holds a partially opened brown paper package with a black plastic strip, resting on a wooden surface. The hand gently rotates the package,...</div>
+          <div class="caption-full" style="display:none">A hand holds a partially opened brown paper package with a black plastic strip, resting on a wooden surface. The hand gently rotates the package, revealing its contents, which include a small yellow object. The background is a plain wooden table with a slight texture, and the lighting is natural, creating soft shadows. The focus remains on the hand and the package throughout the short clip.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ssv2" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ssv2/somethingsomethingv2_206930_ep_000000/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ssv2/somethingsomethingv2_206930_ep_000000/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ssv2</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">somethingsomethingv2_206930_ep...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A hand gently places a red notebook with a cartoon monster design onto a patterned bedspread. The notebook features large white eyes, a wide mouth...</div>
+          <div class="caption-full" style="display:none">A hand gently places a red notebook with a cartoon monster design onto a patterned bedspread. The notebook features large white eyes, a wide mouth with sharp teeth, and small yellow horns. The hand, with a light skin tone, rests on the notebook, slightly adjusting its position. The bedspread has a floral pattern in shades of pink and white. To the right, a dark-colored object, possibly a bag or another book, is partially visible. The scene is softly lit, creating a calm and intimate atmosphere. The camera remains steady, focusing on the interaction between the hand and the notebook.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ssv2" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ssv2/somethingsomethingv2_67030_ep_000000/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ssv2/somethingsomethingv2_67030_ep_000000/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ssv2</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">somethingsomethingv2_67030_ep_...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A hand reaches into a black backpack resting on a tiled floor, rummaging through its contents. The backpack is partially open, revealing dark fabric...</div>
+          <div class="caption-full" style="display:none">A hand reaches into a black backpack resting on a tiled floor, rummaging through its contents. The backpack is partially open, revealing dark fabric and some white accents. The hand, with a dark skin tone, moves inside the bag, searching or adjusting items. The scene is shot from a top-down perspective, focusing on the interaction between the hand and the backpack. The floor is made of light brown tiles with visible grout lines. The lighting is dim, creating shadows within the bag and on the floor. The movement is slow and deliberate, suggesting a careful search or organization of the bag&#39;s contents.</div>
+          <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
+        </div>
+      </div>
+      <div class="video-card" data-dataset="vitra_ssv2" data-robot="human" data-type="human">
+        <div class="video-pair">
+          <div class="video-container">
+            <div class="video-label">RGB</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ssv2/somethingsomethingv2_2529_ep_000000/rgb.mp4"></video>
+          </div>
+          <div class="video-container">
+            <div class="video-label">Skeleton</div>
+            <video controls muted loop preload="metadata" data-src="videos/processed/vitra_ssv2/somethingsomethingv2_2529_ep_000000/skeleton.mp4"></video>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dataset">vitra_ssv2</span>
+          <span class="meta-type-human">Human</span>
+          <span class="meta-episode">somethingsomethingv2_2529_ep_0...</span>
+        </div>
+        <div class="card-caption">
+          <div class="caption-truncated">A close-up shot of a hand holding a metal tool, pressing down on a clear glass cup placed on a colorful patterned fabric surface. The hand is...</div>
+          <div class="caption-full" style="display:none">A close-up shot of a hand holding a metal tool, pressing down on a clear glass cup placed on a colorful patterned fabric surface. The hand is positioned above the cup, with fingers gripping the tool&#39;s handle, applying pressure to the cup&#39;s rim. The background features a mix of red, orange, and beige patterns, with a leopard print cloth partially visible on the right side. The scene is well-lit, highlighting the reflective surface of the glass and the metallic sheen of the tool. The hand appears steady, suggesting a deliberate action, possibly for cutting or shaping the cup. The overall composition focuses on the interaction between the hand, tool, and glass, emphasizing the precision of the task.</div>
           <button class="expand-btn" onclick="toggleCaption(this)">Expand</button>
         </div>
       </div>
@@ -4929,35 +5354,95 @@ if (location.hash === '#processed') {
   document.querySelector('[data-tab="benchmark-tab"]').click();
 }
 
+// Stats data for dynamic updates
+const statsData = {"by_dataset": {"droid": 30925, "rh20t_cfg5": 774, "rh20t_cfg7": 542, "interndata": 2321, "agibot": 93981, "airoa_moma": 11451, "egodex": 139027, "vitra_ego4d_cooking": 414947, "vitra_ego4d_other": 457934, "vitra_epic": 138488, "vitra_ssv2": 51135}, "by_robot": {"franka_panda": 34020, "kuka_iiwa": 542, "unitree_g1": 93981, "toyota_hsr": 11451}, "by_type": {"robotics": 139994, "human": 1201531}, "total": 1341525};
+
 // Filtering
-const activeFilters = { dataset: 'all', robot: 'all' };
+const activeFilters = { type: 'all', dataset: 'all', robot: 'all' };
 
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    const type = btn.dataset.type;
+    const filterType = btn.dataset.type;
     const filter = btn.dataset.filter;
 
     // Update active state within group
-    document.querySelectorAll(`.filter-btn[data-type="${type}"]`).forEach(b => {
+    document.querySelectorAll(`.filter-btn[data-type="${filterType}"]`).forEach(b => {
       b.classList.remove('active');
     });
     btn.classList.add('active');
 
-    activeFilters[type] = filter;
+    activeFilters[filterType] = filter;
+
+    // When type changes, reset dataset and robot filters to "all"
+    if (filterType === 'type') {
+      activeFilters.dataset = 'all';
+      activeFilters.robot = 'all';
+      document.querySelectorAll('.filter-btn[data-type="dataset"]').forEach(b => {
+        b.classList.toggle('active', b.dataset.filter === 'all');
+      });
+      document.querySelectorAll('.filter-btn[data-type="robot"]').forEach(b => {
+        b.classList.toggle('active', b.dataset.filter === 'all');
+      });
+    }
+
     applyFilters();
   });
 });
 
 function applyFilters() {
+  const typeFilter = activeFilters.type;
+
+  // 1. Filter video cards
   document.querySelectorAll('#processed-tab .video-card').forEach(card => {
     const ds = card.dataset.dataset;
+    const cardType = card.dataset.type;
     const robot = card.dataset.robot;
 
+    const matchType = typeFilter === 'all' || typeFilter === cardType;
     const matchDs = activeFilters.dataset === 'all' || activeFilters.dataset === ds;
     const matchRobot = activeFilters.robot === 'all' || activeFilters.robot === robot;
 
-    card.classList.toggle('hidden', !(matchDs && matchRobot));
+    card.classList.toggle('hidden', !(matchType && matchDs && matchRobot));
   });
+
+  // 2. Filter stats rows by type
+  document.querySelectorAll('#stats-by-dataset .stat-row').forEach(row => {
+    const rowType = row.dataset.statType;
+    const visible = typeFilter === 'all' || typeFilter === rowType;
+    row.style.display = visible ? '' : 'none';
+  });
+
+  // 3. Show/hide robot section (only relevant for robotics)
+  const robotGroup = document.getElementById('filter-robot-group');
+  const robotStats = document.getElementById('stats-by-robot');
+  if (typeFilter === 'human') {
+    robotGroup.style.display = 'none';
+    robotStats.style.display = 'none';
+  } else {
+    robotGroup.style.display = '';
+    robotStats.style.display = '';
+  }
+
+  // 4. Show/hide dataset filter buttons by type
+  document.querySelectorAll('.filter-btn[data-type="dataset"]').forEach(btn => {
+    const dsType = btn.dataset.dsType;
+    if (!dsType) return; // "All" button always visible
+    if (typeFilter === 'all') {
+      btn.style.display = '';
+    } else {
+      btn.style.display = dsType === typeFilter ? '' : 'none';
+    }
+  });
+
+  // 5. Update total count
+  let total = 0;
+  if (typeFilter === 'all') {
+    total = statsData.total;
+  } else if (statsData.by_type && statsData.by_type[typeFilter]) {
+    total = statsData.by_type[typeFilter];
+  }
+  const totalEl = document.getElementById('stats-total-number');
+  if (totalEl) totalEl.textContent = total.toLocaleString();
 }
 
 // Caption expand/collapse
