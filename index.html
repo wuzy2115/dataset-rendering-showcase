@@ -4119,6 +4119,771 @@
   </div>
 </div>
 
+<div id="condition-tab" class="tab-content">
+<div class="section">
+  <h2 class="section-title">
+    Action Conditioning Comparison
+    <span class="badge badge-green">3 Methods</span>
+  </h2>
+  <p style="color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7;">
+    Comparison of action conditioning architectures across three world model implementations.
+    All three fine-tune a pretrained video DiT (Diffusion Transformer) and inject action/control signals
+    to guide video generation. The key design differences lie in <strong>how</strong> and <strong>where</strong>
+    the action condition enters the denoising network.
+  </p>
+
+  <!-- Overview comparison table -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Overview</h3>
+  <div style="overflow-x: auto; margin-bottom: 2.5rem;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--border);">
+          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;"></th>
+          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--accent); font-weight: 600;">Ours (Cosmos2 Concat)</th>
+          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--green); font-weight: 600;">LOME (Wan2.1 VACE)</th>
+          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--orange); font-weight: 600;">Kinema4D (Wan2.1 Cross-Attn)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">Base Model</td>
+          <td style="padding: 0.75rem 1rem;">Cosmos Predict 2.5 (2B)</td>
+          <td style="padding: 0.75rem 1rem;">Wan2.1-VACE-14B</td>
+          <td style="padding: 0.75rem 1rem;">Wan2.1-I2V-14B</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">DiT Blocks</td>
+          <td style="padding: 0.75rem 1rem;">28</td>
+          <td style="padding: 0.75rem 1rem;">40</td>
+          <td style="padding: 0.75rem 1rem;">40</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">Action Representation</td>
+          <td style="padding: 0.75rem 1rem;">RGB condition video &rarr; VAE latent (16ch)</td>
+          <td style="padding: 0.75rem 1rem;">Hand skeleton video &rarr; VAE latent (96ch)</td>
+          <td style="padding: 0.75rem 1rem;">Robot video latent (16ch) + mask (4ch)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">Injection Method</td>
+          <td style="padding: 0.75rem 1rem;">PatchEmbed additive (&alpha;=0.1)</td>
+          <td style="padding: 0.75rem 1rem;">8-layer VACE transformer &rarr; multi-layer hint injection</td>
+          <td style="padding: 0.75rem 1rem;">Dual-path: latent channel mixing + cross-attention</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">Injection Frequency</td>
+          <td style="padding: 0.75rem 1rem;">Once (at patch embed)</td>
+          <td style="padding: 0.75rem 1rem;">8 times (every 5 DiT blocks)</td>
+          <td style="padding: 0.75rem 1rem;">Once (latent) + every block (cross-attn)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">Cross-Attn KV</td>
+          <td style="padding: 0.75rem 1rem;">Text tokens</td>
+          <td style="padding: 0.75rem 1rem;">Text + CLIP image tokens</td>
+          <td style="padding: 0.75rem 1rem;">CLIP image + arm tokens (text removed)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">Camera Condition</td>
+          <td style="padding: 0.75rem 1rem;">None</td>
+          <td style="padding: 0.75rem 1rem;">Plucker embedding + SimpleAdapter</td>
+          <td style="padding: 0.75rem 1rem;">None (pointmap instead)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">Extra Parameters</td>
+          <td style="padding: 0.75rem 1rem;">1 PatchEmbed (minimal)</td>
+          <td style="padding: 0.75rem 1rem;">8 DiTBlocks + projections (~1/5 of main DiT)</td>
+          <td style="padding: 0.75rem 1rem;">Conv3d + Linear (reuses existing cross-attn KV)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">Init Strategy</td>
+          <td style="padding: 0.75rem 1rem;">Normal init</td>
+          <td style="padding: 0.75rem 1rem;">Pretrained VACE weights</td>
+          <td style="padding: 0.75rem 1rem;">Zero-init (gradual learning)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Method 1: Ours -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent);">Method 1: Ours &mdash; Cosmos2 Concat</h3>
+  <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+    <p style="color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem;">
+      The simplest approach. Action condition (an RGB skeleton/overlay video) is encoded through the <strong>same VAE</strong>
+      as the target video, producing a 16-channel latent. This is concatenated to the noisy video latent along the channel
+      dimension, then passed through a <strong>separate PatchEmbed</strong> (Rearrange + Linear, no nonlinearity) and added
+      to the main embedding with a scaling factor of <strong>&alpha; = 0.1</strong>.
+    </p>
+    <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem; font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.8; color: var(--text); overflow-x: auto;">
+      <span style="color: var(--muted);">// Data flow</span><br>
+      condition_video (B,3,T,H,W) &rarr; VAE encode &rarr; control_latent (B,16,T',H',W')<br><br>
+      <span style="color: var(--muted);">// In forward():</span><br>
+      x = cat([noisy_latent(16ch), mask(1ch), control_latent(16ch)], dim=1) <span style="color: var(--muted);">// 33ch total</span><br>
+      <br>
+      <span style="color: var(--muted);">// In prepare_embedded_sequence():</span><br>
+      main_embed &nbsp;= x_embedder(x[:, :17]) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--muted);">// Rearrange+Linear: 17ch &rarr; 2048d</span><br>
+      ctrl_embed &nbsp;= additional_x_embedder(x[:, 17:]) <span style="color: var(--muted);">// Rearrange+Linear: 16ch &rarr; 2048d</span><br>
+      tokens = main_embed + <span style="color: var(--accent);">0.1</span> * ctrl_embed &nbsp;&nbsp;<span style="color: var(--muted);">// &alpha;-weighted addition</span><br>
+      <br>
+      <span style="color: var(--muted);">// Then tokens go through 28 DiT blocks (no further action injection)</span><br>
+      for block in dit.blocks: tokens = block(tokens, text_kv, timestep)
+    </div>
+    <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <span style="padding: 4px 12px; background: rgba(99,102,241,0.15); color: var(--accent); border-radius: 6px; font-size: 0.8rem;">MinimalV1LVGDiT</span>
+      <span style="padding: 4px 12px; background: rgba(99,102,241,0.15); color: var(--accent); border-radius: 6px; font-size: 0.8rem;">PatchEmbed = Rearrange + Linear</span>
+      <span style="padding: 4px 12px; background: rgba(99,102,241,0.15); color: var(--accent); border-radius: 6px; font-size: 0.8rem;">&alpha; = 0.1</span>
+    </div>
+  </div>
+
+  <!-- Method 2: LOME -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--green);">Method 2: LOME &mdash; Wan2.1 VACE + Camera Control</h3>
+  <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+    <p style="color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem;">
+      Uses <strong>VACE</strong> (All-in-One Video Creation and Editing), Alibaba's official conditional control framework
+      pretrained on multi-task video editing (inpainting, outpainting, reference-to-video, etc.). LOME repurposes it by
+      feeding 2D hand skeleton renderings as VACE input. VACE is a <strong>separate 8-layer transformer</strong>
+      (same block structure as DiT) that runs independently, producing 8 hint features injected into the main DiT
+      at blocks 0, 5, 10, 15, 20, 25, 30, 35 via residual addition. Additionally, <strong>camera control</strong>
+      uses Plucker ray embeddings processed through a SimpleAdapter (PixelUnshuffle + Conv2d + ResBlock),
+      added once at the patch embedding stage.
+    </p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+      <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem;">
+        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--green); font-size: 0.9rem;">Action Path (VACE)</div>
+        <div style="font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.8; color: var(--text);">
+          skeleton_video &rarr; VAE &rarr; latent (96ch)<br>
+          &darr;<br>
+          Conv3d patch embed<br>
+          &darr;<br>
+          8 VaceWanAttentionBlocks<br>
+          (each = full DiTBlock + after_proj)<br>
+          &darr;<br>
+          8 skip hints<br>
+          &darr;<br>
+          hint[i] &rarr; DiT block [0,5,10,...,35]<br>
+          x = x + hint * vace_scale
+        </div>
+      </div>
+      <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem;">
+        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--green); font-size: 0.9rem;">Camera Path (Plucker)</div>
+        <div style="font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.8; color: var(--text);">
+          cam intrinsics + extrinsics<br>
+          &darr;<br>
+          Plucker coords [F, H, W, 6]<br>
+          (rays_o &times; rays_d, rays_d)<br>
+          &darr;<br>
+          4-frame packing &rarr; 24ch<br>
+          &darr;<br>
+          SimpleAdapter<br>
+          (PixUnshuffle8 + Conv2d + ResBlock)<br>
+          &darr;<br>
+          Add at patchify (one-shot)
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem; font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.8; color: var(--text); overflow-x: auto;">
+      <span style="color: var(--muted);">// Execution order</span><br>
+      <span style="color: var(--green);">Step 1</span>: VACE runs all 8 layers &rarr; produces hints[0..7]<br>
+      <span style="color: var(--green);">Step 2</span>: patchify(latent) + camera_adapter(plucker) <span style="color: var(--muted);">// one-shot camera add</span><br>
+      <span style="color: var(--green);">Step 3</span>: for block_id in 0..39:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;x = dit_block(x, <span style="color: var(--muted);">text_kv</span>, timestep)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;if block_id in {0,5,10,15,20,25,30,35}:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = x + hints[i] * <span style="color: var(--green);">vace_scale</span>
+    </div>
+    <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <span style="padding: 4px 12px; background: rgba(34,197,94,0.15); color: var(--green); border-radius: 6px; font-size: 0.8rem;">VACE = 8-layer Transformer</span>
+      <span style="padding: 4px 12px; background: rgba(34,197,94,0.15); color: var(--green); border-radius: 6px; font-size: 0.8rem;">Pretrained on multi-task video editing</span>
+      <span style="padding: 4px 12px; background: rgba(34,197,94,0.15); color: var(--green); border-radius: 6px; font-size: 0.8rem;">Plucker camera embedding</span>
+    </div>
+  </div>
+
+  <!-- Method 3: Kinema4D -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--orange);">Method 3: Kinema4D &mdash; Wan2.1 Dual-Path Cross-Attention</h3>
+  <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+    <p style="color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem;">
+      The most complex approach with <strong>two injection paths</strong>. Path 1: arm features are directly mixed into
+      the hidden state channels before patchify (zero-init Linear for features, direct replacement for mask).
+      Path 2: arm condition is separately embedded via Conv3d(20&rarr;128, k=1&times;15&times;15), projected to 5120d,
+      and concatenated with CLIP image tokens to serve as cross-attention KV in <strong>all 40 DiT blocks</strong>.
+      Notably, Kinema4D <strong>replaces text conditioning</strong> with arm tokens in the cross-attention &mdash;
+      the original text KV projections (<code>to_k</code>/<code>to_v</code>) are reused for arm, while image uses
+      dedicated <code>add_k_proj</code>/<code>add_v_proj</code>.
+    </p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+      <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem;">
+        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--orange); font-size: 0.9rem;">Path 1: Latent Channel Mixing</div>
+        <div style="font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.8; color: var(--text);">
+          hidden_states: [B, 36, 13, 60, 180]<br>
+          &nbsp;&nbsp;ch[0:16] &nbsp;= noisy latent<br>
+          &nbsp;&nbsp;ch[16:20] = condition mask<br>
+          &nbsp;&nbsp;ch[20:36] = ref image/pointmap<br>
+          <br>
+          arm_feat &rarr; <span style="color: var(--orange);">zero-init</span> Linear(16&rarr;16)<br>
+          &rarr; add to ch[20:36]<br>
+          arm_mask &rarr; replace ch[16:20]<br>
+          <br>
+          Then shared patch_embedding(36ch)
+        </div>
+      </div>
+      <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem;">
+        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--orange); font-size: 0.9rem;">Path 2: Cross-Attention (every block)</div>
+        <div style="font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.8; color: var(--text);">
+          arm_cond &rarr; Conv3d(20&rarr;128, 1&times;15&times;15)<br>
+          &rarr; LN + GELU + pos_emb + domain_emb<br>
+          &rarr; flatten &rarr; [B, 624, 128]<br>
+          &rarr; <span style="color: var(--orange);">zero-init</span> Linear(128&rarr;5120)<br>
+          <br>
+          KV = cat([CLIP_img(257), arm(624)])<br>
+          <br>
+          In each of 40 blocks:<br>
+          &nbsp;&nbsp;arm &rarr; to_k/to_v (reused from text)<br>
+          &nbsp;&nbsp;img &rarr; add_k_proj/add_v_proj<br>
+          &nbsp;&nbsp;out = sdpa(q,k_arm,v_arm)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ sdpa(q,k_img,v_img)
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <span style="padding: 4px 12px; background: rgba(249,115,22,0.15); color: var(--orange); border-radius: 6px; font-size: 0.8rem;">Zero-init for safe fine-tuning</span>
+      <span style="padding: 4px 12px; background: rgba(249,115,22,0.15); color: var(--orange); border-radius: 6px; font-size: 0.8rem;">Text KV reused for arm tokens</span>
+      <span style="padding: 4px 12px; background: rgba(249,115,22,0.15); color: var(--orange); border-radius: 6px; font-size: 0.8rem;">Pointmap replaces camera</span>
+    </div>
+  </div>
+
+  <!-- Architecture Diagram -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Architecture Comparison Diagram</h3>
+  <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; overflow-x: auto;">
+    <pre style="font-family: 'Courier New', monospace; font-size: 0.75rem; line-height: 1.6; color: var(--text); margin: 0;">
+<span style="color: var(--accent);">== Ours (Cosmos2 Concat) ==</span>
+
+  condition_video &rarr; VAE &rarr; ctrl_latent(16ch)
+                                |
+  noisy_latent(16ch) + mask(1ch) + ctrl_latent(16ch) = 33ch
+       |                              |
+  x_embedder(17ch&rarr;2048)    additional_x_embedder(16ch&rarr;2048)
+       |                              |
+       +--------- + 0.1 * -----------+
+       |
+  28 DiT Blocks (cross-attn KV = <span style="color: var(--accent);">text</span>)
+       |
+    output
+
+
+<span style="color: var(--green);">== LOME (Wan2.1 VACE) ==</span>
+
+  skeleton_video &rarr; VAE &rarr; latent(96ch)     cam_poses &rarr; Plucker(6ch) &rarr; pack(24ch)
+       |                                                    |
+  VACE 8-layer Transformer                         SimpleAdapter
+  (independent, runs first)                     (PixUnshuffle+Conv+ResBlock)
+       |                                                    |
+   8 hints                                         camera_embed
+       |                                                    |
+  latent &rarr; patch_embed -----(+ camera_embed)-------------+
+       |
+  40 DiT Blocks (cross-attn KV = <span style="color: var(--green);">text + CLIP img</span>)
+       |          + hint[i] at blocks {0,5,10,15,20,25,30,35}
+    output
+
+
+<span style="color: var(--orange);">== Kinema4D (Wan2.1 Cross-Attn) ==</span>
+
+                                        arm_cond(20ch)
+                                         /          \
+                  <span style="color: var(--orange);">Path 1</span>: zero-init add       <span style="color: var(--orange);">Path 2</span>: Conv3d+proj
+                  to latent ch[20:36]       &rarr; arm_tokens [B,624,5120]
+                         |                              |
+  noisy_latent(36ch) ----+            cat([CLIP_img(257), arm(624)])
+       |                                                |
+  shared patch_embedding(36ch)                   cross-attn KV
+       |                                                |
+  40 DiT Blocks ---------(cross-attn KV = <span style="color: var(--orange);">img + arm</span>)--+
+       |                  (no text! arm reuses text KV projections)
+    output
+    </pre>
+  </div>
+
+  <!-- Key Design Insights -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Key Design Insights</h3>
+  <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+    <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
+      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">1</div>
+      <div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">Injection Depth vs. Compute Tradeoff</div>
+        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
+          Ours injects once (cheapest), LOME injects at 8 layers via a parallel network (~20% overhead),
+          Kinema4D injects at every layer via cross-attention (moderate overhead since it reuses existing KV projections).
+          Deeper injection generally gives stronger controllability but costs more compute.
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
+      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">2</div>
+      <div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">VACE: Pretrained Condition Encoder</div>
+        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
+          LOME's VACE is pretrained on large-scale multi-task video editing (Alibaba's official release, ICCV 2025),
+          giving it strong priors for interpreting visual conditions. The 8 VACE blocks are full DiTBlocks with
+          independent (non-shared) weights, producing skip hints at each layer. For 14B, VACE uses 8 blocks
+          at intervals of 5 DiT layers &mdash; the VACE paper's ablation showed distributed injection outperforms
+          dense injection, and larger models need sparser conditioning.
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
+      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">3</div>
+      <div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">Zero-Init: Safe Fine-Tuning</div>
+        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
+          Kinema4D zero-initializes both <code>arm_cond_proj</code> and <code>arm_patch_proj</code>, so at
+          training start the model behaves identically to the pretrained checkpoint. Condition influence grows
+          gradually as weights update. This is critical when injecting into a pretrained model &mdash;
+          random-init projections would corrupt the pretrained features immediately.
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
+      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">4</div>
+      <div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">Plucker Embedding for Camera</div>
+        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
+          LOME is the only method with explicit camera conditioning. Plucker coordinates encode both ray direction
+          and position in a 6D vector per pixel. The 6ch embedding is temporally packed (4 frames &rarr; 24ch)
+          to match VAE's temporal compression, then processed by a SimpleAdapter and added at patchify.
+          Kinema4D uses pointmaps (concatenated along width) as an implicit geometric representation instead.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Source Code References -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Source Code References</h3>
+  <div style="overflow-x: auto; margin-bottom: 2rem;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--border);">
+          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Method</th>
+          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Key File</th>
+          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">What It Does</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; color: var(--accent);" rowspan="2">Ours</td>
+          <td style="padding: 0.75rem 1rem;"><code>predict2/networks/minimal_lvg_v1_dit.py</code></td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">PatchEmbed concat + &alpha;-weighted addition (L108-124, L160-161)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem;"><code>configs/agibot_control/defaults/net.py</code></td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">Network config: additional_concat_ch=16, alpha=0.1 (L112-137)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; color: var(--green);" rowspan="3">LOME</td>
+          <td style="padding: 0.75rem 1rem;"><code>diffsynth/models/wan_video_vace.py</code></td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">VACE model: 8 VaceWanAttentionBlocks, hint generation (L28-94)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem;"><code>diffsynth/models/wan_video_camera_controller.py</code></td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">Plucker embedding + SimpleAdapter (L8-44, L114-147)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem;"><code>diffsynth/pipelines/wan_video_new.py</code></td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">VACE hint injection in denoising loop (L1358-1402)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; color: var(--orange);">Kinema4D</td>
+          <td style="padding: 0.75rem 1rem;"><code>core/finetune/models/wan_i2v/demb_samerope_trainer_act.py</code></td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">Dual-path: latent mixing (L393-401), arm cross-attn (L430-450), WanAttnProcessor2_0 (L45-118)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+
+<div id="convention-tab" class="tab-content">
+<div class="section">
+  <h2 class="section-title">Skeleton Rendering Convention</h2>
+  <p style="color: #aaa; margin-bottom: 1.5rem;">Unified visual language for cross-embodiment skeleton overlays. All robot and human datasets follow these rendering rules.</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+
+    <!-- Human Skeleton -->
+    <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem;">
+      <h3 style="color: #e94560; margin: 0 0 1rem;">Human Skeleton</h3>
+      <img src="convention_skeleton.png" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;" alt="Human skeleton convention">
+      <div style="color: #aaa; font-size: 0.85rem; line-height: 1.8;">
+        <strong>Standard:</strong> MANO 21-joint per hand + 3-joint arm<br>
+        <strong>Total:</strong> 48 joints = (3 arm + 21 hand) &times; left/right<br>
+        <strong>Left/Right:</strong> Same colors, spatial distinction only<br>
+        <strong>Datasets:</strong> EgoDex, ARCTIC, H2O, EgoBody, VITRA, HOI4D
+      </div>
+    </div>
+
+    <!-- Robot Skeleton -->
+    <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem;">
+      <h3 style="color: #e94560; margin: 0 0 1rem;">Robot Skeleton</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-bottom: 1rem;">
+        <tr style="border-bottom: 1px solid #333;">
+          <th style="text-align: left; padding: 8px; color: #888;">Component</th>
+          <th style="text-align: left; padding: 8px; color: #888;">Color</th>
+          <th style="text-align: left; padding: 8px; color: #888;">RGB</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #333;">
+          <td style="padding: 8px;">Arm link chain</td>
+          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#ffff00;border-radius:3px;vertical-align:middle;"></span> Yellow</td>
+          <td style="padding: 8px; color: #888;">(255, 255, 0)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #333;">
+          <td style="padding: 8px;">Joint circles</td>
+          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#0000ff;border-radius:3px;vertical-align:middle;"></span> Blue</td>
+          <td style="padding: 8px; color: #888;">(0, 0, 255)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #333;">
+          <td style="padding: 8px;">Gripper / fingers</td>
+          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#ff0000;border-radius:3px;vertical-align:middle;"></span> Red</td>
+          <td style="padding: 8px; color: #888;">(255, 0, 0)</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px;">EE axes (X/Y/Z)</td>
+          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#0000ff;border-radius:3px;vertical-align:middle;"></span><span style="display:inline-block;width:16px;height:16px;background:#00ff00;border-radius:3px;vertical-align:middle;margin-left:2px;"></span><span style="display:inline-block;width:16px;height:16px;background:#ff0000;border-radius:3px;vertical-align:middle;margin-left:2px;"></span> B/G/R</td>
+          <td style="padding: 8px; color: #888;">X=(0,0,255) Y=(0,255,0) Z=(255,0,0)</td>
+        </tr>
+      </table>
+      <div style="color: #aaa; font-size: 0.85rem; line-height: 1.8;">
+        <strong>Link chain:</strong> EE &rarr; wrist &rarr; ... &rarr; base (FK-computed)<br>
+        <strong>Left/Right:</strong> Same colors, spatial distinction only<br>
+        <strong>Robots:</strong> Franka, KUKA, UR5, Flexiv, Unitree G1, Toyota HSR
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Cross-Embodiment Mapping -->
+  <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem;">
+    <h3 style="color: #e94560; margin: 0 0 1rem;">Cross-Embodiment Correspondence</h3>
+    <p style="color: #aaa; margin-bottom: 1rem; font-size: 0.9rem;">Humans are treated as another embodiment type. The skeleton overlay provides a unified visual language for training cross-embodiment generative models.</p>
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+      <tr style="border-bottom: 1px solid #444;">
+        <th style="text-align: left; padding: 10px; color: #888; width: 33%;">Concept</th>
+        <th style="text-align: left; padding: 10px; color: #888; width: 33%;">Robot</th>
+        <th style="text-align: left; padding: 10px; color: #888; width: 33%;">Human</th>
+      </tr>
+      <tr style="border-bottom: 1px solid #333;">
+        <td style="padding: 10px;">Arm chain</td>
+        <td style="padding: 10px;">URDF link chain (7-DOF typical)</td>
+        <td style="padding: 10px;">Shoulder &rarr; Elbow &rarr; Wrist (3 joints)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #333;">
+        <td style="padding: 10px;">End effector</td>
+        <td style="padding: 10px;">Gripper (parallel-jaw or dex hand)</td>
+        <td style="padding: 10px;">5 fingers &times; 4 joints = 20 joints per hand</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #333;">
+        <td style="padding: 10px;">Bimanual</td>
+        <td style="padding: 10px;">Dual-arm (e.g., AgiBotG1 L+R)</td>
+        <td style="padding: 10px;">Left hand + Right hand (same colors)</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;">Camera view</td>
+        <td style="padding: 10px;">Third-person (typical) or wrist-mounted</td>
+        <td style="padding: 10px;">Egocentric (head-mounted) or third-person</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+</div>
+
+<!-- Condition Tab -->
+<div id="benchmark-tab" class="tab-content">
+<div class="section">
+  <h2 class="section-title">
+    Benchmark Construction
+    <span class="badge badge-green">1,000 Episodes</span>
+  </h2>
+  <p style="color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7;">
+    We construct a held-out evaluation benchmark of <strong>1,000 episodes</strong> (284,037 frames) across 6 datasets
+    for the world model evaluation. The benchmark is drawn exclusively from quality-filtered, deduplicated episodes
+    (<code>manifest.json["kept"]</code>) — dropped episodes (moving camera, near-duplicates) are never used,
+    as near-duplicate leakage would bias metrics upward. The split is a <strong>separate offline step</strong>
+    that runs after the full data processing pipeline (camera filter &rarr; dedup &rarr; render &rarr; caption &rarr; episode_meta)
+    and does not modify the pipeline's <code>manifest.json</code>.
+  </p>
+
+  <!-- Overview Stats -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center;">
+      <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">1,000</div>
+      <div style="color: var(--muted); font-size: 0.85rem;">Total Episodes</div>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center;">
+      <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">284K</div>
+      <div style="color: var(--muted); font-size: 0.85rem;">Total Frames</div>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center;">
+      <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">6</div>
+      <div style="color: var(--muted); font-size: 0.85rem;">Datasets</div>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center;">
+      <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">4</div>
+      <div style="color: var(--muted); font-size: 0.85rem;">Robot Embodiments</div>
+    </div>
+  </div>
+
+  <!-- Related Work Context -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Design Context</h3>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; color: var(--muted); font-size: 0.9rem; line-height: 1.7;">
+    <p style="margin-bottom: 0.75rem;">
+      Multiple baselines will run inference over this benchmark, so total size must be small enough for practical inference (~1,000 samples).
+      Metrics are reported <strong>per dataset</strong> (not merged by embodiment), because datasets differ in origin (real vs. sim),
+      scene background, and collection setup.
+    </p>
+    <p>
+      Related work precedents:
+      <strong>Genie Envisioner</strong> (EWMBench) uses 10 tasks &times; 100 samples = 1,000 total with tasks fully disjoint from pretraining;
+      <strong>Kinema4D</strong> uses a stratified ~2% hold-out (3,200 / 201K) with per-source reporting;
+      <strong>DreamZero</strong> uses task-level seen/unseen split with per-task reporting.
+      We rejected task-level held-out splits because OOD tasks with unseen action renderings would produce
+      systematically poor results, confounding model quality with distribution shift.
+    </p>
+  </div>
+
+  <!-- Pipeline Steps -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Construction Pipeline</h3>
+  <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
+      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">1</div>
+      <div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">Budget Allocation (&radic;N weighting)</div>
+        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
+          Each dataset receives a share of the 1,000-episode budget proportional to <code>&radic;N</code>, where N is the number of
+          kept episodes after quality filtering. This prevents large datasets (agibot: 94K episodes) from dominating while still
+          giving them more representation than tiny ones (rh20t_cfg7: 557 episodes). The &radic;N weighting is consistent
+          with the DataLoader's embodiment-level sampling philosophy. Per-dataset counts can be overridden via config YAML.
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
+      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">2</div>
+      <div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">Feature Extraction (caption + motion)</div>
+        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
+          For each episode we extract two signals:<br>
+          <strong>Semantic:</strong> VLM-generated captions (from <code>caption.pickle</code>) are embedded using <code>all-MiniLM-L6-v2</code> (384-dim), then reduced to 2D via PCA. Episodes with unreadable or missing captions are skipped entirely.<br>
+          <strong>Motion:</strong> End-effector trajectory path length from <code>episode_meta.npz</code> &mdash; sum of frame-to-frame Euclidean displacements of the EE translation vector.
+          For dual-arm robots (agibot), left and right arm trajectories (<code>ee_pose_left</code> / <code>ee_pose_right</code>) are summed.
+          Missing motion data is imputed with the dataset median (episode kept if caption is valid).<br>
+          The 3D feature vector (2D semantic + 1D motion) is projected to 2D via a second PCA, then min-max normalized to [0, 1].
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
+      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">3</div>
+      <div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">Coverage-Based Diverse Subset Selection</div>
+        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
+          We need to select K episodes (= allocated budget) that are maximally spread out in the 2D feature space.
+          To do this, we partition the space into K regions using K-means (where K is the desired sample count, not
+          the number of "natural clusters") and pick the episode closest to each region's centroid (medoid).
+          This is a standard coverage sampling technique &mdash; K-means is used as a space-partitioning tool,
+          not for cluster discovery. The result: episodes are as diverse as possible across both task semantics
+          and motion complexity, so rare patterns (bi-manual coordination, tool use, long-horizon tasks)
+          get equal representation alongside common ones (e.g., "pick up object from table").
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
+      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">4</div>
+      <div>
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">Three-Manifest Split</div>
+        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
+          Each dataset directory ends up with three manifests, all using the same <code>"kept"</code> list format
+          that <code>EmbodimentDataLoader</code> already reads &mdash; <strong>zero DataLoader code changes</strong> required:<br>
+          <code>manifest.json</code> &mdash; pipeline output (never modified)<br>
+          <code>benchmark_manifest.json</code> &mdash; selected benchmark episodes<br>
+          <code>train_manifest.json</code> &mdash; kept &minus; benchmark = training episodes<br>
+          The split is deterministic (seed=42) and fully reproducible. Benchmark episodes are exported via hardlinks
+          to a dedicated directory with per-episode files: <code>rgb.mp4</code>, <code>overlay.mp4</code>,
+          <code>gripper_scenario.mp4</code>, <code>caption.pickle</code>, <code>episode_meta.npz</code>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Per-dataset allocation table -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Per-Dataset Allocation</h3>
+  <div style="overflow-x: auto; margin-bottom: 2rem;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--border);">
+          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Dataset</th>
+          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Robot</th>
+          <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Pool Size</th>
+          <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">&radic;N Weight</th>
+          <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Benchmark</th>
+          <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Frames</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">agibot</td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">Unitree G1 (dual-arm)</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">93,981</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 307</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">490</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">65,288</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">droid</td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">Franka Panda</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">23,887</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 155</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">247</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">84,215</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">airoa_moma</td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">Toyota HSR</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">4,192</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 65</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">103</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">46,919</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">interndata</td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">Franka Panda (sim)</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">2,321</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 48</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">77</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">51,711</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">rh20t_cfg5</td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">Franka Panda</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">796</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 28</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">45</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">17,327</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 0.75rem 1rem; font-weight: 500;">rh20t_cfg7</td>
+          <td style="padding: 0.75rem 1rem; color: var(--muted);">KUKA iiwa</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">557</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 24</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">38</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">18,577</td>
+        </tr>
+        <tr style="border-top: 2px solid var(--border); font-weight: 600;">
+          <td style="padding: 0.75rem 1rem;" colspan="2">Total</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">125,734</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">626</td>
+          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--accent);">1,000</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">284,037</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Allocation bar chart -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Allocation Distribution</h3>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">agibot</span>
+        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
+          <div style="width: 49%; height: 100%; background: #6366f1; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
+            <span style="color: white; font-size: 0.75rem; font-weight: 600;">490</span>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">droid</span>
+        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
+          <div style="width: 24.7%; height: 100%; background: #8b5cf6; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
+            <span style="color: white; font-size: 0.75rem; font-weight: 600;">247</span>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">airoa_moma</span>
+        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
+          <div style="width: 10.3%; height: 100%; background: #a78bfa; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
+            <span style="color: white; font-size: 0.75rem; font-weight: 600;">103</span>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">interndata</span>
+        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
+          <div style="width: 7.7%; height: 100%; background: #c4b5fd; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
+            <span style="color: #333; font-size: 0.75rem; font-weight: 600;">77</span>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">rh20t_cfg5</span>
+        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
+          <div style="width: 4.5%; height: 100%; background: #ddd6fe; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
+            <span style="color: #333; font-size: 0.75rem; font-weight: 600;">45</span>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">rh20t_cfg7</span>
+        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
+          <div style="width: 3.8%; height: 100%; background: #ede9fe; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
+            <span style="color: #333; font-size: 0.75rem; font-weight: 600;">38</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 1rem; color: var(--muted); font-size: 0.8rem; text-align: center;">
+      Episode count per dataset (&radic;N weighted allocation, normalized from raw weight sum of 626 to 1,000)
+    </div>
+  </div>
+
+  <!-- Paper description -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Paper Description</h3>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+    <blockquote style="margin: 0; padding-left: 1rem; border-left: 3px solid var(--accent); color: var(--muted); font-size: 0.9rem; font-style: italic; line-height: 1.7;">
+      "We partition the joint space of semantic task embeddings and end-effector trajectory lengths
+      into K regions via K-means (K = desired sample count), selecting the medoid of each region
+      to maximize coverage across task type and motion complexity."
+    </blockquote>
+  </div>
+
+  <!-- Export structure -->
+  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Export Structure</h3>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+    <pre style="margin: 0; font-size: 0.85rem; line-height: 1.6; color: var(--text); overflow-x: auto;"><code>pipeline_output_fix/{dataset}/
+  manifest.json                    # pipeline output (never modified)
+  train_manifest.json              # kept = manifest.kept - benchmark
+  benchmark_manifest.json          # kept = benchmark-selected episodes
+
+benchmark_export/
+  benchmark_manifest.json          # top-level manifest with all dataset stats
+  agibot/                          # 490 episodes
+    603_832938_a0_0_122/
+      head/
+        rgb.mp4                    # original camera footage
+        overlay.mp4                # skeleton overlay rendering
+        gripper_scenario.mp4       # gripper state visualization
+        caption.pickle             # VLM-generated task caption
+        episode_meta.npz           # EE pose, joint angles, camera params
+  droid/                           # 247 episodes
+  airoa_moma/                      # 103 episodes
+  interndata/                      #  77 episodes
+  rh20t_cfg5/                      #  45 episodes
+  rh20t_cfg7/                      #  38 episodes</code></pre>
+  </div>
+  <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem;">
+    Files are hardlinked from the pipeline output directory to avoid duplication on the same filesystem.
+    DataLoader requires <strong>zero code changes</strong> &mdash; training and evaluation configs simply point to different manifest paths.
+  </p>
+
+</div>
+</div>
+
+<!-- Convention Tab -->
 <div id="human-tab" class="tab-content">
 <div class="section">
   <h2 class="section-title">Human Datasets</h2>
@@ -4511,771 +5276,6 @@
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 7: Benchmark Construction                      -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<div id="benchmark-tab" class="tab-content">
-<div class="section">
-  <h2 class="section-title">
-    Benchmark Construction
-    <span class="badge badge-green">1,000 Episodes</span>
-  </h2>
-  <p style="color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7;">
-    We construct a held-out evaluation benchmark of <strong>1,000 episodes</strong> (284,037 frames) across 6 datasets
-    for the world model evaluation. The benchmark is drawn exclusively from quality-filtered, deduplicated episodes
-    (<code>manifest.json["kept"]</code>) — dropped episodes (moving camera, near-duplicates) are never used,
-    as near-duplicate leakage would bias metrics upward. The split is a <strong>separate offline step</strong>
-    that runs after the full data processing pipeline (camera filter &rarr; dedup &rarr; render &rarr; caption &rarr; episode_meta)
-    and does not modify the pipeline's <code>manifest.json</code>.
-  </p>
-
-  <!-- Overview Stats -->
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center;">
-      <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">1,000</div>
-      <div style="color: var(--muted); font-size: 0.85rem;">Total Episodes</div>
-    </div>
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center;">
-      <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">284K</div>
-      <div style="color: var(--muted); font-size: 0.85rem;">Total Frames</div>
-    </div>
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center;">
-      <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">6</div>
-      <div style="color: var(--muted); font-size: 0.85rem;">Datasets</div>
-    </div>
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center;">
-      <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">4</div>
-      <div style="color: var(--muted); font-size: 0.85rem;">Robot Embodiments</div>
-    </div>
-  </div>
-
-  <!-- Related Work Context -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Design Context</h3>
-  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; color: var(--muted); font-size: 0.9rem; line-height: 1.7;">
-    <p style="margin-bottom: 0.75rem;">
-      Multiple baselines will run inference over this benchmark, so total size must be small enough for practical inference (~1,000 samples).
-      Metrics are reported <strong>per dataset</strong> (not merged by embodiment), because datasets differ in origin (real vs. sim),
-      scene background, and collection setup.
-    </p>
-    <p>
-      Related work precedents:
-      <strong>Genie Envisioner</strong> (EWMBench) uses 10 tasks &times; 100 samples = 1,000 total with tasks fully disjoint from pretraining;
-      <strong>Kinema4D</strong> uses a stratified ~2% hold-out (3,200 / 201K) with per-source reporting;
-      <strong>DreamZero</strong> uses task-level seen/unseen split with per-task reporting.
-      We rejected task-level held-out splits because OOD tasks with unseen action renderings would produce
-      systematically poor results, confounding model quality with distribution shift.
-    </p>
-  </div>
-
-  <!-- Pipeline Steps -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Construction Pipeline</h3>
-  <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
-      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">1</div>
-      <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">Budget Allocation (&radic;N weighting)</div>
-        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          Each dataset receives a share of the 1,000-episode budget proportional to <code>&radic;N</code>, where N is the number of
-          kept episodes after quality filtering. This prevents large datasets (agibot: 94K episodes) from dominating while still
-          giving them more representation than tiny ones (rh20t_cfg7: 557 episodes). The &radic;N weighting is consistent
-          with the DataLoader's embodiment-level sampling philosophy. Per-dataset counts can be overridden via config YAML.
-        </div>
-      </div>
-    </div>
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
-      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">2</div>
-      <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">Feature Extraction (caption + motion)</div>
-        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          For each episode we extract two signals:<br>
-          <strong>Semantic:</strong> VLM-generated captions (from <code>caption.pickle</code>) are embedded using <code>all-MiniLM-L6-v2</code> (384-dim), then reduced to 2D via PCA. Episodes with unreadable or missing captions are skipped entirely.<br>
-          <strong>Motion:</strong> End-effector trajectory path length from <code>episode_meta.npz</code> &mdash; sum of frame-to-frame Euclidean displacements of the EE translation vector.
-          For dual-arm robots (agibot), left and right arm trajectories (<code>ee_pose_left</code> / <code>ee_pose_right</code>) are summed.
-          Missing motion data is imputed with the dataset median (episode kept if caption is valid).<br>
-          The 3D feature vector (2D semantic + 1D motion) is projected to 2D via a second PCA, then min-max normalized to [0, 1].
-        </div>
-      </div>
-    </div>
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
-      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">3</div>
-      <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">Coverage-Based Diverse Subset Selection</div>
-        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          We need to select K episodes (= allocated budget) that are maximally spread out in the 2D feature space.
-          To do this, we partition the space into K regions using K-means (where K is the desired sample count, not
-          the number of "natural clusters") and pick the episode closest to each region's centroid (medoid).
-          This is a standard coverage sampling technique &mdash; K-means is used as a space-partitioning tool,
-          not for cluster discovery. The result: episodes are as diverse as possible across both task semantics
-          and motion complexity, so rare patterns (bi-manual coordination, tool use, long-horizon tasks)
-          get equal representation alongside common ones (e.g., "pick up object from table").
-        </div>
-      </div>
-    </div>
-    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
-      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">4</div>
-      <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">Three-Manifest Split</div>
-        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          Each dataset directory ends up with three manifests, all using the same <code>"kept"</code> list format
-          that <code>EmbodimentDataLoader</code> already reads &mdash; <strong>zero DataLoader code changes</strong> required:<br>
-          <code>manifest.json</code> &mdash; pipeline output (never modified)<br>
-          <code>benchmark_manifest.json</code> &mdash; selected benchmark episodes<br>
-          <code>train_manifest.json</code> &mdash; kept &minus; benchmark = training episodes<br>
-          The split is deterministic (seed=42) and fully reproducible. Benchmark episodes are exported via hardlinks
-          to a dedicated directory with per-episode files: <code>rgb.mp4</code>, <code>overlay.mp4</code>,
-          <code>gripper_scenario.mp4</code>, <code>caption.pickle</code>, <code>episode_meta.npz</code>.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Per-dataset allocation table -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Per-Dataset Allocation</h3>
-  <div style="overflow-x: auto; margin-bottom: 2rem;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-      <thead>
-        <tr style="border-bottom: 2px solid var(--border);">
-          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Dataset</th>
-          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Robot</th>
-          <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Pool Size</th>
-          <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">&radic;N Weight</th>
-          <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Benchmark</th>
-          <th style="text-align: right; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Frames</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">agibot</td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">Unitree G1 (dual-arm)</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">93,981</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 307</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">490</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">65,288</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">droid</td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">Franka Panda</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">23,887</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 155</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">247</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">84,215</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">airoa_moma</td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">Toyota HSR</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">4,192</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 65</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">103</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">46,919</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">interndata</td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">Franka Panda (sim)</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">2,321</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 48</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">77</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">51,711</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">rh20t_cfg5</td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">Franka Panda</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">796</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 28</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">45</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">17,327</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">rh20t_cfg7</td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">KUKA iiwa</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">557</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">&asymp; 24</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; font-weight: 600; color: var(--accent);">38</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">18,577</td>
-        </tr>
-        <tr style="border-top: 2px solid var(--border); font-weight: 600;">
-          <td style="padding: 0.75rem 1rem;" colspan="2">Total</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">125,734</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--muted);">626</td>
-          <td style="padding: 0.75rem 1rem; text-align: right; color: var(--accent);">1,000</td>
-          <td style="padding: 0.75rem 1rem; text-align: right;">284,037</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Allocation bar chart -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Allocation Distribution</h3>
-  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">agibot</span>
-        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
-          <div style="width: 49%; height: 100%; background: #6366f1; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
-            <span style="color: white; font-size: 0.75rem; font-weight: 600;">490</span>
-          </div>
-        </div>
-      </div>
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">droid</span>
-        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
-          <div style="width: 24.7%; height: 100%; background: #8b5cf6; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
-            <span style="color: white; font-size: 0.75rem; font-weight: 600;">247</span>
-          </div>
-        </div>
-      </div>
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">airoa_moma</span>
-        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
-          <div style="width: 10.3%; height: 100%; background: #a78bfa; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
-            <span style="color: white; font-size: 0.75rem; font-weight: 600;">103</span>
-          </div>
-        </div>
-      </div>
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">interndata</span>
-        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
-          <div style="width: 7.7%; height: 100%; background: #c4b5fd; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
-            <span style="color: #333; font-size: 0.75rem; font-weight: 600;">77</span>
-          </div>
-        </div>
-      </div>
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">rh20t_cfg5</span>
-        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
-          <div style="width: 4.5%; height: 100%; background: #ddd6fe; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
-            <span style="color: #333; font-size: 0.75rem; font-weight: 600;">45</span>
-          </div>
-        </div>
-      </div>
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <span style="min-width: 100px; font-size: 0.85rem; text-align: right;">rh20t_cfg7</span>
-        <div style="flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden;">
-          <div style="width: 3.8%; height: 100%; background: #ede9fe; border-radius: 4px; display: flex; align-items: center; padding-left: 8px;">
-            <span style="color: #333; font-size: 0.75rem; font-weight: 600;">38</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style="margin-top: 1rem; color: var(--muted); font-size: 0.8rem; text-align: center;">
-      Episode count per dataset (&radic;N weighted allocation, normalized from raw weight sum of 626 to 1,000)
-    </div>
-  </div>
-
-  <!-- Paper description -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Paper Description</h3>
-  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-    <blockquote style="margin: 0; padding-left: 1rem; border-left: 3px solid var(--accent); color: var(--muted); font-size: 0.9rem; font-style: italic; line-height: 1.7;">
-      "We partition the joint space of semantic task embeddings and end-effector trajectory lengths
-      into K regions via K-means (K = desired sample count), selecting the medoid of each region
-      to maximize coverage across task type and motion complexity."
-    </blockquote>
-  </div>
-
-  <!-- Export structure -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Export Structure</h3>
-  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
-    <pre style="margin: 0; font-size: 0.85rem; line-height: 1.6; color: var(--text); overflow-x: auto;"><code>pipeline_output_fix/{dataset}/
-  manifest.json                    # pipeline output (never modified)
-  train_manifest.json              # kept = manifest.kept - benchmark
-  benchmark_manifest.json          # kept = benchmark-selected episodes
-
-benchmark_export/
-  benchmark_manifest.json          # top-level manifest with all dataset stats
-  agibot/                          # 490 episodes
-    603_832938_a0_0_122/
-      head/
-        rgb.mp4                    # original camera footage
-        overlay.mp4                # skeleton overlay rendering
-        gripper_scenario.mp4       # gripper state visualization
-        caption.pickle             # VLM-generated task caption
-        episode_meta.npz           # EE pose, joint angles, camera params
-  droid/                           # 247 episodes
-  airoa_moma/                      # 103 episodes
-  interndata/                      #  77 episodes
-  rh20t_cfg5/                      #  45 episodes
-  rh20t_cfg7/                      #  38 episodes</code></pre>
-  </div>
-  <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem;">
-    Files are hardlinked from the pipeline output directory to avoid duplication on the same filesystem.
-    DataLoader requires <strong>zero code changes</strong> &mdash; training and evaluation configs simply point to different manifest paths.
-  </p>
-
-</div>
-</div>
-
-<!-- Convention Tab -->
-<div id="convention-tab" class="tab-content">
-<div class="section">
-  <h2 class="section-title">Skeleton Rendering Convention</h2>
-  <p style="color: #aaa; margin-bottom: 1.5rem;">Unified visual language for cross-embodiment skeleton overlays. All robot and human datasets follow these rendering rules.</p>
-
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-
-    <!-- Human Skeleton -->
-    <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem;">
-      <h3 style="color: #e94560; margin: 0 0 1rem;">Human Skeleton</h3>
-      <img src="convention_skeleton.png" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;" alt="Human skeleton convention">
-      <div style="color: #aaa; font-size: 0.85rem; line-height: 1.8;">
-        <strong>Standard:</strong> MANO 21-joint per hand + 3-joint arm<br>
-        <strong>Total:</strong> 48 joints = (3 arm + 21 hand) &times; left/right<br>
-        <strong>Left/Right:</strong> Same colors, spatial distinction only<br>
-        <strong>Datasets:</strong> EgoDex, ARCTIC, H2O, EgoBody, VITRA, HOI4D
-      </div>
-    </div>
-
-    <!-- Robot Skeleton -->
-    <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem;">
-      <h3 style="color: #e94560; margin: 0 0 1rem;">Robot Skeleton</h3>
-      <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-bottom: 1rem;">
-        <tr style="border-bottom: 1px solid #333;">
-          <th style="text-align: left; padding: 8px; color: #888;">Component</th>
-          <th style="text-align: left; padding: 8px; color: #888;">Color</th>
-          <th style="text-align: left; padding: 8px; color: #888;">RGB</th>
-        </tr>
-        <tr style="border-bottom: 1px solid #333;">
-          <td style="padding: 8px;">Arm link chain</td>
-          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#ffff00;border-radius:3px;vertical-align:middle;"></span> Yellow</td>
-          <td style="padding: 8px; color: #888;">(255, 255, 0)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #333;">
-          <td style="padding: 8px;">Joint circles</td>
-          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#0000ff;border-radius:3px;vertical-align:middle;"></span> Blue</td>
-          <td style="padding: 8px; color: #888;">(0, 0, 255)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #333;">
-          <td style="padding: 8px;">Gripper / fingers</td>
-          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#ff0000;border-radius:3px;vertical-align:middle;"></span> Red</td>
-          <td style="padding: 8px; color: #888;">(255, 0, 0)</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px;">EE axes (X/Y/Z)</td>
-          <td style="padding: 8px;"><span style="display:inline-block;width:16px;height:16px;background:#0000ff;border-radius:3px;vertical-align:middle;"></span><span style="display:inline-block;width:16px;height:16px;background:#00ff00;border-radius:3px;vertical-align:middle;margin-left:2px;"></span><span style="display:inline-block;width:16px;height:16px;background:#ff0000;border-radius:3px;vertical-align:middle;margin-left:2px;"></span> B/G/R</td>
-          <td style="padding: 8px; color: #888;">X=(0,0,255) Y=(0,255,0) Z=(255,0,0)</td>
-        </tr>
-      </table>
-      <div style="color: #aaa; font-size: 0.85rem; line-height: 1.8;">
-        <strong>Link chain:</strong> EE &rarr; wrist &rarr; ... &rarr; base (FK-computed)<br>
-        <strong>Left/Right:</strong> Same colors, spatial distinction only<br>
-        <strong>Robots:</strong> Franka, KUKA, UR5, Flexiv, Unitree G1, Toyota HSR
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Cross-Embodiment Mapping -->
-  <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem;">
-    <h3 style="color: #e94560; margin: 0 0 1rem;">Cross-Embodiment Correspondence</h3>
-    <p style="color: #aaa; margin-bottom: 1rem; font-size: 0.9rem;">Humans are treated as another embodiment type. The skeleton overlay provides a unified visual language for training cross-embodiment generative models.</p>
-    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-      <tr style="border-bottom: 1px solid #444;">
-        <th style="text-align: left; padding: 10px; color: #888; width: 33%;">Concept</th>
-        <th style="text-align: left; padding: 10px; color: #888; width: 33%;">Robot</th>
-        <th style="text-align: left; padding: 10px; color: #888; width: 33%;">Human</th>
-      </tr>
-      <tr style="border-bottom: 1px solid #333;">
-        <td style="padding: 10px;">Arm chain</td>
-        <td style="padding: 10px;">URDF link chain (7-DOF typical)</td>
-        <td style="padding: 10px;">Shoulder &rarr; Elbow &rarr; Wrist (3 joints)</td>
-      </tr>
-      <tr style="border-bottom: 1px solid #333;">
-        <td style="padding: 10px;">End effector</td>
-        <td style="padding: 10px;">Gripper (parallel-jaw or dex hand)</td>
-        <td style="padding: 10px;">5 fingers &times; 4 joints = 20 joints per hand</td>
-      </tr>
-      <tr style="border-bottom: 1px solid #333;">
-        <td style="padding: 10px;">Bimanual</td>
-        <td style="padding: 10px;">Dual-arm (e.g., AgiBotG1 L+R)</td>
-        <td style="padding: 10px;">Left hand + Right hand (same colors)</td>
-      </tr>
-      <tr>
-        <td style="padding: 10px;">Camera view</td>
-        <td style="padding: 10px;">Third-person (typical) or wrist-mounted</td>
-        <td style="padding: 10px;">Egocentric (head-mounted) or third-person</td>
-      </tr>
-    </table>
-  </div>
-
-</div>
-</div>
-
-<!-- Condition Tab -->
-<div id="condition-tab" class="tab-content">
-<div class="section">
-  <h2 class="section-title">
-    Action Conditioning Comparison
-    <span class="badge badge-green">3 Methods</span>
-  </h2>
-  <p style="color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7;">
-    Comparison of action conditioning architectures across three world model implementations.
-    All three fine-tune a pretrained video DiT (Diffusion Transformer) and inject action/control signals
-    to guide video generation. The key design differences lie in <strong>how</strong> and <strong>where</strong>
-    the action condition enters the denoising network.
-  </p>
-
-  <!-- Overview comparison table -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Overview</h3>
-  <div style="overflow-x: auto; margin-bottom: 2.5rem;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
-      <thead>
-        <tr style="border-bottom: 2px solid var(--border);">
-          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;"></th>
-          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--accent); font-weight: 600;">Ours (Cosmos2 Concat)</th>
-          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--green); font-weight: 600;">LOME (Wan2.1 VACE)</th>
-          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--orange); font-weight: 600;">Kinema4D (Wan2.1 Cross-Attn)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">Base Model</td>
-          <td style="padding: 0.75rem 1rem;">Cosmos Predict 2.5 (2B)</td>
-          <td style="padding: 0.75rem 1rem;">Wan2.1-VACE-14B</td>
-          <td style="padding: 0.75rem 1rem;">Wan2.1-I2V-14B</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">DiT Blocks</td>
-          <td style="padding: 0.75rem 1rem;">28</td>
-          <td style="padding: 0.75rem 1rem;">40</td>
-          <td style="padding: 0.75rem 1rem;">40</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">Action Representation</td>
-          <td style="padding: 0.75rem 1rem;">RGB condition video &rarr; VAE latent (16ch)</td>
-          <td style="padding: 0.75rem 1rem;">Hand skeleton video &rarr; VAE latent (96ch)</td>
-          <td style="padding: 0.75rem 1rem;">Robot video latent (16ch) + mask (4ch)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">Injection Method</td>
-          <td style="padding: 0.75rem 1rem;">PatchEmbed additive (&alpha;=0.1)</td>
-          <td style="padding: 0.75rem 1rem;">8-layer VACE transformer &rarr; multi-layer hint injection</td>
-          <td style="padding: 0.75rem 1rem;">Dual-path: latent channel mixing + cross-attention</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">Injection Frequency</td>
-          <td style="padding: 0.75rem 1rem;">Once (at patch embed)</td>
-          <td style="padding: 0.75rem 1rem;">8 times (every 5 DiT blocks)</td>
-          <td style="padding: 0.75rem 1rem;">Once (latent) + every block (cross-attn)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">Cross-Attn KV</td>
-          <td style="padding: 0.75rem 1rem;">Text tokens</td>
-          <td style="padding: 0.75rem 1rem;">Text + CLIP image tokens</td>
-          <td style="padding: 0.75rem 1rem;">CLIP image + arm tokens (text removed)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">Camera Condition</td>
-          <td style="padding: 0.75rem 1rem;">None</td>
-          <td style="padding: 0.75rem 1rem;">Plucker embedding + SimpleAdapter</td>
-          <td style="padding: 0.75rem 1rem;">None (pointmap instead)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">Extra Parameters</td>
-          <td style="padding: 0.75rem 1rem;">1 PatchEmbed (minimal)</td>
-          <td style="padding: 0.75rem 1rem;">8 DiTBlocks + projections (~1/5 of main DiT)</td>
-          <td style="padding: 0.75rem 1rem;">Conv3d + Linear (reuses existing cross-attn KV)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; font-weight: 500;">Init Strategy</td>
-          <td style="padding: 0.75rem 1rem;">Normal init</td>
-          <td style="padding: 0.75rem 1rem;">Pretrained VACE weights</td>
-          <td style="padding: 0.75rem 1rem;">Zero-init (gradual learning)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Method 1: Ours -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent);">Method 1: Ours &mdash; Cosmos2 Concat</h3>
-  <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-    <p style="color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem;">
-      The simplest approach. Action condition (an RGB skeleton/overlay video) is encoded through the <strong>same VAE</strong>
-      as the target video, producing a 16-channel latent. This is concatenated to the noisy video latent along the channel
-      dimension, then passed through a <strong>separate PatchEmbed</strong> (Rearrange + Linear, no nonlinearity) and added
-      to the main embedding with a scaling factor of <strong>&alpha; = 0.1</strong>.
-    </p>
-    <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem; font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.8; color: var(--text); overflow-x: auto;">
-      <span style="color: var(--muted);">// Data flow</span><br>
-      condition_video (B,3,T,H,W) &rarr; VAE encode &rarr; control_latent (B,16,T',H',W')<br><br>
-      <span style="color: var(--muted);">// In forward():</span><br>
-      x = cat([noisy_latent(16ch), mask(1ch), control_latent(16ch)], dim=1) <span style="color: var(--muted);">// 33ch total</span><br>
-      <br>
-      <span style="color: var(--muted);">// In prepare_embedded_sequence():</span><br>
-      main_embed &nbsp;= x_embedder(x[:, :17]) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: var(--muted);">// Rearrange+Linear: 17ch &rarr; 2048d</span><br>
-      ctrl_embed &nbsp;= additional_x_embedder(x[:, 17:]) <span style="color: var(--muted);">// Rearrange+Linear: 16ch &rarr; 2048d</span><br>
-      tokens = main_embed + <span style="color: var(--accent);">0.1</span> * ctrl_embed &nbsp;&nbsp;<span style="color: var(--muted);">// &alpha;-weighted addition</span><br>
-      <br>
-      <span style="color: var(--muted);">// Then tokens go through 28 DiT blocks (no further action injection)</span><br>
-      for block in dit.blocks: tokens = block(tokens, text_kv, timestep)
-    </div>
-    <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-      <span style="padding: 4px 12px; background: rgba(99,102,241,0.15); color: var(--accent); border-radius: 6px; font-size: 0.8rem;">MinimalV1LVGDiT</span>
-      <span style="padding: 4px 12px; background: rgba(99,102,241,0.15); color: var(--accent); border-radius: 6px; font-size: 0.8rem;">PatchEmbed = Rearrange + Linear</span>
-      <span style="padding: 4px 12px; background: rgba(99,102,241,0.15); color: var(--accent); border-radius: 6px; font-size: 0.8rem;">&alpha; = 0.1</span>
-    </div>
-  </div>
-
-  <!-- Method 2: LOME -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--green);">Method 2: LOME &mdash; Wan2.1 VACE + Camera Control</h3>
-  <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-    <p style="color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem;">
-      Uses <strong>VACE</strong> (All-in-One Video Creation and Editing), Alibaba's official conditional control framework
-      pretrained on multi-task video editing (inpainting, outpainting, reference-to-video, etc.). LOME repurposes it by
-      feeding 2D hand skeleton renderings as VACE input. VACE is a <strong>separate 8-layer transformer</strong>
-      (same block structure as DiT) that runs independently, producing 8 hint features injected into the main DiT
-      at blocks 0, 5, 10, 15, 20, 25, 30, 35 via residual addition. Additionally, <strong>camera control</strong>
-      uses Plucker ray embeddings processed through a SimpleAdapter (PixelUnshuffle + Conv2d + ResBlock),
-      added once at the patch embedding stage.
-    </p>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-      <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem;">
-        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--green); font-size: 0.9rem;">Action Path (VACE)</div>
-        <div style="font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.8; color: var(--text);">
-          skeleton_video &rarr; VAE &rarr; latent (96ch)<br>
-          &darr;<br>
-          Conv3d patch embed<br>
-          &darr;<br>
-          8 VaceWanAttentionBlocks<br>
-          (each = full DiTBlock + after_proj)<br>
-          &darr;<br>
-          8 skip hints<br>
-          &darr;<br>
-          hint[i] &rarr; DiT block [0,5,10,...,35]<br>
-          x = x + hint * vace_scale
-        </div>
-      </div>
-      <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem;">
-        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--green); font-size: 0.9rem;">Camera Path (Plucker)</div>
-        <div style="font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.8; color: var(--text);">
-          cam intrinsics + extrinsics<br>
-          &darr;<br>
-          Plucker coords [F, H, W, 6]<br>
-          (rays_o &times; rays_d, rays_d)<br>
-          &darr;<br>
-          4-frame packing &rarr; 24ch<br>
-          &darr;<br>
-          SimpleAdapter<br>
-          (PixUnshuffle8 + Conv2d + ResBlock)<br>
-          &darr;<br>
-          Add at patchify (one-shot)
-        </div>
-      </div>
-    </div>
-    <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem; font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.8; color: var(--text); overflow-x: auto;">
-      <span style="color: var(--muted);">// Execution order</span><br>
-      <span style="color: var(--green);">Step 1</span>: VACE runs all 8 layers &rarr; produces hints[0..7]<br>
-      <span style="color: var(--green);">Step 2</span>: patchify(latent) + camera_adapter(plucker) <span style="color: var(--muted);">// one-shot camera add</span><br>
-      <span style="color: var(--green);">Step 3</span>: for block_id in 0..39:<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;x = dit_block(x, <span style="color: var(--muted);">text_kv</span>, timestep)<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;if block_id in {0,5,10,15,20,25,30,35}:<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = x + hints[i] * <span style="color: var(--green);">vace_scale</span>
-    </div>
-    <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-      <span style="padding: 4px 12px; background: rgba(34,197,94,0.15); color: var(--green); border-radius: 6px; font-size: 0.8rem;">VACE = 8-layer Transformer</span>
-      <span style="padding: 4px 12px; background: rgba(34,197,94,0.15); color: var(--green); border-radius: 6px; font-size: 0.8rem;">Pretrained on multi-task video editing</span>
-      <span style="padding: 4px 12px; background: rgba(34,197,94,0.15); color: var(--green); border-radius: 6px; font-size: 0.8rem;">Plucker camera embedding</span>
-    </div>
-  </div>
-
-  <!-- Method 3: Kinema4D -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--orange);">Method 3: Kinema4D &mdash; Wan2.1 Dual-Path Cross-Attention</h3>
-  <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-    <p style="color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem;">
-      The most complex approach with <strong>two injection paths</strong>. Path 1: arm features are directly mixed into
-      the hidden state channels before patchify (zero-init Linear for features, direct replacement for mask).
-      Path 2: arm condition is separately embedded via Conv3d(20&rarr;128, k=1&times;15&times;15), projected to 5120d,
-      and concatenated with CLIP image tokens to serve as cross-attention KV in <strong>all 40 DiT blocks</strong>.
-      Notably, Kinema4D <strong>replaces text conditioning</strong> with arm tokens in the cross-attention &mdash;
-      the original text KV projections (<code>to_k</code>/<code>to_v</code>) are reused for arm, while image uses
-      dedicated <code>add_k_proj</code>/<code>add_v_proj</code>.
-    </p>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-      <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem;">
-        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--orange); font-size: 0.9rem;">Path 1: Latent Channel Mixing</div>
-        <div style="font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.8; color: var(--text);">
-          hidden_states: [B, 36, 13, 60, 180]<br>
-          &nbsp;&nbsp;ch[0:16] &nbsp;= noisy latent<br>
-          &nbsp;&nbsp;ch[16:20] = condition mask<br>
-          &nbsp;&nbsp;ch[20:36] = ref image/pointmap<br>
-          <br>
-          arm_feat &rarr; <span style="color: var(--orange);">zero-init</span> Linear(16&rarr;16)<br>
-          &rarr; add to ch[20:36]<br>
-          arm_mask &rarr; replace ch[16:20]<br>
-          <br>
-          Then shared patch_embedding(36ch)
-        </div>
-      </div>
-      <div style="background: var(--bg); border-radius: 8px; padding: 1.25rem;">
-        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--orange); font-size: 0.9rem;">Path 2: Cross-Attention (every block)</div>
-        <div style="font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.8; color: var(--text);">
-          arm_cond &rarr; Conv3d(20&rarr;128, 1&times;15&times;15)<br>
-          &rarr; LN + GELU + pos_emb + domain_emb<br>
-          &rarr; flatten &rarr; [B, 624, 128]<br>
-          &rarr; <span style="color: var(--orange);">zero-init</span> Linear(128&rarr;5120)<br>
-          <br>
-          KV = cat([CLIP_img(257), arm(624)])<br>
-          <br>
-          In each of 40 blocks:<br>
-          &nbsp;&nbsp;arm &rarr; to_k/to_v (reused from text)<br>
-          &nbsp;&nbsp;img &rarr; add_k_proj/add_v_proj<br>
-          &nbsp;&nbsp;out = sdpa(q,k_arm,v_arm)<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ sdpa(q,k_img,v_img)
-        </div>
-      </div>
-    </div>
-    <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-      <span style="padding: 4px 12px; background: rgba(249,115,22,0.15); color: var(--orange); border-radius: 6px; font-size: 0.8rem;">Zero-init for safe fine-tuning</span>
-      <span style="padding: 4px 12px; background: rgba(249,115,22,0.15); color: var(--orange); border-radius: 6px; font-size: 0.8rem;">Text KV reused for arm tokens</span>
-      <span style="padding: 4px 12px; background: rgba(249,115,22,0.15); color: var(--orange); border-radius: 6px; font-size: 0.8rem;">Pointmap replaces camera</span>
-    </div>
-  </div>
-
-  <!-- Architecture Diagram -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Architecture Comparison Diagram</h3>
-  <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; overflow-x: auto;">
-    <pre style="font-family: 'Courier New', monospace; font-size: 0.75rem; line-height: 1.6; color: var(--text); margin: 0;">
-<span style="color: var(--accent);">== Ours (Cosmos2 Concat) ==</span>
-
-  condition_video &rarr; VAE &rarr; ctrl_latent(16ch)
-                                |
-  noisy_latent(16ch) + mask(1ch) + ctrl_latent(16ch) = 33ch
-       |                              |
-  x_embedder(17ch&rarr;2048)    additional_x_embedder(16ch&rarr;2048)
-       |                              |
-       +--------- + 0.1 * -----------+
-       |
-  28 DiT Blocks (cross-attn KV = <span style="color: var(--accent);">text</span>)
-       |
-    output
-
-
-<span style="color: var(--green);">== LOME (Wan2.1 VACE) ==</span>
-
-  skeleton_video &rarr; VAE &rarr; latent(96ch)     cam_poses &rarr; Plucker(6ch) &rarr; pack(24ch)
-       |                                                    |
-  VACE 8-layer Transformer                         SimpleAdapter
-  (independent, runs first)                     (PixUnshuffle+Conv+ResBlock)
-       |                                                    |
-   8 hints                                         camera_embed
-       |                                                    |
-  latent &rarr; patch_embed -----(+ camera_embed)-------------+
-       |
-  40 DiT Blocks (cross-attn KV = <span style="color: var(--green);">text + CLIP img</span>)
-       |          + hint[i] at blocks {0,5,10,15,20,25,30,35}
-    output
-
-
-<span style="color: var(--orange);">== Kinema4D (Wan2.1 Cross-Attn) ==</span>
-
-                                        arm_cond(20ch)
-                                         /          \
-                  <span style="color: var(--orange);">Path 1</span>: zero-init add       <span style="color: var(--orange);">Path 2</span>: Conv3d+proj
-                  to latent ch[20:36]       &rarr; arm_tokens [B,624,5120]
-                         |                              |
-  noisy_latent(36ch) ----+            cat([CLIP_img(257), arm(624)])
-       |                                                |
-  shared patch_embedding(36ch)                   cross-attn KV
-       |                                                |
-  40 DiT Blocks ---------(cross-attn KV = <span style="color: var(--orange);">img + arm</span>)--+
-       |                  (no text! arm reuses text KV projections)
-    output
-    </pre>
-  </div>
-
-  <!-- Key Design Insights -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Key Design Insights</h3>
-  <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
-    <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
-      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">1</div>
-      <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">Injection Depth vs. Compute Tradeoff</div>
-        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          Ours injects once (cheapest), LOME injects at 8 layers via a parallel network (~20% overhead),
-          Kinema4D injects at every layer via cross-attention (moderate overhead since it reuses existing KV projections).
-          Deeper injection generally gives stronger controllability but costs more compute.
-        </div>
-      </div>
-    </div>
-    <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
-      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">2</div>
-      <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">VACE: Pretrained Condition Encoder</div>
-        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          LOME's VACE is pretrained on large-scale multi-task video editing (Alibaba's official release, ICCV 2025),
-          giving it strong priors for interpreting visual conditions. The 8 VACE blocks are full DiTBlocks with
-          independent (non-shared) weights, producing skip hints at each layer. For 14B, VACE uses 8 blocks
-          at intervals of 5 DiT layers &mdash; the VACE paper's ablation showed distributed injection outperforms
-          dense injection, and larger models need sparser conditioning.
-        </div>
-      </div>
-    </div>
-    <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
-      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">3</div>
-      <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">Zero-Init: Safe Fine-Tuning</div>
-        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          Kinema4D zero-initializes both <code>arm_cond_proj</code> and <code>arm_patch_proj</code>, so at
-          training start the model behaves identically to the pretrained checkpoint. Condition influence grows
-          gradually as weights update. This is critical when injecting into a pretrained model &mdash;
-          random-init projections would corrupt the pretrained features immediately.
-        </div>
-      </div>
-    </div>
-    <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start;">
-      <div style="background: var(--accent); color: white; border-radius: 50%; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">4</div>
-      <div>
-        <div style="font-weight: 600; margin-bottom: 0.3rem;">Plucker Embedding for Camera</div>
-        <div style="color: var(--muted); font-size: 0.9rem; line-height: 1.6;">
-          LOME is the only method with explicit camera conditioning. Plucker coordinates encode both ray direction
-          and position in a 6D vector per pixel. The 6ch embedding is temporally packed (4 frames &rarr; 24ch)
-          to match VAE's temporal compression, then processed by a SimpleAdapter and added at patchify.
-          Kinema4D uses pointmaps (concatenated along width) as an implicit geometric representation instead.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Source Code References -->
-  <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Source Code References</h3>
-  <div style="overflow-x: auto; margin-bottom: 2rem;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
-      <thead>
-        <tr style="border-bottom: 2px solid var(--border);">
-          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Method</th>
-          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">Key File</th>
-          <th style="text-align: left; padding: 0.75rem 1rem; color: var(--muted); font-weight: 600;">What It Does</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; color: var(--accent);" rowspan="2">Ours</td>
-          <td style="padding: 0.75rem 1rem;"><code>predict2/networks/minimal_lvg_v1_dit.py</code></td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">PatchEmbed concat + &alpha;-weighted addition (L108-124, L160-161)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem;"><code>configs/agibot_control/defaults/net.py</code></td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">Network config: additional_concat_ch=16, alpha=0.1 (L112-137)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; color: var(--green);" rowspan="3">LOME</td>
-          <td style="padding: 0.75rem 1rem;"><code>diffsynth/models/wan_video_vace.py</code></td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">VACE model: 8 VaceWanAttentionBlocks, hint generation (L28-94)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem;"><code>diffsynth/models/wan_video_camera_controller.py</code></td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">Plucker embedding + SimpleAdapter (L8-44, L114-147)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem;"><code>diffsynth/pipelines/wan_video_new.py</code></td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">VACE hint injection in denoising loop (L1358-1402)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <td style="padding: 0.75rem 1rem; color: var(--orange);">Kinema4D</td>
-          <td style="padding: 0.75rem 1rem;"><code>core/finetune/models/wan_i2v/demb_samerope_trainer_act.py</code></td>
-          <td style="padding: 0.75rem 1rem; color: var(--muted);">Dual-path: latent mixing (L393-401), arm cross-attn (L430-450), WanAttnProcessor2_0 (L45-118)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</div>
-</div>
-
 <div class="footer">
   WorldSim Dataset Rendering Showcase &mdash; Auto-generated by <code>scripts/render_showcase.py</code>
 </div>
