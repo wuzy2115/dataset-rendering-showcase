@@ -5286,11 +5286,12 @@ benchmark_export/
       <tr style="border-bottom:2px solid var(--border);">
         <th style="text-align:left; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">Method</th>
         <th style="text-align:left; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">Conditioning</th>
-        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">FVD &darr;</th>
-        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">LPIPS &darr;</th>
         <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">PSNR &uarr;</th>
         <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">SSIM &uarr;</th>
-        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">RSSIM &uarr;</th>
+        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">LPIPS &darr;</th>
+        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">tLPIPS &darr;</th>
+        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">FVD &darr;</th>
+        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">FID &darr;</th>
         <th style="text-align:left; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">Notes</th>
       </tr>
     </thead>
@@ -5298,6 +5299,7 @@ benchmark_export/
       <tr style="border-bottom:1px solid var(--border); background:rgba(99,179,237,0.06);">
         <td style="padding:0.75rem 1rem; font-weight:600; color:var(--accent);">Ours (8k iter)</td>
         <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Action (EE pose) + Image</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
@@ -5313,11 +5315,13 @@ benchmark_export/
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">CogVideoX-5B + LoRA; 49f native</td>
       </tr>
       <tr style="border-bottom:1px solid var(--border);">
         <td style="padding:0.75rem 1rem; font-weight:500;">ORV</td>
         <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Image + Text</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
@@ -5333,11 +5337,13 @@ benchmark_export/
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">SVD fine-tune; 10-step AR rollout</td>
       </tr>
       <tr style="border-bottom:1px solid var(--border);">
         <td style="padding:0.75rem 1rem; font-weight:500;">IRASim</td>
         <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Action (proprio) + Image</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
@@ -5353,11 +5359,13 @@ benchmark_export/
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">4-chunk AR rollout (64f)</td>
       </tr>
       <tr style="border-bottom:1px solid var(--border);">
         <td style="padding:0.75rem 1rem; font-weight:500;">Cosmos Predict2.5</td>
         <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Action (EE pose) + Image</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
         <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
@@ -5370,8 +5378,7 @@ benchmark_export/
   </div>
 
   <p style="margin-top:1rem; color:var(--muted); font-size:0.8rem;">
-    All metrics computed on first 49 generated frames at 480&times;640. FVD computed on full set;
-    LPIPS/PSNR/SSIM averaged per-frame then per-episode. &darr; = lower is better, &uarr; = higher is better.
+    All metrics on first 49 generated frames (frame 0 excluded from per-frame averages). PSNR/SSIM/LPIPS/tLPIPS per-frame averaged per-episode then overall; FVD/FID on full distribution. tLPIPS = temporal LPIPS (consecutive-frame smoothness, no GT needed). FID pending implementation. &darr; = lower is better, &uarr; = higher is better.
   </p>
 </div>
 </div>
