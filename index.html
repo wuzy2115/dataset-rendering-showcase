@@ -593,6 +593,7 @@
   <button class="tab-btn" data-tab="training-tab">Model Training</button>
   <button class="tab-btn" data-tab="human-tab">Human Datasets</button>
   <button class="tab-btn" data-tab="eval-tab">Eval</button>
+  <button class="tab-btn" data-tab="benchmark-tab">Benchmark</button>
 </div>
 
 <div id="rendering-tab" class="tab-content active">
@@ -5263,8 +5264,118 @@ benchmark_export/
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECTION 7: Benchmark Construction                      -->
+<!-- SECTION 7: Benchmark Metrics                           -->
 <!-- ═══════════════════════════════════════════════════════ -->
+<div id="benchmark-tab" class="tab-content">
+<div class="section">
+  <h2 class="section-title">
+    Benchmark Results
+    <span class="badge badge-blue">240 samples &middot; 6 datasets &middot; 49-frame window</span>
+  </h2>
+  <div class="config-info">
+    <dl><dt>Benchmark</dt><dd>benchmark_export_v4 (240 episodes)</dd></dl>
+    <dl><dt>Metric window</dt><dd>First 49 generated frames</dd></dl>
+    <dl><dt>Datasets</dt><dd>DROID / InternData / RH20T-cfg5 / RH20T-cfg7 / AIROA / AgiBotWorld</dd></dl>
+    <dl><dt>Status</dt><dd>Evaluation in progress &mdash; results updated as runs complete</dd></dl>
+  </div>
+
+  <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1rem; font-weight:600;">Overall (all datasets)</h3>
+  <div style="overflow-x:auto;">
+  <table class="data-table" id="metrics-overall" style="width:100%; border-collapse:collapse; font-size:0.875rem;">
+    <thead>
+      <tr style="border-bottom:2px solid var(--border);">
+        <th style="text-align:left; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">Method</th>
+        <th style="text-align:left; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">Conditioning</th>
+        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">FVD &darr;</th>
+        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">LPIPS &darr;</th>
+        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">PSNR &uarr;</th>
+        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">SSIM &uarr;</th>
+        <th style="text-align:right; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">RSSIM &uarr;</th>
+        <th style="text-align:left; padding:0.75rem 1rem; color:var(--muted); font-weight:600;">Notes</th>
+      </tr>
+    </thead>
+    <tbody id="metrics-overall-body">
+      <tr style="border-bottom:1px solid var(--border); background:rgba(99,179,237,0.06);">
+        <td style="padding:0.75rem 1rem; font-weight:600; color:var(--accent);">Ours (8k iter)</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Action (EE pose) + Image</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Running...</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:0.75rem 1rem; font-weight:500;">TesserAct</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Image + Text</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">CogVideoX-5B + LoRA; 49f native</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:0.75rem 1rem; font-weight:500;">ORV</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Image + Text</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Open-domain robot video</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:0.75rem 1rem; font-weight:500;">Ctrl-World</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Action (proprio) + Image</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">SVD fine-tune; 10-step AR rollout</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:0.75rem 1rem; font-weight:500;">IRASim</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Action (proprio) + Image</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">DiT diffusion; 49f generation</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:0.75rem 1rem; font-weight:500;">EnerVerse-AC</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Action (EE pose) + Image</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">4-chunk AR rollout (64f)</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:0.75rem 1rem; font-weight:500;">Cosmos Predict2.5</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">Action (EE pose) + Image</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="text-align:right; padding:0.75rem 1rem; font-family:monospace;">—</td>
+        <td style="padding:0.75rem 1rem; color:var(--muted); font-size:0.8rem;">5-chunk AR rollout (60f)</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p style="margin-top:1rem; color:var(--muted); font-size:0.8rem;">
+    All metrics computed on first 49 generated frames at 480&times;640. FVD computed on full set;
+    LPIPS/PSNR/SSIM averaged per-frame then per-episode. &darr; = lower is better, &uarr; = higher is better.
+  </p>
+</div>
+</div>
+
 <div class="footer">
   WorldSim Dataset Rendering Showcase &mdash; Auto-generated by <code>scripts/render_showcase.py</code>
 </div>
@@ -5298,6 +5409,8 @@ if (location.hash === '#processed') {
   document.querySelector('[data-tab="human-tab"]').click();
 } else if (location.hash === '#eval') {
   document.querySelector('[data-tab="eval-tab"]').click();
+} else if (location.hash === '#benchmark') {
+  document.querySelector('[data-tab="benchmark-tab"]').click();
 }
 
 // Stats data for dynamic updates
