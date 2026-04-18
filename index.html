@@ -594,6 +594,7 @@
   <button class="tab-btn" data-tab="human-tab">Human Datasets</button>
   <button class="tab-btn" data-tab="eval-tab">Eval</button>
   <button class="tab-btn" data-tab="benchmark-tab">Benchmark</button>
+  <button class="tab-btn" data-tab="mesh-rendering-tab">Mesh Rendering</button>
 </div>
 
 <div id="rendering-tab" class="tab-content active">
@@ -5383,6 +5384,67 @@ benchmark_export/
 </div>
 </div>
 
+<div id="mesh-rendering-tab" class="tab-content">
+<div class="section">
+  <h2 class="section-title">
+    Mesh Rendering Comparison
+    <span class="badge badge-blue">5 robot types &middot; 25 videos</span>
+  </h2>
+  <div class="config-info">
+    <dl><dt>Renderer</dt><dd>MeshRenderer (PyRender + EGL offscreen, URDF meshes)</dd></dl>
+    <dl><dt>Layout</dt><dd>Left = original RGB &nbsp;|&nbsp; Right = mesh on black background</dd></dl>
+    <dl><dt>Opacity</dt><dd>0.9 (scenario view, no overlay blending)</dd></dl>
+    <dl><dt>Note</dt><dd>AGIBot (G1) uses base-frame FK &mdash; arm positions may be offset for this bimanual robot. Toyota HSR skipped (mesh files unavailable).</dd></dl>
+  </div>
+
+  <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">DROID &mdash; Franka Panda</h3>
+  <div class="video-grid">
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid_franka/AUTOLab__success__2023-10-14__Sat_Oct_14_21-46-21_2023_22008760.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-10-14</span> &middot; Franka Panda &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid_franka/CLVR__success__2023-05-18__Thu_May_18_19-19-56_2023_20655732.mp4"></video><div class="video-meta"><span class="scene-name">CLVR 2023-05-18</span> &middot; Franka Panda &middot; 248 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid_franka/CLVR__success__2023-06-06__Tue_Jun__6_00-32-39_2023_20655732.mp4"></video><div class="video-meta"><span class="scene-name">CLVR 2023-06-06</span> &middot; Franka Panda &middot; 287 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid_franka/CLVR__success__2023-06-19__Tue_Jun_20_00-05-24_2023_20655732.mp4"></video><div class="video-meta"><span class="scene-name">CLVR 2023-06-19</span> &middot; Franka Panda &middot; 239 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid_franka/IPRL__success__2023-06-30__Fri_Jun_30_18-06-59_2023_28221883.mp4"></video><div class="video-meta"><span class="scene-name">IPRL 2023-06-30</span> &middot; Franka Panda &middot; 300 frames</div></div>
+  </div>
+
+  <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">RH20T cfg5 &mdash; Franka Panda</h3>
+  <div class="video-grid">
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5_franka/task_0001_user_0020_scene_0002_cfg_0005_037522062165.mp4"></video><div class="video-meta"><span class="scene-name">task_0001 user_0020 scene_0002</span> &middot; Franka Panda &middot; 289 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5_franka/task_0003_user_0014_scene_0001_cfg_0005_104122061850.mp4"></video><div class="video-meta"><span class="scene-name">task_0003 user_0014 scene_0001</span> &middot; Franka Panda &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5_franka/task_0012_user_0007_scene_0004_cfg_0005_f0461559.mp4"></video><div class="video-meta"><span class="scene-name">task_0012 user_0007 scene_0004</span> &middot; Franka Panda &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5_franka/task_0033_user_0010_scene_0008_cfg_0005_104422070044.mp4"></video><div class="video-meta"><span class="scene-name">task_0033 user_0010 scene_0008</span> &middot; Franka Panda &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5_franka/task_0050_user_0007_scene_0001_cfg_0005_037522062165.mp4"></video><div class="video-meta"><span class="scene-name">task_0050 user_0007 scene_0001</span> &middot; Franka Panda &middot; 300 frames</div></div>
+  </div>
+
+  <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">RH20T cfg7 &mdash; Kuka IIWA</h3>
+  <div class="video-grid">
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg7_kuka/task_0010_user_0020_scene_0003_cfg_0007_037522061512.mp4"></video><div class="video-meta"><span class="scene-name">task_0010 user_0020 scene_0003</span> &middot; Kuka IIWA &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg7_kuka/task_0029_user_0020_scene_0010_cfg_0007_037522061512.mp4"></video><div class="video-meta"><span class="scene-name">task_0029 user_0020 scene_0010</span> &middot; Kuka IIWA &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg7_kuka/task_0033_user_0014_scene_0005_cfg_0007_104122060811.mp4"></video><div class="video-meta"><span class="scene-name">task_0033 user_0014 scene_0005</span> &middot; Kuka IIWA &middot; 219 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg7_kuka/task_0036_user_0014_scene_0006_cfg_0007_104122060811.mp4"></video><div class="video-meta"><span class="scene-name">task_0036 user_0014 scene_0006</span> &middot; Kuka IIWA &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg7_kuka/task_0038_user_0014_scene_0009_cfg_0007_104122060811.mp4"></video><div class="video-meta"><span class="scene-name">task_0038 user_0014 scene_0009</span> &middot; Kuka IIWA &middot; 277 frames</div></div>
+  </div>
+
+  <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">AGIBot &mdash; Unitree G1 (Bimanual)</h3>
+  <div class="video-grid">
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/agibot_g1/475_699881.mp4"></video><div class="video-meta"><span class="scene-name">Episode 475_699881</span> &middot; Unitree G1 &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/agibot_g1/475_700081.mp4"></video><div class="video-meta"><span class="scene-name">Episode 475_700081</span> &middot; Unitree G1 &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/agibot_g1/475_700304.mp4"></video><div class="video-meta"><span class="scene-name">Episode 475_700304</span> &middot; Unitree G1 &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/agibot_g1/475_701107.mp4"></video><div class="video-meta"><span class="scene-name">Episode 475_701107</span> &middot; Unitree G1 &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/agibot_g1/475_701835.mp4"></video><div class="video-meta"><span class="scene-name">Episode 475_701835</span> &middot; Unitree G1 &middot; 300 frames</div></div>
+  </div>
+
+  <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">InternData &mdash; Franka Panda</h3>
+  <div class="video-grid">
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata_franka/ep1021_head.mp4"></video><div class="video-meta"><span class="scene-name">Episode 1021</span> &middot; Franka Panda &middot; 207 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata_franka/ep1058_head.mp4"></video><div class="video-meta"><span class="scene-name">Episode 1058</span> &middot; Franka Panda &middot; 212 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata_franka/ep1151_head.mp4"></video><div class="video-meta"><span class="scene-name">Episode 1151</span> &middot; Franka Panda &middot; 300 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata_franka/ep1217_head.mp4"></video><div class="video-meta"><span class="scene-name">Episode 1217</span> &middot; Franka Panda &middot; 216 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata_franka/ep1309_head.mp4"></video><div class="video-meta"><span class="scene-name">Episode 1309</span> &middot; Franka Panda &middot; 300 frames</div></div>
+  </div>
+
+</div>
+</div>
+
 <div class="footer">
   WorldSim Dataset Rendering Showcase &mdash; Auto-generated by <code>scripts/render_showcase.py</code>
 </div>
@@ -5418,6 +5480,8 @@ if (location.hash === '#processed') {
   document.querySelector('[data-tab="eval-tab"]').click();
 } else if (location.hash === '#benchmark') {
   document.querySelector('[data-tab="benchmark-tab"]').click();
+} else if (location.hash === '#mesh-rendering') {
+  document.querySelector('[data-tab="mesh-rendering-tab"]').click();
 }
 
 // Stats data for dynamic updates
