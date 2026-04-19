@@ -5387,48 +5387,50 @@ benchmark_export/
 <div id="mesh-rendering-tab" class="tab-content">
 <div class="section">
   <h2 class="section-title">
-    Mesh Rendering Overlay
+    Mesh Rendering Side-by-Side
     <span class="badge badge-blue">5 robot configs &middot; 15 videos</span>
   </h2>
   <div class="config-info">
     <dl><dt>Renderer</dt><dd>MeshRenderer (PyRender + EGL offscreen, URDF FK + gripper driving)</dd></dl>
-    <dl><dt>Layout</dt><dd>Semi-transparent mesh overlay on original RGB (opacity 0.7)</dd></dl>
+    <dl><dt>Layout</dt><dd>Left = original RGB &nbsp;|&nbsp; Right = mesh overlay on RGB (opacity 0.7)</dd></dl>
     <dl><dt>Gripper</dt><dd>Driven by gripper_openness &rarr; joint limits mapping with mimic joints</dd></dl>
+    <dl><dt>Alignment</dt><dd>Video-to-robot-state interpolation for mismatched frame counts</dd></dl>
     <dl><dt>Encoding</dt><dd>H.264 (libx264, CRF 23)</dd></dl>
   </div>
 
   <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">DROID &mdash; Franka Panda</h3>
   <div class="video-grid">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid/AUTOLab__success__2023-11-13__Mon_Nov_13_16_08_25_2023__24400334_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-11-13</span> &middot; Franka Panda &middot; 60 frames &middot; 80% visible</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid/AUTOLab__failure__2023-11-07__Tue_Nov__7_17_19_34_2023__22008760_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-11-07</span> &middot; Franka Panda &middot; 60 frames &middot; 100% visible</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid/AUTOLab__failure__2023-11-05__Sun_Nov__5_10_32_58_2023__24400334_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">AUTOLab 2023-11-05</span> &middot; Franka Panda &middot; 60 frames &middot; 100% visible</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid/CLVR__success__2023-06-03__Sat_Jun__3_22_43_54_2023__20655732_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">CLVR 2023-06-03 (cam 20655732)</span> &middot; Franka Panda &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid/ILIAD__failure__2023-06-01__Thu_Jun__1_19_38_41_2023__23897859_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">ILIAD 2023-06-01</span> &middot; Franka Panda &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/droid/CLVR__success__2023-06-03__Sat_Jun__3_22_43_54_2023__20103212_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">CLVR 2023-06-03 (cam 20103212)</span> &middot; Franka Panda &middot; 60 frames</div></div>
   </div>
 
   <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">RH20T cfg5 &mdash; Franka Panda</h3>
   <div class="video-grid">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5/task_0014_user_0007_scene_0008_cfg_0005__104422070044_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">task_0014 scene_0008</span> &middot; Franka Panda &middot; 60 frames &middot; 100% visible</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5/task_0001_user_0007_scene_0004_cfg_0005__037522062165_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">task_0001 scene_0004</span> &middot; Franka Panda &middot; 60 frames &middot; 100% visible</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5/task_0059_user_0007_scene_0003_cfg_0005__104122061850_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">task_0059 scene_0003</span> &middot; Franka Panda &middot; 60 frames &middot; 100% visible</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5/task_0002_user_0020_scene_0001_cfg_0005__104122063678_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">task_0002 scene_0001 (cam 063678)</span> &middot; Franka Panda &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5/task_0002_user_0020_scene_0001_cfg_0005__f0461559_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">task_0002 scene_0001 (cam f046)</span> &middot; Franka Panda &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg5/task_0002_user_0020_scene_0001_cfg_0005__104122061850_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">task_0002 scene_0001 (cam 061850)</span> &middot; Franka Panda &middot; 60 frames</div></div>
   </div>
 
   <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">RH20T cfg7 &mdash; Kuka IIWA + Robotiq 2F-85</h3>
   <div class="video-grid">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg7/task_0033_user_0020_scene_0010_cfg_0007__104122060811_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">task_0033 scene_0010</span> &middot; Kuka IIWA &middot; 60 frames &middot; 100% visible</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg7/task_0066_user_0020_scene_0005_cfg_0007__104122061602_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">task_0066 scene_0005</span> &middot; Kuka IIWA &middot; 60 frames &middot; 100% visible</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg7/task_0046_user_0020_scene_0008_cfg_0007__104122060811_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">task_0046 scene_0008</span> &middot; Kuka IIWA &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg7/task_0063_user_0020_scene_0004_cfg_0007__104122063633_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">task_0063 scene_0004 (cam 063633)</span> &middot; Kuka IIWA &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/rh20t_cfg7/task_0063_user_0020_scene_0004_cfg_0007__104122060811_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">task_0063 scene_0004 (cam 060811)</span> &middot; Kuka IIWA &middot; 60 frames</div></div>
   </div>
 
   <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">AIRoA MoMa &mdash; Toyota HSR</h3>
   <div class="video-grid">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/airoa_moma/ep_012321__head_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">Episode 012321</span> &middot; Toyota HSR &middot; 60 frames &middot; 72% visible</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/airoa_moma/ep_004951__head_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">Episode 004951</span> &middot; Toyota HSR &middot; 60 frames &middot; 70% visible</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/airoa_moma/ep_000803__head_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">Episode 000803</span> &middot; Toyota HSR &middot; 60 frames &middot; 100% visible</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/airoa_moma/ep_008409__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 008409</span> &middot; Toyota HSR &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/airoa_moma/ep_021905__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 021905</span> &middot; Toyota HSR &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/airoa_moma/ep_005978__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 005978</span> &middot; Toyota HSR &middot; 60 frames</div></div>
   </div>
 
   <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">InternData &mdash; Franka Panda</h3>
   <div class="video-grid">
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata/ep1172__head_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">Episode 1172</span> &middot; Franka Panda &middot; 60 frames &middot; 100% visible</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata/ep430__head_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">Episode 430</span> &middot; Franka Panda &middot; 60 frames &middot; 100% visible</div></div>
-    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata/ep913__head_mesh_overlay.mp4"></video><div class="video-meta"><span class="scene-name">Episode 913</span> &middot; Franka Panda &middot; 60 frames &middot; 100% visible</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata/ep666__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 666</span> &middot; Franka Panda &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata/ep1074__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 1074</span> &middot; Franka Panda &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata/ep705__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 705</span> &middot; Franka Panda &middot; 60 frames</div></div>
   </div>
 
 </div>
