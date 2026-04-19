@@ -5388,11 +5388,11 @@ benchmark_export/
 <div class="section">
   <h2 class="section-title">
     Mesh Rendering Side-by-Side
-    <span class="badge badge-blue">5 robot configs &middot; 15 videos</span>
+    <span class="badge badge-blue">6 robot configs &middot; 18 videos</span>
   </h2>
   <div class="config-info">
     <dl><dt>Renderer</dt><dd>MeshRenderer (PyRender + EGL offscreen, URDF FK + gripper driving)</dd></dl>
-    <dl><dt>Layout</dt><dd>Left = original RGB &nbsp;|&nbsp; Right = mesh overlay on RGB (opacity 0.7)</dd></dl>
+    <dl><dt>Layout</dt><dd>Left = original RGB &nbsp;|&nbsp; Right = mesh on black background (scenario view)</dd></dl>
     <dl><dt>Gripper</dt><dd>Driven by gripper_openness &rarr; joint limits mapping with mimic joints</dd></dl>
     <dl><dt>Alignment</dt><dd>Video-to-robot-state interpolation for mismatched frame counts</dd></dl>
     <dl><dt>Encoding</dt><dd>H.264 (libx264, CRF 23)</dd></dl>
@@ -5431,6 +5431,13 @@ benchmark_export/
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata/ep666__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 666</span> &middot; Franka Panda &middot; 60 frames</div></div>
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata/ep1074__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 1074</span> &middot; Franka Panda &middot; 60 frames</div></div>
     <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/interndata/ep705__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 705</span> &middot; Franka Panda &middot; 60 frames</div></div>
+  </div>
+
+  <h3 style="margin:2rem 0 1rem; color:var(--text); font-size:1.1rem; font-weight:600;">AGIBot &mdash; Unitree G1 + CRT-120S Gripper</h3>
+  <div class="video-grid">
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/agibot/425_768431_a10_907_1005__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 425_768431 (a10)</span> &middot; Unitree G1 &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/agibot/544_830282_a3_370_488__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 544_830282 (a3)</span> &middot; Unitree G1 &middot; 60 frames</div></div>
+    <div class="video-card"><video controls muted loop preload="none" data-src="videos/mesh_rendering/agibot/508_782467_a1_202_347__head_mesh_sbs.mp4"></video><div class="video-meta"><span class="scene-name">Episode 508_782467 (a1)</span> &middot; Unitree G1 &middot; 60 frames</div></div>
   </div>
 
 </div>
