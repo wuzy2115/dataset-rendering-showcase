@@ -4415,9 +4415,13 @@ P(frame f seen across training)
     <div style="margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(34,197,94,0.08); border-left: 3px solid var(--green); border-radius: 0 6px 6px 0; font-size: 0.9rem; color: var(--muted);">
       <strong style="color: var(--text);">Evaluation parity:</strong>
       Benchmark v4 evaluation mirrors the same principle — for each eval clip we pick the 81-frame inference window
-      centered on the gripper-transition midpoint (<code>[mid−40, mid+40]</code>), falling back to the EE-velocity-peak
-      window for the 10% no-transition clips and to <code>[0, 81)</code> if neither signal is usable. This keeps train
-      and eval focused on the same semantic content: the object-interaction phase.
+      starting at <code>clip[mid−20]</code> (<code>_MID_OFFSET=20</code>, so the generated window spans <code>[mid−20, mid+60]</code>
+      and the 49-frame metric slice covers <code>[mid−20, mid+28]</code>: 20 pre-grasp context frames + 28 post-grasp interaction frames).
+      This deliberately biases the metric window toward the <em>post-contact</em> dynamics that reveal whether the
+      world model correctly predicts object-carry, slip, and manipulation physics — which is the hardest task for a
+      video prior. Falling back to the EE-velocity-peak window for the 15% no-transition clips and to <code>[0, 81)</code>
+      if neither signal is usable. 49-frame-native baselines (e.g., Kinema4D) conditioned on <code>clip[mid−20]</code>
+      produce outputs covering the same <code>[mid−20, mid+28]</code> window — apples-to-apples with our model's metric slice.
     </div>
   </div>
 </div>
