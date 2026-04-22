@@ -5755,11 +5755,95 @@ benchmark_export/
 
 <div id="human-data-selection-tab" class="tab-content">
   <!-- AUTOGEN:human-data-selection BEGIN -->
-  <p style="color: var(--muted); padding: 2rem 0;">
-    Phase C report will populate here after
-    <code>scripts/build_human_selection_showcase.py</code> runs.
-  </p>
-  <!-- AUTOGEN:human-data-selection END -->
+<div class="config-info" style="margin-bottom: 1.5rem;">
+  <h3 style="margin-bottom: 0.5rem;">What this tab is</h3>
+  <p>We have a 240-episode robot benchmark (across 6 subsets: agibot, airoa_moma, droid, interndata, rh20t_cfg5, rh20t_cfg7) and a ~377 k filtered ego-centric human pool (vitra_ssv2, vitra_epic, vitra_ego4d_cooking, vitra_ego4d_other, egodex — only episodes with both <code>caption.pickle</code> and <code>skeleton_scenario.mp4</code> rendered). The goal is to rank human episodes by similarity to the robot benchmark so a training ablation can add the most-similar 50k / 100k / 200k humans.</p>
+
+  <h3 style="margin:1rem 0 0.5rem;">Scoring formula</h3>
+  <p>For each (benchmark_ep <em>b</em>, human_ep <em>h</em>) pair we compute SigLIP cosine similarity on <strong>both</strong> visual (5 sampled frames of <code>rgb.mp4</code>) and textual (auto-generated <code>caption.pickle</code>) embeddings. The blend weight α sets how much each side counts:</p>
+  <pre style="background:var(--card); padding:0.75rem; border-radius:6px;">S(b, h)              = α · cos(vis_b, vis_h) + (1 − α) · cos(txt_b, txt_h)
+per_subset_max(s, h) = max over b in subset s of S(b, h)     # one row per robot subset
+final_score(h)       = mean over 6 robot subsets of per_subset_max(s, h)
+matched_b(h)         = argmax over all 240 b of S(b, h)</pre>
+  <p>The <strong>coverage-weighted mean of per-subset maxes</strong> (rather than a plain global max) prefers human episodes that match several robot subsets moderately over ones that only match one subset strongly. This prevents a single dominant subset (e.g. lots of droid-like tabletop clips) from taking over the ranking.</p>
+
+  <h3 style="margin:1rem 0 0.5rem;">How to read the tab</h3>
+  <ul style="padding-left: 1.25rem;">
+    <li><strong>α selector</strong> swaps between three blend weights. Change it to compare what "more-visual" (α = 0.7) vs "more-text" (α = 0.3) looks like.</li>
+    <li><strong>Summary</strong> shows the top-5 k slice's distribution over human sources + which of the 6 robot subsets each human matched.</li>
+    <li><strong>Per-benchmark neighbours</strong>: for each benchmark episode (grouped by subset), the contact sheet on top is the benchmark itself; the grid below is its top-K human neighbours (those whose argmax-benchmark is this episode), with score overlay.</li>
+    <li><strong>Top-200 global ranked</strong>: the top of the <code>human_similarity_ranked.jsonl</code> output, ordered by final_score descending.</li>
+  </ul>
+  <p style="color: var(--muted); font-size: 0.9rem;">Contact sheets are 3×2 frame grids (768×256 JPEG). Full <code>rgb.mp4</code> paths are in the per-α JSON — copy to inspect on NFS if a neighbour looks off.</p>
+</div>
+<div class="hds-controls" style="margin-bottom: 1rem;">
+  <label>Blend weight: <select id="hds-alpha"><option value="0.3">α = 0.3</option><option value="0.5">α = 0.5</option><option value="0.7">α = 0.7</option></select></label>
+  <span id="hds-status" style="margin-left: 1rem; color: var(--muted);"></span>
+</div>
+<div id="hds-summary"></div>
+<h3 style="margin-top: 2rem;">Per-benchmark top neighbours <span style="color: var(--muted); font-size: 0.85rem; font-weight: 400;">(first 60 shown)</span></h3>
+<div id="hds-per-benchmark" class="video-grid"></div>
+<h3 style="margin-top: 2rem;">Top-200 global ranked</h3>
+<div id="hds-top-ranked" class="video-grid"></div>
+<script>
+(function() {
+  const sel = document.getElementById('hds-alpha');
+  const status = document.getElementById('hds-status');
+  sel.value = "0.5";
+  sel.addEventListener('change', () => loadAlpha(sel.value));
+  function fmt(x) { return (x).toFixed(3); }
+  async function loadAlpha(a) {
+    status.textContent = 'Loading α=' + a + '…';
+    const resp = await fetch('analysis/human_data_selection_alpha_' + a + '.json');
+    const d = await resp.json();
+    status.textContent = 'α=' + a + ', N_human=' + d.n_human + ', N_bench=' + d.n_benchmark;
+    renderSummary(d.summary);
+    renderPerBenchmark(d.per_benchmark);
+    renderTopRanked(d.top_ranked);
+  }
+  function renderSummary(s) {
+    const host = document.getElementById('hds-summary');
+    host.innerHTML =
+      '<div><strong>Source distribution (top-' + s.n_top5k + '):</strong> '
+      + Object.entries(s.source_distribution).map(([k,v]) => k + ':' + v).join(', ')
+      + '</div>'
+      + '<div><strong>Robot subset coverage:</strong> '
+      + Object.entries(s.robot_subset_coverage).map(([k,v]) => k + ':' + v).join(', ')
+      + '</div>';
+  }
+  function card(src, caption, score, extra) {
+    return '<div class="video-card">'
+      + (src ? '<img src="' + src + '" loading="lazy" style="width:100%; display:block;">' : '')
+      + '<div class="video-meta">'
+      + (score !== undefined ? '<b>' + fmt(score) + '</b> ' : '')
+      + (extra || '')
+      + '</div></div>';
+  }
+  function renderPerBenchmark(list) {
+    const host = document.getElementById('hds-per-benchmark');
+    host.innerHTML = list.slice(0, 60).map(b => {
+      const nbs = b.neighbors.map(n =>
+        card(n.contact_sheet, '', n.score,
+             '<small>' + n.source_dataset + '<br>' + n.human_ep_id + '</small>')
+      ).join('');
+      return '<div style="grid-column: 1/-1; margin-top: 1.5rem;">'
+        + '<h4>' + b.subset + ' — ' + b.ep_id + '</h4>'
+        + card(b.contact_sheet, '', undefined, '<em>' + b.ep_id + '</em>')
+        + '<div class="video-grid">' + nbs + '</div></div>';
+    }).join('');
+  }
+  function renderTopRanked(list) {
+    const host = document.getElementById('hds-top-ranked');
+    host.innerHTML = list.slice(0, 200).map(r =>
+      card(r.contact_sheet, '', r.score,
+           '<small>' + r.source_dataset + ' · ' + r.matched_robot_subset + '<br>'
+           + r.human_ep_id + '</small>')
+    ).join('');
+  }
+  loadAlpha(sel.value);
+})();
+</script>
+<!-- AUTOGEN:human-data-selection END -->
 </div>
 
 <div class="footer">
