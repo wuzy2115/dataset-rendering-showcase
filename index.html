@@ -843,25 +843,34 @@
       <!-- ═══ RoboMIND 2.0 ═══ -->
       <tr>
         <td><strong>RoboMIND 2.0</strong> <span class="badge badge-yellow" style="font-size:0.65rem">Partial Calibration</span></td>
-        <td>Tiangong Pro humanoid (7+7 DOF), Tianyi 2.0 bimanual (7+7 DOF), AgileX Piper (6+6 DOF), Franka Panda (7+7 DOF), UR5e (6 DOF), UR5+Inspire DexHand (6+12 DOF), ARX X5A (6+6 DOF)</td>
-        <td>310K+ total (7 robots, 15 sub-repos)</td>
-        <td><span class="status-dot dot-green"></span>1–6 cams JPEG-in-HDF5; RealSense D435if; 480×640 to 1280×720; ~55 Hz</td>
+        <td>Tienkung humanoid (7+7), Tianyi humanoid (7+7) +mobile variant, AgileX Cobot Magic (6+6) +mobile, Franka FR3 dual-arm (8+8 real / 7+7 sim), UR5 dual (6+6) +UR5-Dex (6+6 + 12-DoF dex hand), Ark dual (6+6) +mobile, Tienkung-sim w/ dex hand — 12 distinct variants across 15 sub-repos</td>
+        <td>310K+ trajectories / 1000+ hours / 12K tactile-enriched / 20K mobile (12 example HDF5s pulled, one per embodiment)</td>
+        <td><span class="status-dot dot-green"></span>1–6 cams; JPEG-encoded bytes per frame in HDF5 (need cv2.imdecode); RealSense D435if / D455f / Orbbec Gemini336; 480×640 to 1280×720</td>
         <td>
           <ul class="missing-list">
-            <li>Calibration only for Franka + AgileX (separate JSON, not in HDF5)</li>
-            <li>Tianyi/Tienkung/Ark: have URDF + joints but no camera calibration for projection</li>
-            <li>Extrinsics are cam-to-arm, base_to_robot empty</li>
+            <li>Real datasets: NO intrinsics/extrinsics inside HDF5 (only sim has)</li>
+            <li>External camera_extrinsics_intrinsics/ only covers Franka + AgileX, and is for separate charucoboard sessions (not 1:1 with example episodes)</li>
+            <li>Tienkung, Tianyi, Ark, AgileX: no URDF in builtin registry — skeleton rendering blocked</li>
+            <li>UR5-Dex / Tienkung-sim / Franka-sim: dex hand chain not in builtin URDFs</li>
+            <li>Franka FR3 arm shape is 8-D (FR3 is 7-DoF) — needs LeRobot-meta mapping for 8th channel</li>
+            <li>Coordinate convention (OpenCV vs OpenGL) not documented</li>
+            <li>Several real episodes have placeholder all-zero EE quaternions</li>
+            <li>Tienkung real has empty end_effector_*_position arrays</li>
           </ul>
         </td>
         <td>
           <ul class="missing-list present-list">
-            <li>All 7 robots have URDFs (builtin or GitHub: TienKung_URDF, agx_arm_urdf, ARX_Model, dex-urdf)</li>
-            <li>Franka/AgileX: intrinsics (3x3 + distortion) + extrinsics (4x4)</li>
-            <li>Joint positions + EE pose (Franka/AgileX/UR5/UR5-Dex/Ark)</li>
-            <li>Inspire DexHand 12-DOF positions, gripper openness</li>
-            <li>Language annotations (via meta_info JSON + task dirs)</li>
-            <li>Tactile data (12K eps), force sensing, depth images</li>
-            <li>Intervention flags + timestamps per field</li>
+            <li>Unified HDF5 schema across all variants: metadata + camera_* + camera_observations + master/ (commanded) + puppet/ (observed)</li>
+            <li>Per-frame JPEG color + PNG depth in HDF5</li>
+            <li>Sim variants (Franka-sim, Tienkung-sim) have full in-HDF5 calib: camera_intrinsics/&lt;cam&gt;/matrix + camera_extrinsics/&lt;cam&gt; (4×4) + base_to_robot_transformation</li>
+            <li>External calib for Franka real: camera_intrinsics.json (3×3 + 5-vec distortion) + camera_extrinsics_2025_08_26.json (4×4 cam→arm)</li>
+            <li>External calib for AgileX: ROS CameraInfo TXT (K,D,R,P) + per-arm 4×4 extrinsics (charucoboard, 200 samples)</li>
+            <li>Joint positions (puppet/arm_{L,R}_position_align/data), EE pose [x,y,z,qx,qy,qz,qw] scalar-last, gripper width or 12-d dex finger positions</li>
+            <li>Builtin URDFs available: franka_panda (≈ FR3), ur5 (arm-only)</li>
+            <li>Mobile variants: chassis_twist (6-DoF) + chassis_pose (7-DoF); Tianyi-mobile also head_position (3-DoF)</li>
+            <li>Tactile (AgileX-mobile only): tactile_left/right_align/data shape [N, 2, 6]</li>
+            <li>Language annotations: meta_info/&lt;task&gt;.json + mobile_manipulation/&lt;task&gt;.json for 30+ tasks; sim variants also have metadata/language_instruction in HDF5</li>
+            <li>is_intervene flag + timestamp per stream (master and puppet)</li>
           </ul>
         </td>
       </tr>
